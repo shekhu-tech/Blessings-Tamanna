@@ -316,7 +316,7 @@
 /* CARD DESIGN */
 .card {
   position: relative;
-  height: 260px;
+  height: 220px;
   border-radius: 15px;
   overflow: hidden;
   background-size: cover;
@@ -1287,3 +1287,4 @@ html, body {
 
       .social { width: 50px; height: 50px; font-size: 1.3rem; }
     }
+
