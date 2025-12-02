@@ -1,148 +1,358 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
- <meta charset="UTF-8">
- <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
- <link rel="stylesheet" href="styles.css">
- <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
-     </head>
-<body>
-     <section>
- <header>
-    <div class="logo">
-  <a href="index.html">
-    <img src="tam.png" alt="tamanna logo" style="height: 35px;">
-  </a>
-</div>
-    <nav id="nav">
-      <a href="index.html" class="active" >Services</a>
-                    <a href="galary.html">Gallery</a>
-                    <a href="tstimnl.html">Testimonials</a>
-                    <a href="aboutme.html">Meet Me</a>
-    </nav>
-    <div class="toggle" onclick="toggleMenu()" id="toggleBtn">
-      <div class="bar"></div>
-      <div class="bar"></div>
-      <div class="bar"></div>
-    </div>
-  </header>
-     </section>
-         <section class="who-we-are">
-          <div class="content">
-                  <h2>Services</h2>               
-           <h3> Bridal, Custom, and Festive Mehndi Services</h3> 
-   <p>Our Bridal Mehndi service offers intricate, personalized designs for your special day, ensuring a long-lasting and beautiful stain. Custom Mehndi lets you express your unique style with bespoke patterns for any occasion. For Festive Mehndi, we create elegant, traditional designs perfect for celebrations like Diwali, Eid, and Karwa Chauth.
-            </p>
-        </div>
-    </section>
-        <section>
-          <div class="card-container">
-                <div class="card" style="background-image: url('bdmn.jpg');">
-                    <div class="glow"></div>
-                       <div class="card-content">
-                          <h2>Bridal Mehndi</h2>
-                             <!-- <p>FGraphic designing combines creativity, colors, and typography to craft visually stunning, impactful designs.</p> -->                              
-                                  <button onclick="window.location.href='gd.html'">Know More</button>
-                               </div>
-                            </div>
-                        <div class="card" style="background-image: url('fstv.jpg');">
-                    <div class="glow"></div>
-                <div class="card-content">
-            <h2>Festive Mehndi</h2>
-       <!-- <p>Video editing blends footage, effects, and sound to create engaging, polished, and dynamic stories.</p> -->
-     <button onclick="window.location.href='ve.html'">Discover</button>
-        </div>
-            </div>
-               <div class="card" style="background-image: url('cstm.jpg');">
-                  <div class="glow"></div>
-                     <div class="card-content">
-                        <h2>Custom Mehndi</h2>
-                          <!-- <p>Website designing combines layout, colors, and functionality to create user-friendly, visually appealing websites.</p> -->
-                               <button onclick="window.location.href='wd.html'">Learn More</button>
-                        </div>
-                    </div>
-                </div>
-             </section>
-<footer>
-  <div class="footer-container">
-    <div class="footer-section">
-      <p>Very Dedicated to Connecting According To The Needs Of Clients</p>
-
-      <!-- Navigation Icons -->
-      <!-- <div class="footer-icons">
-        <a href="index.html" title="Home"><img src="H1.jpg" alt="Home"></a>
-        <a href="gd.html" title="Graphic Designing"><img src="H2.jpg" alt="Graphic Designing"></a>
-        <a href="ve.html" title="Video Editing"><img src="H3.jpg" alt="Video Editing"></a>
-        <a href="wd.html" title="Web Designing"><img src="H4.jpg" alt="Web Designing"></a>
-        <a href="orw.html" title="Office Related Work"><img src="H5.jpg" alt="Office Related Work"></a>
-       
-      </div>
-
-      <!-- Social Media Icons (optional - uncomment to enable) -->
-      
-      <div class="footer-icons">
-        <a href="#" title="Instagram"><img src="S1.jpg" alt="Instagram"></a>
-        <a href="#" title="Facebook"><img src="S2.jpg" alt="Facebook"></a>
-        <a href="#" title="YouTube"><img src="S4.jpg" alt="YouTube"></a>
-       
-       <!--  <a href="#" title="X Account"><img src="S3.jpg" alt="X Account"></a>
-        <a href="#" title="Nokri.com"><img src="S5.jpg" alt="Nokri.com"></a>
-        <a href="#" title="Shine.com"><img src="S6.jpg" alt="Shine.com"></a>
-        <a href="#" title="LinkedIn"><img src="S7.jpg" alt="LinkedIn"></a> -->
-      </div>
-   
-
-      <!-- Footer Buttons -->
-      <div class="footer-buttons">
-                <a href="index.html" class="footer-btn" title="Privacy Policy" >Services</a>
-                    <a href="galary.html"class="footer-btn" title="Privacy Policy">Gallery</a>
-                    <a href="tstimnl.html"class="footer-btn" title="Privacy Policy">Testimonials</a>
-                    <a href="aboutme.html"class="footer-btn" title="Privacy Policy">Meet Me</a>
-      </div>
-    </div>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Blessingsss Loading...</title>
+    <!-- Tailwind CSS CDN (Self-contained styling) -->
+    <script src="https://cdn.tailwindcss.com"></script>
     
-    <p style="text-align: center; margin-top: 20px;">&copy; 2025 Shekhar Tyagi. All Rights Reserved.</p>
-  </div>
+    <!-- Fonts matching main.html -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=Noto+Sans+Devanagari:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- START: Theme Variables (Golden Theme) --- */
+        /* NOTE: The splash screen uses the GOLDEN theme variables for a consistent look. */
+        :root {
+            --color-primary: #FFC72C; /* Bright Golden Glow */
+            --color-secondary: #A37A00; /* Dark Gold */
+            --color-background: #1A1C20; /* Dark Background */
+            --color-primary-rgb: 255, 199, 44; 
+            --electric-gold-glow: #FFC72C; 
+        }
 
-  <!-- Inline CSS for Footer Buttons -->
-  <style>
-    .footer-buttons {
-      margin-top: 20px;
-      text-align: center;
-    }
+        /* --- Global Styles --- */
+        body {
+            font-family: 'Inter', 'Noto Sans Devangari', sans-serif;
+            background-color: #0d0d10; /* Slightly darker base for better effect */
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden; /* Hide scrollbar during splash */
+            transition: opacity 1.5s ease-out; /* Fade-out transition */
+            position: relative; /* For particle effect */
+        }
 
-    .footer-btn {
-      background-color: transparent;
-      color: white;
-      padding: 10px 20px;
-      margin: 10px;
-      text-decoration: none;
-      border-radius: 5px;
-      font-size: 16px;
-      display: inline-block;
-      border: 1px solid white;
-      transition: background-color 0.3s ease, color 0.3s ease;
-    }
+        /* New: Fixed Gradient Overlay for Focus */
+        .gradient-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* Radial gradient to focus attention on the center */
+            background: radial-gradient(circle at center, rgba(30, 30, 35, 0.4) 0%, rgba(13, 13, 16, 0.8) 70%, rgba(13, 13, 16, 1) 100%);
+            z-index: -2; 
+        }
 
-    .footer-btn:hover {
-      background-color: #3498db;
-      color: white;
-    }
+        /* New: Moving Grid/Circuit Effect (Ultra Pro Max Background) */
+        .grid-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(to right, rgba(var(--color-primary-rgb), 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(var(--color-primary-rgb), 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: moveGrid 30s linear infinite;
+            opacity: 0.1;
+            z-index: -3;
+        }
+        @keyframes moveGrid {
+            from { background-position: 0 0; }
+            to { background-position: 50px 50px; }
+        }
+        
+        /* Keyframes for the Logo Pulse and Shadow */
+        @keyframes ultraPulseShadow {
+            0% { 
+                box-shadow: 0 0 10px rgba(var(--color-primary-rgb), 0.5), 0 0 0 0 rgba(var(--color-primary-rgb), 0.3); 
+                transform: scale(1);
+            }
+            50% { 
+                box-shadow: 0 0 35px rgba(var(--color-primary-rgb), 1.2), 0 0 0 10px rgba(var(--color-primary-rgb), 0); 
+                transform: scale(1.04); 
+            }
+            100% { 
+                box-shadow: 0 0 10px rgba(var(--color-primary-rgb), 0.5), 0 0 0 0 rgba(var(--color-primary-rgb), 0.3); 
+                transform: scale(1);
+            }
+        }
+        
+        /* Keyframes for the shimmer effect on company name text */
+        @keyframes shimmer {
+            0% { background-position: -500% 0; }
+            100% { background-position: 500% 0; }
+        }
 
-    .footer-icons img {
-      width: 40px;
-      margin: 5px;
-      transition: transform 0.2s ease;
-    }
+        .logo-container {
+            animation: ultraPulseShadow 3s infinite cubic-bezier(0.4, 0, 0.6, 1);
+            border: 4px solid var(--electric-gold-glow);
+            /* FUTURISTIC / CIRCUITRY BACKGROUND */
+            background-image: url('https://placehold.co/200x200/282a36/FFC72C?text=Circuit'); /* Placeholder for futuristic pattern */
+            background-size: cover;
+            background-position: center;
+            position: relative; 
+            overflow: hidden; 
+        }
+        .logo-container::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.6); /* Darker overlay for better text visibility */
+            border-radius: inherit;
+            z-index: 1;
+        }
+        .logo-container img {
+            position: relative;
+            z-index: 2; 
+            filter: drop-shadow(0 0 8px rgba(var(--color-primary-rgb), 1)); /* Stronger glowing effect */
+        }
 
-    .footer-icons img:hover {
-      transform: scale(1.1);
-    }
-      </style>
-     </footer>
-    </section>
-   </main>
-  <script src="script.js" defer></script>
- </body> 
+        /* Styling for the fading effect */
+        .fade-out {
+            opacity: 0 !important;
+        }
+
+        /* Shimmer text style using GOLDEN theme */
+        .shimmer-text {
+            background: linear-gradient(90deg, #333 0%, var(--electric-gold-glow) 50%, #333 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shimmer 5s infinite linear;
+        }
+
+        /* Particle background (Z-index updated) */
+        .particle-bg {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%; z-index: -1; overflow: hidden; pointer-events: none;
+        }
+        .particle {
+            position: absolute; background: rgba(var(--color-primary-rgb), 0.3); border-radius: 50%;
+            animation: floatAndFade 15s infinite; filter: blur(2px);
+        }
+        @keyframes floatAndFade {
+            0% { transform: translateY(0) translateX(0) scale(0); opacity: 0; }
+            20% { opacity: 1; transform: scale(1); }
+            80% { opacity: 0; }
+            100% { transform: translateY(-100vh) translateX(50vw) scale(1.5); opacity: 0; }
+        }
+        
+        /* Progress Bar Shine Animation */
+        @keyframes progressShine {
+            0% { left: -100%; }
+            60% { left: 150%; } /* Extended travel distance */
+            100% { left: 150%; }
+        }
+
+        /* Enhanced Progress Bar Styling (Thin and Stylish) */
+        #progress-bar-container {
+            /* Deeper inner shadow for cavity effect */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.9), inset 0 1px 3px rgba(0, 0, 0, 1);
+            margin-top: 1rem; 
+        }
+        #progress-bar {
+            position: relative;
+            overflow: hidden; 
+            /* Metallic Gold Gradient Fill */
+            background-image: linear-gradient(90deg, #FFC72C 0%, #F5DEB3 50%, #FFC72C 100%);
+            /* Subtle glow and inner highlight */
+            box-shadow: 
+                0 0 10px 2px var(--electric-gold-glow), /* Outer glow */
+                inset 0 0 4px 1px rgba(255, 255, 255, 0.4); /* Inner highlight */
+            filter: none; 
+        }
+
+        #progress-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%; 
+            width: 40%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.4);
+            transform: skewX(-20deg);
+            animation: progressShine 2.5s infinite linear; 
+        }
+        
+        /* Thematic Loading Text Style */
+        .thematic-loading-text {
+            /* Gold gradient for high contrast */
+            background-image: linear-gradient(45deg, #FFF 0%, var(--electric-gold-glow) 50%, #FFF 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 600;
+            text-shadow: 0 0 3px rgba(var(--color-primary-rgb), 0.8);
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Ultra Pro Max Background Enhancements -->
+    <div class="grid-overlay"></div>
+    <div class="gradient-overlay"></div>
+    
+    <!-- Particle Background -->
+    <div class="particle-bg"></div>
+
+    <!-- Ultra Pro Max Splash Screen Container -->
+    <div id="splash-content" class="flex flex-col items-center justify-center p-8 max-w-xs sm:max-w-sm w-full transition-opacity duration-1000 relative z-10">
+        
+        <!-- Animated Logo Container -->
+        <div class="logo-container rounded-full p-4 shadow-xl transition-all duration-500 mt-4">
+            <!-- Logo Image (Placeholder for Blessingsss Logo) -->
+            <img src="Blessingsssl.png" alt="Blessingsss Logo" class="h-20 w-20 sm:h-24 sm:w-24 rounded-full" 
+                 onerror="this.onerror=null;this.src='https://placehold.co/96x96/FFC72C/1A1C20?text=BS';" />
+        </div>
+        
+        <!-- Company Name -->
+        <br><br>
+        <h1 class="text-4xl sm:text-5xl font-extrabold text-white mt-2 drop-shadow-lg tracking-wider shimmer-text">
+            Blessingsss
+        </h1>
+        
+        <!-- Tagline (Gold Gradient Effect) -->
+        <p class="text-lg sm:text-xl font-semibold mt-1 mb-1" style="
+            background-image: linear-gradient(45deg, var(--electric-gold-glow), var(--color-secondary)); 
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 5px rgba(var(--color-primary-rgb), 0.5); 
+        ">
+            Your Creative Partner
+        </p>
+        
+        <!-- Thematic Loading Status (New Element) -->
+        <p id="loading-status-text" class="text-sm sm:text-base thematic-loading-text mt-4 mb-2">
+            Mehndi Art & Creative designs loading...
+        </p>
+
+        <!-- Progress Bar (Attractive, Thin, and Stylish) -->
+        <div id="progress-bar-container" class="w-full h-2 mt-2 bg-gray-800 rounded-full overflow-hidden border-2 border-color-secondary">
+            <div id="progress-bar" class="h-full bg-electric-gold-glow transition-all duration-300 ease-in-out" style="width: 0%;"></div>
+        </div>
+        
+    </div>
+
+    <script>
+        const SPLASH_DURATION = 3500; // 3.5 seconds
+        const REDIRECT_URL = 'main.html'; // Redirect to your main file
+        const HAS_VISITED_KEY = 'hasVisitedBlessingsSplash'; // Unique localStorage key
+
+        // Thematic Loading Text Array
+        const LOADING_PHRASES = [
+            "Initializing Golden Theme...",
+            "Loading Bridal collections...",
+            "Preparing Festive designs...",
+            "Syncing custom styles...",
+            "Art ready. Redirecting..."
+        ];
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const body = document.body;
+            const progressBar = document.getElementById('progress-bar');
+            const statusText = document.getElementById('loading-status-text');
+            let startTime = Date.now();
+            
+            // Check localStorage to determine if it's the first visit
+            const isFirstVisit = !localStorage.getItem(HAS_VISITED_KEY);
+
+            // Hide the status text if the user has visited before
+            if (!isFirstVisit) {
+                statusText.style.display = 'none';
+                // If not first visit, reduce splash duration drastically for quick entry
+                SPLASH_DURATION = 500; 
+            }
+
+            // Function to update progress bar smoothly 
+            function updateProgress() {
+                const elapsed = Date.now() - startTime;
+                let progress = Math.min(100, (elapsed / SPLASH_DURATION) * 100);
+                
+                // Animate the progress bar width
+                progressBar.style.width = `${progress}%`;
+
+                // Update thematic text only if it's the first visit
+                if (isFirstVisit) {
+                    if (progress < 20) {
+                        statusText.textContent = LOADING_PHRASES[0];
+                    } else if (progress < 40) {
+                        statusText.textContent = LOADING_PHRASES[1];
+                    } else if (progress < 60) {
+                        statusText.textContent = LOADING_PHRASES[2];
+                    } else if (progress < 85) {
+                        statusText.textContent = LOADING_PHRASES[3];
+                    } else if (progress < 99) {
+                        statusText.textContent = LOADING_PHRASES[4];
+                    } else {
+                        statusText.textContent = "Redirecting...";
+                    }
+                }
+
+                // Continue animation until 100%
+                if (progress < 100) {
+                    requestAnimationFrame(updateProgress);
+                }
+            }
+
+            // Function to create particles 
+            function createParticle() {
+                const particleBg = document.querySelector('.particle-bg');
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                const size = Math.random() * 5 + 2; 
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                const startX = Math.random() * window.innerWidth;
+                const startY = window.innerHeight + (Math.random() * 100); 
+                particle.style.left = `${startX}px`;
+                particle.style.top = `${startY}px`;
+
+                // Random animation duration and delay
+                particle.style.animationDuration = `${Math.random() * 10 + 10}s`;
+                particle.style.animationDelay = `${Math.random() * -10}s`;
+
+                particleBg.appendChild(particle);
+
+                // Remove particle after animation to prevent memory leak
+                particle.addEventListener('animationend', () => {
+                    particle.remove();
+                });
+            }
+
+            // Generate particles
+            for (let i = 0; i < 30; i++) { 
+                createParticle();
+            }
+            setInterval(createParticle, 500); 
+
+            // Start progress update
+            requestAnimationFrame(updateProgress);
+
+            // Wait for the duration, then fade out and redirect
+            setTimeout(() => {
+                // IMPORTANT: Set flag in localStorage so the text is hidden next time.
+                localStorage.setItem(HAS_VISITED_KEY, 'true');
+                
+                // Step 1: Start the slow animation fade-out
+                body.classList.add('fade-out');
+                
+                // Step 2: After fade-out duration (1.5s in CSS), redirect
+                setTimeout(() => {
+                    window.location.replace(REDIRECT_URL); 
+                }, 1500); 
+
+            }, SPLASH_DURATION);
+        });
+    </script>
+</body>
 </html>
-
