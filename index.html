@@ -3,31 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Blessingsss Loading...</title>
-    <!-- Tailwind CSS CDN (Self-contained styling) -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Tamanna Sharma...</title>
+    <!-- Tailwind CSS CDN --><script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Fonts matching main.html -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <!-- Fonts matching index.html --><link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=Noto+Sans+Devanagari:wght@400;500;700&display=swap" rel="stylesheet">
     
     <style>
-        /* --- START: Theme Variables (Golden Theme) --- */
-        /* NOTE: The splash screen uses the GOLDEN theme variables for a consistent look. */
+        /* --- START: Theme Variables (Copied from index.html) --- */
         :root {
-            --color-primary: #FFC72C; /* Bright Golden Glow */
+            --color-primary: #FFD700; /* Electric Gold Glow */
             --color-secondary: #A37A00; /* Dark Gold */
             --color-background: #1A1C20; /* Dark Background */
-            --color-primary-rgb: 255, 199, 44; 
-            --electric-gold-glow: #FFC72C; 
+            --color-primary-rgb: 255, 215, 0; 
+            --electric-gold-glow: #FFD700; 
         }
 
         /* --- Global Styles --- */
         body {
             font-family: 'Inter', 'Noto Sans Devangari', sans-serif;
             background-color: #0d0d10; /* Slightly darker base for better effect */
-            color: white;
+            color: var(--color-text-primary);
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -57,8 +54,8 @@
             width: 100%;
             height: 100%;
             background-image: 
-                linear-gradient(to right, rgba(var(--color-primary-rgb), 0.05) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(var(--color-primary-rgb), 0.05) 1px, transparent 1px);
+                linear-gradient(to right, rgba(255, 215, 0, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 215, 0, 0.05) 1px, transparent 1px);
             background-size: 50px 50px;
             animation: moveGrid 30s linear infinite;
             opacity: 0.1;
@@ -69,7 +66,7 @@
             to { background-position: 50px 50px; }
         }
         
-        /* Keyframes for the Logo Pulse and Shadow */
+        /* Keyframes for the Ultra Pro Max Logo Pulse and Shadow (Refined) */
         @keyframes ultraPulseShadow {
             0% { 
                 box-shadow: 0 0 10px rgba(var(--color-primary-rgb), 0.5), 0 0 0 0 rgba(var(--color-primary-rgb), 0.3); 
@@ -85,7 +82,7 @@
             }
         }
         
-        /* Keyframes for the shimmer effect on company name text */
+        /* Keyframes for the shimmer effect on Skillaura text */
         @keyframes shimmer {
             0% { background-position: -500% 0; }
             100% { background-position: 500% 0; }
@@ -95,7 +92,7 @@
             animation: ultraPulseShadow 3s infinite cubic-bezier(0.4, 0, 0.6, 1);
             border: 4px solid var(--electric-gold-glow);
             /* FUTURISTIC / CIRCUITRY BACKGROUND */
-            background-image: url('https://placehold.co/200x200/282a36/FFC72C?text=Circuit'); /* Placeholder for futuristic pattern */
+            background-image: url('https://placehold.co/200x200/282a36/FFD700?text=Circuit'); /* Placeholder for futuristic pattern */
             background-size: cover;
             background-position: center;
             position: relative; 
@@ -112,7 +109,7 @@
         .logo-container img {
             position: relative;
             z-index: 2; 
-            filter: drop-shadow(0 0 8px rgba(var(--color-primary-rgb), 1)); /* Stronger glowing effect */
+            filter: drop-shadow(0 0 8px rgba(255, 215, 0, 1)); /* Stronger glowing effect */
         }
 
         /* Styling for the fading effect */
@@ -120,7 +117,7 @@
             opacity: 0 !important;
         }
 
-        /* Shimmer text style using GOLDEN theme */
+        /* Skillaura text shimmer */
         .shimmer-text {
             background: linear-gradient(90deg, #333 0%, var(--electric-gold-glow) 50%, #333 100%);
             background-size: 200% auto;
@@ -162,7 +159,7 @@
             position: relative;
             overflow: hidden; 
             /* Metallic Gold Gradient Fill */
-            background-image: linear-gradient(90deg, #FFC72C 0%, #F5DEB3 50%, #FFC72C 100%);
+            background-image: linear-gradient(90deg, #FFD700 0%, #F5DEB3 50%, #FFD700 100%);
             /* Subtle glow and inner highlight */
             box-shadow: 
                 0 0 10px 2px var(--electric-gold-glow), /* Outer glow */
@@ -189,7 +186,7 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             font-weight: 600;
-            text-shadow: 0 0 3px rgba(var(--color-primary-rgb), 0.8);
+            text-shadow: 0 0 3px rgba(255, 215, 0, 0.8);
         }
 
     </style>
@@ -200,38 +197,41 @@
     <div class="grid-overlay"></div>
     <div class="gradient-overlay"></div>
     
-    <!-- Particle Background -->
-    <div class="particle-bg"></div>
+    <!-- Particle Background --><div class="particle-bg"></div>
 
     <!-- Ultra Pro Max Splash Screen Container -->
+    <!-- Adjusted max-w and p-8 for better mobile responsiveness -->
     <div id="splash-content" class="flex flex-col items-center justify-center p-8 max-w-xs sm:max-w-sm w-full transition-opacity duration-1000 relative z-10">
         
         <!-- Animated Logo Container -->
-        <div class="logo-container rounded-full p-4 shadow-xl transition-all duration-500 mt-4">
-            <!-- Logo Image (Placeholder for Blessingsss Logo) -->
-            <img src="blessingsssl.png" alt="Blessingsss Logo" class="h-20 w-20 sm:h-24 sm:w-24 rounded-full" 
-                 onerror="this.onerror=null;this.src='https://placehold.co/96x96/FFC72C/1A1C20?text=BS';" />
+        <!-- mt-4 for minimal gap from screen top -->
+        <div class="logo-container rounded-full p-4 bg-gray-900/50 shadow-xl transition-all duration-500 mt-4">
+            <!-- Logo Image (Placeholder using the same style as index.html) -->
+            <img src="blessingsss.png" alt="Skillaura Logo" class="h-20 w-20 sm:h-24 sm:w-24 rounded-full" 
+                 onerror="this.onerror=null;this.src='https://placehold.co/96x96/FFD700/1A1C20?text=YTG';" />
         </div>
         
         <!-- Company Name -->
-        <br><br>
+        <!-- mt-2 for minimal gap --><br><br>
         <h1 class="text-4xl sm:text-5xl font-extrabold text-white mt-2 drop-shadow-lg tracking-wider shimmer-text">
-            Blessingsss
+            Tamanna Sharma
         </h1>
         
         <!-- Tagline (Gold Gradient Effect) -->
+        <!-- mt-1 mb-1 for minimal gap -->
         <p class="text-lg sm:text-xl font-semibold mt-1 mb-1" style="
             background-image: linear-gradient(45deg, var(--electric-gold-glow), var(--color-secondary)); 
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 5px rgba(var(--color-primary-rgb), 0.5); 
+            text-shadow: 0 0 5px rgba(255, 215, 0, 0.5); 
         ">
-            Your Creative Partner
+            Your Mehndi Partner
         </p>
         
         <!-- Thematic Loading Status (New Element) -->
+        <!-- Loading status text. Will be hidden on subsequent visits. -->
         <p id="loading-status-text" class="text-sm sm:text-base thematic-loading-text mt-4 mb-2">
-            Mehndi Art & Creative designs loading...
+            Bridal Mehndi, Festive Mehndi, and Custom Mehndi Partner is loading...
         </p>
 
         <!-- Progress Bar (Attractive, Thin, and Stylish) -->
@@ -242,17 +242,17 @@
     </div>
 
     <script>
-        const SPLASH_DURATION = 3500; // 3.5 seconds
-        const REDIRECT_URL = 'main.html'; // Redirect to your main file
-        const HAS_VISITED_KEY = 'hasVisitedBlessingsSplash'; // Unique localStorage key
+        const SPLASH_DURATION = 5500; // 3.5 seconds
+        const REDIRECT_URL = 'https://crapd.in/main.html'; // Your main file
+        const HAS_VISITED_KEY = 'hasVisitedSplash'; // localStorage key
 
         // Thematic Loading Text Array
         const LOADING_PHRASES = [
-            "Initializing Golden Theme...",
-            "Loading Bridal collections...",
-            "Preparing Festive designs...",
-            "Syncing custom styles...",
-            "Art ready. Redirecting..."
+            "Bridal Mehndi syncing...",
+            "Festive Mehndi activating...",
+            "Custom Mehndi preparing...",
+            "finalizing...",
+            "Data loaded successfully."
         ];
 
         document.addEventListener('DOMContentLoaded', () => {
@@ -267,8 +267,6 @@
             // Hide the status text if the user has visited before
             if (!isFirstVisit) {
                 statusText.style.display = 'none';
-                // If not first visit, reduce splash duration drastically for quick entry
-                SPLASH_DURATION = 500; 
             }
 
             // Function to update progress bar smoothly 
@@ -356,4 +354,3 @@
     </script>
 </body>
 </html>
-
