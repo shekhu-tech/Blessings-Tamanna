@@ -58,6 +58,9 @@
             background-image: url('bridal.png');
         }
 
+        /* Removed #bg-video-pc CSS and associated media query logic */
+
+
         .fixed-header-container {
             position: fixed; top: 0; left: 0; right: 0; z-index: 100;
         }
@@ -400,6 +403,7 @@
     
     <!-- BACKGROUND MEDIA ELEMENTS -->
     <div id="fixed-media-background"></div>
+    <!-- Removed video element #bg-video-pc -->
     <!-- END BACKGROUND MEDIA ELEMENTS -->
 
     <!-- HEADER (शीर्षक) -->
@@ -408,13 +412,15 @@
               <div class="container mx-auto flex justify-between items-center px-2 sm:px-4" style="padding-top: env(safe-area-inset-top);">
                 <!-- Logo and Title (लोगो और शीर्षक) -->
                 <a href="main.html" class="flex items-center no-underline">
+                  <!-- rentist.jpg इमेज का उपयोग किया गया -->
                   <img src="blessingsssl.png" alt="Rentist Logo" class="h-10 w-10 mr-3 rounded-full border border-primary/50 object-cover" onerror="this.onerror=null;this.src='https://placehold.co/48x48/1C3144/76FF03?text=R';"/>
                    <span class="text-xl sm:text-3xl font-extrabold text-white tracking-tight flex items-center">
-                    <img src="blessingsss.png" alt="Logo" class="h-[35px] w-auto object-contain inline-block" onerror="this.onerror=null;this.src='https://placehold.co/100x35/1C3144/76FF03?text=SkillAurA';" />
+                    <img src="blessingsss.png" alt="Logo" class="h-[35px] w-auto object-contain inline-block" onerror="this.onerror=null;this.src='https://placehold.co/100x35/1C3144/76FF03?text=SkillAurA';" /> <!-- Placeholder color changed -->
                   </span>
                 </a>
 
                 <!-- Desktop Navigation (डेस्कटॉप नेविगेशन) -->
+                <!-- UPDATED CLASS for 1200px breakpoint logic -->
                 <div class="desktop-nav-area hidden items-center space-x-10">
                   <nav class="flex space-x-8 font-extrabold">
                     
@@ -548,7 +554,7 @@
                 <!-- Title is now placed relative to the inner section for Z-index -->
                 <div class="text-center mb-6">
                     <!-- Updated class to use primary color glow -->
-                    <h2 class="text-2xl sm:text-3xl font-extrabold text-primary-glow border-b-4 border-primary/50 inline-block px-4 pb-1">Indo-Western Bridal Mehndi Spotlight</h2>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-primary-glow border-b-4 border-primary/50 inline-block px-4 pb-1"></h2>
                 </div>
                 
                 <div class="slider-container relative">
@@ -563,9 +569,15 @@
         </div>
         <!-- END SLIDE SECTION WRAPPER -->
 
-        <!-- START: Updated Card Grid for 6 Styles -->
-        <section class="mb-12">
-            <h2 class="text-2xl sm:text-3xl font-extrabold text-primary-glow text-center mb-8 border-b-4 border-primary/50 inline-block px-4 pb-1 mx-auto block">Explore Indo-Western Bridal Mehndi Styles</h2>
+        <!-- NEW HEADING ADDED HERE -->
+        <div class="text-center mb-8 mt-4">
+            <h2 class="text-xl md:text-4xl font-extrabold text-primary-glow border-b-4 border-primary/50 inline-block px-6 pb-2 uppercase tracking-wide">
+                Our Service Types
+            </h2>
+        </div>
+        <!-- END NEW HEADING -->
+
+        <section id="service-cards">
             <div class="card-grid-container">
                 
                 <!-- CARD 1: Portrait Indo-Western Mehndi -->
@@ -627,6 +639,7 @@
     <!-- END MAIN CONTENT AREA -->
     
     <!-- === FIXED BOTTOM NAVIGATION (निश्चित बॉटम नेविगेशन) === -->
+    <!-- Note: Bottom nav links now refer to the new card IDs (1, 2, 4, 5) -->
     <nav 
         class="bottom-nav-fixed" 
         style="padding-bottom: env(safe-area-inset-bottom);" 
@@ -646,7 +659,7 @@
                 <span class="font-medium">Geometric</span>
             </a>
             
-            <!-- Central FAB Button (Home - index.html से लिंक्ड) -->
+            <!-- Central FAB Button (Home - main.html से लिंक्ड) -->
             <div class="central-nav-item-shs w-1/5">
                 <a 
                     href="main.html" 
@@ -747,6 +760,7 @@
         }
         
          // --- START: SLIDER LOGIC (Moved inside DOMContentLoaded) ---
+        // Variables for slider logic
         const sliderBg = document.getElementById('slider-bg');
         const slidesWrapper = document.getElementById('slides-wrapper');
         const prevBtn = document.getElementById('prev-btn');
@@ -784,6 +798,7 @@
                 
                 // Link is now assigned directly from item.link (internal page)
                 slide.href = item.link; 
+                // Removed target="_blank" for internal links
                 
                 slide.className = `slide absolute top-0 left-0 w-full h-full opacity-0 transition-opacity duration-1000`;
                 slide.style.zIndex = index === 0 ? 1 : 0;
@@ -925,7 +940,7 @@
                     { name: "Arrow & Bracelet Tattoo Fusion", link: "indo_western_tattoo_arrow_bracelet.html" },
                 ]
             },
-            // Existing Header Data (Dropdowns) - Kept for template consistency
+            // Existing Header Data (Dropdowns) - Retaining these is important for the header navigation
             'dropdown-bridal': {
                  title: 'Bridal Mehndi Types',
                  locations: [
