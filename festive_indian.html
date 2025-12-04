@@ -548,24 +548,20 @@
                 <!-- Title is now placed relative to the inner section for Z-index -->
                 <div class="text-center mb-6">
                     <!-- Updated class to use primary color glow -->
-                    <h2 class="text-2xl sm:text-3xl font-extrabold text-primary-glow border-b-4 border-primary/50 inline-block px-4 pb-1">Indian Festive Mehndi Spotlight</h2>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-primary-glow border-b-4 border-primary/50 inline-block px-4 pb-1"></h2>
                 </div>
                 
                 <div class="slider-container relative">
                     <!-- Slides Wrapper will contain the dynamic content over the image -->
                     <div id="slides-wrapper" class="relative w-full h-full"></div>
 
-                    <!-- Navigation Buttons -->
-                    <button id="prev-btn" class="absolute top-1/2 left-4 transform -translate-y-1/2 bg-white bg-opacity-15 hover:bg-opacity-25 text-primary p-2 rounded-full shadow-lg transition-all z-20">❮</button>
-                    <button id="next-btn" class="absolute top-1/2 right-4 transform -translate-y-1/2 bg-white bg-opacity-15 hover:bg-opacity-25 text-primary p-2 rounded-full shadow-lg transition-all z-20">❯</button>
-                    
             </section>
         </div>
         <!-- END SLIDE SECTION WRAPPER -->
 
         <!-- START: Updated Card Grid for 5 Styles -->
         <section class="mb-12">
-            <h2 class="text-2xl sm:text-3xl font-extrabold text-primary-glow text-center mb-8 border-b-4 border-primary/50 inline-block px-4 pb-1 mx-auto block">Explore Indian Festive Mehndi Styles</h2>
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-primary-glow text-center mb-8 border-b-4 border-primary/50 inline-block px-4 pb-1 mx-auto block">Indian Festive Mehndi</h2>
             <div class="card-grid-container">
                 
                 <!-- CARD A: Mandala Indian Mehndi -->
@@ -641,7 +637,7 @@
             <!-- Central FAB Button (Home - index.html से लिंक्ड) -->
             <div class="central-nav-item-shs w-1/5">
                 <a 
-                    href="index.html" 
+                    href="main.html" 
                     class="central-fab animate-pulse-shadow"
                     aria-label="Go to Home"
                 >
@@ -758,9 +754,9 @@
         async function fetchSlidesData() {
             // Hardcoded placeholder slide data for Indian Festive styles
             return [
-                { "title": "Mandala designs: The heart of Indian Mehndi.", "date": "10 Apr", "link": "indian_mandala.html", "deadline": "2026-04-10", "bgImage": "https://placehold.co/800x350/FF33FF/331A33?text=Mandala+Focus" },
-                { "title": "Peacock motifs bring traditional grace to the hands.", "date": "22 Apr", "link": "indian_peacock.html", "deadline": "2026-04-22", "bgImage": "https://placehold.co/800x350/33D1FF/1A2433?text=Peacock+Focus" },
-                { "title": "Jaali patterns: Intricate net-work for dense coverage.", "date": "05 May", "link": "indian_jaali.html", "deadline": "2026-05-05", "bgImage": "https://placehold.co/800x350/FFB433/5C4E28?text=Jaali+Focus" }
+                { "title": "", "date": "10 Apr", "link": "indian_mandala.html", "deadline": "2026-04-10", "bgImage": "" },
+                { "title": "", "date": "22 Apr", "link": "indian_peacock.html", "deadline": "2026-04-22", "bgImage": "" },
+                { "title": "", "date": "05 May", "link": "indian_jaali.html", "deadline": "2026-05-05", "bgImage": "" }
             ];
         }
 
@@ -852,7 +848,7 @@
         // Indian Festive Mehndi Data (5 Cards: A, B, C, D, E)
         const locationData = {
             'premium-card-A': { // A. Mandala Indian Mehndi
-                title: 'Mandala Indian Mehndi – Sub-Types',
+                title: 'Mandala Indian Mehndi',
                 desc: 'Features circular patterns including layered, center, and Jaali Mandalas.',
                 locations: [
                     { name: "Center Mandala", link: "if_mandala_center.html" },
@@ -863,7 +859,7 @@
                 ]
             },
             'premium-card-B': { // B. Peacock Indian Mehndi
-                title: 'Peacock Indian Mehndi – Sub-Types',
+                title: 'Peacock Indian Mehndi',
                 desc: 'Designs emphasizing full peacock motifs, feathers, and peacock wrist bands.',
                 locations: [
                     { name: "Peacock Feather Trail", link: "if_peacock_feather.html" },
@@ -874,7 +870,7 @@
                 ]
             },
             'premium-card-C': { // C. Floral Indian Mehndi
-                title: 'Floral Indian Mehndi – Sub-Types',
+                title: 'Floral Indian Mehndi',
                 desc: 'Includes Lotus, Rose, Sunflower, Creeper trails, and detailed leafy combinations.',
                 locations: [
                     { name: "Lotus Floral", link: "if_floral_lotus.html" },
@@ -885,7 +881,7 @@
                 ]
             },
             'premium-card-D': { // D. Traditional Symbolic Mehndi
-                title: 'Traditional Symbolic Mehndi – Sub-Types',
+                title: 'Traditional Symbolic Mehndi',
                 desc: 'Cultural motifs like Kalash, Swastik, Diya, Doli, and Conch Shells (Shankh).',
                 locations: [
                     { name: "Kalash Motif", link: "if_symbolic_kalash.html" },
@@ -896,7 +892,7 @@
                 ]
             },
             'premium-card-E': { // E. Net/Jaali Indian Mehndi
-                title: 'Net/Jaali Indian Mehndi – Sub-Types',
+                title: 'Net/Jaali Indian Mehndi',
                 desc: 'Intricate lattice work including Criss-Cross, Diamond Net, and Finger Jaali.',
                 locations: [
                     { name: "Criss-Cross Jaali", link: "if_jaali_criss_cross.html" },
