@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Moroccan / Geometric Festive Mehndi Styles</title>
+    <title>Moroccan / Geometric Festive Mehndi</title>
     <!-- Tailwind CSS CDN (Self-contained styling) -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Font Awesome (for icons) -->
@@ -12,7 +12,7 @@
     <!-- Fonts (Inter/Noto Sans Devanagari for readability) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=Noto+Sans+Devanagari:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=Noto+Sans+Devanagari:wght+400;500;700&display=swap" rel="stylesheet">
     
     <style>
         /* --- GLOBAL & THEME VARIABLES (थीम वेरिएबल्स) --- */
@@ -45,7 +45,7 @@
             z-index: 1; 
         }
 
-        /* --- FIXED BACKGROUND MEDIA CONTAINER (Video Removed, Image retained) --- */
+        /* --- FIXED BACKGROUND MEDIA CONTAINER (Image retained) --- */
         #fixed-media-background {
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
@@ -54,7 +54,7 @@
             background-position: center;
             background-repeat: no-repeat;
             opacity: 0.5; /* Subtle visibility */
-            /* Mobile Image used for all screen sizes now */
+            /* Using a generic Geometric/Moroccan image placeholder */
             background-image: url('bridal.png');
         }
 
@@ -191,7 +191,7 @@
             }
         }
         
-        /* ADJUSTED: 5 cards in a row for screens >= 1400px (Large PC) for 5 items (5x1) */
+        /* 5 cards in a row for screens >= 1400px (Adjusted for 5 cards) */
         @media(min-width: 1400px){
             .card-grid-container {
                 grid-template-columns: repeat(5, 1fr); 
@@ -235,8 +235,6 @@
             }
         }
 
-        /* ... (other slider styles) ... */
-        
         .slide-content-wrapper .post-name {
             font-weight: 1000;
             line-height: 1.2;
@@ -244,15 +242,6 @@
             margin-bottom: 0.5rem; 
             word-wrap: break-word; 
             white-space: normal;
-        }
-        /* ... (other slider styles) ... */
-
-        #prev-btn, #next-btn {
-            background-color: rgba(255, 255, 255, 0.15); 
-            color: var(--color-primary); /* Dynamic Primary Color */
-            border: 1px solid var(--color-primary); /* Dynamic Primary Color */
-            /* Dynamic Button Shadow using RGB */
-            box-shadow: 0 0 10px rgba(var(--color-primary-rgb), 0.4); 
         }
 
         /* --- Global Styles (Updated to reflect new primary color for glow) --- */
@@ -334,9 +323,7 @@
         }
 
         .modal-content {
-            /* Removed absolute positioning and top/bottom to make it content-aware */
             position: relative; 
-            /* Removed transform X to keep centering simple */
             transform: none; 
             
             width: 95%; 
@@ -362,7 +349,6 @@
             background: var(--premium-bg-dark); /* Dynamic Inner BG */
             border: 1.5px solid rgba(var(--color-primary-rgb), 1);
             box-shadow: inset 0 0 35px rgba(var(--color-primary-rgb), 0.45), 0 0 25px rgba(var(--color-primary-rgb), 0.3);
-            /* flex-grow: 1; <- Removed to allow height to shrink */
             overflow-y: auto; /* Enable scrolling for the location list if needed */
         }
 
@@ -408,9 +394,10 @@
               <div class="container mx-auto flex justify-between items-center px-2 sm:px-4" style="padding-top: env(safe-area-inset-top);">
                 <!-- Logo and Title (लोगो और शीर्षक) -->
                 <a href="index.html" class="flex items-center no-underline">
+                  <!-- rentist.jpg इमेज का उपयोग किया गया -->
                   <img src="blessingsssl.png" alt="Rentist Logo" class="h-10 w-10 mr-3 rounded-full border border-primary/50 object-cover" onerror="this.onerror=null;this.src='https://placehold.co/48x48/1C3144/76FF03?text=R';"/>
                    <span class="text-xl sm:text-3xl font-extrabold text-white tracking-tight flex items-center">
-                    <img src="blessingsss.png" alt="Logo" class="h-[35px] w-auto object-contain inline-block" onerror="this.onerror=null;this.src='https://placehold.co/100x35/1C3144/76FF03?text=SkillAurA';" />
+                    <img src="blessingsss.png" alt="Logo" class="h-[35px] w-auto object-contain inline-block" onerror="this.onerror=null;this.src='https://placehold.co/100x35/1C3144/76FF03?text=SkillAurA';" /> <!-- Placeholder color changed -->
                   </span>
                 </a>
 
@@ -508,13 +495,14 @@
                 </div>
                 <div class="border-t border-primary/30 w-full my-4"></div>
 
-                <!-- Direct Link 3: Custom Mehndi (Direct Link) -->
+                <!-- Direct Link 3: Custom Mehndi -->
                 <a href="custom_mehndi.html" class="text-white text-lg relative group py-1 hover:text-primary">
                     Custom Mehndi
                     <span class="absolute left-0 bottom-0 h-1 w-0 bg-primary/70 group-hover:w-full transition-all duration-300 rounded-full"></span>
                 </a>
-                    
-                <!-- Direct Link 4: Meet Me (Direct Link) -->
+                <div class="border-t border-primary/30 w-full my-4"></div>
+                
+                <!-- Direct Link 4: Meet Me -->
                 <a href="meet_me.html" class="text-white text-lg relative group py-1 hover:text-primary">
                     Meet Me
                     <span class="absolute left-0 bottom-0 h-1 w-0 bg-primary/70 group-hover:w-full transition-all duration-300 rounded-full"></span>
@@ -530,7 +518,6 @@
                 <p class="text-xs text-center text-gray-500 mt-auto">© 2025 Blessingsss.in</p>
             </div>
         </div>
-        <!-- REMOVED lg:hidden from the class list -->
         <div id="mobile-menu-overlay" class="fixed inset-0 bg-black/70 mobile-menu-overlay hidden"></div>
     </div>
     <!-- END HEADER & SIDEBAR -->
@@ -546,70 +533,81 @@
             <section class="latest-forms">
                 <!-- Title is now placed relative to the inner section for Z-index -->
                 <div class="text-center mb-6">
-                    <!-- Updated class to use primary color glow -->
-                    <h2 class="text-2xl sm:text-3xl font-extrabold text-primary-glow border-b-4 border-primary/50 inline-block px-4 pb-1">Moroccan / Geometric Festive Mehndi Spotlight</h2>
+                    <!-- UPDATED: Main title for Moroccan / Geometric -->
+                    <h2 class="text-2xl sm:text-4xl font-extrabold text-primary-glow border-b-4 border-primary/50 inline-block px-4 pb-1">4️⃣ Moroccan / Geometric Festive Mehndi – Types</h2>
                 </div>
                 
                 <div class="slider-container relative">
                     <!-- Slides Wrapper will contain the dynamic content over the image -->
-                    <div id="slides-wrapper" class="relative w-full h-full"></div>
+                    <div id="slides-wrapper" class="relative w-full h-full">
+                        <!-- Default Slide Content for Geometric Theme -->
+                        <div class="slide absolute top-0 left-0 w-full h-full opacity-100 transition-opacity duration-1000 active" style="z-index: 1;">
+                            <div class="slide-content-wrapper p-4 md:p-12 absolute bottom-0 bg-black/50 w-full rounded-b-[35px] text-left">
+                                <h3 class="post-name text-3xl md:text-5xl">Sharp Lines and Modern Geometry</h3>
+                                <p class="last-date text-white/80 mt-2">Explore the contemporary, non-floral beauty of bold Moroccan and precise geometric patterns.</p>
+                                <a href="#premium-card-a" class="apply-btn bg-primary hover:bg-primary/90 text-black font-bold py-2 px-6 rounded-full mt-4 transition-transform transform hover:scale-105 shadow-xl">
+                                    View Styles
+                                </a>
+                            </div>
+                        </div>
+                    </div>
 
-                    <!-- Navigation Buttons -->
-                    <button id="prev-btn" class="absolute top-1/2 left-4 transform -translate-y-1/2 bg-white bg-opacity-15 hover:bg-opacity-25 text-primary p-2 rounded-full shadow-lg transition-all z-20">❮</button>
-                    <button id="next-btn" class="absolute top-1/2 right-4 transform -translate-y-1/2 bg-white bg-opacity-15 hover:bg-opacity-25 text-primary p-2 rounded-full shadow-lg transition-all z-20">❯</button>
+                    <!-- Navigation Buttons (Hidden as they are not needed for a static page but kept for structure) -->
+                    <button id="prev-btn" class="hidden absolute top-1/2 left-4 transform -translate-y-1/2 p-3 rounded-full z-10 text-xl"><i class="fas fa-chevron-left"></i></button>
+                    <button id="next-btn" class="hidden absolute top-1/2 right-4 transform -translate-y-1/2 p-3 rounded-full z-10 text-xl"><i class="fas fa-chevron-right"></i></button>
                     
             </section>
         </div>
         <!-- END SLIDE SECTION WRAPPER -->
 
-        <!-- START: Updated Card Grid for 5 Styles -->
+        <!-- START: Updated Card Grid for 5 Moroccan/Geometric Styles -->
         <section class="mb-12">
-            <h2 class="text-2xl sm:text-3xl font-extrabold text-primary-glow text-center mb-8 border-b-4 border-primary/50 inline-block px-4 pb-1 mx-auto block">Explore Moroccan / Geometric Festive Mehndi Styles</h2>
-            <div class="card-grid-container" style="grid-template-columns: repeat(5, 1fr);">
+            <h2 class="text-xl sm:text-2xl font-extrabold text-primary-glow text-center mb-8 inline-block px-4 pb-1 mx-auto block">The Precision of Moroccan and Tribal Art</h2>
+            <div class="card-grid-container">
                 
                 <!-- CARD A: Line & Bar Pattern Mehndi -->
-                <div class="premium-card" id="premium-card-A">
+                <div class="premium-card" id="premium-card-a">
                     <div class="inner-box">
-                        <img src="https://placehold.co/300x170/331A1A/FFC72C?text=Line+Bar+Pattern" alt="Line & Bar Pattern Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/331A1A/FFC72C?text=Line+Bar+Pattern';">
+                        <img src="https://placehold.co/300x170/331A1A/33D1FF?text=Line+Pattern" alt="Line & Bar Pattern Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/331A1A/33D1FF?text=Line+Pattern';">
                     </div>
                     <div class="premium-title">A. Line & Bar Pattern Mehndi</div>
-                    <div class="premium-desc">Features Vertical, Horizontal, Overlap Line Work, and Tribal Lines.</div>
+                    <div class="premium-desc">Designs built purely on straight, solid, or broken lines and geometric bars.</div>
                 </div>
 
                 <!-- CARD B: Geometric Shapes Mehndi -->
-                <div class="premium-card" id="premium-card-B">
+                <div class="premium-card" id="premium-card-b">
                     <div class="inner-box">
-                        <img src="https://placehold.co/300x170/221A33/FFC72C?text=Geometric+Shapes" alt="Geometric Shapes Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/221A33/FFC72C?text=Geometric+Shapes';">
+                        <img src="https://placehold.co/300x170/221A33/33D1FF?text=Geometric+Shapes" alt="Geometric Shapes Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/221A33/33D1FF?text=Geometric+Shapes';">
                     </div>
                     <div class="premium-title">B. Geometric Shapes Mehndi</div>
-                    <div class="premium-desc">Uses Square, Triangle, Diamond, Chevron, and Hexagon line art.</div>
+                    <div class="premium-desc">Focuses on prominent use of shapes like triangles, squares, and diamonds.</div>
                 </div>
 
                 <!-- CARD C: Grid / Box Moroccan Mehndi -->
-                <div class="premium-card" id="premium-card-C">
+                <div class="premium-card" id="premium-card-c">
                     <div class="inner-box">
-                        <img src="https://placehold.co/300x170/1A2733/FFC72C?text=Grid+Box+Moroccan" alt="Grid / Box Moroccan Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/1A2733/FFC72C?text=Grid+Box+Moroccan';">
+                        <img src="https://placehold.co/300x170/1A2733/33D1FF?text=Grid+Box" alt="Grid / Box Moroccan Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/1A2733/33D1FF?text=Grid+Box';">
                     </div>
                     <div class="premium-title">C. Grid / Box Moroccan Mehndi</div>
-                    <div class="premium-desc">Full Box, Box + Dot, Box Mandala, Diagonal Boxes, and Checker Box patterns.</div>
+                    <div class="premium-desc">Classic Moroccan style emphasizing full-hand grid and checkerboard patterns.</div>
                 </div>
 
                 <!-- CARD D: Tribal Moroccan Mehndi -->
-                <div class="premium-card" id="premium-card-D">
+                <div class="premium-card" id="premium-card-d">
                     <div class="inner-box">
-                        <img src="https://placehold.co/300x170/332D1A/FFC72C?text=Tribal+Moroccan" alt="Tribal Moroccan Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/332D1A/FFC72C?text=Tribal+Moroccan';">
+                        <img src="https://placehold.co/300x170/332D1A/33D1FF?text=Tribal+Moroccan" alt="Tribal Moroccan Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/332D1A/33D1FF?text=Tribal+Moroccan';">
                     </div>
                     <div class="premium-title">D. Tribal Moroccan Mehndi</div>
-                    <div class="premium-desc">Berber Tribal Motifs, Arrow Patterns, Zig-Zag, and Desert Tribal Symbols.</div>
+                    <div class="premium-desc">Uses Berber motifs, arrows, and desert symbols for an ancient, symbolic look.</div>
                 </div>
                 
                 <!-- CARD E: Minimal Geometric Mehndi -->
-                <div class="premium-card" id="premium-card-E">
+                <div class="premium-card" id="premium-card-e">
                     <div class="inner-box">
-                        <img src="https://placehold.co/300x170/10241D/FFC72C?text=Minimal+Geometric" alt="Minimal Geometric Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/10241D/FFC72C?text=Minimal+Geometric';">
+                        <img src="https://placehold.co/300x170/1D1024/33D1FF?text=Minimal+Geometric" alt="Minimal Geometric Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/1D1024/33D1FF?text=Minimal+Geometric';">
                     </div>
                     <div class="premium-title">E. Minimal Geometric Mehndi</div>
-                    <div class="premium-desc">Simple Lines, Tiny Shapes, Finger Geometry, and Minimal Grid work.</div>
+                    <div class="premium-desc">Tiny, sparse arrangements of lines and shapes for a subtle, high-fashion impact.</div>
                 </div>
                 
             </div>
@@ -625,14 +623,14 @@
     >
         <div class="flex justify-around items-end h-20 relative px-2">
             
-            <!-- Item 1: Lines (Card A से लिंक्ड) -->
-            <a href="#premium-card-A" class="nav-item-shs w-1/5" onclick="scrollToSection('premium-card-A')">
-                <i class="fas fa-grip-lines nav-icon-shs"></i>
+            <!-- Item 1: Line (Card A से लिंक्ड) -->
+            <a href="#premium-card-a" class="nav-item-shs w-1/5" onclick="scrollToSection('premium-card-a')">
+                <i class="fas fa-grip-lines-vertical nav-icon-shs"></i>
                 <span class="font-medium">Lines</span>
             </a>
 
             <!-- Item 2: Shapes (Card B से लिंक्ड) -->
-            <a href="#premium-card-B" class="nav-item-shs w-1/5" onclick="scrollToSection('premium-card-B')">
+            <a href="#premium-card-b" class="nav-item-shs w-1/5" onclick="scrollToSection('premium-card-b')">
                 <i class="fas fa-shapes nav-icon-shs"></i>
                 <span class="font-medium">Shapes</span>
             </a>
@@ -649,16 +647,16 @@
                 <span class="central-fab-label">Home</span>
             </div>
             
-            <!-- Item 4: Tribal (Card D से लिंक्ड) -->
-            <a href="#premium-card-D" class="nav-item-shs w-1/5" onclick="scrollToSection('premium-card-D')">
-                <i class="fas fa-mountain nav-icon-shs"></i>
-                <span class="font-medium">Tribal</span>
+            <!-- Item 4: Grid (Card C से लिंक्ड) -->
+            <a href="#premium-card-c" class="nav-item-shs w-1/5" onclick="scrollToSection('premium-card-c')">
+                <i class="fas fa-border-all nav-icon-shs"></i>
+                <span class="font-medium">Grid</span>
             </a>
             
-            <!-- Item 5: Minimal (Card E से लिंक्ड) -->
-            <a href="#premium-card-E" class="nav-item-shs w-1/5" onclick="scrollToSection('premium-card-E')">
-                <i class="fas fa-dot-circle nav-icon-shs"></i>
-                <span class="font-medium">Minimal</span>
+            <!-- Item 5: Tribal (Card D से लिंक्ड) -->
+            <a href="#premium-card-d" class="nav-item-shs w-1/5" onclick="scrollToSection('premium-card-d')">
+                <i class="fas fa-hands nav-icon-shs"></i>
+                <span class="font-medium">Tribal</span>
             </a>
             
         </div>
@@ -669,7 +667,7 @@
     <div id="location-modal-overlay" class="modal-overlay">
         <div id="location-modal-content" class="modal-content">
             <div class="flex justify-between items-center mb-4 p-2">
-                <h3 id="modal-title" class="text-xl font-bold text-primary-glow">Available Designs (डिज़ाइन)</h3>
+                <h3 id="modal-title" class="text-xl font-bold text-primary-glow">Available Locations (स्थान)</h3>
                 <button id="modal-close-button" class="text-white hover:text-primary transition-colors p-2 rounded-full hover:bg-white/10" aria-label="Close modal">
                     <i class="fas fa-times text-2xl"></i>
                 </button>
@@ -737,108 +735,15 @@
             }
         }
         
-         // --- START: SLIDER LOGIC (Moved inside DOMContentLoaded) ---
+         // --- START: SLIDER LOGIC (Modified for static content) ---
         const sliderBg = document.getElementById('slider-bg');
-        const slidesWrapper = document.getElementById('slides-wrapper');
-        const prevBtn = document.getElementById('prev-btn');
-        const nextBtn = document.getElementById('next-btn');
         
-        let slidesData = [];
-        let currentSlide = 0;
-        let slideInterval;
-        const slideDuration = 5000;
-
-        function formatDate(dateStr) {
-            const options = { year: 'numeric', month: 'long', day: 'numeric' };
-            const date = new Date(dateStr);
-            return date.toLocaleDateString('en-IN', options);
-        }
-
         async function fetchSlidesData() {
-            // Hardcoded placeholder slide data for Moroccan/Geometric Festive styles
             return [
-                { "title": "Sharp lines and patterns define Moroccan Mehndi.", "date": "10 Aug", "link": "mgf_lines.html", "deadline": "2026-08-10", "bgImage": "https://placehold.co/800x350/FF33FF/331A33?text=Moroccan+Lines+Focus" },
-                { "title": "Explore the bold look of Tribal Moroccan motifs.", "date": "22 Aug", "link": "mgf_tribal.html", "deadline": "2026-08-22", "bgImage": "https://placehold.co/800x350/33D1FF/1A2433?text=Tribal+Moroccan+Focus" },
-                { "title": "Minimal Geometric designs for a modern festive look.", "date": "05 Sep", "link": "mgf_minimal_geo.html", "deadline": "2026-09-05", "bgImage": "https://placehold.co/800x350/FFB433/5C4E28?text=Minimal+Geometric+Focus" }
+                { "title": "Geometric/Moroccan Designs", "date": "Festive Styles", "link": "#", "deadline": "2026-12-12", "bgImage": "" }
             ];
         }
 
-        function createSlides(data) {
-            slidesWrapper.innerHTML = '';
-            data.forEach((item, index) => {
-                const slide = document.createElement('a');
-                const deadline = new Date(item.deadline);
-                const now = new Date();
-                const isExpired = deadline < now;
-                // Button Text
-                const buttonText = isExpired ? 'Expired' : 'View Details';
-                
-                // Link is now assigned directly from item.link (internal page)
-                slide.href = item.link; 
-                
-                slide.className = `slide absolute top-0 left-0 w-full h-full opacity-0 transition-opacity duration-1000`;
-                slide.style.zIndex = index === 0 ? 1 : 0;
-                
-                let contentHTML = `
-                    <div class="slide-content-wrapper p-4 md:p-12 absolute bottom-0 bg-black/50 w-full rounded-b-[35px] text-left">
-                        <h3 class="post-name text-3xl md:text-5xl">${item.title}</h3>
-                        <p class="last-date text-white/80 mt-2">Date: ${item.date}</p>
-                        <button class="apply-btn bg-primary hover:bg-primary/90 text-black font-bold py-2 px-6 rounded-full mt-4 transition-transform transform hover:scale-105 shadow-xl" ${isExpired ? 'disabled' : ''}>
-                            ${buttonText}
-                        </button>
-                    </div>
-                `;
-                
-                slide.innerHTML = contentHTML;
-                slidesWrapper.appendChild(slide);
-            });
-        }
-
-        function showSlide(index) {
-            const slides = document.querySelectorAll('.slide');
-            slides.forEach((slide, i) => {
-                slide.classList.remove('active');
-                slide.style.opacity = 0;
-                slide.style.zIndex = 0;
-            });
-            
-            if (slides[index]) {
-                slides[index].classList.add('active');
-                slides[index].style.opacity = 1;
-                slides[index].style.zIndex = 1;
-                
-                if (slidesData[index] && slidesData[index].bgImage) {
-                     sliderBg.style.backgroundImage = `url('${slidesData[index].bgImage}')`;
-                }
-            }
-        }
-
-        function startAutoSlide() {
-            clearInterval(slideInterval);
-            slideInterval = setInterval(() => {
-                currentSlide = (currentSlide + 1) % slidesData.length;
-                showSlide(currentSlide);
-            }, slideDuration);
-        }
-
-        async function initializeSlider() {
-            slidesData = await fetchSlidesData();
-            createSlides(slidesData);
-            showSlide(currentSlide);
-            startAutoSlide();
-
-            prevBtn.addEventListener('click', () => {
-                currentSlide = (currentSlide - 1 + slidesData.length) % slidesData.length;
-                showSlide(currentSlide);
-                startAutoSlide();
-            });
-
-            nextBtn.addEventListener('click', () => {
-                currentSlide = (currentSlide + 1) % slidesData.length;
-                showSlide(currentSlide);
-                startAutoSlide();
-            });
-        }
         // --- END: SLIDER LOGIC ---
 
         
@@ -848,64 +753,64 @@
         const modalTitle = document.getElementById('modal-title');
         const locationList = document.getElementById('location-list');
 
-        // Moroccan / Geometric Festive Mehndi Data (5 Cards: A-E)
+        // UPDATED LOCATION DATA FOR MOROCCAN / GEOMETRIC FESTIVE MEHNDI TYPES
         const locationData = {
-            'premium-card-A': { // A. Line & Bar Pattern Mehndi
-                title: 'Line & Bar Pattern Mehndi – Sub-Types',
-                desc: 'Features Vertical, Horizontal, Overlap Line Work, and Tribal Lines.',
+            'premium-card-a': { // A. Line & Bar Pattern Mehndi
+                title: 'Line & Bar Pattern Sub-Types',
+                desc: 'Designs built purely on straight, solid, or broken lines and geometric bars.',
                 locations: [
-                    { name: "Vertical Lines", link: "mgf_lines_vertical.html" },
-                    { name: "Horizontal Bars", link: "mgf_lines_horizontal.html" },
-                    { name: "Overlap Line Work", link: "mgf_lines_overlap.html" },
-                    { name: "Broken Line Style", link: "mgf_lines_broken.html" },
-                    { name: "Tribal Lines", link: "mgf_lines_tribal.html" },
+                    { name: "Vertical Lines", link: "geometric_line_vertical.html" },
+                    { name: "Horizontal Bars", link: "geometric_line_horizontal.html" },
+                    { name: "Overlap Line Work", link: "geometric_line_overlap.html" },
+                    { name: "Broken Line Style", link: "geometric_line_broken.html" },
+                    { name: "Tribal Lines", link: "geometric_line_tribal.html" },
                 ]
             },
-            'premium-card-B': { // B. Geometric Shapes Mehndi
-                title: 'Geometric Shapes Mehndi – Sub-Types',
-                desc: 'Uses Square, Triangle, Diamond, Chevron, and Hexagon line art.',
+            'premium-card-b': { // B. Geometric Shapes Mehndi
+                title: 'Geometric Shapes Mehndi Sub-Types',
+                desc: 'Focuses on prominent use of shapes like triangles, squares, and diamonds.',
                 locations: [
-                    { name: "Square Patterns", link: "mgf_shapes_square.html" },
-                    { name: "Triangle Grids", link: "mgf_shapes_triangle.html" },
-                    { name: "Diamond Shapes", link: "mgf_shapes_diamond.html" },
-                    { name: "Chevron Shapes", link: "mgf_shapes_chevron.html" },
-                    { name: "Hexagon Line Art", link: "mgf_shapes_hexagon.html" },
+                    { name: "Square Patterns", link: "geometric_shapes_square.html" },
+                    { name: "Triangle Grids", link: "geometric_shapes_triangle.html" },
+                    { name: "Diamond Shapes", link: "geometric_shapes_diamond.html" },
+                    { name: "Chevron Shapes", link: "geometric_shapes_chevron.html" },
+                    { name: "Hexagon Line Art", link: "geometric_shapes_hexagon.html" },
                 ]
             },
-            'premium-card-C': { // C. Grid / Box Moroccan Mehndi
-                title: 'Grid / Box Moroccan Mehndi – Sub-Types',
-                desc: 'Full Box, Box + Dot, Box Mandala, Diagonal Boxes, and Checker Box patterns.',
+            'premium-card-c': { // C. Grid / Box Moroccan Mehndi
+                title: 'Grid / Box Moroccan Sub-Types',
+                desc: 'Classic Moroccan style emphasizing full-hand grid and checkerboard patterns.',
                 locations: [
-                    { name: "Full Box Pattern", link: "mgf_grid_full_box.html" },
-                    { name: "Box + Dot Pattern", link: "mgf_grid_box_dot.html" },
-                    { name: "Box Mandala", link: "mgf_grid_box_mandala.html" },
-                    { name: "Diagonal Boxes", link: "mgf_grid_diagonal.html" },
-                    { name: "Checker Box", link: "mgf_grid_checker.html" },
+                    { name: "Full Box Pattern", link: "geometric_grid_fullbox.html" },
+                    { name: "Box + Dot Pattern", link: "geometric_grid_boxdot.html" },
+                    { name: "Box Mandala", link: "geometric_grid_boxmandala.html" },
+                    { name: "Diagonal Boxes", link: "geometric_grid_diagonal.html" },
+                    { name: "Checker Box", link: "geometric_grid_checker.html" },
                 ]
             },
-            'premium-card-D': { // D. Tribal Moroccan Mehndi
-                title: 'Tribal Moroccan Mehndi – Sub-Types',
-                desc: 'Berber Tribal Motifs, Arrow Patterns, Zig-Zag, and Desert Tribal Symbols.',
+            'premium-card-d': { // D. Tribal Moroccan Mehndi
+                title: 'Tribal Moroccan Mehndi Sub-Types',
+                desc: 'Uses Berber motifs, arrows, and desert symbols for an ancient, symbolic look.',
                 locations: [
-                    { name: "Berber Tribal Motifs", link: "mgf_tribal_berber.html" },
-                    { name: "Arrow Patterns", link: "mgf_tribal_arrow.html" },
-                    { name: "Zig-Zag Tribal", link: "mgf_tribal_zigzag.html" },
-                    { name: "Tribal Wrist Band", link: "mgf_tribal_wrist.html" },
-                    { name: "Desert Tribal Symbols", link: "mgf_tribal_desert.html" },
+                    { name: "Berber Tribal Motifs", link: "geometric_tribal_berber.html" },
+                    { name: "Arrow Patterns", link: "geometric_tribal_arrow.html" },
+                    { name: "Zig-Zag Tribal", link: "geometric_tribal_zigzag.html" },
+                    { name: "Tribal Wrist Band", link: "geometric_tribal_wristband.html" },
+                    { name: "Desert Tribal Symbols", link: "geometric_tribal_desert.html" },
                 ]
             },
-            'premium-card-E': { // E. Minimal Geometric Mehndi
-                title: 'Minimal Geometric Mehndi – Sub-Types',
-                desc: 'Simple Lines, Tiny Shapes, Finger Geometry, and Minimal Grid work.',
+            'premium-card-e': { // E. Minimal Geometric Mehndi
+                title: 'Minimal Geometric Mehndi Sub-Types',
+                desc: 'Tiny, sparse arrangements of lines and shapes for a subtle, high-fashion impact.',
                 locations: [
-                    { name: "Simple Lines", link: "mgf_minimal_simple_lines.html" },
-                    { name: "Tiny Shapes", link: "mgf_minimal_tiny_shapes.html" },
-                    { name: "Finger Geometry", link: "mgf_minimal_finger_geo.html" },
-                    { name: "Triangle Tip Art", link: "mgf_minimal_triangle_tip.html" },
-                    { name: "Minimal Grid", link: "mgf_minimal_grid.html" },
+                    { name: "Simple Lines", link: "geometric_minimal_lines.html" },
+                    { name: "Tiny Shapes", link: "geometric_minimal_shapes.html" },
+                    { name: "Finger Geometry", link: "geometric_minimal_finger.html" },
+                    { name: "Triangle Tip Art", link: "geometric_minimal_triangle.html" },
+                    { name: "Minimal Grid", link: "geometric_minimal_grid.html" },
                 ]
             },
-            // Existing Header Data (Dropdowns) - Kept for template consistency
+            // Existing Header Data (Dropdowns) - Included for site navigation consistency
             'dropdown-bridal': {
                  title: 'Bridal Mehndi Types',
                  locations: [
@@ -920,7 +825,7 @@
                     { name: "Arabic", link: "festive_arabic.html" }, 
                     { name: "Indian", link: "festive_indian.html" }, 
                     { name: "Indo-Arabic", link: "festive_indoarabic.html" },
-                    { name: "Moroccan / Geometric", link: "festive_geometric.html" },
+                    { name: "Moroccan / Geometric", link: "festive_geometric.html" }, // Self-link
                     { name: "Minimal Festive Mehndi", link: "festive_minimal.html" }
                 ]
             }
@@ -1029,15 +934,17 @@
         // --- END: DROPDOWN / ACCORDION LOGIC ---
 
         document.addEventListener('DOMContentLoaded', () => {
-            initializeSlider();
+            // initializeSlider(); // Removed, as slider is static
             initializeDropdowns();
             
-            // Attach click listeners to all 5 cards (A-E) to open the modal:
-            document.getElementById('premium-card-A').addEventListener('click', () => showLocationModal('premium-card-A'));
-            document.getElementById('premium-card-B').addEventListener('click', () => showLocationModal('premium-card-B'));
-            document.getElementById('premium-card-C').addEventListener('click', () => showLocationModal('premium-card-C'));
-            document.getElementById('premium-card-D').addEventListener('click', () => showLocationModal('premium-card-D'));
-            document.getElementById('premium-card-E').addEventListener('click', () => showLocationModal('premium-card-E'));
+            // Attach click listeners to all 5 new cards to open the modal:
+            document.getElementById('premium-card-a').addEventListener('click', () => showLocationModal('premium-card-a'));
+            document.getElementById('premium-card-b').addEventListener('click', () => showLocationModal('premium-card-b'));
+            document.getElementById('premium-card-c').addEventListener('click', () => showLocationModal('premium-card-c'));
+            document.getElementById('premium-card-d').addEventListener('click', () => showLocationModal('premium-card-d'));
+            document.getElementById('premium-card-e').addEventListener('click', () => showLocationModal('premium-card-e'));
+            
+            // Card E is now included, so we remove the check to hide it.
         });
         
         // --- START: DYNAMIC THEME COLOR CHANGER (7 THEMES, 7 SECONDS) ---
