@@ -534,7 +534,7 @@
                 <!-- Title is now placed relative to the inner section for Z-index -->
                 <div class="text-center mb-6">
                     <!-- Updated class to use primary color glow -->
-                    <h2 class="text-2xl sm:text-4xl font-extrabold text-primary-glow border-b-4 border-primary/50 inline-block px-4 pb-1">5️⃣ Minimal Festive Mehndi – Types</h2>
+                    <h2 class="text-2xl sm:text-4xl font-extrabold text-primary-glow border-b-4 border-primary/50 inline-block px-4 pb-1">Minimal Festive Mehndi Types</h2>
                 </div>
                 
                 <div class="slider-container relative">
@@ -551,11 +551,6 @@
                             </div>
                         </div>
                     </div>
-
-                    <!-- Navigation Buttons (Hidden as they are not needed for a static page but kept for structure) -->
-                    <button id="prev-btn" class="hidden absolute top-1/2 left-4 transform -translate-y-1/2 p-3 rounded-full z-10 text-xl"><i class="fas fa-chevron-left"></i></button>
-                    <button id="next-btn" class="hidden absolute top-1/2 right-4 transform -translate-y-1/2 p-3 rounded-full z-10 text-xl"><i class="fas fa-chevron-right"></i></button>
-                    
             </section>
         </div>
         <!-- END SLIDE SECTION WRAPPER -->
@@ -637,7 +632,7 @@
             <!-- Central FAB Button (Home - index.html से लिंक्ड) -->
             <div class="central-nav-item-shs w-1/5">
                 <a 
-                    href="index.html" 
+                    href="main.html" 
                     class="central-fab animate-pulse-shadow"
                     aria-label="Go to Home"
                 >
@@ -742,7 +737,9 @@
         // Function to create dummy slides data (kept for structure, but not used for display)
         async function fetchSlidesData() {
             return [
-                { "title": "Minimal Designs", "date": "New Trends", "link": "#", "deadline": "2026-12-12", "bgImage": "" }
+                { "title": "", "date": "", "link": "#", "deadline": "2026-12-12", "bgImage": "" }
+                { "title": "", "date": "", "link": "#", "deadline": "2026-12-12", "bgImage": "" }
+                 { "title": "", "date": "", "link": "#", "deadline": "2026-12-12", "bgImage": "" }
             ];
         }
 
@@ -758,7 +755,7 @@
         // UPDATED LOCATION DATA FOR MINIMAL FESTIVE MEHNDI TYPES
         const locationData = {
             'premium-card-a': { // A. Finger Minimal Mehndi
-                title: 'Finger Minimal Mehndi Sub-Types',
+                title: 'Finger Minimal Mehndi',
                 desc: 'Simple patterns focusing only on the fingers and knuckles.',
                 locations: [
                     { name: "Tip Dots", link: "minimal_finger_tip_dots.html" },
@@ -769,7 +766,7 @@
                 ]
             },
             'premium-card-b': { // B. Wrist Minimal Mehndi
-                title: 'Wrist Minimal Mehndi Sub-Types',
+                title: 'Wrist Minimal Mehndi',
                 desc: 'Subtle designs that mimic jewelry like bracelets or chains on the wrist.',
                 locations: [
                     { name: "Bracelet Pattern", link: "minimal_wrist_bracelet.html" },
@@ -780,7 +777,7 @@
                 ]
             },
             'premium-card-c': { // C. Single Motif Minimal Mehndi
-                title: 'Single Motif Minimal Mehndi Sub-Types',
+                title: 'Single Motif Minimal Mehndi',
                 desc: 'One small, central design placed strategically on the hand or foot.',
                 locations: [
                     { name: "Mini Lotus", link: "minimal_motif_mini_lotus.html" },
@@ -791,7 +788,7 @@
                 ]
             },
             'premium-card-d': { // D. Negative Space Minimal Mehndi
-                title: 'Negative Space Minimal Mehndi Sub-Types',
+                title: 'Negative Space Minimal Mehndi',
                 desc: 'Designs where the skin acts as the pattern, creating sharp, modern shapes.',
                 locations: [
                     { name: "Empty Space Florals", link: "minimal_negative_florals.html" },
@@ -802,7 +799,7 @@
                 ]
             },
             'premium-card-e': { // E. Micro-Design Festive Mehndi
-                title: 'Micro-Design Festive Mehndi Sub-Types',
+                title: 'Micro-Design Festive Mehndi',
                 desc: 'Intricate patterns using tiny dots and super-fine lines for a delicate look.',
                 locations: [
                     { name: "Micro Leaves", link: "minimal_micro_leaves.html" },
