@@ -58,6 +58,9 @@
             background-image: url('bridal.png');
         }
 
+        /* Removed #bg-video-pc CSS and associated media query logic */
+
+
         .fixed-header-container {
             position: fixed; top: 0; left: 0; right: 0; z-index: 100;
         }
@@ -191,10 +194,10 @@
             }
         }
         
-        /* 5 cards in a row for screens >= 1400px (Large PC) - Adjusted for 5 cards */
+        /* 4 cards in a row for screens >= 1400px (Large PC) - UPDATED BREAKPOINT */
         @media(min-width: 1400px){
             .card-grid-container {
-                grid-template-columns: repeat(5, 1fr); 
+                grid-template-columns: repeat(4, 1fr); 
             }
         }
         
@@ -400,6 +403,7 @@
     
     <!-- BACKGROUND MEDIA ELEMENTS -->
     <div id="fixed-media-background"></div>
+    <!-- Removed video element #bg-video-pc -->
     <!-- END BACKGROUND MEDIA ELEMENTS -->
 
     <!-- HEADER (शीर्षक) -->
@@ -408,13 +412,15 @@
               <div class="container mx-auto flex justify-between items-center px-2 sm:px-4" style="padding-top: env(safe-area-inset-top);">
                 <!-- Logo and Title (लोगो और शीर्षक) -->
                 <a href="main.html" class="flex items-center no-underline">
+                  <!-- rentist.jpg इमेज का उपयोग किया गया -->
                   <img src="blessingsssl.png" alt="Rentist Logo" class="h-10 w-10 mr-3 rounded-full border border-primary/50 object-cover" onerror="this.onerror=null;this.src='https://placehold.co/48x48/1C3144/76FF03?text=R';"/>
                    <span class="text-xl sm:text-3xl font-extrabold text-white tracking-tight flex items-center">
-                    <img src="blessingsss.png" alt="Logo" class="h-[35px] w-auto object-contain inline-block" onerror="this.onerror=null;this.src='https://placehold.co/100x35/1C3144/76FF03?text=SkillAurA';" />
+                    <img src="blessingsss.png" alt="Logo" class="h-[35px] w-auto object-contain inline-block" onerror="this.onerror=null;this.src='https://placehold.co/100x35/1C3144/76FF03?text=SkillAurA';" /> <!-- Placeholder color changed -->
                   </span>
                 </a>
 
                 <!-- Desktop Navigation (डेस्कटॉप नेविगेशन) -->
+                <!-- UPDATED CLASS for 1200px breakpoint logic -->
                 <div class="desktop-nav-area hidden items-center space-x-10">
                   <nav class="flex space-x-8 font-extrabold">
                     
@@ -562,13 +568,19 @@
             </section>
         </div>
         <!-- END SLIDE SECTION WRAPPER -->
+        
+        <!-- NEW HEADING ADDED HERE -->
+        <div class="text-center mb-8 mt-4">
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-primary-glow border-b-4 border-primary/50 inline-block px-6 pb-2 uppercase tracking-wide">
+                Our Service
+            </h2>
+        </div>
+        <!-- END NEW HEADING -->
 
-        <!-- START: Updated Card Grid for 5 Styles -->
-        <section class="mb-12">
-            <h2 class="text-2xl sm:text-3xl font-extrabold text-primary-glow text-center mb-8 border-b-4 border-primary/50 inline-block px-4 pb-1 mx-auto block">Explore Arabic Styles</h2>
+        <section id="service-cards">
             <div class="card-grid-container">
                 
-                <!-- CARD 1: Classic Arabic Mehndi -->
+                <!-- CARD 1: Classic Arabic Mehndi (Added back and re-IDed) -->
                 <div class="premium-card" id="premium-card-1">
                     <div class="inner-box">
                         <img src="https://placehold.co/300x170/331A1A/FFC72C?text=Classic+Arabic" alt="Classic Arabic Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/331A1A/FFC72C?text=Classic+Arabic';">
@@ -577,7 +589,7 @@
                     <div class="premium-desc">Bold outlines, flowing vines, and floral patterns.</div>
                 </div>
 
-                <!-- CARD 2: Gulf/Khaleeji Arabic Mehndi -->
+                <!-- CARD 2: Gulf/Khaleeji Arabic Mehndi (Re-IDed) -->
                 <div class="premium-card" id="premium-card-2">
                     <div class="inner-box">
                         <img src="https://placehold.co/300x170/221A33/FFC72C?text=Khaleeji" alt="Gulf/Khaleeji Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/221A33/FFC72C?text=Khaleeji';">
@@ -586,7 +598,7 @@
                     <div class="premium-desc">Thick strokes, shading, and detailed finger work.</div>
                 </div>
 
-                <!-- CARD 3: Shaded Arabic Mehndi -->
+                <!-- CARD 3: Shaded Arabic Mehndi (Re-IDed) -->
                 <div class="premium-card" id="premium-card-3">
                     <div class="inner-box">
                         <img src="https://placehold.co/300x170/1A2733/FFC72C?text=Shaded+Arabic" alt="Shaded Arabic Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/1A2733/FFC72C?text=Shaded+Arabic';">
@@ -595,7 +607,7 @@
                     <div class="premium-desc">Flowers and leaves with dark–light shading effects.</div>
                 </div>
 
-                <!-- CARD 4: Rose Arabic Mehndi -->
+                <!-- CARD 4: Rose Arabic Mehndi (Re-IDed) -->
                 <div class="premium-card" id="premium-card-4">
                     <div class="inner-box">
                         <img src="https://placehold.co/300x170/332D1A/FFC72C?text=Rose+Arabic" alt="Rose Arabic Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/332D1A/FFC72C?text=Rose+Arabic';">
@@ -603,8 +615,8 @@
                     <div class="premium-title">Rose Arabic Mehndi</div>
                     <div class="premium-desc">Large rose motifs with bold edges and petals.</div>
                 </div>
-
-                <!-- CARD 5: Minimal Arabic Bridal Mehndi -->
+                
+                <!-- CARD 5: Minimal Arabic Bridal Mehndi (Re-IDed) -->
                 <div class="premium-card" id="premium-card-5">
                     <div class="inner-box">
                         <img src="https://placehold.co/300x170/10241D/FFC72C?text=Minimal+Arabic" alt="Minimal Arabic Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/10241D/FFC72C?text=Minimal+Arabic';">
@@ -618,6 +630,7 @@
     <!-- END MAIN CONTENT AREA -->
     
     <!-- === FIXED BOTTOM NAVIGATION (निश्चित बॉटम नेविगेशन) === -->
+    <!-- Note: Bottom nav links now refer to the new card IDs (1, 2, 3, 5) -->
     <nav 
         class="bottom-nav-fixed" 
         style="padding-bottom: env(safe-area-inset-bottom);" 
@@ -625,19 +638,19 @@
     >
         <div class="flex justify-around items-end h-20 relative px-2">
             
-            <!-- Item 1: Classic Arabic (Card 1 से लिंक्ड) -->
+            <!-- Item 1: Classic Arabic (Card 1) -->
             <a href="#premium-card-1" class="nav-item-shs w-1/5" onclick="scrollToSection('premium-card-1')">
                 <i class="fas fa-leaf nav-icon-shs"></i>
                 <span class="font-medium">Classic</span>
             </a>
 
-            <!-- Item 2: Khaleeji (Card 2 से लिंक्ड) -->
+            <!-- Item 2: Khaleeji (Card 2) -->
             <a href="#premium-card-2" class="nav-item-shs w-1/5" onclick="scrollToSection('premium-card-2')">
                 <i class="fas fa-dharmachakra nav-icon-shs"></i>
                 <span class="font-medium">Khaleeji</span>
             </a>
             
-            <!-- Central FAB Button (Home - index.html से लिंक्ड) -->
+            <!-- Central FAB Button (Home - main.html) -->
             <div class="central-nav-item-shs w-1/5">
                 <a 
                     href="main.html" 
@@ -649,13 +662,13 @@
                 <span class="central-fab-label">Home</span>
             </div>
             
-            <!-- Item 4: Shaded Arabic (Card 3 से लिंक्ड) -->
+            <!-- Item 4: Shaded Arabic (Card 3) -->
             <a href="#premium-card-3" class="nav-item-shs w-1/5" onclick="scrollToSection('premium-card-3')">
                 <i class="fas fa-palette nav-icon-shs"></i>
                 <span class="font-medium">Shaded</span>
             </a>
             
-            <!-- Item 5: Minimal Arabic (Card 5 से लिंक्ड) -->
+            <!-- Item 5: Minimal Arabic (Card 5) -->
             <a href="#premium-card-5" class="nav-item-shs w-1/5" onclick="scrollToSection('premium-card-5')">
                 <i class="fas fa-dot-circle nav-icon-shs"></i>
                 <span class="font-medium">Minimal</span>
@@ -738,6 +751,7 @@
         }
         
          // --- START: SLIDER LOGIC (Moved inside DOMContentLoaded) ---
+        // Variables for slider logic
         const sliderBg = document.getElementById('slider-bg');
         const slidesWrapper = document.getElementById('slides-wrapper');
         const prevBtn = document.getElementById('prev-btn');
@@ -757,9 +771,9 @@
         async function fetchSlidesData() {
             // Hardcoded placeholder slide data for Arabic styles
             return [
-                { "title": ".", "date": "15 Jan", "link": "arabic_classic.html", "deadline": "2026-01-15", "bgImage": "" },
-                { "title": ".", "date": "10 Feb", "link": "arabic_khaleeji.html", "deadline": "2026-02-10", "bgImage": "" },
-                { "title": ".", "date": "28 Feb", "link": "arabic_rose.html", "deadline": "2026-02-28", "bgImage": "" }
+                { "title": "Rose Arabic Patterns", "date": "15 Jan", "link": "arabic_rose.html", "deadline": "2026-01-15", "bgImage": "https://placehold.co/800x350/FFC72C/331A1A?text=Rose+Arabic+Featured" },
+                { "title": "Khaleeji Bridal Designs", "date": "10 Feb", "link": "arabic_khaleeji.html", "deadline": "2026-02-10", "bgImage": "https://placehold.co/800x350/FFB433/1A2733?text=Khaleeji+Bridal+Featured" },
+                { "title": "Shaded 3D Mehndi", "date": "28 Feb", "link": "arabic_shaded_3d.html", "deadline": "2026-02-28", "bgImage": "https://placehold.co/800x350/FF5733/221A33?text=Shaded+3D+Featured" }
             ];
         }
 
@@ -775,6 +789,7 @@
                 
                 // Link is now assigned directly from item.link (internal page)
                 slide.href = item.link; 
+                // Removed target="_blank" for internal links
                 
                 slide.className = `slide absolute top-0 left-0 w-full h-full opacity-0 transition-opacity duration-1000`;
                 slide.style.zIndex = index === 0 ? 1 : 0;
@@ -905,7 +920,7 @@
                     { name: "Bracelet + Ring Style Minimal Arabic", link: "arabic_minimal_bracelet_ring.html" },
                 ]
             },
-            // Existing Header Data (Dropdowns) - Kept for template consistency
+            // Existing Header Data (Dropdowns) - Retaining these is important for the header navigation
             'dropdown-bridal': {
                  title: 'Bridal Mehndi Types',
                  locations: [
