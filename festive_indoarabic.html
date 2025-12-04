@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Indo-Arabic Festive Mehndi Styles</title>
+    <title>Indo-Arabic Festive Mehndi</title>
     <!-- Tailwind CSS CDN (Self-contained styling) -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Font Awesome (for icons) -->
@@ -12,7 +12,7 @@
     <!-- Fonts (Inter/Noto Sans Devanagari for readability) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=Noto+Sans+Devanagari:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=Noto+Sans+Devanagari:wght+400;500;700&display=swap" rel="stylesheet">
     
     <style>
         /* --- GLOBAL & THEME VARIABLES (थीम वेरिएबल्स) --- */
@@ -45,7 +45,7 @@
             z-index: 1; 
         }
 
-        /* --- FIXED BACKGROUND MEDIA CONTAINER (Video Removed, Image retained) --- */
+        /* --- FIXED BACKGROUND MEDIA CONTAINER (Image retained) --- */
         #fixed-media-background {
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
@@ -54,7 +54,7 @@
             background-position: center;
             background-repeat: no-repeat;
             opacity: 0.5; /* Subtle visibility */
-            /* Mobile Image used for all screen sizes now */
+            /* Using a generic Indo-Arabic image placeholder */
             background-image: url('bridal.png');
         }
 
@@ -191,12 +191,19 @@
             }
         }
         
-        /* ADJUSTED: 4 cards in a row for screens >= 1400px (Large PC) for 4 items (4x1) */
-        @media(min-width: 1400px){
+        /* 4 cards in a row for screens >= 1200px (Adjusted for 4 cards) */
+        @media(min-width: 1200px){
             .card-grid-container {
                 grid-template-columns: repeat(4, 1fr); 
             }
         }
+        
+        /* 5 cards in a row for screens >= 1400px (Removed 5 columns, sticking to max 4) 
+        @media(min-width: 1400px){
+            .card-grid-container {
+                grid-template-columns: repeat(5, 1fr); 
+            }
+        }*/
         
         /* --- SLIDER SPECIFIC STYLES (स्लाइडर विशेष स्टाइल) --- */
         .slider-container {
@@ -235,8 +242,6 @@
             }
         }
 
-        /* ... (other slider styles) ... */
-        
         .slide-content-wrapper .post-name {
             font-weight: 1000;
             line-height: 1.2;
@@ -244,15 +249,6 @@
             margin-bottom: 0.5rem; 
             word-wrap: break-word; 
             white-space: normal;
-        }
-        /* ... (other slider styles) ... */
-
-        #prev-btn, #next-btn {
-            background-color: rgba(255, 255, 255, 0.15); 
-            color: var(--color-primary); /* Dynamic Primary Color */
-            border: 1px solid var(--color-primary); /* Dynamic Primary Color */
-            /* Dynamic Button Shadow using RGB */
-            box-shadow: 0 0 10px rgba(var(--color-primary-rgb), 0.4); 
         }
 
         /* --- Global Styles (Updated to reflect new primary color for glow) --- */
@@ -334,9 +330,7 @@
         }
 
         .modal-content {
-            /* Removed absolute positioning and top/bottom to make it content-aware */
             position: relative; 
-            /* Removed transform X to keep centering simple */
             transform: none; 
             
             width: 95%; 
@@ -362,7 +356,6 @@
             background: var(--premium-bg-dark); /* Dynamic Inner BG */
             border: 1.5px solid rgba(var(--color-primary-rgb), 1);
             box-shadow: inset 0 0 35px rgba(var(--color-primary-rgb), 0.45), 0 0 25px rgba(var(--color-primary-rgb), 0.3);
-            /* flex-grow: 1; <- Removed to allow height to shrink */
             overflow-y: auto; /* Enable scrolling for the location list if needed */
         }
 
@@ -408,9 +401,10 @@
               <div class="container mx-auto flex justify-between items-center px-2 sm:px-4" style="padding-top: env(safe-area-inset-top);">
                 <!-- Logo and Title (लोगो और शीर्षक) -->
                 <a href="index.html" class="flex items-center no-underline">
+                  <!-- rentist.jpg इमेज का उपयोग किया गया -->
                   <img src="blessingsssl.png" alt="Rentist Logo" class="h-10 w-10 mr-3 rounded-full border border-primary/50 object-cover" onerror="this.onerror=null;this.src='https://placehold.co/48x48/1C3144/76FF03?text=R';"/>
                    <span class="text-xl sm:text-3xl font-extrabold text-white tracking-tight flex items-center">
-                    <img src="blessingsss.png" alt="Logo" class="h-[35px] w-auto object-contain inline-block" onerror="this.onerror=null;this.src='https://placehold.co/100x35/1C3144/76FF03?text=SkillAurA';" />
+                    <img src="blessingsss.png" alt="Logo" class="h-[35px] w-auto object-contain inline-block" onerror="this.onerror=null;this.src='https://placehold.co/100x35/1C3144/76FF03?text=SkillAurA';" /> <!-- Placeholder color changed -->
                   </span>
                 </a>
 
@@ -508,13 +502,14 @@
                 </div>
                 <div class="border-t border-primary/30 w-full my-4"></div>
 
-                <!-- Direct Link 3: Custom Mehndi (Direct Link) -->
+                <!-- Direct Link 3: Custom Mehndi -->
                 <a href="custom_mehndi.html" class="text-white text-lg relative group py-1 hover:text-primary">
                     Custom Mehndi
                     <span class="absolute left-0 bottom-0 h-1 w-0 bg-primary/70 group-hover:w-full transition-all duration-300 rounded-full"></span>
                 </a>
-                    
-                <!-- Direct Link 4: Meet Me (Direct Link) -->
+                <div class="border-t border-primary/30 w-full my-4"></div>
+                
+                <!-- Direct Link 4: Meet Me -->
                 <a href="meet_me.html" class="text-white text-lg relative group py-1 hover:text-primary">
                     Meet Me
                     <span class="absolute left-0 bottom-0 h-1 w-0 bg-primary/70 group-hover:w-full transition-all duration-300 rounded-full"></span>
@@ -530,7 +525,6 @@
                 <p class="text-xs text-center text-gray-500 mt-auto">© 2025 Blessingsss.in</p>
             </div>
         </div>
-        <!-- REMOVED lg:hidden from the class list -->
         <div id="mobile-menu-overlay" class="fixed inset-0 bg-black/70 mobile-menu-overlay hidden"></div>
     </div>
     <!-- END HEADER & SIDEBAR -->
@@ -546,62 +540,75 @@
             <section class="latest-forms">
                 <!-- Title is now placed relative to the inner section for Z-index -->
                 <div class="text-center mb-6">
-                    <!-- Updated class to use primary color glow -->
-                    <h2 class="text-2xl sm:text-3xl font-extrabold text-primary-glow border-b-4 border-primary/50 inline-block px-4 pb-1">Indo-Arabic Festive Mehndi Spotlight</h2>
+                    <!-- UPDATED: Main title for Indo-Arabic -->
+                    <h2 class="text-2xl sm:text-4xl font-extrabold text-primary-glow border-b-4 border-primary/50 inline-block px-4 pb-1">3️⃣ Indo-Arabic Festive Mehndi – Types</h2>
                 </div>
                 
                 <div class="slider-container relative">
                     <!-- Slides Wrapper will contain the dynamic content over the image -->
-                    <div id="slides-wrapper" class="relative w-full h-full"></div>
+                    <div id="slides-wrapper" class="relative w-full h-full">
+                        <!-- Default Slide Content for Indo-Arabic Theme -->
+                        <div class="slide absolute top-0 left-0 w-full h-full opacity-100 transition-opacity duration-1000 active" style="z-index: 1;">
+                            <div class="slide-content-wrapper p-4 md:p-12 absolute bottom-0 bg-black/50 w-full rounded-b-[35px] text-left">
+                                <h3 class="post-name text-3xl md:text-5xl">The Best of Both Worlds</h3>
+                                <p class="last-date text-white/80 mt-2">Discover designs that fuse the bold flow of Arabic art with the detailed finesse of Indian patterns.</p>
+                                <a href="#premium-card-a" class="apply-btn bg-primary hover:bg-primary/90 text-black font-bold py-2 px-6 rounded-full mt-4 transition-transform transform hover:scale-105 shadow-xl">
+                                    View Styles
+                                </a>
+                            </div>
+                        </div>
+                    </div>
 
-                    <!-- Navigation Buttons -->
-                    <button id="prev-btn" class="absolute top-1/2 left-4 transform -translate-y-1/2 bg-white bg-opacity-15 hover:bg-opacity-25 text-primary p-2 rounded-full shadow-lg transition-all z-20">❮</button>
-                    <button id="next-btn" class="absolute top-1/2 right-4 transform -translate-y-1/2 bg-white bg-opacity-15 hover:bg-opacity-25 text-primary p-2 rounded-full shadow-lg transition-all z-20">❯</button>
+                    <!-- Navigation Buttons (Hidden as they are not needed for a static page but kept for structure) -->
+                    <button id="prev-btn" class="hidden absolute top-1/2 left-4 transform -translate-y-1/2 p-3 rounded-full z-10 text-xl"><i class="fas fa-chevron-left"></i></button>
+                    <button id="next-btn" class="hidden absolute top-1/2 right-4 transform -translate-y-1/2 p-3 rounded-full z-10 text-xl"><i class="fas fa-chevron-right"></i></button>
                     
             </section>
         </div>
         <!-- END SLIDE SECTION WRAPPER -->
 
-        <!-- START: Updated Card Grid for 4 Styles -->
+        <!-- START: Updated Card Grid for 4 Indo-Arabic Styles -->
         <section class="mb-12">
-            <h2 class="text-2xl sm:text-3xl font-extrabold text-primary-glow text-center mb-8 border-b-4 border-primary/50 inline-block px-4 pb-1 mx-auto block">Explore Indo-Arabic Festive Mehndi Styles</h2>
-            <div class="card-grid-container" style="grid-template-columns: repeat(4, 1fr);">
+            <h2 class="text-xl sm:text-2xl font-extrabold text-primary-glow text-center mb-8 inline-block px-4 pb-1 mx-auto block">Fusing Arabic Flow with Indian Detail</h2>
+            <div class="card-grid-container">
                 
                 <!-- CARD A: Indo-Arabic Floral Fusion -->
-                <div class="premium-card" id="premium-card-A">
+                <div class="premium-card" id="premium-card-a">
                     <div class="inner-box">
-                        <img src="https://placehold.co/300x170/331A1A/FFC72C?text=Floral+Fusion" alt="Indo-Arabic Floral Fusion" onerror="this.onerror=null;this.src='https://placehold.co/300x170/331A1A/FFC72C?text=Floral+Fusion';">
+                        <img src="https://placehold.co/300x170/331A1A/FFB433?text=Floral+Fusion" alt="Indo-Arabic Floral Fusion" onerror="this.onerror=null;this.src='https://placehold.co/300x170/331A1A/FFB433?text=Floral+Fusion';">
                     </div>
                     <div class="premium-title">A. Indo-Arabic Floral Fusion</div>
-                    <div class="premium-desc">Blends Arabic flowers and vines with traditional Indian dot-work and fills.</div>
+                    <div class="premium-desc">Blends bold Arabic outlines with delicate Indian floral fills and motifs.</div>
                 </div>
 
                 <!-- CARD B: Indo-Arabic Jaali Combo -->
-                <div class="premium-card" id="premium-card-B">
+                <div class="premium-card" id="premium-card-b">
                     <div class="inner-box">
-                        <img src="https://placehold.co/300x170/221A33/FFC72C?text=Jaali+Combo" alt="Indo-Arabic Jaali Combo" onerror="this.onerror=null;this.src='https://placehold.co/300x170/221A33/FFC72C?text=Jaali+Combo';">
+                        <img src="https://placehold.co/300x170/221A33/FFB433?text=Jaali+Combo" alt="Indo-Arabic Jaali Combo" onerror="this.onerror=null;this.src='https://placehold.co/300x170/221A33/FFB433?text=Jaali+Combo';">
                     </div>
                     <div class="premium-title">B. Indo-Arabic Jaali Combo</div>
-                    <div class="premium-desc">Combines intricate Indian net-work (Jaali) with bold Arabic strokes and shading.</div>
+                    <div class="premium-desc">Combines geometric net patterns (Jaali) with sweeping Arabic vines and shading.</div>
                 </div>
 
                 <!-- CARD C: Indo-Arabic Mandala Style -->
-                <div class="premium-card" id="premium-card-C">
+                <div class="premium-card" id="premium-card-c">
                     <div class="inner-box">
-                        <img src="https://placehold.co/300x170/1A2733/FFC72C?text=Mandala+Style" alt="Indo-Arabic Mandala Style" onerror="this.onerror=null;this.src='https://placehold.co/300x170/1A2733/FFC72C?text=Mandala+Style';">
+                        <img src="https://placehold.co/300x170/1A2733/FFB433?text=Mandala+Style" alt="Indo-Arabic Mandala Style" onerror="this.onerror=null;this.src='https://placehold.co/300x170/1A2733/FFB433?text=Mandala+Style';">
                     </div>
                     <div class="premium-title">C. Indo-Arabic Mandala Style</div>
-                    <div class="premium-desc">Central Mandala designs enhanced with Arabic trails and shaded petals.</div>
+                    <div class="premium-desc">Central Mandalas enhanced by thick Arabic borders, trails, and flowing designs.</div>
                 </div>
 
                 <!-- CARD D: Indo-Arabic Shaded Design -->
-                <div class="premium-card" id="premium-card-D">
+                <div class="premium-card" id="premium-card-d">
                     <div class="inner-box">
-                        <img src="https://placehold.co/300x170/332D1A/FFC72C?text=Shaded+Design" alt="Indo-Arabic Shaded Design" onerror="this.onerror=null;this.src='https://placehold.co/300x170/332D1A/FFC72C?text=Shaded+Design';">
+                        <img src="https://placehold.co/300x170/332D1A/FFB433?text=Shaded+Design" alt="Indo-Arabic Shaded Design" onerror="this.onerror=null;this.src='https://placehold.co/300x170/332D1A/FFB433?text=Shaded+Design';">
                     </div>
                     <div class="premium-title">D. Indo-Arabic Shaded Design</div>
-                    <div class="premium-desc">Uses 3D shading techniques from Arabic style blended with dense Indian fills.</div>
+                    <div class="premium-desc">Uses shading techniques for a modern, dimensional Arabic and Indian hybrid look.</div>
                 </div>
+                
+                <!-- CARD E is REMOVED to accommodate 4 types -->
                 
             </div>
         </section>
@@ -617,19 +624,19 @@
         <div class="flex justify-around items-end h-20 relative px-2">
             
             <!-- Item 1: Floral (Card A से लिंक्ड) -->
-            <a href="#premium-card-A" class="nav-item-shs w-1/4" onclick="scrollToSection('premium-card-A')">
+            <a href="#premium-card-a" class="nav-item-shs w-1/5" onclick="scrollToSection('premium-card-a')">
                 <i class="fas fa-leaf nav-icon-shs"></i>
                 <span class="font-medium">Floral</span>
             </a>
 
             <!-- Item 2: Jaali (Card B से लिंक्ड) -->
-            <a href="#premium-card-B" class="nav-item-shs w-1/4" onclick="scrollToSection('premium-card-B')">
-                <i class="fas fa-grip-lines nav-icon-shs"></i>
-                <span class="font-medium">Jaali Combo</span>
+            <a href="#premium-card-b" class="nav-item-shs w-1/5" onclick="scrollToSection('premium-card-b')">
+                <i class="fas fa-th-large nav-icon-shs"></i>
+                <span class="font-medium">Jaali</span>
             </a>
             
             <!-- Central FAB Button (Home - index.html से लिंक्ड) -->
-            <div class="central-nav-item-shs w-1/4">
+            <div class="central-nav-item-shs w-1/5">
                 <a 
                     href="index.html" 
                     class="central-fab animate-pulse-shadow"
@@ -641,9 +648,15 @@
             </div>
             
             <!-- Item 4: Mandala (Card C से लिंक्ड) -->
-            <a href="#premium-card-C" class="nav-item-shs w-1/4" onclick="scrollToSection('premium-card-C')">
+            <a href="#premium-card-c" class="nav-item-shs w-1/5" onclick="scrollToSection('premium-card-c')">
                 <i class="fas fa-compact-disc nav-icon-shs"></i>
                 <span class="font-medium">Mandala</span>
+            </a>
+            
+            <!-- Item 5: Shaded (Card D से लिंक्ड) -->
+            <a href="#premium-card-d" class="nav-item-shs w-1/5" onclick="scrollToSection('premium-card-d')">
+                <i class="fas fa-paint-brush nav-icon-shs"></i>
+                <span class="font-medium">Shaded</span>
             </a>
             
         </div>
@@ -654,7 +667,7 @@
     <div id="location-modal-overlay" class="modal-overlay">
         <div id="location-modal-content" class="modal-content">
             <div class="flex justify-between items-center mb-4 p-2">
-                <h3 id="modal-title" class="text-xl font-bold text-primary-glow">Available Designs (डिज़ाइन)</h3>
+                <h3 id="modal-title" class="text-xl font-bold text-primary-glow">Available Locations (स्थान)</h3>
                 <button id="modal-close-button" class="text-white hover:text-primary transition-colors p-2 rounded-full hover:bg-white/10" aria-label="Close modal">
                     <i class="fas fa-times text-2xl"></i>
                 </button>
@@ -722,108 +735,15 @@
             }
         }
         
-         // --- START: SLIDER LOGIC (Moved inside DOMContentLoaded) ---
+         // --- START: SLIDER LOGIC (Modified for static content) ---
         const sliderBg = document.getElementById('slider-bg');
-        const slidesWrapper = document.getElementById('slides-wrapper');
-        const prevBtn = document.getElementById('prev-btn');
-        const nextBtn = document.getElementById('next-btn');
         
-        let slidesData = [];
-        let currentSlide = 0;
-        let slideInterval;
-        const slideDuration = 5000;
-
-        function formatDate(dateStr) {
-            const options = { year: 'numeric', month: 'long', day: 'numeric' };
-            const date = new Date(dateStr);
-            return date.toLocaleDateString('en-IN', options);
-        }
-
         async function fetchSlidesData() {
-            // Hardcoded placeholder slide data for Indo-Arabic Festive styles
             return [
-                { "title": "Indo-Arabic Fusion: The perfect blend for festivities.", "date": "10 Jun", "link": "iaf_fusion.html", "deadline": "2026-06-10", "bgImage": "https://placehold.co/800x350/FF33FF/331A33?text=Indo-Arabic+Focus" },
-                { "title": "Try Jaali Combo for a dense yet elegant pattern.", "date": "22 Jun", "link": "iaf_jaali.html", "deadline": "2026-06-22", "bgImage": "https://placehold.co/800x350/33D1FF/1A2433?text=Jaali+Fusion+Focus" },
-                { "title": "Mandala Style elevated with Arabic trailing vines.", "date": "05 Jul", "link": "iaf_mandala.html", "deadline": "2026-07-05", "bgImage": "https://placehold.co/800x350/FFB433/5C4E28?text=Mandala+Fusion+Focus" }
+                { "title": "Indo-Arabic Designs", "date": "Festive Styles", "link": "#", "deadline": "2026-12-12", "bgImage": "" }
             ];
         }
 
-        function createSlides(data) {
-            slidesWrapper.innerHTML = '';
-            data.forEach((item, index) => {
-                const slide = document.createElement('a');
-                const deadline = new Date(item.deadline);
-                const now = new Date();
-                const isExpired = deadline < now;
-                // Button Text
-                const buttonText = isExpired ? 'Expired' : 'View Details';
-                
-                // Link is now assigned directly from item.link (internal page)
-                slide.href = item.link; 
-                
-                slide.className = `slide absolute top-0 left-0 w-full h-full opacity-0 transition-opacity duration-1000`;
-                slide.style.zIndex = index === 0 ? 1 : 0;
-                
-                let contentHTML = `
-                    <div class="slide-content-wrapper p-4 md:p-12 absolute bottom-0 bg-black/50 w-full rounded-b-[35px] text-left">
-                        <h3 class="post-name text-3xl md:text-5xl">${item.title}</h3>
-                        <p class="last-date text-white/80 mt-2">Date: ${item.date}</p>
-                        <button class="apply-btn bg-primary hover:bg-primary/90 text-black font-bold py-2 px-6 rounded-full mt-4 transition-transform transform hover:scale-105 shadow-xl" ${isExpired ? 'disabled' : ''}>
-                            ${buttonText}
-                        </button>
-                    </div>
-                `;
-                
-                slide.innerHTML = contentHTML;
-                slidesWrapper.appendChild(slide);
-            });
-        }
-
-        function showSlide(index) {
-            const slides = document.querySelectorAll('.slide');
-            slides.forEach((slide, i) => {
-                slide.classList.remove('active');
-                slide.style.opacity = 0;
-                slide.style.zIndex = 0;
-            });
-            
-            if (slides[index]) {
-                slides[index].classList.add('active');
-                slides[index].style.opacity = 1;
-                slides[index].style.zIndex = 1;
-                
-                if (slidesData[index] && slidesData[index].bgImage) {
-                     sliderBg.style.backgroundImage = `url('${slidesData[index].bgImage}')`;
-                }
-            }
-        }
-
-        function startAutoSlide() {
-            clearInterval(slideInterval);
-            slideInterval = setInterval(() => {
-                currentSlide = (currentSlide + 1) % slidesData.length;
-                showSlide(currentSlide);
-            }, slideDuration);
-        }
-
-        async function initializeSlider() {
-            slidesData = await fetchSlidesData();
-            createSlides(slidesData);
-            showSlide(currentSlide);
-            startAutoSlide();
-
-            prevBtn.addEventListener('click', () => {
-                currentSlide = (currentSlide - 1 + slidesData.length) % slidesData.length;
-                showSlide(currentSlide);
-                startAutoSlide();
-            });
-
-            nextBtn.addEventListener('click', () => {
-                currentSlide = (currentSlide + 1) % slidesData.length;
-                showSlide(currentSlide);
-                startAutoSlide();
-            });
-        }
         // --- END: SLIDER LOGIC ---
 
         
@@ -833,53 +753,53 @@
         const modalTitle = document.getElementById('modal-title');
         const locationList = document.getElementById('location-list');
 
-        // Indo-Arabic Festive Mehndi Data (4 Cards: A, B, C, D)
+        // UPDATED LOCATION DATA FOR INDO-ARABIC FESTIVE MEHNDI TYPES
         const locationData = {
-            'premium-card-A': { // A. Indo-Arabic Floral Fusion
-                title: 'Indo-Arabic Floral Fusion – Sub-Types',
-                desc: 'Blends Arabic flowers and vines with traditional Indian dot-work and fills.',
+            'premium-card-a': { // A. Indo-Arabic Floral Fusion
+                title: 'Indo-Arabic Floral Fusion Sub-Types',
+                desc: 'Blends bold Arabic outlines with delicate Indian floral fills.',
                 locations: [
-                    { name: "Arabic Flowers + Indian Dots", link: "iaf_floral_dots.html" },
-                    { name: "Indian Fills + Arabic Outlines", link: "iaf_floral_outlines.html" },
-                    { name: "Leafy Indo-Arabic Flow", link: "iaf_floral_leafy.html" },
-                    { name: "Vine + Indian Borders", link: "iaf_floral_borders.html" },
-                    { name: "Floral Wrist Fusion", link: "iaf_floral_wrist.html" },
+                    { name: "Arabic Flowers + Indian Dots", link: "indoarabic_floral_dots.html" },
+                    { name: "Indian Fills + Arabic Outlines", link: "indoarabic_fills_outlines.html" },
+                    { name: "Leafy Indo-Arabic Flow", link: "indoarabic_leafy_flow.html" },
+                    { name: "Vine + Indian Borders", link: "indoarabic_vine_borders.html" },
+                    { name: "Floral Wrist Fusion", link: "indoarabic_floral_wrist.html" },
                 ]
             },
-            'premium-card-B': { // B. Indo-Arabic Jaali Combo
-                title: 'Indo-Arabic Jaali Combo – Sub-Types',
-                desc: 'Combines intricate Indian net-work (Jaali) with bold Arabic strokes and shading.',
+            'premium-card-b': { // B. Indo-Arabic Jaali Combo
+                title: 'Indo-Arabic Jaali Combo Sub-Types',
+                desc: 'Combines geometric net patterns (Jaali) with sweeping Arabic vines.',
                 locations: [
-                    { name: "Arabic Vines + Jaali", link: "iaf_jaali_vines.html" },
-                    { name: "Net Fill + Bold Arabic Stroke", link: "iaf_jaali_net_stroke.html" },
-                    { name: "Diagonal Indo-Arabic Mesh", link: "iaf_jaali_diagonal.html" },
-                    { name: "Finger Jaali Fusion", link: "iaf_jaali_finger.html" },
-                    { name: "Jaali + Shaded Leaves", link: "iaf_jaali_shaded.html" },
+                    { name: "Arabic Vines + Jaali", link: "indoarabic_vines_jaali.html" },
+                    { name: "Net Fill + Bold Arabic Stroke", link: "indoarabic_netfill_stroke.html" },
+                    { name: "Diagonal Indo-Arabic Mesh", link: "indoarabic_diagonal_mesh.html" },
+                    { name: "Finger Jaali Fusion", link: "indoarabic_finger_jaali.html" },
+                    { name: "Jaali + Shaded Leaves", link: "indoarabic_jaali_shaded.html" },
                 ]
             },
-            'premium-card-C': { // C. Indo-Arabic Mandala Style
-                title: 'Indo-Arabic Mandala Style – Sub-Types',
-                desc: 'Central Mandala designs enhanced with Arabic trails and shaded petals.',
+            'premium-card-c': { // C. Indo-Arabic Mandala Style
+                title: 'Indo-Arabic Mandala Style Sub-Types',
+                desc: 'Central Mandalas enhanced by thick Arabic borders and trails.',
                 locations: [
-                    { name: "Mandala + Arabic Trails", link: "iaf_mandala_trails.html" },
-                    { name: "Mandala + Shaded Petals", link: "iaf_mandala_petals.html" },
-                    { name: "Half Mandala Fusion", link: "iaf_mandala_half.html" },
-                    { name: "Mandala On Wrist", link: "iaf_mandala_wrist.html" },
-                    { name: "Mandala + Bracelet Arabic", link: "iaf_mandala_bracelet.html" },
+                    { name: "Mandala + Arabic Trails", link: "indoarabic_mandala_trails.html" },
+                    { name: "Mandala + Shaded Petals", link: "indoarabic_mandala_petals.html" },
+                    { name: "Half Mandala Fusion", link: "indoarabic_half_mandala.html" },
+                    { name: "Mandala On Wrist", link: "indoarabic_wrist_mandala.html" },
+                    { name: "Mandala + Bracelet Arabic", link: "indoarabic_mandala_bracelet.html" },
                 ]
             },
-            'premium-card-D': { // D. Indo-Arabic Shaded Design
-                title: 'Indo-Arabic Shaded Design – Sub-Types',
-                desc: 'Uses 3D shading techniques from Arabic style blended with dense Indian fills.',
+            'premium-card-d': { // D. Indo-Arabic Shaded Design
+                title: 'Indo-Arabic Shaded Design Sub-Types',
+                desc: 'Uses shading techniques for a modern, dimensional Arabic and Indian hybrid look.',
                 locations: [
-                    { name: "Floral Shaded Indo-Arabic", link: "iaf_shaded_floral.html" },
-                    { name: "3D Shaded Arabic + Indian Fills", link: "iaf_shaded_3d.html" },
-                    { name: "Leaf Shading Combo", link: "iaf_shaded_leaf_combo.html" },
-                    { name: "Bold-N-Soft Shading", link: "iaf_shaded_bold_soft.html" },
-                    { name: "Finger Shaded Indo-Arabic", link: "iaf_shaded_finger.html" },
+                    { name: "Floral Shaded Indo-Arabic", link: "indoarabic_floral_shaded.html" },
+                    { name: "3D Shaded Arabic + Indian Fills", link: "indoarabic_3d_shaded.html" },
+                    { name: "Leaf Shading Combo", link: "indoarabic_leaf_shading.html" },
+                    { name: "Bold-N-Soft Shading", link: "indoarabic_bold_soft_shading.html" },
+                    { name: "Finger Shaded Indo-Arabic", link: "indoarabic_finger_shaded.html" },
                 ]
             },
-            // Existing Header Data (Dropdowns) - Kept for template consistency
+            // Existing Header Data (Dropdowns) - Included for site navigation consistency
             'dropdown-bridal': {
                  title: 'Bridal Mehndi Types',
                  locations: [
@@ -893,7 +813,7 @@
                 locations: [
                     { name: "Arabic", link: "festive_arabic.html" }, 
                     { name: "Indian", link: "festive_indian.html" }, 
-                    { name: "Indo-Arabic", link: "festive_indoarabic.html" },
+                    { name: "Indo-Arabic", link: "festive_indoarabic.html" }, // Self-link
                     { name: "Moroccan / Geometric", link: "festive_geometric.html" },
                     { name: "Minimal Festive Mehndi", link: "festive_minimal.html" }
                 ]
@@ -1003,14 +923,18 @@
         // --- END: DROPDOWN / ACCORDION LOGIC ---
 
         document.addEventListener('DOMContentLoaded', () => {
-            initializeSlider();
+            // initializeSlider(); // Removed, as slider is static
             initializeDropdowns();
             
-            // Attach click listeners to all 4 cards (A-D) to open the modal:
-            document.getElementById('premium-card-A').addEventListener('click', () => showLocationModal('premium-card-A'));
-            document.getElementById('premium-card-B').addEventListener('click', () => showLocationModal('premium-card-B'));
-            document.getElementById('premium-card-C').addEventListener('click', () => showLocationModal('premium-card-C'));
-            document.getElementById('premium-card-D').addEventListener('click', () => showLocationModal('premium-card-D'));
+            // Attach click listeners to all 4 new cards to open the modal:
+            document.getElementById('premium-card-a').addEventListener('click', () => showLocationModal('premium-card-a'));
+            document.getElementById('premium-card-b').addEventListener('click', () => showLocationModal('premium-card-b'));
+            document.getElementById('premium-card-c').addEventListener('click', () => showLocationModal('premium-card-c'));
+            document.getElementById('premium-card-d').addEventListener('click', () => showLocationModal('premium-card-d'));
+            
+            // Check if card-e exists, if it does, it's an error from the copy/paste, but in this file, it's removed.
+            const cardE = document.getElementById('premium-card-e');
+            if (cardE) cardE.style.display = 'none'; // Ensure the phantom card E is hidden if present
         });
         
         // --- START: DYNAMIC THEME COLOR CHANGER (7 THEMES, 7 SECONDS) ---
