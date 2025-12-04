@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Blessingsss</title>
+    <title>Traditional Bridal Mehndi Styles</title>
     <!-- Tailwind CSS CDN (Self-contained styling) -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Font Awesome (for icons) -->
@@ -65,7 +65,7 @@
             position: fixed; top: 0; left: 0; right: 0; z-index: 100;
         }
         
-        /* --- MOBILE SIDEBAR STYLES (मोबाइल साइडबार) --- */
+        /* --- MOBILE SIDEBAR STYLES (मोबाइल साइडबार) */
         .mobile-menu-panel {
             top: 85px; 
             height: calc(100vh - 165px);
@@ -196,6 +196,7 @@
         
         /* 5 cards in a row for screens >= 1400px (Large PC) - Adjusted for 5 cards */
         @media(min-width: 1400px){
+            /* Now 5 cards across on large screens */
             .card-grid-container {
                 grid-template-columns: repeat(5, 1fr); 
             }
@@ -562,15 +563,22 @@
                     <div id="slides-wrapper" class="relative w-full h-full"></div>
 
                     <!-- Navigation Buttons -->
-                    
+                    <button id="prev-btn" class="absolute top-1/2 left-4 transform -translate-y-1/2 bg-white bg-opacity-15 hover:bg-opacity-25 text-primary p-2 rounded-full shadow-lg transition-all z-20">❮</button>
+                    <button id="next-btn" class="absolute top-1/2 right-4 transform -translate-y-1/2 bg-white bg-opacity-15 hover:bg-opacity-25 text-primary p-2 rounded-full shadow-lg transition-all z-20">❯</button>
                     
             </section>
         </div>
         <!-- END SLIDE SECTION WRAPPER -->
 
-        <!-- START: Updated Card Grid for 5 Styles -->
-        <section class="mb-12">
-            <h2 class="text-2xl sm:text-3xl font-extrabold text-primary-glow text-center mb-8 border-b-4 border-primary/50 inline-block px-4 pb-1 mx-auto block">Explore Bridal Styles</h2>
+        <!-- NEW HEADING ADDED HERE -->
+        <div class="text-center mb-8 mt-4">
+            <h2 class="text-xl md:text-4xl font-extrabold text-primary-glow border-b-4 border-primary/50 inline-block px-6 pb-2 uppercase tracking-wide">
+                Our Service Types
+            </h2>
+        </div>
+        <!-- END NEW HEADING -->
+
+        <section id="service-cards">
             <div class="card-grid-container">
                 
                 <!-- CARD 1: Rajasthani Bridal Mehndi -->
@@ -579,7 +587,7 @@
                         <img src="https://placehold.co/300x170/331A1A/FFC72C?text=Rajasthani" alt="Rajasthani Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/331A1A/FFC72C?text=Rajasthani';">
                     </div>
                     <div class="premium-title">Rajasthani Bridal Mehndi</div>
-                    <div class="premium-desc">Very detailed motifs like dulha–dulhan, elephants, doli, and mandala patterns.</div>
+                    <div class="premium-desc">Dulha–Dulhan, Rajwadi, Peacock, Mandala, and Folk Art styles.</div>
                 </div>
 
                 <!-- CARD 2: Marwari Bridal Mehndi -->
@@ -588,7 +596,7 @@
                         <img src="https://placehold.co/300x170/221A33/FFC72C?text=Marwari" alt="Marwari Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/221A33/FFC72C?text=Marwari';">
                     </div>
                     <div class="premium-title">Marwari Bridal Mehndi</div>
-                    <div class="premium-desc">Fine lines, net patterns, peacocks, and full-hand dense detailing.</div>
+                    <div class="premium-desc">Dense fill, fine-line work, Peacock, Jaali, and Bride–Groom themes.</div>
                 </div>
 
                 <!-- CARD 3: Mughlai Bridal Mehndi -->
@@ -597,7 +605,7 @@
                         <img src="https://placehold.co/300x170/1A2733/FFC72C?text=Mughlai" alt="Mughlai Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/1A2733/FFC72C?text=Mughlai';">
                     </div>
                     <div class="premium-title">Mughlai Bridal Mehndi</div>
-                    <div class="premium-desc">Sharp outlines, symmetrical patterns, and intricate fills.</div>
+                    <div class="premium-desc">Bold Outline, Symmetrical, Filled, Architectural, and Floral Fusion designs.</div>
                 </div>
 
                 <!-- CARD 4: Gujarati Bridal Mehndi -->
@@ -606,7 +614,7 @@
                         <img src="https://placehold.co/300x170/332D1A/FFC72C?text=Gujarati" alt="Gujarati Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/332D1A/FFC72C?text=Gujarati';">
                     </div>
                     <div class="premium-title">Gujarati Bridal Mehndi</div>
-                    <div class="premium-desc">Mandalas, flowers, and cultural elements like kalash and dandiya.</div>
+                    <div class="premium-desc">Mandala, Dandiya/Garba, Kalash motifs, Floral, and Peacock styles.</div>
                 </div>
 
                 <!-- CARD 5: South Indian Bridal Mehndi -->
@@ -615,7 +623,7 @@
                         <img src="https://placehold.co/300x170/10241D/FFC72C?text=South+Indian" alt="South Indian Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/10241D/FFC72C?text=South+Indian';">
                     </div>
                     <div class="premium-title">South Indian Bridal Mehndi</div>
-                    <div class="premium-desc">Temple motifs, paisleys, lotus patterns, and jewelry-style designs.</div>
+                    <div class="premium-desc">Temple Art, Paisley/Mango, Lotus, Jewelry-Inspired, and Kolam/Rangoli styles.</div>
                 </div>
             </div>
         </section>
@@ -631,19 +639,19 @@
     >
         <div class="flex justify-around items-end h-20 relative px-2">
             
-            <!-- Item 1: Rajasthani (Card 1 से लिंक्ड) -->
+            <!-- Item 1: Rajasthani (Card 1) -->
             <a href="#premium-card-1" class="nav-item-shs w-1/5" onclick="scrollToSection('premium-card-1')">
                 <i class="fas fa-crown nav-icon-shs"></i>
-                <span class="font-medium">Rajasthani</span>
+                <span class="font-medium">Rajasthan</span>
             </a>
 
-            <!-- Item 2: Mughlai (Card 3 से लिंक्ड) -->
-            <a href="#premium-card-3" class="nav-item-shs w-1/5" onclick="scrollToSection('premium-card-3')">
-                <i class="fas fa-leaf nav-icon-shs"></i>
-                <span class="font-medium">Mughlai</span>
+            <!-- Item 2: Marwari (Card 2) -->
+            <a href="#premium-card-2" class="nav-item-shs w-1/5" onclick="scrollToSection('premium-card-2')">
+                <i class="fas fa-grip-lines nav-icon-shs"></i>
+                <span class="font-medium">Marwari</span>
             </a>
             
-            <!-- Central FAB Button (Home - index.html से लिंक्ड) -->
+            <!-- Central FAB Button (Home - main.html से लिंक्ड) -->
             <div class="central-nav-item-shs w-1/5">
                 <a 
                     href="main.html" 
@@ -655,13 +663,13 @@
                 <span class="central-fab-label">Home</span>
             </div>
             
-            <!-- Item 4: Gujarati (Card 4 से लिंक्ड) -->
-            <a href="#premium-card-4" class="nav-item-shs w-1/5" onclick="scrollToSection('premium-card-4')">
-                <i class="fas fa-compact-disc nav-icon-shs"></i>
-                <span class="font-medium">Gujarati</span>
+            <!-- Item 4: Mughlai (Card 3) -->
+            <a href="#premium-card-3" class="nav-item-shs w-1/5" onclick="scrollToSection('premium-card-3')">
+                <i class="fas fa-mosque nav-icon-shs"></i>
+                <span class="font-medium">Mughlai</span>
             </a>
             
-            <!-- Item 5: South Indian (Card 5 से लिंक्ड) -->
+            <!-- Item 5: South Indian (Card 5) -->
             <a href="#premium-card-5" class="nav-item-shs w-1/5" onclick="scrollToSection('premium-card-5')">
                 <i class="fas fa-vihara nav-icon-shs"></i>
                 <span class="font-medium">S. Indian</span>
@@ -675,8 +683,9 @@
     <div id="location-modal-overlay" class="modal-overlay">
         <div id="location-modal-content" class="modal-content">
             <div class="flex justify-between items-center mb-4 p-2">
-                <h3 id="modal-title" class="text-xl font-bold text-primary-glow">Available Locations (स्थान)</h3>
-                <button id="modal-close-button" class="text-white hover:text-primary transition-colors p-2 rounded-full hover:bg-white/10" aria-label="Close modal">
+                <h3 id="modal-title" class="text-xl font-bold text-primary-glow">Available Designs (डिज़ाइन)</h3>
+                <!-- CLOSE BUTTON ADDED HERE -->
+                <button id="modal-close-button-new" onclick="closeLocationModal()" class="text-white hover:text-primary transition-colors p-2 rounded-full hover:bg-white/10" aria-label="Close modal">
                     <i class="fas fa-times text-2xl"></i>
                 </button>
             </div>
@@ -747,8 +756,7 @@
         // Variables for slider logic
         const sliderBg = document.getElementById('slider-bg');
         const slidesWrapper = document.getElementById('slides-wrapper');
-        const prevBtn = document.getElementById('prev-btn');
-        const nextBtn = document.getElementById('next-btn');
+        // Removed prevBtn and nextBtn constants as they were causing errors without proper logic
         
         let slidesData = [];
         let currentSlide = 0;
@@ -756,18 +764,17 @@
         const slideDuration = 5000;
 
         function formatDate(dateStr) {
-            // Function for date formatting (kept for template consistency)
             const options = { year: 'numeric', month: 'long', day: 'numeric' };
             const date = new Date(dateStr);
             return date.toLocaleDateString('en-IN', options);
         }
 
         async function fetchSlidesData() {
-            // Hardcoded placeholder slide data
+            // Hardcoded placeholder slide data for Traditional styles
             return [
-                { "title": "", "date": "12 Dec", "link": "rajasthani_dulha.html", "deadline": "202-12-12", "bgImage": "" },
-                { "title": "", "date": "25 Dec", "link": "mughlai_symmetrical.html", "deadline": "2025-12-25", "bgImage": "" },
-                { "title": "", "date": "05 Feb", "link": "south_indian_temple.html", "deadline": "2026-02-05", "bgImage": "" }
+                { "title": "Rajasthani Dulha-Dulhan Portrait Work", "date": "15 Mar", "link": "rajasthani_dulhan_portrait.html", "deadline": "2026-03-15", "bgImage": "https://placehold.co/800x350/FFC72C/331A1A?text=Dulhan+Mehndi" },
+                { "title": "Rajwadi Royal Themes: Elephants & Palaces", "date": "25 Mar", "link": "rajasthani_rajwadi.html", "deadline": "2026-03-25", "bgImage": "https://placehold.co/800x350/FFB433/1A2733?text=Rajwadi+Mehndi" },
+                { "title": "Feather Mandala & Peacock Detailing", "date": "05 Apr", "link": "rajasthani_peacock.html", "deadline": "2026-04-05", "bgImage": "https://placehold.co/800x350/FF5733/221A33?text=Peacock+Mehndi" }
             ];
         }
 
@@ -783,6 +790,7 @@
                 
                 // Link is now assigned directly from item.link (internal page)
                 slide.href = item.link; 
+                // Removed target="_blank" for internal links
                 
                 slide.className = `slide absolute top-0 left-0 w-full h-full opacity-0 transition-opacity duration-1000`;
                 slide.style.zIndex = index === 0 ? 1 : 0;
@@ -835,90 +843,166 @@
             showSlide(currentSlide);
             startAutoSlide();
 
-            prevBtn.addEventListener('click', () => {
-                currentSlide = (currentSlide - 1 + slidesData.length) % slidesData.length;
-                showSlide(currentSlide);
-                startAutoSlide();
-            });
+            // Re-adding listeners for the navigation buttons which were removed earlier
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
 
-            nextBtn.addEventListener('click', () => {
-                currentSlide = (currentSlide + 1) % slidesData.length;
-                showSlide(currentSlide);
-                startAutoSlide();
-            });
+            if (prevBtn) {
+                prevBtn.addEventListener('click', () => {
+                    currentSlide = (currentSlide - 1 + slidesData.length) % slidesData.length;
+                    showSlide(currentSlide);
+                    startAutoSlide();
+                });
+            }
+
+            if (nextBtn) {
+                nextBtn.addEventListener('click', () => {
+                    currentSlide = (currentSlide + 1) % slidesData.length;
+                    showSlide(currentSlide);
+                    startAutoSlide();
+                });
+            }
         }
         // --- END: SLIDER LOGIC ---
 
         
         // --- START: MODAL/LOCATION SELECTION LOGIC (पॉपअप/लोकेशन चयन लॉजिक) ---
         const modalOverlay = document.getElementById('location-modal-overlay');
-        const modalCloseButton = document.getElementById('modal-close-button');
+        const modalCloseButton = document.getElementById('modal-close-button-new'); // USING NEW ID
         const modalTitle = document.getElementById('modal-title');
         const locationList = document.getElementById('location-list');
 
-        // New Location Data with 5 Card Styles + Existing Header Links
-        const locationData = {
-            'premium-card-1': { // Rajasthani Bridal Mehndi
-                title: 'Rajasthani Bridal Types',
-                desc: 'Very detailed motifs like dulha–dulhan, elephants, doli, and mandala patterns.',
-                image: 'bridal.png',
-                locations: [
-                    { name: "Dulha–Dulhan Portrait Mehndi", link: "rajasthani_dulhan_portrait.html" },
-                    { name: "Royal Rajwadi Mehndi (Elephant, Palki)", link: "rajasthani_rajwadi.html" },
-                    { name: "Peacock & Feather Style", link: "rajasthani_peacock_feather.html" },
-                    { name: "Mandala + Jaali (Net) Pattern Style", link: "rajasthani_mandala_jaali.html" },
-                    { name: "Traditional Folk Art Style", link: "rajasthani_folk_art.html" },
-                ]
+        // Main Data Structure holding the full traditional chart
+        const locationData_All = {
+            'Rajasthani Bridal Mehndi': { 
+                'Dulha–Dulhan Rajasthani': ["Full bride–groom portrait", "Half-face couple", "Baraat/doli scene", "Wedding rituals", "Silhouette style"],
+                'Royal Rajwadi Style': ["Elephant motifs", "Palki designs", "Palace/haveli art", "Royal jewelry motifs", "Traditional borders"],
+                'Peacock Rajasthani': ["Full peacock motif", "Double peacock", "Feather mandala", "Peacock + floral", "Wrist peacock"],
+                'Mandala + Jaali Rajasthani': ["Big mandala center", "Multi-layer mandala", "Finger jaali", "Side mandala", "Floral net"],
+                'Rajasthani Folk Art': ["Camel motifs", "Folk dance figures", "Kalash art", "Paisleys", "Traditional leaf trail"]
             },
-            'premium-card-2': { // Marwari Bridal Mehndi
-                title: 'Marwari Bridal Types ',
-                desc: 'Fine lines, net patterns, peacocks, and full-hand dense detailing.',
-                image: 'bridal.png',
-                locations: [
-                    { name: "Full-Hand Dense Marwari Mehndi", link: "marwari_dense_fullhand.html" },
-                    { name: "Fine-Line Floral Marwari Style", link: "marwari_fineline_floral.html" },
-                    { name: "Peacock + Net Pattern Combo", link: "marwari_peacock_net.html" },
-                    { name: "Bangle Style Marwari Mehndi", link: "marwari_bangle_style.html" },
-                    { name: "Marwari Bride–Groom Theme Mehndi", link: "marwari_bride_groom.html" },
-                ]
+            'Marwari Bridal Mehndi': {
+                'Full Dense Marwari': ["Zero skin-gap", "Dense floral fill", "Heavy outlines", "Multi-panel designs", "Full-hand richness"],
+                'Fine-Line Marwari': ["Ultra thin detailing", "Sharp borders", "Light interior fill", "Fine florals", "Finger linework"],
+                'Peacock Marwari': ["Peacock + rose", "Peacock + lotus", "Side peacock trail", "Feather detailing", "Wrist peacock band"],
+                'Net/Jaali Marwari': ["Diamond jaali", "Criss-cross net", "Floral jaali", "Finger net", "Wrist net band"],
+                'Marwari Bride–Groom Theme': ["Bride motif", "Groom motif", "Baraat + doli", "Ritual scenes", "Swastik + kalash"]
             },
-            'premium-card-3': { // Mughlai Bridal Mehndi
-                title: 'Mughlai Bridal Types',
-                desc: 'Sharp outlines, symmetrical patterns, and intricate fills.',
-                image: 'bridal.png',
-                locations: [
-                    { name: "Bold Outline Mughlai Style", link: "mughlai_bold_outline.html" },
-                    { name: "Symmetrical Arabic–Mughlai Blend", link: "mughlai_arabic_blend.html" },
-                    { name: "Grid & Geometric Mughlai Patterns", link: "mughlai_geometric.html" },
-                    { name: "Filled Floral Mughlai Mehndi", link: "mughlai_filled_floral.html" },
-                    { name: "Royal Arch & Dome Style Mehndi", link: "mughlai_arch_dome.html" },
-                ]
+            'Mughlai Bridal Mehndi': {
+                'Bold Outline Mughlai': ["Thick borders", "Strong motifs", "Heavy florals", "Bold vines", "Finger bolding"],
+                'Symmetrical Mughlai': ["Mirror reflection style", "Twin mandalas", "Balanced floral grids", "Symmetric vines", "Perfect panel layout"],
+                'Filled Mughlai': ["Dense petal fills", "Dot shading", "Double-layer filling", "Leaf shading", "Spiral fills"],
+                'Architectural Mughlai': ["Dome patterns", "Mosque arches", "Minaret lines", "Jharokha (window) art", "Arch borders"],
+                'Floral Mughlai Fusion': ["Rose florals", "Lotus petals", "Spiral flowers", "Vine florals", "Floral mandala"]
             },
-            'premium-card-4': { // Gujarati Bridal Mehndi
-                title: 'Gujarati Bridal Types',
-                desc: 'Mandalas, flowers, and cultural elements like kalash and dandiya.',
-                image: 'bridal.png',
-                locations: [
-                    { name: "Mandala Style Gujarati Mehndi", link: "gujarati_mandala_style.html" },
-                    { name: "Garba/Dandiya Theme Mehndi", link: "gujarati_garba_dandiya.html" },
-                    { name: "Kalash & Shubh Symbols Style", link: "gujarati_kalash_shubh.html" },
-                    { name: "Peacock + Floral Gujarati Mehndi", link: "gujarati_peacock_floral.html" },
-                    { name: "Festival Motif Gujarati Style", link: "gujarati_festival_motif.html" },
-                ]
+            'Gujarati Bridal Mehndi': {
+                'Gujarati Mandala': ["Big mandala", "Multi-ring mandala", "Mandala wrist band", "Finger mandala", "Side mandala"],
+                'Dandiya/Garba Theme': ["Garba couple", "Dandiya sticks", "Dance silhouettes", "Festival symbols", "Step-garba patterns"],
+                'Kalash & Auspicious Motifs': ["Kalash with coconut", "Diya/Deepak", "Shubh–Labh symbols", "Swastik patterns", "Traditional rangoli"],
+                'Floral Gujarati Style': ["Lotus florals", "Rose vines", "Sunflower patterns", "Leaf trails", "Floral cuffs"],
+                'Peacock Gujarati Style': ["Feather trail", "Dual peacock", "Peacock + kalash", "Peacock mandala", "Peacock wrist band"]
             },
-            'premium-card-5': { // South Indian Bridal Mehndi
-                title: 'South Indian Types',
-                desc: 'Temple motifs, paisleys, lotus patterns, and jewelry-style designs.',
-                image: 'bridal.png',
-                locations: [
-                    { name: "Temple Architecture Mehndi", link: "south_indian_temple_arch.html" },
-                    { name: "Paisley & Mango Motif Style", link: "south_indian_paisley_mango.html" },
-                    { name: "Lotus & Floral South Indian Mehndi", link: "south_indian_lotus_floral.html" },
-                    { name: "Jewellery/Haathphool Style Mehndi", link: "south_indian_haathphool.html" },
-                    { name: "Kolam/Rangoli Pattern Mehndi", link: "south_indian_kolam_rangoli.html" },
-                ]
-            },
-            // Existing Header Data (Dropdowns) - Used only for header/mobile nav
+            'South Indian Bridal Mehndi': {
+                'Temple Art Mehndi': ["Temple gopuram", "Temple bells", "Sculpture motifs", "Chakra patterns", "Pillar borders"],
+                'Paisley/Mango Pattern': ["Classic mango trail", "Double paisley", "Mango mandala", "Finger paisley", "Paisley wrist"],
+                'Lotus South Indian Style': ["Lotus mandala", "Lotus vines", "Bold lotus petals", "Layered lotus art", "Lotus wrist band"],
+                'Jewelry-Inspired Mehndi': ["Hathphool design", "Bracelet band", "Armlet style", "Finger ring art", "Choker mehndi"],
+                'Kolam/Rangoli Style': ["Dotted kolam", "Spiral kolam", "Geometric rangoli", "Floral kolam", "Border kolam lines"]
+            }
+        };
+
+        const cardMap = {
+            'premium-card-1': 'Rajasthani Bridal Mehndi',
+            'premium-card-2': 'Marwari Bridal Mehndi',
+            'premium-card-3': 'Mughlai Bridal Mehndi',
+            'premium-card-4': 'Gujarati Bridal Mehndi',
+            'premium-card-5': 'South Indian Bridal Mehndi',
+        };
+
+
+        // Helper to extract the data for the modal based on card ID
+        const getModalContent = (cardId) => {
+            const mainStyle = cardMap[cardId];
+            if (!mainStyle || !locationData_All[mainStyle]) return null;
+
+            const styleData = locationData_All[mainStyle];
+            let locations = [];
+
+            // Flatten the dictionary into a list for the modal
+            Object.entries(styleData).forEach(([type, subs]) => {
+                locations.push({
+                    name: type,
+                    isTypeHeader: true
+                });
+                subs.forEach(sub => {
+                    locations.push({
+                        name: sub,
+                        isTypeHeader: false
+                    });
+                });
+            });
+            
+            return {
+                title: `${mainStyle} Designs`,
+                locations: locations
+            };
+        };
+
+
+        // *** Show Modal Functionality ***
+        function showDetailedModal(cardId) {
+            const data = getModalContent(cardId);
+            if (!data) return;
+
+            modalTitle.textContent = data.title;
+            locationList.innerHTML = ''; // Clear previous content
+
+            data.locations.forEach(location => {
+                const item = document.createElement('div');
+                if (location.isTypeHeader) {
+                    // Style for the bold Type Header
+                    item.className = 'text-lg font-bold text-primary-glow mt-4 mb-2 p-2 border-b border-primary/50';
+                    item.innerHTML = location.name;
+                } else {
+                    // Style for the Sub-Type Link
+                    item.className = 'location-item cursor-default'; // Made non-clickable for display
+                    item.innerHTML = `<span>${location.name}</span> <i class="fas fa-check text-green-400 text-sm"></i>`;
+                }
+                locationList.appendChild(item);
+            });
+
+            // Show Modal
+            modalOverlay.style.display = 'flex';
+            setTimeout(() => {
+                modalOverlay.style.opacity = 1;
+            }, 10);
+            document.body.style.overflow = 'hidden'; // Prevent body scroll
+        }
+
+        // Fix: Use the standard closeLocationModal and attach it to the new button ID
+        function closeLocationModal() {
+            modalOverlay.style.opacity = 0;
+            // Hide after transition completes
+            setTimeout(() => {
+                modalOverlay.style.display = 'none';
+                document.body.style.overflow = ''; 
+            }, 300);
+        }
+        
+        // --- ATTACHING EVENT LISTENERS ---
+        // Attaching close logic to the new button ID
+        document.getElementById('modal-close-button-new').addEventListener('click', closeLocationModal);
+        // Attaching click outside modal logic
+        modalOverlay.addEventListener('click', (e) => {
+            if (e.target === modalOverlay) {
+                closeLocationModal();
+            }
+        });
+
+
+        // --- START: DROPDOWN / ACCORDION LOGIC (Header Navigation) ---
+        
+        const locationData_Dropdowns = {
             'dropdown-bridal': {
                  title: 'Bridal Mehndi Types',
                  locations: [
@@ -939,59 +1023,9 @@
             }
         };
 
-
-        function showLocationModal(cardId) {
-            const data = locationData[cardId];
-            if (!data) return;
-
-            // Set Modal Content
-            modalTitle.textContent = data.title;
-            locationList.innerHTML = ''; // Clear previous content
-
-            data.locations.forEach(location => {
-                const item = document.createElement('div');
-                item.className = 'location-item';
-                item.innerHTML = `<span>${location.name}</span> <i class="fas fa-arrow-right text-sm"></i>`;
-                
-                // Click handler for location item: now redirects to the specified link
-                item.onclick = () => {
-                    window.location.href = location.link;
-                };
-                locationList.appendChild(item);
-            });
-
-            // Show Modal
-            modalOverlay.style.display = 'flex';
-            setTimeout(() => {
-                modalOverlay.style.opacity = 1;
-            }, 10);
-            document.body.style.overflow = 'hidden'; // Prevent body scroll
-        }
-
-        function closeLocationModal() {
-            modalOverlay.style.opacity = 0;
-            // Hide after transition completes
-            setTimeout(() => {
-                modalOverlay.style.display = 'none';
-                document.body.style.overflow = ''; 
-            }, 300);
-        }
-
-        // Attach event listeners for close button and overlay
-        modalCloseButton.addEventListener('click', closeLocationModal);
-        modalOverlay.addEventListener('click', (e) => {
-            // Close when clicking outside the content area
-            if (e.target === modalOverlay) {
-                closeLocationModal();
-            }
-        });
-        
-        // --- START: DROPDOWN / ACCORDION LOGIC ---
-        
         function generateDropdownContent(dataId, containerId) {
             const container = document.getElementById(containerId);
-            // Use the dedicated keys for header/mobile dropdowns
-            const data = locationData[dataId]; 
+            const data = locationData_Dropdowns[dataId]; 
             if (!container || !data) return;
 
             container.innerHTML = data.locations.map(item => `
@@ -1045,12 +1079,12 @@
             initializeSlider();
             initializeDropdowns();
             
-            // Attach click listeners to all 5 new cards to open the modal:
-            document.getElementById('premium-card-1').addEventListener('click', () => showLocationModal('premium-card-1'));
-            document.getElementById('premium-card-2').addEventListener('click', () => showLocationModal('premium-card-2'));
-            document.getElementById('premium-card-3').addEventListener('click', () => showLocationModal('premium-card-3'));
-            document.getElementById('premium-card-4').addEventListener('click', () => showLocationModal('premium-card-4'));
-            document.getElementById('premium-card-5').addEventListener('click', () => showLocationModal('premium-card-5'));
+            // Re-attaching the click handlers to the new showDetailedModal function
+            document.getElementById('premium-card-1').addEventListener('click', () => showDetailedModal('premium-card-1'));
+            document.getElementById('premium-card-2').addEventListener('click', () => showDetailedModal('premium-card-2'));
+            document.getElementById('premium-card-3').addEventListener('click', () => showDetailedModal('premium-card-3'));
+            document.getElementById('premium-card-4').addEventListener('click', () => showDetailedModal('premium-card-4'));
+            document.getElementById('premium-card-5').addEventListener('click', () => showDetailedModal('premium-card-5'));
         });
         
         // --- START: DYNAMIC THEME COLOR CHANGER (7 THEMES, 7 SECONDS) ---
