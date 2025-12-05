@@ -170,8 +170,36 @@
         }
         .premium-desc {
             margin-top:8px; font-size:15px; line-height:1.4; color:#e9e9e9;
-            opacity:0.95; text-align: center; margin-bottom: 5px;
+            opacity:0.95;
+            text-align: center; margin-bottom: 5px;
         }
+
+        /* --- CUSTOM CSS FOR RESPONSIVE HEADINGS --- */
+        /* Default (Mobile First): Use data-mobile-title for smaller text */
+        .premium-card .premium-title[data-mobile-title]:before {
+            content: attr(data-mobile-title);
+            display: block;
+            font-size: 1.1rem; /* Slightly larger than original font size for the short title */
+            font-weight: 800;
+        }
+        /* Hide the long title on mobile */
+        .premium-card .premium-title > span {
+            display: none;
+        }
+
+        /* Medium/PC View: Show the long title, hide the short title */
+        @media (min-width: 768px) {
+            .premium-card .premium-title[data-mobile-title]:before {
+                content: none;
+            }
+            .premium-card .premium-title > span {
+                display: inline;
+                font-size: 1.1rem; /* Reverts to original size setting in HTML */
+                font-weight: 700;
+            }
+        }
+        /* ------------------------------------------- */
+
 
         /* --- GRID AND RESPONSIVENESS (ग्रिड और प्रतिक्रियाशीलता) --- */
         .card-grid-container {
@@ -455,13 +483,13 @@
                     </div>
 
                     <!-- Link 3: Custom Mehndi (Direct Link) -->
-                    <a href="custom_mehndi.html" class="text-white text-lg relative group py-1 hover:text-primary">
+                    <a href="custom_mehndi.html" class="text-white text-lg relative py-1 hover:text-primary">
                         Custom
                         <span class="absolute left-0 bottom-0 h-1 w-0 bg-primary/70 group-hover:w-full transition-all duration-300 rounded-full"></span>
                     </a>
                     
                     <!-- Link 4: Meet Me (Direct Link) -->
-                    <a href="meet_me.html" class="text-white text-lg relative group py-1 hover:text-primary">
+                    <a href="meet_me.html" class="text-white text-lg relative py-1 hover:text-primary">
                         Meet Me
                         <span class="absolute left-0 bottom-0 h-1 w-0 bg-primary/70 group-hover:w-full transition-all duration-300 rounded-full"></span>
                     </a>
@@ -521,14 +549,14 @@
                 <div class="border-t border-primary/30 w-full my-4"></div>
 
                 <!-- Direct Link 3: Custom Mehndi -->
-                <a href="custom_mehndi.html" class="text-white text-lg relative group py-1 hover:text-primary">
+                <a href="custom_mehndi.html" class="text-white text-lg relative py-1 hover:text-primary">
                     Custom Mehndi
                     <span class="absolute left-0 bottom-0 h-1 w-0 bg-primary/70 group-hover:w-full transition-all duration-300 rounded-full"></span>
                 </a>
                 <div class="border-t border-primary/30 w-full my-4"></div>
                 
                 <!-- Direct Link 4: Meet Me -->
-                <a href="meet_me.html" class="text-white text-lg relative group py-1 hover:text-primary">
+                <a href="meet_me.html" class="text-white text-lg relative py-1 hover:text-primary">
                     Meet Me
                     <span class="absolute left-0 bottom-0 h-1 w-0 bg-primary/70 group-hover:w-full transition-all duration-300 rounded-full"></span>
                 </a>
@@ -559,8 +587,7 @@
             <section class="latest-forms">
                 <!-- Title is now placed relative to the inner section for Z-index -->
                 <div class="text-center mb-6">
-                    <!-- Updated class to use primary color glow -->
-                    <h2 class="text-2xl sm:text-3xl font-extrabold text-primary-glow border-b-4 border-primary/50 inline-block px-4 pb-1"></h2>
+                    <!-- Customisable Main Heading (Removed spotlight heading to only use modal title) -->
                 </div>
                 
                 <div class="slider-container relative">
@@ -575,106 +602,126 @@
         </div>
         <!-- END SLIDE SECTION WRAPPER -->
 
-        <!-- NEW HEADING ADDED HERE -->
+        <!-- CARD SECTION HEADING -->
         <div class="text-center mb-8 mt-4">
             <h2 class="text-xl md:text-4xl font-extrabold text-primary-glow border-b-4 border-primary/50 inline-block px-6 pb-2 uppercase tracking-wide">
                 Our Service Types
             </h2>
         </div>
-        <!-- END NEW HEADING -->
+        <!-- END CARD SECTION HEADING -->
 
         <section id="service-cards">
-            <!-- Grid container now optimized for 10 cards: 2x5 or 3x4 on smaller screens, 4x3 on desktop -->
+            <!-- Grid container now optimized for 11 cards (10 styles + 1 Micro Bank) -->
             <div class="card-grid-container">
                 
-                <!-- CARD 1: Classic Arabic Bridal Mehndi -->
+                <!-- CARD 1: Gulf Arabic Bridal Mehndi -->
                 <div class="premium-card" id="premium-card-1">
                     <div class="inner-box">
-                        <img src="https://placehold.co/300x170/331A1A/FFC72C?text=Classic+Arabic" alt="Classic Arabic" onerror="this.onerror=null;this.src='https://placehold.co/300x170/331A1A/FFC72C?text=Classic+Arabic';">
+                        <img src="https://placehold.co/300x170/331A1A/FFC72C?text=Gulf+Arabic" alt="Gulf Arabic Bridal Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/331A1A/FFC72C?text=Gulf+Arabic';">
                     </div>
-                    <div class="premium-title">Classic Arabic Bridal</div>
-                    <div class="premium-desc">Bold outlines, Shading, Floral, Leaf, and Abstract flows.</div>
+                    <!-- Custom Heading -->
+                    <div class="premium-title" data-mobile-title="1. Gulf Arabic"><span>1. Gulf Arabic Bridal Mehndi</span></div>
+                    <div class="premium-desc">Floral, Vine-based, and Leaf-heavy patterns.</div>
                 </div>
 
-                <!-- CARD 2: Pakistani-Arabic Bridal Mehndi -->
+                <!-- CARD 2: Khaleeji (GCC) Bridal Mehndi -->
                 <div class="premium-card" id="premium-card-2">
                     <div class="inner-box">
-                        <img src="https://placehold.co/300x170/221A33/FFC72C?text=Pakistani+Fusion" alt="Pakistani-Arabic Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/221A33/FFC72C?text=Pakistani+Fusion';">
+                        <img src="https://placehold.co/300x170/221A33/FFC72C?text=Khaleeji+GCC" alt="Khaleeji (GCC) Bridal Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/221A33/FFC72C?text=Khaleeji+GCC';">
                     </div>
-                    <div class="premium-title">Pakistani-Arabic Fusion</div>
-                    <div class="premium-desc">Indo-Pak Mix, Lace Arabic, Heavy Finger Detailing, and Mandala Fusion.</div>
+                    <!-- Custom Heading -->
+                    <div class="premium-title" data-mobile-title="2. Khaleeji (GCC)"><span>2. Khaleeji (GCC) Bridal Mehndi</span></div>
+                    <div class="premium-desc">Black Outline, Qatar, and Saudi Khaleeji styles with shading.</div>
                 </div>
 
-                <!-- CARD 3: Indo-Arabic Bridal Mehndi -->
+                <!-- CARD 3: Shaded Arabic Bridal Mehndi -->
                 <div class="premium-card" id="premium-card-3">
                     <div class="inner-box">
-                        <img src="https://placehold.co/300x170/1A2733/FFC72C?text=Indo+Arabic+Mix" alt="Indo-Arabic Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/1A2733/FFC72C?text=Indo+Arabic+Mix';">
+                        <img src="https://placehold.co/300x170/1A2733/FFC72C?text=Shaded+Arabic" alt="Shaded Arabic Bridal Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/1A2733/FFC72C?text=Shaded+Arabic';">
                     </div>
-                    <div class="premium-title">Indo-Arabic Mix</div>
-                    <div class="premium-desc">Mandala, Peacock, Elephant, Portrait themes combined with Arabic flow.</div>
+                    <!-- Custom Heading -->
+                    <div class="premium-title" data-mobile-title="3. Shaded Arabic"><span>3. Shaded Arabic Bridal Mehndi</span></div>
+                    <div class="premium-desc">Soft, Gradient, and Shadow effects for depth.</div>
                 </div>
 
-                <!-- CARD 4: Gulf / Khaleeji Arabic Bridal Mehndi -->
+                <!-- CARD 4: Stencil Arabic Bridal Mehndi -->
                 <div class="premium-card" id="premium-card-4">
                     <div class="inner-box">
-                        <img src="https://placehold.co/300x170/332D1A/FFC72C?text=Khaleeji+Style" alt="Khaleeji Arabic" onerror="this.onerror=null;this.src='https://placehold.co/300x170/332D1A/FFC72C?text=Khaleeji+Style';">
+                        <img src="https://placehold.co/300x170/332D1A/FFC72C?text=Stencil+Arabic" alt="Stencil Arabic Bridal Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/332D1A/FFC72C?text=Stencil+Arabic';">
                     </div>
-                    <div class="premium-title">Gulf / Khaleeji Style</div>
-                    <div class="premium-desc">Thick Shading, Rose Motifs, Heavy Wrist Cuff, 3D and Geometric Patterns.</div>
+                    <!-- Custom Heading -->
+                    <div class="premium-title" data-mobile-title="4. Stencil Arabic"><span>4. Stencil Arabic Bridal Mehndi</span></div>
+                    <div class="premium-desc">Ready-made, Freehand, and Symmetry-based stencil looks.</div>
                 </div>
 
-                <!-- CARD 5: Moroccan-Arabic Bridal Mehndi -->
+                <!-- CARD 5: Classic Dubai Arabic Bridal Mehndi -->
                 <div class="premium-card" id="premium-card-5">
                     <div class="inner-box">
-                        <img src="https://placehold.co/300x170/10241D/FFC72C?text=Moroccan" alt="Moroccan-Arabic Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/10241D/FFC72C?text=Moroccan';">
+                        <img src="https://placehold.co/300x170/10241D/FFC72C?text=Classic+Dubai" alt="Classic Dubai Arabic Bridal Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/10241D/FFC72C?text=Classic+Dubai';">
                     </div>
-                    <div class="premium-title">Moroccan-Arabic Fusion</div>
-                    <div class="premium-desc">Tribal, Geometric Grids, Bold Lines, and African Inspired Arabic Mix.</div>
+                    <!-- Custom Heading -->
+                    <div class="premium-title" data-mobile-title="5. Classic Dubai"><span>5. Classic Dubai Arabic</span></div>
+                    <div class="premium-desc">Empty Space, Bold Petal, and Diagonal Trail styles.</div>
                 </div>
                 
-                <!-- CARD 6: Modern Minimal Arabic Bridal Mehndi -->
+                <!-- CARD 6: Reverse Arabic Bridal Mehndi -->
                 <div class="premium-card" id="premium-card-6">
                     <div class="inner-box">
-                        <img src="https://placehold.co/300x170/5C2828/FFC72C?text=Minimal+Arabic" alt="Minimal Arabic" onerror="this.onerror=null;this.src='https://placehold.co/300x170/5C2828/FFC72C?text=Minimal+Arabic';">
+                        <img src="https://placehold.co/300x170/5C2828/FFC72C?text=Reverse+Arabic" alt="Reverse Arabic Bridal Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/5C2828/FFC72C?text=Reverse+Arabic';">
                     </div>
-                    <div class="premium-title">Modern Minimal Arabic</div>
-                    <div class="premium-desc">Single Trail, Finger-Focused, Open Space, and Simple Floral Arabic.</div>
+                    <!-- Custom Heading -->
+                    <div class="premium-title" data-mobile-title="6. Reverse Arabic"><span>6. Reverse Arabic Bridal Mehndi</span></div>
+                    <div class="premium-desc">Negative Space, Cut-out Petals, and Outline-only designs.</div>
                 </div>
 
-                <!-- CARD 7: Shaded Arabic Bridal Mehndi -->
+                <!-- CARD 7: 3D Arabic Bridal Mehndi -->
                 <div class="premium-card" id="premium-card-7">
                     <div class="inner-box">
-                        <img src="https://placehold.co/300x170/242010/FFC72C?text=Shaded+Design" alt="Shaded Arabic" onerror="this.onerror=null;this.src='https://placehold.co/300x170/242010/FFC72C?text=Shaded+Design';">
+                        <img src="https://placehold.co/300x170/242010/FFC72C?text=3D+Arabic" alt="3D Arabic Bridal Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/242010/FFC72C?text=3D+Arabic';">
                     </div>
-                    <div class="premium-title">Shaded Arabic Bridal</div>
-                    <div class="premium-desc">Dark–Light Floral, 3D Shading, Dot Shading, and Gradient Shadow.</div>
+                    <!-- Custom Heading -->
+                    <div class="premium-title" data-mobile-title="7. 3D Arabic"><span>7. 3D Arabic Bridal Mehndi</span></div>
+                    <div class="premium-desc">Raised Petals, Emboss Effect, and Highlight Strokes.</div>
                 </div>
 
-                <!-- CARD 8: Full-Hand Arabic Bridal Mehndi -->
+                <!-- CARD 8: Modern Minimal Arabic Bridal Mehndi -->
                 <div class="premium-card" id="premium-card-8">
                     <div class="inner-box">
-                        <img src="https://placehold.co/300x170/1C3144/FFC72C?text=Full+Coverage" alt="Full-Hand Arabic" onerror="this.onerror=null;this.src='https://placehold.co/300x170/1C3144/FFC72C?text=Full+Coverage';">
+                        <img src="https://placehold.co/300x170/1C3144/FFC72C?text=Minimal+Arabic" alt="Modern Minimal Arabic Bridal Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/1C3144/FFC72C?text=Minimal+Arabic';">
                     </div>
-                    <div class="premium-title">Full-Hand Arabic Coverage</div>
-                    <div class="premium-desc">Full Coverage, Arm-to-Wrist, Heavy Floral, and Elbow-Length Designs.</div>
+                    <!-- Custom Heading -->
+                    <div class="premium-title" data-mobile-title="8. Minimal Arabic"><span>8. Modern Minimal Arabic</span></div>
+                    <div class="premium-desc">Minimal Rose, Single Trail, and Finger-tip Minimal designs.</div>
                 </div>
                 
-                <!-- CARD 9: Portrait Arabic Bridal Mehndi -->
+                <!-- CARD 9: Thick-Outline Arabic Bridal Mehndi -->
                 <div class="premium-card" id="premium-card-9">
                     <div class="inner-box">
-                        <img src="https://placehold.co/300x170/283C5C/FFC72C?text=Portrait+Arabic" alt="Portrait Arabic" onerror="this.onerror=null;this.src='https://placehold.co/300x170/283C5C/FFC72C?text=Portrait+Arabic';">
+                        <img src="https://placehold.co/300x170/283C5C/FFC72C?text=Thick+Outline" alt="Thick-Outline Arabic Bridal Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/283C5C/FFC72C?text=Thick+Outline';">
                     </div>
-                    <div class="premium-title">Portrait Arabic Designs</div>
-                    <div class="premium-desc">Bride–Groom Portrait, Name/Initial Integration, and Love Story Themes.</div>
+                    <!-- Custom Heading -->
+                    <div class="premium-title" data-mobile-title="9. Thick Outline"><span>9. Thick-Outline Arabic</span></div>
+                    <div class="premium-desc">Heavy Border, Double Borders, and Thick Palm Bands.</div>
                 </div>
                 
-                <!-- CARD 10: Glitter & Color Arabic Bridal Mehndi -->
+                <!-- CARD 10: Arabic–Indian Fusion Bridal Mehndi -->
                 <div class="premium-card" id="premium-card-10">
                     <div class="inner-box">
-                        <img src="https://placehold.co/300x170/3B285C/FFC72C?text=Glitter+Color" alt="Glitter & Color Arabic" onerror="this.onerror=null;this.src='https://placehold.co/300x170/3B285C/FFC72C?text=Glitter+Color';">
+                        <img src="https://placehold.co/300x170/3B285C/FFC72C?text=Arabic+Indian" alt="Arabic–Indian Fusion Bridal Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/3B285C/FFC72C?text=Arabic+Indian';">
                     </div>
-                    <div class="premium-title">Glitter & Color Accent</div>
-                    <div class="premium-desc">Glitter, Stone-Studded, Color-Fill, and Highlighted Arabic Bridal.</div>
+                    <!-- Custom Heading -->
+                    <div class="premium-title" data-mobile-title="10. Arabic-Indian Fusion"><span>10. Arabic–Indian Fusion</span></div>
+                    <div class="premium-desc">Arabic + Rajasthani, Mughlai, and Mandala Mixes.</div>
+                </div>
+
+                <!-- CARD 11: Glitter & Glam Arabic Bridal Mehndi (NEW CATEGORY) -->
+                <div class="premium-card" id="premium-card-11">
+                    <div class="inner-box">
+                        <img src="https://placehold.co/300x170/1A332D/FFC72C?text=Glitter+Glam" alt="Glitter & Glam Arabic Bridal Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/1A332D/FFC72C?text=Glitter+Glam';">
+                    </div>
+                    <!-- Custom Heading -->
+                    <div class="premium-title" data-mobile-title="11. Glitter & Glam"><span>11. Glitter & Glam Arabic</span></div>
+                    <div class="premium-desc">Glitter, Metallic, Stone/Crystal, and Color-Pop Arabic designs.</div>
                 </div>
             </div>
         </section>
@@ -682,7 +729,6 @@
     <!-- END MAIN CONTENT AREA -->
     
     <!-- === FIXED BOTTOM NAVIGATION (निश्चित बॉटम नेविगेशन) === -->
-    <!-- Note: Bottom nav links simplified for 10 cards -->
     <nav 
         class="bottom-nav-fixed" 
         style="padding-bottom: env(safe-area-inset-bottom);" 
@@ -690,16 +736,16 @@
     >
         <div class="flex justify-around items-end h-20 relative px-2">
             
-            <!-- Item 1: Classic (Card 1) -->
+            <!-- Item 1: Gulf (Card 1) -->
             <a href="#premium-card-1" class="nav-item-shs w-1/5" onclick="scrollToSection('premium-card-1')">
                 <i class="fas fa-leaf nav-icon-shs"></i>
-                <span class="font-medium">Classic</span>
+                <span class="font-medium">Gulf</span>
             </a>
 
-            <!-- Item 2: Indo-Arabic (Card 3) -->
-            <a href="#premium-card-3" class="nav-item-shs w-1/5" onclick="scrollToSection('premium-card-3')">
+            <!-- Item 2: Khaleeji (Card 2) -->
+            <a href="#premium-card-2" class="nav-item-shs w-1/5" onclick="scrollToSection('premium-card-2')">
                 <i class="fas fa-grip-lines nav-icon-shs"></i>
-                <span class="font-medium">Indo-A</span>
+                <span class="font-medium">Khaleeji</span>
             </a>
             
             <!-- Central FAB Button (Home - main.html से लिंक्ड) -->
@@ -711,19 +757,19 @@
                 >
                     <i class="fas fa-home central-fab-icon"></i>
                 </a>
-                <span class="central-fab-label">Home</span>
+                <span class="font-medium">Home</span>
             </div>
             
-            <!-- Item 4: Khaleeji (Card 4) -->
-            <a href="#premium-card-4" class="nav-item-shs w-1/5" onclick="scrollToSection('premium-card-4')">
-                <i class="fas fa-palette nav-icon-shs"></i>
-                <span class="font-medium">Khaleeji</span>
-            </a>
-            
-            <!-- Item 5: Minimal (Card 6) -->
-            <a href="#premium-card-6" class="nav-item-shs w-1/5" onclick="scrollToSection('premium-card-6')">
+            <!-- Item 4: Minimal (Card 8) -->
+            <a href="#premium-card-8" class="nav-item-shs w-1/5" onclick="scrollToSection('premium-card-8')">
                 <i class="fas fa-dot-circle nav-icon-shs"></i>
                 <span class="font-medium">Minimal</span>
+            </a>
+            
+            <!-- Item 5: Fusion (Card 10) -->
+            <a href="#premium-card-10" class="nav-item-shs w-1/5" onclick="scrollToSection('premium-card-10')">
+                <i class="fas fa-heart nav-icon-shs"></i>
+                <span class="font-medium">Fusion</span>
             </a>
             
         </div>
@@ -734,8 +780,9 @@
     <div id="location-modal-overlay" class="modal-overlay">
         <div id="location-modal-content" class="modal-content">
             <div class="flex justify-between items-center mb-4 p-2">
-                <h3 id="modal-title" class="text-xl font-bold text-primary-glow">Available Designs (डिज़ाइन)</h3>
-                <!-- CLOSE BUTTON ADDED HERE -->
+                <!-- MODAL TITLE IS NOW CUSTOMIZABLE -->
+                <h3 id="modal-title" class="text-xl font-bold text-primary-glow">Arabic Bridal Mehndi Master List</h3>
+                <!-- CLOSE BUTTON -->
                 <button id="modal-close-button-new" onclick="closeLocationModal()" class="text-white hover:text-primary transition-colors p-2 rounded-full hover:bg-white/10" aria-label="Close modal">
                     <i class="fas fa-times text-2xl"></i>
                 </button>
@@ -822,9 +869,9 @@
         async function fetchSlidesData() {
             // Hardcoded placeholder slide data for Arabic styles
             return [
-                { "title": "Classic Arabic Bold Floral Designs", "date": "15 Mar", "link": "arabic_classic.html", "deadline": "2026-03-15", "bgImage": "https://placehold.co/800x350/FFC72C/331A1A?text=Classic+Arabic" },
-                { "title": "Indo-Arabic Fusion: Peacock and Mandala", "date": "25 Mar", "link": "indo_arabic.html", "deadline": "2026-03-25", "bgImage": "https://placehold.co/800x350/FFB433/1A2733?text=Indo+Arabic" },
-                { "title": "Khaleeji Thick Shading and Rose Motifs", "date": "05 Apr", "link": "khaleeji_arabic.html", "deadline": "2026-04-05", "bgImage": "https://placehold.co/800x350/FF5733/221A33?text=Khaleeji+Shading" }
+                { "title": "Gulf Arabic Floral Designs", "date": "15 Mar", "link": "arabic_gulf_floral.html", "deadline": "2026-03-15", "bgImage": "https://placehold.co/800x350/FFC72C/331A1A?text=Gulf+Arabic+Featured" },
+                { "title": "Khaleeji Black Outline and Shading", "date": "25 Mar", "link": "arabic_khaleeji.html", "deadline": "2026-03-25", "bgImage": "https://placehold.co/800x350/FFB433/1A2733?text=Khaleeji+Shading" },
+                { "title": "3D Floral and Emboss Effects", "date": "05 Apr", "link": "arabic_3d.html", "deadline": "2026-04-05", "bgImage": "https://placehold.co/800x350/FF5733/221A33?text=3D+Arabic+Mehndi" }
             ];
         }
 
@@ -893,7 +940,7 @@
             showSlide(currentSlide);
             startAutoSlide();
 
-            // Re-adding listeners for the navigation buttons which were removed earlier
+            // Re-adding listeners for the navigation buttons
             const prevBtn = document.getElementById('prev-btn');
             const nextBtn = document.getElementById('next-btn');
 
@@ -918,116 +965,118 @@
         
         // --- START: MODAL/LOCATION SELECTION LOGIC (पॉपअप/लोकेशन चयन लॉजिक) ---
         const modalOverlay = document.getElementById('location-modal-overlay');
-        const modalCloseButton = document.getElementById('modal-close-button-new'); // USING NEW ID
+        const modalCloseButton = document.getElementById('modal-close-button-new'); 
         const modalTitle = document.getElementById('modal-title');
         const locationList = document.getElementById('location-list');
 
-        // Main Data Structure holding the full Arabic chart (10 main styles)
+        // Main Data Structure holding the full Arabic Master List (11 styles)
         const locationData_All = {
-            'Classic Arabic Bridal': { 
-                'Bold Arabic Floral': ["Bold Arabic Floral"],
-                'Leaf Pattern Arabic': ["Leaf Pattern Arabic"],
-                'Shaded Arabic Style': ["Shaded Arabic Style"],
-                'Split Arabic Design': ["Split Arabic Design"],
-                'Bold Outline Arabic': ["Bold Outline Arabic"],
-                'Abstract Arabic Flow': ["Abstract Arabic Flow"]
+            'Gulf Arabic Bridal Mehndi': { 
+                'Floral Gulf Arabic': { name: "Floral Gulf Arabic", link: "arabic_gulf_floral.html", micro: ["Mini: Bold rose, closed buds", "Micro: Petal shading, 3-dot filler"] },
+                'Vine-based Gulf Arabic': { name: "Vine-based Gulf Arabic", link: "arabic_gulf_vine.html", micro: ["Mini: Spiral vines", "Micro: Curl dots"] },
+                'Leaf-heavy Gulf Arabic': { name: "Leaf-heavy Gulf Arabic", link: "arabic_gulf_leaf.html", micro: ["Mini: Leaf clusters", "Micro: Mini stems"] }
             },
-            'Pakistani-Arabic Fusion': {
-                'Indo-Pak Arabic Mix': ["Indo-Pak Arabic Mix"],
-                'Lace Arabic Pakistani': ["Lace Arabic Pakistani"],
-                'Mandala + Arabic Fusion': ["Mandala + Arabic Fusion"],
-                'Heavy Finger Detailing Arabic': ["Heavy Finger Detailing Arabic"]
+            'Khaleeji (GCC) Bridal Mehndi': {
+                'Black Outline Khaleeji': { name: "Black Outline Khaleeji", link: "arabic_khaleeji_black.html", micro: ["Mini: Thick borders", "Micro: Micro-shading"] },
+                'Qatar Khaleeji': { name: "Qatar Khaleeji", link: "arabic_khaleeji_qatar.html", micro: ["Mini: Block shading", "Micro: Dot textures"] },
+                'Saudi Khaleeji': { name: "Saudi Khaleeji", link: "arabic_khaleeji_saudi.html", micro: ["Mini: Dual-tone roses", "Micro: Brown fill"] }
             },
-            'Indo-Arabic Mix': {
-                'Mandala + Arabic': ["Mandala + Arabic"],
-                'Peacock + Arabic': ["Peacock + Arabic"],
-                'Elephant + Arabic': ["Elephant + Arabic"],
-                'Bridal Portrait + Arabic': ["Bridal Portrait + Arabic"],
-                'Fine-line Indo Arabic': ["Fine-line Indo Arabic"],
-                'Bharwa Indo-Arabic Mixed Fill': ["Bharwa Indo-Arabic Mixed Fill"]
+            'Shaded Arabic Bridal Mehndi': {
+                'Soft Shading': { name: "Soft Shading", link: "arabic_shaded_soft.html", micro: ["Mini: Feather shades", "Micro: Light smudge"] },
+                'Gradient Shading': { name: "Gradient Shading", link: "arabic_shaded_gradient.html", micro: ["Mini: Light–dark blend", "Micro: Fog shading"] },
+                'Shadow Arabic': { name: "Shadow Arabic", link: "arabic_shaded_shadow.html", micro: ["Mini: Double outline", "Micro: Under-shadow"] }
             },
-            'Gulf / Khaleeji Style': {
-                'Thick Shaded Gulf Mehndi': ["Thick Shaded Gulf Mehndi"],
-                'Gulf Rose Motifs Design': ["Gulf Rose Motifs Design"],
-                'Heavy Wrist Cuff Arabic': ["Heavy Wrist Cuff Arabic"],
-                '3D Khaleeji Arabic': ["3D Khaleeji Arabic"],
-                'Geometric Gulf Patterns': ["Geometric Gulf Patterns"]
+            'Stencil Arabic Bridal Mehndi': {
+                'Ready-made stencil look': { name: "Ready-made stencil look", link: "arabic_stencil_ready.html", micro: ["Mini: Floral repeat", "Micro: Grid dots"] },
+                'Freehand stencil effect': { name: "Freehand stencil effect", link: "arabic_stencil_freehand.html", micro: ["Mini: Symmetry lines", "Micro: Micro-petals"] }
             },
-            'Moroccan-Arabic Fusion': {
-                'Tribal Moroccan Arabic': ["Tribal Moroccan Arabic"],
-                'Diamond Grid Moroccan': ["Diamond Grid Moroccan"],
-                'Geometric Arabic Fusion': ["Geometric Arabic Fusion"],
-                'Bold Line Moroccan Style': ["Bold Line Moroccan Style"],
-                'African Inspired Arabic Mix': ["African Inspired Arabic Mix"]
+            'Classic Dubai Arabic Bridal Mehndi': {
+                'Empty Space Arabic': { name: "Empty Space Arabic", link: "arabic_dubai_empty.html", micro: ["Mini: Gap pattern", "Micro: 2–3 dot fillers"] },
+                'Bold Petal Arabic': { name: "Bold Petal Arabic", link: "arabic_dubai_bold.html", micro: ["Mini: Thick petals", "Micro: Inner-tip stroke"] },
+                'Diagonal Trail': { name: "Diagonal Trail", link: "arabic_dubai_diagonal.html", micro: ["Mini: S-curve vines", "Micro: Micro-curves"] }
             },
-            'Modern Minimal Arabic': {
-                'Minimal Arabic Trail': ["Minimal Arabic Trail"],
-                'Single Trail Arabic': ["Single Trail Arabic"],
-                'Finger-Focused Arabic': ["Finger-Focused Arabic"],
-                'Open Space Arabic': ["Open Space Arabic"],
-                'Simple Floral Arabic': ["Simple Floral Arabic"]
+            'Reverse Arabic Bridal Mehndi': {
+                'Negative Space Arabic': { name: "Negative Space Arabic", link: "arabic_reverse_negative.html", micro: ["Mini: Cut-out petals", "Micro: Hollow veins"] },
+                'Outline-only Arabic': { name: "Outline-only Arabic", link: "arabic_reverse_outline.html", micro: ["Mini: Hollow flowers", "Micro: Empty stems"] }
             },
-            'Shaded Arabic Bridal': {
-                'Dark–Light Shaded Floral': ["Dark–Light Shaded Floral"],
-                '3D Shaded Arabic': ["3D Shaded Arabic"],
-                'Dot-shading Arabic': ["Dot-shading Arabic"],
-                'Gradient Shadow Arabic': ["Gradient Shadow Arabic"]
+            '3D Arabic Bridal Mehndi': {
+                '3D Floral Arabic': { name: "3D Floral Arabic", link: "arabic_3d_floral.html", micro: ["Mini: Raised petals", "Micro: Texture dots"] },
+                'Emboss Effect Arabic': { name: "Emboss Effect Arabic", link: "arabic_3d_emboss.html", micro: ["Mini: Highlight strokes", "Micro: Lifted edges"] }
             },
-            'Full-Hand Arabic Coverage': {
-                'Full Bridal Arabic Coverage': ["Full Bridal Arabic Coverage"],
-                'Arm-to-Wrist Arabic Trail': ["Arm-to-Wrist Arabic Trail"],
-                'Heavy Floral Arabic': ["Heavy Floral Arabic"],
-                'Elbow-Length Arabic Bridal': ["Elbow-Length Arabic Bridal"]
+            'Modern Minimal Arabic Bridal Mehndi': {
+                'Minimal Rose Vine': { name: "Minimal Rose Vine", link: "arabic_minimal_rose.html", micro: ["Mini: Thin outline rose", "Micro: Light shading"] },
+                'Single Trail Arabic': { name: "Single Trail Arabic", link: "arabic_minimal_single.html", micro: ["Mini: One chain vine", "Micro: Micro leaves"] },
+                'Finger-tip Minimal': { name: "Finger-tip Minimal", link: "arabic_minimal_fingertip.html", micro: ["Mini: Dot bands", "Micro: Micro grids"] }
             },
-            'Portrait Arabic Designs': {
-                'Bride–Groom Portrait Arabic': ["Bride–Groom Portrait Arabic"],
-                'Name/Initial Arabic + Portrait': ["Name/Initial Arabic + Portrait"],
-                'Love Story Arabic Design': ["Love Story Arabic Design"],
-                'Anniversary / Wedding Theme Arabic': ["Anniversary / Wedding Theme Arabic"]
+            'Thick-Outline Arabic Bridal Mehndi': {
+                'Heavy Border Arabic': { name: "Heavy Border Arabic", link: "arabic_thick_heavy.html", micro: ["Mini: Double border", "Micro: Edge shading"] },
+                'Thick Palm Band': { name: "Thick Palm Band", link: "arabic_thick_palm.html", micro: ["Mini: Floral wrist band", "Micro: Mini petals"] }
             },
-            'Glitter & Color Accent': {
-                'Glitter Arabic Bridal': ["Glitter Arabic Bridal"],
-                'Stone-Studded Arabic': ["Stone-Studded Arabic"],
-                'Color-Fill Arabic Design': ["Color-Fill Arabic Design"],
-                'Highlighted Arabic Bridal': ["Highlighted Arabic Bridal"]
+            'Arabic–Indian Fusion Bridal Mehndi': {
+                'Arabic + Rajasthani': { name: "Arabic + Rajasthani", link: "arabic_fusion_raj.html", micro: ["Mini: Peacock mix", "Micro: Mesh dots"] },
+                'Arabic + Mughlai': { name: "Arabic + Mughlai", link: "arabic_fusion_mughlai.html", micro: ["Mini: Arches", "Micro: Paisley veins"] },
+                'Arabic + Mandala': { name: "Arabic + Mandala", link: "arabic_fusion_mandala.html", micro: ["Mini: Half mandala", "Micro: Inner circles"] }
+            },
+            'Glitter & Glam Arabic Bridal Mehndi': { 
+                'Glitter Arabic Mehndi': { name: "Glitter Arabic Mehndi", link: "arabic_glitter_fill.html", micro: ["Mini: Glitter fill petals", "Micro: Sparkle dots"] },
+                'Metallic Arabic': { name: "Metallic Arabic", link: "arabic_glitter_metallic.html", micro: ["Mini: Gold outline", "Micro: Metallic micro-shine"] },
+                'Stone/Crystal Arabic': { name: "Stone/Crystal Arabic", link: "arabic_glitter_stone.html", micro: ["Mini: Big crystal center", "Micro: Micro-stones"] },
+                'Color-Pop Arabic': { name: "Color-Pop Arabic", link: "arabic_glitter_color.html", micro: ["Mini: Dual-tone petals", "Micro: Color dots"] },
+                'HD Makeup-Style Arabic': { name: "HD Makeup-Style Arabic", link: "arabic_glitter_hd.html", micro: ["Mini: Airbrush shading", "Micro: Highlight line"] }
             }
         };
 
+
         const cardMap = {
-            'premium-card-1': 'Classic Arabic Bridal',
-            'premium-card-2': 'Pakistani-Arabic Fusion',
-            'premium-card-3': 'Indo-Arabic Mix',
-            'premium-card-4': 'Gulf / Khaleeji Style',
-            'premium-card-5': 'Moroccan-Arabic Fusion',
-            'premium-card-6': 'Modern Minimal Arabic',
-            'premium-card-7': 'Shaded Arabic Bridal',
-            'premium-card-8': 'Full-Hand Arabic Coverage',
-            'premium-card-9': 'Portrait Arabic Designs',
-            'premium-card-10': 'Glitter & Color Accent'
+            'premium-card-1': 'Gulf Arabic Bridal Mehndi',
+            'premium-card-2': 'Khaleeji (GCC) Bridal Mehndi',
+            'premium-card-3': 'Shaded Arabic Bridal Mehndi',
+            'premium-card-4': 'Stencil Arabic Bridal Mehndi',
+            'premium-card-5': 'Classic Dubai Arabic Bridal Mehndi',
+            'premium-card-6': 'Reverse Arabic Bridal Mehndi',
+            'premium-card-7': '3D Arabic Bridal Mehndi',
+            'premium-card-8': 'Modern Minimal Arabic Bridal Mehndi',
+            'premium-card-9': 'Thick-Outline Arabic Bridal Mehndi',
+            'premium-card-10': 'Arabic–Indian Fusion Bridal Mehndi',
+            'premium-card-11': 'Glitter & Glam Arabic Bridal Mehndi' 
         };
 
 
         // Helper to extract the data for the modal based on card ID
         const getModalContent = (cardId) => {
             const mainStyle = cardMap[cardId];
-            if (!mainStyle || !locationData_All[mainStyle]) return null;
+            const dataRoot = locationData_All[mainStyle];
+            
+            if (!mainStyle || !dataRoot) return null;
 
-            const styleData = locationData_All[mainStyle];
             let locations = [];
 
-            // Flatten the dictionary into a list for the modal
-            Object.entries(styleData).forEach(([type, subs]) => {
-                locations.push({
-                    name: type,
-                    isTypeHeader: true
-                });
-                subs.forEach(sub => {
-                    locations.push({
-                        name: sub,
-                        isTypeHeader: false
+            // Helper function to process nested dictionary structure and add placeholder links
+            const processNestedData = (data) => {
+                if (typeof data === 'object' && data !== null && !Array.isArray(data)) {
+                    Object.entries(data).forEach(([key, value]) => {
+                        // Mini-Type Header
+                        locations.push({ 
+                            name: `• ${value.name}`, 
+                            isTypeHeader: true,
+                            link: value.link 
+                        });
+                        // Micro-Types (Actual click items)
+                        value.micro.forEach(micro => {
+                            locations.push({ 
+                                name: micro, 
+                                isTypeHeader: false,
+                                // Generating a placeholder link based on micro-type name for simplicity
+                                link: `micro_${micro.toLowerCase().replace(/[^a-z0-9→]/g, '_')}.html` 
+                            });
+                        });
                     });
-                });
-            });
+                }
+            };
+            
+            // Start processing based on the main category type
+            locations.push({ name: `--- ${mainStyle} ---`, isTypeHeader: true, isMajorHeader: true });
+            processNestedData(dataRoot);
             
             return {
                 title: `${mainStyle} Designs`,
@@ -1041,21 +1090,56 @@
             const data = getModalContent(cardId);
             if (!data) return;
 
-            modalTitle.textContent = data.title;
+            // FIX: Set the modal title to the static, user-customizable text
+            // The user wants to set this manually in the HTML and expects it to stay static
+            
             locationList.innerHTML = ''; // Clear previous content
 
             data.locations.forEach(location => {
-                const item = document.createElement('div');
-                if (location.isTypeHeader) {
-                    // Style for the bold Type Header
-                    item.className = 'text-lg font-bold text-primary-glow mt-4 mb-2 p-2 border-b border-primary/50';
+                
+                // Style adjustment for multi-level data
+                if (location.isMajorHeader && location.isTypeHeader) {
+                    const item = document.createElement('div');
+                    item.className = 'text-xl font-bold text-primary-glow mt-6 mb-3 p-2 border-b-2 border-primary/50';
                     item.innerHTML = location.name;
-                } else {
-                    // Style for the Sub-Type Link
-                    item.className = 'location-item cursor-default'; // Made non-clickable for display
-                    item.innerHTML = `<span>${location.name}</span> <i class="fas fa-check text-green-400 text-sm"></i>`;
+                    locationList.appendChild(item);
+                } else if (location.isTypeHeader) {
+                     // Mini-Type Header (now clickable)
+                    const item = document.createElement('a');
+                    item.href = location.link;
+                    item.className = 'text-lg font-bold text-white mt-3 mb-1 px-2 block hover:text-primary transition-colors';
+                    item.innerHTML = location.name;
+                    
+                    // Added dummy link handling for Mini-Type Headers
+                    item.addEventListener('click', (e) => {
+                         e.preventDefault(); 
+                         closeLocationModal();
+                         setTimeout(() => {
+                            console.log(`Navigating to Mini-Type: ${location.link}`);
+                            // In a real application: window.location.href = location.link;
+                         }, 100); 
+                    });
+                    locationList.appendChild(item);
+                } 
+                
+                // MICRO-TYPE - Now a clickable link
+                else {
+                    const item = document.createElement('a');
+                    item.href = location.link;
+                    item.className = 'location-item text-sm py-2 px-4 hover:bg-primary/20 transition-colors'; 
+                    item.innerHTML = `<span>${location.name}</span> <i class="fas fa-arrow-right text-sm"></i>`;
+                    
+                    item.addEventListener('click', (e) => {
+                         e.preventDefault(); // Prevent default link behavior first
+                         closeLocationModal();
+                         
+                         // Navigate after closing modal
+                         setTimeout(() => {
+                            window.location.href = location.link; // ACTUAL NAVIGATION ADDED HERE
+                         }, 100); 
+                    });
+                    locationList.appendChild(item);
                 }
-                locationList.appendChild(item);
             });
 
             // Show Modal
@@ -1071,7 +1155,7 @@
             modalOverlay.style.opacity = 0;
             // Hide after transition completes
             setTimeout(() => {
-                modalOverlay.style.display = 'none';
+                document.getElementById('location-modal-overlay').style.display = 'none';
                 document.body.style.overflow = ''; 
             }, 300);
         }
@@ -1080,8 +1164,8 @@
         // Attaching close logic to the new button ID
         document.getElementById('modal-close-button-new').addEventListener('click', closeLocationModal);
         // Attaching click outside modal logic
-        modalOverlay.addEventListener('click', (e) => {
-            if (e.target === modalOverlay) {
+        document.getElementById('location-modal-overlay').addEventListener('click', (e) => {
+            if (e.target === document.getElementById('location-modal-overlay')) {
                 closeLocationModal();
             }
         });
@@ -1166,7 +1250,7 @@
             initializeSlider();
             initializeDropdowns();
             
-            // Re-attaching the click handlers to the new showDetailedModal function (10 Cards)
+            // Re-attaching the click handlers to the new showDetailedModal function (11 Cards)
             document.getElementById('premium-card-1').addEventListener('click', () => showDetailedModal('premium-card-1'));
             document.getElementById('premium-card-2').addEventListener('click', () => showDetailedModal('premium-card-2'));
             document.getElementById('premium-card-3').addEventListener('click', () => showDetailedModal('premium-card-3'));
@@ -1177,6 +1261,7 @@
             document.getElementById('premium-card-8').addEventListener('click', () => showDetailedModal('premium-card-8'));
             document.getElementById('premium-card-9').addEventListener('click', () => showDetailedModal('premium-card-9'));
             document.getElementById('premium-card-10').addEventListener('click', () => showDetailedModal('premium-card-10'));
+            document.getElementById('premium-card-11').addEventListener('click', () => showDetailedModal('premium-card-11'));
         });
         
         // --- START: DYNAMIC THEME COLOR CHANGER (7 THEMES, 7 SECONDS) ---
