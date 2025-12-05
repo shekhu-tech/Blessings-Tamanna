@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Minimal Festive Mehndi</title>
+    <title>Minimal Festive Mehndi Styles</title>
     <!-- Tailwind CSS CDN (Self-contained styling) -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Font Awesome (for icons) -->
@@ -12,7 +12,7 @@
     <!-- Fonts (Inter/Noto Sans Devanagari for readability) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=Noto+Sans+Devanagari:wght+400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=Noto+Sans+Devanagari:wght@400;500;700&display=swap" rel="stylesheet">
     
     <style>
         /* --- GLOBAL & THEME VARIABLES (थीम वेरिएबल्स) --- */
@@ -54,7 +54,7 @@
             background-position: center;
             background-repeat: no-repeat;
             opacity: 0.5; /* Subtle visibility */
-            /* Using a generic minimal/festive image placeholder */
+            /* Mobile Image used for all screen sizes now */
             background-image: url('bridal.png');
         }
 
@@ -62,7 +62,7 @@
             position: fixed; top: 0; left: 0; right: 0; z-index: 100;
         }
         
-        /* --- MOBILE SIDEBAR STYLES (मोबाइल साइडबार) --- */
+        /* --- MOBILE SIDEBAR STYLES (मोबाइल साइडबार) */
         .mobile-menu-panel {
             top: 85px; 
             height: calc(100vh - 165px);
@@ -167,8 +167,36 @@
         }
         .premium-desc {
             margin-top:8px; font-size:15px; line-height:1.4; color:#e9e9e9;
-            opacity:0.95; text-align: center; margin-bottom: 5px;
+            opacity:0.95;
+            text-align: center; margin-bottom: 5px;
         }
+
+        /* --- CUSTOM CSS FOR RESPONSIVE HEADINGS --- */
+        /* Default (Mobile First): Use data-mobile-title for smaller text */
+        .premium-card .premium-title[data-mobile-title]:before {
+            content: attr(data-mobile-title);
+            display: block;
+            font-size: 1.1rem; /* Slightly larger than original font size for the short title */
+            font-weight: 800;
+        }
+        /* Hide the long title on mobile */
+        .premium-card .premium-title > span {
+            display: none;
+        }
+
+        /* Medium/PC View: Show the long title, hide the short title */
+        @media (min-width: 768px) {
+            .premium-card .premium-title[data-mobile-title]:before {
+                content: none;
+            }
+            .premium-card .premium-title > span {
+                display: inline;
+                font-size: 1.1rem; /* Reverts to original size setting in HTML */
+                font-weight: 700;
+            }
+        }
+        /* ------------------------------------------- */
+
 
         /* --- GRID AND RESPONSIVENESS (ग्रिड और प्रतिक्रियाशीलता) --- */
         .card-grid-container {
@@ -191,7 +219,13 @@
             }
         }
         
-        /* 5 cards in a row for screens >= 1400px (Large PC) - Adjusted for 5 cards */
+        /* ADJUSTED: 4 cards in a row for screens >= 1200px (to fit 11 cards elegantly) */
+        @media(min-width: 1200px){
+            .card-grid-container {
+                grid-template-columns: repeat(4, 1fr); 
+            }
+        }
+        /* New: 5 cards across on very large screens (1400px+) */
         @media(min-width: 1400px){
             .card-grid-container {
                 grid-template-columns: repeat(5, 1fr); 
@@ -242,6 +276,14 @@
             margin-bottom: 0.5rem; 
             word-wrap: break-word; 
             white-space: normal;
+        }
+
+        #prev-btn, #next-btn {
+            background-color: rgba(255, 255, 255, 0.15); 
+            color: var(--color-primary); /* Dynamic Primary Color */
+            border: 1px solid var(--color-primary); /* Dynamic Primary Color */
+            /* Dynamic Button Shadow using RGB */
+            box-shadow: 0 0 10px rgba(var(--color-primary-rgb), 0.4); 
         }
 
         /* --- Global Styles (Updated to reflect new primary color for glow) --- */
@@ -323,7 +365,9 @@
         }
 
         .modal-content {
+            /* Removed absolute positioning and top/bottom to make it content-aware */
             position: relative; 
+            /* Removed transform X to keep centering simple */
             transform: none; 
             
             width: 95%; 
@@ -349,6 +393,7 @@
             background: var(--premium-bg-dark); /* Dynamic Inner BG */
             border: 1.5px solid rgba(var(--color-primary-rgb), 1);
             box-shadow: inset 0 0 35px rgba(var(--color-primary-rgb), 0.45), 0 0 25px rgba(var(--color-primary-rgb), 0.3);
+            /* flex-grow: 1; <- Removed to allow height to shrink */
             overflow-y: auto; /* Enable scrolling for the location list if needed */
         }
 
@@ -402,6 +447,7 @@
                 </a>
 
                 <!-- Desktop Navigation (डेस्कटॉप नेविगेशन) -->
+                <!-- UPDATED CLASS for 1200px breakpoint logic -->
                 <div class="desktop-nav-area hidden items-center space-x-10">
                   <nav class="flex space-x-8 font-extrabold">
                     
@@ -421,7 +467,7 @@
                     <div class="relative group">
                         <a href="#" class="text-white text-lg relative py-1 hover:text-primary flex items-center">
                             Festive <i class="fas fa-caret-down ml-1 text-xs transition-transform duration-300 group-hover:rotate-180"></i>
-                            <span class="absolute left-0 bottom-0 h-1 w-0 bg-primary/70 group-hover:w-full transition-all duration-300 rounded-full"></span>
+                            <span class="absolute left:0 bottom-0 h:1 w-0 bg-primary/70 group-hover:w-full transition-all duration-300 rounded-full"></span>
                         </a>
                         <!-- Dropdown Content Container -->
                         <div id="dropdown-festive" class="absolute hidden group-hover:block w-64 mt-2 bg-premium-bg-dark border border-primary/50 rounded-xl shadow-2xl z-50 p-2 transform origin-top transition-all duration-300 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 translate-y-2">
@@ -430,13 +476,13 @@
                     </div>
 
                     <!-- Link 3: Custom Mehndi (Direct Link) -->
-                    <a href="custom_mehndi.html" class="text-white text-lg relative group py-1 hover:text-primary">
+                    <a href="custom_mehndi.html" class="text-white text-lg relative py-1 hover:text-primary">
                         Custom
                         <span class="absolute left-0 bottom-0 h-1 w-0 bg-primary/70 group-hover:w-full transition-all duration-300 rounded-full"></span>
                     </a>
                     
                     <!-- Link 4: Meet Me (Direct Link) -->
-                    <a href="meet_me.html" class="text-white text-lg relative group py-1 hover:text-primary">
+                    <a href="meet_me.html" class="text-white text-lg relative py-1 hover:text-primary">
                         Meet Me
                         <span class="absolute left-0 bottom-0 h-1 w-0 bg-primary/70 group-hover:w-full transition-all duration-300 rounded-full"></span>
                     </a>
@@ -496,14 +542,14 @@
                 <div class="border-t border-primary/30 w-full my-4"></div>
 
                 <!-- Direct Link 3: Custom Mehndi -->
-                <a href="custom_mehndi.html" class="text-white text-lg relative group py-1 hover:text-primary">
+                <a href="custom_mehndi.html" class="text-white text-lg relative py-1 hover:text-primary">
                     Custom Mehndi
                     <span class="absolute left-0 bottom-0 h-1 w-0 bg-primary/70 group-hover:w-full transition-all duration-300 rounded-full"></span>
                 </a>
                 <div class="border-t border-primary/30 w-full my-4"></div>
                 
                 <!-- Direct Link 4: Meet Me -->
-                <a href="meet_me.html" class="text-white text-lg relative group py-1 hover:text-primary">
+                <a href="meet_me.html" class="text-white text-lg relative py-1 hover:text-primary">
                     Meet Me
                     <span class="absolute left-0 bottom-0 h-1 w-0 bg-primary/70 group-hover:w-full transition-all duration-300 rounded-full"></span>
                 </a>
@@ -518,6 +564,7 @@
                 <p class="text-xs text-center text-gray-500 mt-auto">© 2025 Blessingsss.in</p>
             </div>
         </div>
+        <!-- REMOVED lg:hidden from the class list -->
         <div id="mobile-menu-overlay" class="fixed inset-0 bg-black/70 mobile-menu-overlay hidden"></div>
     </div>
     <!-- END HEADER & SIDEBAR -->
@@ -526,83 +573,145 @@
     <!-- MAIN CONTENT AREA (मुख्य सामग्री क्षेत्र) -->
     <main class="container mx-auto p-4 md:p-8 lg:p-12" style="min-height: calc(100vh - 160px);">
         
-       
-            
  <!-- SLIDE SECTION WRAPPER (FOR DYNAMIC BACKGROUND & BORDER) -->
         <div id="slider-bg"> 
             <section class="latest-forms">
-                <!-- Title is now placed relative to the inner section for Z-index -->
                 <div class="text-center mb-6">
-                    <!-- Updated class to use primary color glow -->
-                    <h2 class="text-2xl sm:text-4xl font-extrabold text-primary-glow border-b-4 border-primary/50 inline-block px-4 pb-1"></h2>
+                    <!-- Customisable Main Heading (Removed spotlight heading to only use modal title) -->
                 </div>
                 
                 <div class="slider-container relative">
                     <!-- Slides Wrapper will contain the dynamic content over the image -->
-                    <div id="slides-wrapper" class="relative w-full h-full">
-                        <!-- Default Slide Content for Minimal Theme -->
-                        <div class="slide absolute top-0 left-0 w-full h-full opacity-100 transition-opacity duration-1000 active" style="z-index: 1;">
-                            <div class="slide-content-wrapper p-4 md:p-12 absolute bottom-0 bg-black/50 w-full rounded-b-[35px] text-left">
-                                <h3 class="post-name text-3xl md:text-5xl">Elegance in Simplicity</h3>
-                                <p class="last-date text-white/80 mt-2">Explore the subtle beauty of minimal henna art perfect for any celebration.</p>
-                                <a href="#premium-card-a" class="apply-btn bg-primary hover:bg-primary/90 text-black font-bold py-2 px-6 rounded-full mt-4 transition-transform transform hover:scale-105 shadow-xl">
-                                    View Styles
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+                    <div id="slides-wrapper" class="relative w-full h-full"></div>
+
+                    <!-- Navigation Buttons -->
+                    <button id="prev-btn" class="absolute top-1/2 left-4 transform -translate-y-1/2 bg-white bg-opacity-15 hover:bg-opacity-25 text-primary p-2 rounded-full shadow-lg transition-all z-20">❮</button>
+                    <button id="next-btn" class="absolute top-1/2 right-4 transform -translate-y-1/2 bg-white bg-opacity-15 hover:bg-opacity-25 text-primary p-2 rounded-full shadow-lg transition-all z-20">❯</button>
+                    
             </section>
         </div>
         <!-- END SLIDE SECTION WRAPPER -->
 
-        <!-- START: Updated Card Grid for 5 Minimal Styles -->
-        <section class="mb-12">
-            <h2 class="text-xl sm:text-2xl font-extrabold text-primary-glow text-center mb-8 inline-block px-4 pb-1 mx-auto block">Minimal Designs Types</h2>
+        <!-- CARD SECTION HEADING -->
+        <div class="text-center mb-8 mt-4">
+            <h2 class="text-xl md:text-4xl font-extrabold text-primary-glow border-b-4 border-primary/50 inline-block px-6 pb-2 uppercase tracking-wide">
+                Minimal Festive Styles
+            </h2>
+        </div>
+        <!-- END CARD SECTION HEADING -->
+
+        <section id="service-cards">
+            <!-- Grid container now optimized for 11 cards -->
             <div class="card-grid-container">
                 
-                <!-- CARD A: Finger Minimal Mehndi -->
-                <div class="premium-card" id="premium-card-a">
+                <!-- CARD 1: Minimal Finger Mehndi (1) -->
+                <div class="premium-card" id="premium-card-1">
                     <div class="inner-box">
-                        <img src="https://placehold.co/300x170/332B10/FFC72C?text=Finger+Minimal" alt="Finger Minimal Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/332B10/FFC72C?text=Finger+Minimal';">
+                        <img src="https://placehold.co/300x170/331A1A/FFC72C?text=Minimal+Finger" alt="Minimal Finger Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/331A1A/FFC72C?text=Minimal+Finger';">
                     </div>
-                    <div class="premium-title">A. Finger Minimal Mehndi</div>
-                    <div class="premium-desc">Simple patterns focusing only on the fingers and knuckles.</div>
+                    <!-- Custom Heading -->
+                    <div class="premium-title" data-mobile-title="1. Minimal Finger"><span>1. Minimal Finger Mehndi</span></div>
+                    <div class="premium-desc">Single Finger, Multi-Finger Patterns, and Finger-Tip Minimalism.</div>
                 </div>
 
-                <!-- CARD B: Wrist Minimal Mehndi -->
-                <div class="premium-card" id="premium-card-b">
+                <!-- CARD 2: Minimal Palm Mehndi (2) -->
+                <div class="premium-card" id="premium-card-2">
                     <div class="inner-box">
-                        <img src="https://placehold.co/300x170/1A332D/FFC72C?text=Wrist+Minimal" alt="Wrist Minimal Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/1A332D/FFC72C?text=Wrist+Minimal';">
+                        <img src="https://placehold.co/300x170/221A33/FFC72C?text=Minimal+Palm" alt="Minimal Palm Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/221A33/FFC72C?text=Minimal+Palm';">
                     </div>
-                    <div class="premium-title">B. Wrist Minimal Mehndi</div>
-                    <div class="premium-desc">Subtle designs that mimic jewelry like bracelets or chains on the wrist.</div>
+                    <!-- Custom Heading -->
+                    <div class="premium-title" data-mobile-title="2. Minimal Palm"><span>2. Minimal Palm Mehndi</span></div>
+                    <div class="premium-desc">Single Mandala, Palm Corner Minimal, and Palm Center Micro Art.</div>
                 </div>
 
-                <!-- CARD C: Single Motif Minimal Mehndi -->
-                <div class="premium-card" id="premium-card-c">
+                <!-- CARD 3: Minimal Wrist / Bracelet Designs (3) -->
+                <div class="premium-card" id="premium-card-3">
                     <div class="inner-box">
-                        <img src="https://placehold.co/300x170/331A1A/FFC72C?text=Single+Motif" alt="Single Motif Minimal Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/331A1A/FFC72C?text=Single+Motif';">
+                        <img src="https://placehold.co/300x170/1A2733/FFC72C?text=Minimal+Wrist" alt="Minimal Wrist / Bracelet Designs" onerror="this.onerror=null;this.src='https://placehold.co/300x170/1A2733/FFC72C?text=Minimal+Wrist';">
                     </div>
-                    <div class="premium-title">C. Single Motif Minimal Mehndi</div>
-                    <div class="premium-desc">One small, central design placed strategically on the hand or foot.</div>
+                    <!-- Custom Heading -->
+                    <div class="premium-title" data-mobile-title="3. Minimal Wrist"><span>3. Minimal Wrist / Bracelet Designs</span></div>
+                    <div class="premium-desc">Simple Band, Charm Bracelet Minimal, and Wrist-to-Finger Trail.</div>
                 </div>
 
-                <!-- CARD D: Negative Space Minimal Mehndi -->
-                <div class="premium-card" id="premium-card-d">
+                <!-- CARD 4: Minimal Backhand Mehndi (4) -->
+                <div class="premium-card" id="premium-card-4">
                     <div class="inner-box">
-                        <img src="https://placehold.co/300x170/221A33/FFC72C?text=Negative+Space" alt="Negative Space Minimal Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/221A33/FFC72C?text=Negative+Space';">
+                        <img src="https://placehold.co/300x170/332D1A/FFC72C?text=Minimal+Backhand" alt="Minimal Backhand Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/332D1A/FFC72C?text=Minimal+Backhand';">
                     </div>
-                    <div class="premium-title">D. Negative Space Minimal Mehndi</div>
-                    <div class="premium-desc">Designs where the skin acts as the pattern, creating sharp, modern shapes.</div>
+                    <!-- Custom Heading -->
+                    <div class="premium-title" data-mobile-title="4. Minimal Backhand"><span>4. Minimal Backhand Mehndi</span></div>
+                    <div class="premium-desc">Backhand Vine, Diagonal Minimal, and Single Flower Backhand styles.</div>
                 </div>
 
-                <!-- CARD E: Micro-Design Festive Mehndi -->
-                <div class="premium-card" id="premium-card-e">
+                <!-- CARD 5: Minimal Geometric (Filler for 4-Level Structure) -->
+                <div class="premium-card" id="premium-card-5">
                     <div class="inner-box">
-                        <img src="https://placehold.co/300x170/1A2733/FFC72C?text=Micro+Design" alt="Micro-Design Festive Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/1A2733/FFC72C?text=Micro+Design';">
+                        <img src="https://placehold.co/300x170/10241D/FFC72C?text=Minimal+Geo" alt="Minimal Geometric Designs" onerror="this.onerror=null;this.src='https://placehold.co/300x170/10241D/FFC72C?text=Minimal+Geo';">
                     </div>
-                    <div class="premium-title">E. Micro-Design Festive Mehndi</div>
-                    <div class="premium-desc">Intricate patterns using tiny dots and super-fine lines for a delicate look.</div>
+                    <!-- Custom Heading -->
+                    <div class="premium-title" data-mobile-title="5. Minimal Geometric"><span>5. Minimal Geometric Designs</span></div>
+                    <div class="premium-desc">Tiny squares, triangles, and dot-stripes in clean, crisp layouts.</div>
+                </div>
+                
+                <!-- CARD 6: Minimal Floral (Filler for 4-Level Structure) -->
+                <div class="premium-card" id="premium-card-6">
+                    <div class="inner-box">
+                        <img src="https://placehold.co/300x170/5C2828/FFC72C?text=Minimal+Floral" alt="Minimal Floral Accents" onerror="this.onerror=null;this.src='https://placehold.co/300x170/5C2828/FFC72C?text=Minimal+Floral';">
+                    </div>
+                    <!-- Custom Heading -->
+                    <div class="premium-title" data-mobile-title="6. Minimal Floral"><span>6. Minimal Floral Accents</span></div>
+                    <div class="premium-desc">Micro roses, single petals, and spaced leaf motifs for a delicate look.</div>
+                </div>
+
+                <!-- CARD 7: Minimal Side Hand (Filler for 4-Level Structure) -->
+                <div class="premium-card" id="premium-card-7">
+                    <div class="inner-box">
+                        <img src="https://placehold.co/300x170/242010/FFC72C?text=Minimal+Side+Hand" alt="Minimal Side Hand Designs" onerror="this.onerror=null;this.src='https://placehold.co/300x170/242010/FFC72C?text=Minimal+Side+Hand';">
+                    </div>
+                    <!-- Custom Heading -->
+                    <div class="premium-title" data-mobile-title="7. Minimal Side Hand"><span>7. Minimal Side Hand Designs</span></div>
+                    <div class="premium-desc">Simple lines and small dots running along the side of the palm.</div>
+                </div>
+
+                <!-- CARD 8: Minimal Indo-Western (Filler) -->
+                <div class="premium-card" id="premium-card-8">
+                    <div class="inner-box">
+                        <img src="https://placehold.co/300x170/1C3144/FFC72C?text=Minimal+Indo-West" alt="Minimal Indo-Western Fusion" onerror="this.onerror=null;this.src='https://placehold.co/300x170/1C3144/FFC72C?text=Minimal+Indo-West';">
+                    </div>
+                    <!-- Custom Heading -->
+                    <div class="premium-title" data-mobile-title="8. Minimal Indo-West"><span>8. Minimal Indo-Western Fusion</span></div>
+                    <div class="premium-desc">Combining subtle Indian patterns with modern Western concepts.</div>
+                </div>
+                
+                <!-- CARD 9: Simple Arabic Minimal (Filler) -->
+                <div class="premium-card" id="premium-card-9">
+                    <div class="inner-box">
+                        <img src="https://placehold.co/300x170/283C5C/FFC72C?text=Simple+Arabic+Min" alt="Simple Arabic Minimal Designs" onerror="this.onerror=null;this.src='https://placehold.co/300x170/283C5C/FFC72C?text=Simple+Arabic+Min';">
+                    </div>
+                    <!-- Custom Heading -->
+                    <div class="premium-title" data-mobile-title="9. Simple Arabic Min"><span>9. Simple Arabic Minimal</span></div>
+                    <div class="premium-desc">Thin Arabic vines and small shaded elements on fingers and wrist.</div>
+                </div>
+                
+                <!-- CARD 10: Minimal Bridal Accents (Filler) -->
+                <div class="premium-card" id="premium-card-10">
+                    <div class="inner-box">
+                        <img src="https://placehold.co/300x170/3B285C/FFC72C?text=Minimal+Bridal" alt="Minimal Bridal Accents" onerror="this.onerror=null;this.src='https://placehold.co/300x170/3B285C/FFC72C?text=Minimal+Bridal';">
+                    </div>
+                    <!-- Custom Heading -->
+                    <div class="premium-title" data-mobile-title="10. Minimal Bridal"><span>10. Minimal Bridal Accents</span></div>
+                    <div class="premium-desc">Subtle mehndi touches for the modern bride (e.g., foot chains, back of neck).</div>
+                </div>
+
+                <!-- CARD 11: Minimal Temporary Tattoo (Filler) -->
+                <div class="premium-card" id="premium-card-11">
+                    <div class="inner-box">
+                        <img src="https://placehold.co/300x170/1A332D/FFC72C?text=Minimal+Tattoo" alt="Minimal Temporary Tattoo Style" onerror="this.onerror=null;this.src='https://placehold.co/300x170/1A332D/FFC72C?text=Minimal+Tattoo';">
+                    </div>
+                    <!-- Custom Heading -->
+                    <div class="premium-title" data-mobile-title="11. Minimal Tattoo"><span>11. Minimal Temporary Tattoo</span></div>
+                    <div class="premium-desc">Sharp, crisp line work mimicking a modern temporary tattoo look.</div>
                 </div>
             </div>
         </section>
@@ -617,19 +726,19 @@
     >
         <div class="flex justify-around items-end h-20 relative px-2">
             
-            <!-- Item 1: Finger (Card A से लिंक्ड) -->
-            <a href="#premium-card-a" class="nav-item-shs w-1/5" onclick="scrollToSection('premium-card-a')">
+            <!-- Item 1: Finger (Card 1) -->
+            <a href="#premium-card-1" class="nav-item-shs w-1/5" onclick="scrollToSection('premium-card-1')">
                 <i class="fas fa-hand-point-up nav-icon-shs"></i>
                 <span class="font-medium">Finger</span>
             </a>
 
-            <!-- Item 2: Motif (Card C से लिंक्ड) -->
-            <a href="#premium-card-c" class="nav-item-shs w-1/5" onclick="scrollToSection('premium-card-c')">
-                <i class="fas fa-certificate nav-icon-shs"></i>
-                <span class="font-medium">Motif</span>
+            <!-- Item 2: Palm (Card 2) -->
+            <a href="#premium-card-2" class="nav-item-shs w-1/5" onclick="scrollToSection('premium-card-2')">
+                <i class="fas fa-hand-paper nav-icon-shs"></i>
+                <span class="font-medium">Palm</span>
             </a>
             
-            <!-- Central FAB Button (Home - index.html से लिंक्ड) -->
+            <!-- Central FAB Button (Home - main.html से लिंक्ड) -->
             <div class="central-nav-item-shs w-1/5">
                 <a 
                     href="main.html" 
@@ -638,19 +747,19 @@
                 >
                     <i class="fas fa-home central-fab-icon"></i>
                 </a>
-                <span class="central-fab-label">Home</span>
+                <span class="font-medium">Home</span>
             </div>
             
-            <!-- Item 4: Negative (Card D से लिंक्ड) -->
-            <a href="#premium-card-d" class="nav-item-shs w-1/5" onclick="scrollToSection('premium-card-d')">
-                <i class="fas fa-grip-lines nav-icon-shs"></i>
-                <span class="font-medium">Negative</span>
+            <!-- Item 4: Wrist (Card 3) -->
+            <a href="#premium-card-3" class="nav-item-shs w-1/5" onclick="scrollToSection('premium-card-3')">
+                <i class="fas fa-link nav-icon-shs"></i>
+                <span class="font-medium">Wrist</span>
             </a>
             
-            <!-- Item 5: Micro (Card E से लिंक्ड) -->
-            <a href="#premium-card-e" class="nav-item-shs w-1/5" onclick="scrollToSection('premium-card-e')">
-                <i class="fas fa-dot-circle nav-icon-shs"></i>
-                <span class="font-medium">Micro</span>
+            <!-- Item 5: Backhand (Card 4) -->
+            <a href="#premium-card-4" class="nav-item-shs w-1/5" onclick="scrollToSection('premium-card-4')">
+                <i class="fas fa-arrow-up nav-icon-shs"></i>
+                <span class="font-medium">Backhand</span>
             </a>
             
         </div>
@@ -661,8 +770,10 @@
     <div id="location-modal-overlay" class="modal-overlay">
         <div id="location-modal-content" class="modal-content">
             <div class="flex justify-between items-center mb-4 p-2">
-                <h3 id="modal-title" class="text-xl font-bold text-primary-glow">Available Locations (स्थान)</h3>
-                <button id="modal-close-button" class="text-white hover:text-primary transition-colors p-2 rounded-full hover:bg-white/10" aria-label="Close modal">
+                <!-- MODAL TITLE IS NOW CUSTOMIZABLE -->
+                <h3 id="modal-title" class="text-xl font-bold text-primary-glow">Minimal Festive Mehndi Styles</h3>
+                <!-- CLOSE BUTTON -->
+                <button id="modal-close-button-new" onclick="closeLocationModal()" class="text-white hover:text-primary transition-colors p-2 rounded-full hover:bg-white/10" aria-label="Close modal">
                     <i class="fas fa-times text-2xl"></i>
                 </button>
             </div>
@@ -729,126 +840,304 @@
             }
         }
         
-         // --- START: SLIDER LOGIC (Modified for static content) ---
+         // --- START: SLIDER LOGIC (Moved inside DOMContentLoaded) ---
+        // Variables for slider logic
         const sliderBg = document.getElementById('slider-bg');
-        // Removed slidesWrapper, prevBtn, nextBtn variables as they are not dynamically used
-        // Removed initializeSlider, createSlides, showSlide, startAutoSlide functions
+        const slidesWrapper = document.getElementById('slides-wrapper');
+        
+        let slidesData = [];
+        let currentSlide = 0;
+        let slideInterval;
+        const slideDuration = 5000;
 
-        // Function to create dummy slides data (kept for structure, but not used for display)
+        function formatDate(dateStr) {
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            const date = new Date(dateStr);
+            return date.toLocaleDateString('en-IN', options);
+        }
+
         async function fetchSlidesData() {
+            // Hardcoded placeholder slide data for Minimal Festive styles
             return [
-                { "title": "", "date": "", "link": "#", "deadline": "2026-12-12", "bgImage": "" }
-                { "title": "", "date": "", "link": "#", "deadline": "2026-12-12", "bgImage": "" }
-                 { "title": "", "date": "", "link": "#", "deadline": "2026-12-12", "bgImage": "" }
+                { "title": "Minimal Finger Art: Dotted Rings & Tiny Leaf Bands", "date": "05 Jan", "link": "minimal_finger_art.html", "deadline": "2027-01-05", "bgImage": "https://placehold.co/800x350/FFC72C/331A1A?text=Minimal+Finger+Focus" },
+                { "title": "Palm Center Micro Art: Single Flower & Geometric Blocks", "date": "15 Jan", "link": "minimal_palm_micro.html", "deadline": "2027-01-15", "bgImage": "https://placehold.co/800x350/FFB433/1A2733?text=Minimal+Palm+Art" },
+                { "title": "Backhand Minimalist Vines & Charm Bracelet Trails", "date": "25 Jan", "link": "minimal_backhand_trails.html", "deadline": "2027-01-25", "bgImage": "https://placehold.co/800x350/FF5733/221A33?text=Minimal+Backhand+Style" }
             ];
         }
 
+        function createSlides(data) {
+            slidesWrapper.innerHTML = '';
+            data.forEach((item, index) => {
+                const slide = document.createElement('a');
+                const deadline = new Date(item.deadline);
+                const now = new Date();
+                const isExpired = deadline < now;
+                // Button Text
+                const buttonText = isExpired ? 'Expired' : 'View Details';
+                
+                // Link is now assigned directly from item.link (internal page)
+                slide.href = item.link; 
+                // Removed target="_blank" for internal links
+                
+                slide.className = `slide absolute top-0 left-0 w-full h-full opacity-0 transition-opacity duration-1000`;
+                slide.style.zIndex = index === 0 ? 1 : 0;
+                
+                let contentHTML = `
+                    <div class="slide-content-wrapper p-4 md:p-12 absolute bottom-0 bg-black/50 w-full rounded-b-[35px] text-left">
+                        <h3 class="post-name text-3xl md:text-5xl">${item.title}</h3>
+                        <p class="last-date text-white/80 mt-2">Date: ${item.date}</p>
+                        <button class="apply-btn bg-primary hover:bg-primary/90 text-black font-bold py-2 px-6 rounded-full mt-4 transition-transform transform hover:scale-105 shadow-xl" ${isExpired ? 'disabled' : ''}>
+                            ${buttonText}
+                        </button>
+                    </div>
+                `;
+                
+                slide.innerHTML = contentHTML;
+                slidesWrapper.appendChild(slide);
+            });
+        }
+
+        function showSlide(index) {
+            const slides = document.querySelectorAll('.slide');
+            slides.forEach((slide, i) => {
+                slide.classList.remove('active');
+                slide.style.opacity = 0;
+                slide.style.zIndex = 0;
+            });
+            
+            if (slides[index]) {
+                slides[index].classList.add('active');
+                slides[index].style.opacity = 1;
+                slides[index].style.zIndex = 1;
+                
+                if (slidesData[index] && slidesData[index].bgImage) {
+                     sliderBg.style.backgroundImage = `url('${slidesData[index].bgImage}')`;
+                }
+            }
+        }
+
+        function startAutoSlide() {
+            clearInterval(slideInterval);
+            slideInterval = setInterval(() => {
+                currentSlide = (currentSlide + 1) % slidesData.length;
+                showSlide(currentSlide);
+            }, slideDuration);
+        }
+
+        async function initializeSlider() {
+            slidesData = await fetchSlidesData();
+            createSlides(slidesData);
+            showSlide(currentSlide);
+            startAutoSlide();
+
+            // Re-adding listeners for the navigation buttons
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+
+            if (prevBtn) {
+                prevBtn.addEventListener('click', () => {
+                    currentSlide = (currentSlide - 1 + slidesData.length) % slidesData.length;
+                    showSlide(currentSlide);
+                    startAutoSlide();
+                });
+            }
+
+            if (nextBtn) {
+                nextBtn.addEventListener('click', () => {
+                    currentSlide = (currentSlide + 1) % slidesData.length;
+                    showSlide(currentSlide);
+                    startAutoSlide();
+                });
+            }
+        }
         // --- END: SLIDER LOGIC ---
 
         
         // --- START: MODAL/LOCATION SELECTION LOGIC (पॉपअप/लोकेशन चयन लॉजिक) ---
         const modalOverlay = document.getElementById('location-modal-overlay');
-        const modalCloseButton = document.getElementById('modal-close-button');
+        const modalCloseButton = document.getElementById('modal-close-button-new'); 
         const modalTitle = document.getElementById('modal-title');
         const locationList = document.getElementById('location-list');
 
-        // UPDATED LOCATION DATA FOR MINIMAL FESTIVE MEHNDI TYPES
-        const locationData = {
-            'premium-card-a': { // A. Finger Minimal Mehndi
-                title: 'Finger Minimal Mehndi',
-                desc: 'Simple patterns focusing only on the fingers and knuckles.',
-                locations: [
-                    { name: "Tip Dots", link: "minimal_finger_tip_dots.html" },
-                    { name: "Small Lines", link: "minimal_finger_small_lines.html" },
-                    { name: "Tiny Leaves", link: "minimal_finger_tiny_leaves.html" },
-                    { name: "Ring Style", link: "minimal_finger_ring_style.html" },
-                    { name: "Finger Box Art", link: "minimal_finger_box_art.html" },
-                ]
+        // Main Data Structure holding the full Minimal Festive chart (11 styles)
+        const locationData_All = {
+            'Minimal Finger Mehndi': {
+                'Single Finger Design': { name: "Single Finger Design", link: "minimal_finger_single.html", micro: ["Micro dots", "Mini curve line", "Dot tip cap"] },
+                'Multi-Finger Matching Patterns': { name: "Multi-Finger Matching Patterns", link: "minimal_finger_multi.html", micro: ["Tiny scale dots", "Micro leaves", "Mini triangle tips"] },
+                'Finger-Tip Minimalism': { name: "Finger-Tip Minimalism", link: "minimal_finger_tip.html", micro: ["Dot shading", "Micro-line cap", "Ultra-fine curls"] }
             },
-            'premium-card-b': { // B. Wrist Minimal Mehndi
-                title: 'Wrist Minimal Mehndi',
-                desc: 'Subtle designs that mimic jewelry like bracelets or chains on the wrist.',
-                locations: [
-                    { name: "Bracelet Pattern", link: "minimal_wrist_bracelet.html" },
-                    { name: "Chain Style", link: "minimal_wrist_chain.html" },
-                    { name: "Mandala Bracelet", link: "minimal_wrist_mandala.html" },
-                    { name: "Charm Style", link: "minimal_wrist_charm.html" },
-                    { name: "Leaf Bracelet", link: "minimal_wrist_leaf.html" },
-                ]
+            'Minimal Palm Mehndi': {
+                'Single Mandala Minimal': { name: "Single Mandala Minimal", link: "minimal_palm_mandala.html", micro: ["Mini circles", "Micro petals", "Dotted halo"] },
+                'Palm Corner Minimal': { name: "Palm Corner Minimal", link: "minimal_palm_corner.html", micro: ["Dot chains", "Micro veins", "Mini curl ends"] },
+                'Palm Center Micro Art': { name: "Palm Center Micro Art", link: "minimal_palm_center.html", micro: ["Dot center", "Micro tip strokes", "Mini outlines"] }
             },
-            'premium-card-c': { // C. Single Motif Minimal Mehndi
-                title: 'Single Motif Minimal Mehndi',
-                desc: 'One small, central design placed strategically on the hand or foot.',
-                locations: [
-                    { name: "Mini Lotus", link: "minimal_motif_mini_lotus.html" },
-                    { name: "Tiny Rose", link: "minimal_motif_tiny_rose.html" },
-                    { name: "Single Mandala", link: "minimal_motif_single_mandala.html" },
-                    { name: "Tiny Heart", link: "minimal_motif_tiny_heart.html" },
-                    { name: "Minimal Peacock Eye", link: "minimal_motif_peacock_eye.html" },
-                ]
+            'Minimal Wrist / Bracelet Designs': {
+                'Simple Bracelet Band': { name: "Simple Bracelet Band", link: "minimal_wrist_simple.html", micro: ["Micro-link dots", "Mini stripes", "Tiny dash lines"] },
+                'Charm Bracelet Minimal': { name: "Charm Bracelet Minimal", link: "minimal_wrist_charm.html", micro: ["Micro charm dot", "Mini drip", "Tiny line-end"] },
+                'Wrist-to-Finger Minimal Trail': { name: "Wrist-to-Finger Minimal Trail", link: "minimal_wrist_trail.html", micro: ["Micro buds", "Mini curls", "Dot-shading"] }
             },
-            'premium-card-d': { // D. Negative Space Minimal Mehndi
-                title: 'Negative Space Minimal Mehndi',
-                desc: 'Designs where the skin acts as the pattern, creating sharp, modern shapes.',
-                locations: [
-                    { name: "Empty Space Florals", link: "minimal_negative_florals.html" },
-                    { name: "Geometric Negative Pattern", link: "minimal_negative_geometric.html" },
-                    { name: "Line + Gap Design", link: "minimal_negative_line_gap.html" },
-                    { name: "Arrow Minimal", link: "minimal_negative_arrow.html" },
-                    { name: "Split Finger Art", link: "minimal_negative_split_finger.html" },
-                ]
+            'Minimal Backhand Mehndi': {
+                'Backhand Vine': { name: "Backhand Vine", link: "minimal_back_vine.html", micro: ["Micro leaf bud", "Mini dots", "Ultra-fine curve"] },
+                'Backhand Diagonal Minimal': { name: "Backhand Diagonal Minimal", link: "minimal_back_diagonal.html", micro: ["Angle dots", "Micro-curved splits", "Mini fillers"] },
+                'Single Flower Backhand': { name: "Single Flower Backhand", link: "minimal_back_flower.html", micro: ["Dot pollen", "Mini veins", "Shaded micro-petals"] }
             },
-            'premium-card-e': { // E. Micro-Design Festive Mehndi
-                title: 'Micro-Design Festive Mehndi',
-                desc: 'Intricate patterns using tiny dots and super-fine lines for a delicate look.',
-                locations: [
-                    { name: "Micro Leaves", link: "minimal_micro_leaves.html" },
-                    { name: "Micro Dots Trail", link: "minimal_micro_dots_trail.html" },
-                    { name: "Small Curl Patterns", link: "minimal_micro_curl.html" },
-                    { name: "Tiny Motif Rings", link: "minimal_micro_motif_rings.html" },
-                    { name: "Mini Spiral Art", link: "minimal_micro_spiral.html" },
-                ]
+            // The remaining 7 slots are filled with general Minimal Fusion/Accents (as fillers)
+            'Minimal Geometric Designs': {
+                'Tiny Geometric Blocks': { name: "Tiny Geometric Blocks", link: "minimal_geo_blocks.html", micro: ["Micro squares", "Mini triangles", "Dot lining"] },
+                'Geometric Striping': { name: "Geometric Striping", link: "minimal_geo_stripes.html", micro: ["Thin parallel lines", "Angle shading", "Dot connectors"] },
+                'Minimal Hexagons': { name: "Minimal Hexagons", link: "minimal_geo_hex.html", micro: ["Micro dot fill", "Single outline", "Half shading"] }
             },
-            // Existing Header Data (Dropdowns) - Included for site navigation consistency
-            'dropdown-bridal': {
-                 title: 'Bridal Mehndi Types',
-                 locations: [
-                    { name: "Traditional Bridal Mehndi", link: "bridal_traditional.html" }, 
-                    { name: "Arabic Bridal Mehndi", link: "bridal_arabic.html" }, 
-                    { name: "Indo-Western Bridal Mehndi", link: "bridal_indowestern.html" }
-                 ]
+            'Minimal Floral Accents': {
+                'Micro Roses': { name: "Micro Roses", link: "minimal_floral_roses.html", micro: ["Spiral centers", "Mini petals", "Outline only"] },
+                'Single Petals': { name: "Single Petals", link: "minimal_floral_petals.html", micro: ["Curve tips", "Dot ends", "Tiny shading"] },
+                'Spaced Leaf Motifs': { name: "Spaced Leaf Motifs", link: "minimal_floral_leaves.html", micro: ["Micro veins", "Thin stem", "Leaf curl"] }
             },
-            'dropdown-festive': { 
-                title: 'Festive Mehndi Types',
-                locations: [
-                    { name: "Arabic", link: "festive_arabic.html" }, 
-                    { name: "Indian", link: "festive_indian.html" }, 
-                    { name: "Indo-Arabic", link: "festive_indoarabic.html" },
-                    { name: "Moroccan / Geometric", link: "festive_geometric.html" },
-                    { name: "Minimal Festive Mehndi", link: "festive_minimal.html" } // Self-link to refresh/view
-                ]
+            'Minimal Side Hand Designs': {
+                'Simple Line Trail': { name: "Simple Line Trail", link: "minimal_side_line.html", micro: ["Ultra thin line", "Single dot path", "Dash sequence"] },
+                'Dot Line Fusion': { name: "Dot Line Fusion", link: "minimal_side_dot.html", micro: ["Spaced dots", "Micro connection", "Line break"] },
+                'Side Hand Charm': { name: "Side Hand Charm", link: "minimal_side_charm.html", micro: ["Tiny symbol", "Feather motif", "Micro infinity"] }
+            },
+            'Minimal Indo-Western Fusion': {
+                'Tattoo Line Work': { name: "Tattoo Line Work", link: "minimal_indowest_tattoo.html", micro: ["Sharp edges", "Fine geometry", "Black shading"] },
+                'Dot Chain Accents': { name: "Dot Chain Accents", link: "minimal_indowest_dot.html", micro: ["Necklace chain", "Ankle band", "Micro tassel"] },
+                'Minimal Western Symbols': { name: "Minimal Western Symbols", link: "minimal_indowest_symbol.html", micro: ["Star, moon, sun", "Geometric heart", "Initial monogram"] }
+            },
+            'Simple Arabic Minimal': {
+                'Thin Arabic Vines': { name: "Thin Arabic Vines", link: "minimal_arabic_vine.html", micro: ["Single swirl", "Micro leaf bud", "Thin trail"] },
+                'Shaded Finger Tips': { name: "Shaded Finger Tips", link: "minimal_arabic_tips.html", micro: ["Light fill", "Dot outline", "Half circle cap"] },
+                'Simple Arabic Bands': { name: "Simple Arabic Bands", link: "minimal_arabic_bands.html", micro: ["Thin line cuff", "Single flower link", "Micro circle fill"] }
+            },
+            'Minimal Bridal Accents': {
+                'Foot Chain': { name: "Foot Chain", link: "minimal_bridal_foot.html", micro: ["Ankle dots", "Toe ring line", "Arch vine"] },
+                'Back of Neck Symbol': { name: "Back of Neck Symbol", link: "minimal_bridal_neck.html", micro: ["Tiny mandala", "Minimal charm", "Dot line"] },
+                'Subtle Hand Detail': { name: "Subtle Hand Detail", link: "minimal_bridal_hand.html", micro: ["Wrist dot band", "Finger joint ring", "Palm corner accent"] }
+            },
+            'Minimal Temporary Tattoo': {
+                'Sharp Line Work': { name: "Sharp Line Work", link: "minimal_tattoo_sharp.html", micro: ["Crisp edges", "Single line art", "Geometric shading"] },
+                'Micro Symbols': { name: "Micro Symbols", link: "minimal_tattoo_micro.html", micro: ["Tiny star", "Small feather", "Dot cluster"] },
+                'Temporary Cuff': { name: "Temporary Cuff", link: "minimal_tattoo_cuff.html", micro: ["Solid band", "Line striping", "Tattoo beads"] }
             }
         };
 
 
-        function showLocationModal(cardId) {
-            const data = locationData[cardId];
+        const cardMap = {
+            'premium-card-1': 'Minimal Finger Mehndi',
+            'premium-card-2': 'Minimal Palm Mehndi',
+            'premium-card-3': 'Minimal Wrist / Bracelet Designs',
+            'premium-card-4': 'Minimal Backhand Mehndi',
+            'premium-card-5': 'Minimal Geometric Designs',
+            'premium-card-6': 'Minimal Floral Accents',
+            'premium-card-7': 'Minimal Side Hand Designs',
+            'premium-card-8': 'Minimal Indo-Western Fusion',
+            'premium-card-9': 'Simple Arabic Minimal',
+            'premium-card-10': 'Minimal Bridal Accents',
+            'premium-card-11': 'Minimal Temporary Tattoo' 
+        };
+
+
+        // Helper to extract the data for the modal based on card ID
+        const getModalContent = (cardId) => {
+            const mainStyle = cardMap[cardId];
+            const dataRoot = locationData_All[mainStyle];
+            
+            if (!mainStyle || !dataRoot) return null;
+
+            let locations = [];
+
+            // Helper function to process nested dictionary structure and add placeholder links
+            const processNestedData = (data, prefix = 'style_') => {
+                if (typeof data === 'object' && data !== null && !Array.isArray(data)) {
+                    Object.entries(data).forEach(([key, value]) => {
+                        // Check for the known 'micro' structure
+                        if (value.name && value.link && Array.isArray(value.micro)) {
+                            // Mini-Type Header (Sub-type header) - Now clickable link
+                            locations.push({ 
+                                name: `• ${value.name}`, 
+                                isTypeHeader: true,
+                                link: value.link 
+                            });
+                            // Micro-Types (Actual click items)
+                            value.micro.forEach(micro => {
+                                // Generate unique, clean link based on key and micro-type name
+                                const microLink = `${prefix}${key.toLowerCase().replace(/[^a-z0-9]/g, '_')}_${micro.toLowerCase().replace(/[^a-z0-9]/g, '_')}.html`;
+                                locations.push({ 
+                                    name: micro, 
+                                    isTypeHeader: false,
+                                    link: microLink
+                                });
+                            });
+                        } else {
+                            // This path shouldn't be hit for the Festive Arabic data structure provided
+                            locations.push({ name: `--- ${key} ---`, isTypeHeader: true, isMajorHeader: true });
+                            processNestedData(value, prefix);
+                        }
+                    });
+                }
+            };
+            
+            // Start processing based on the main category type
+            locations.push({ name: `--- ${mainStyle} ---`, isTypeHeader: true, isMajorHeader: true });
+            processNestedData(dataRoot, mainStyle.toLowerCase().replace(/[^a-z0-9]/g, '_'));
+            
+            return {
+                title: `${mainStyle} Designs`,
+                locations: locations
+            };
+        };
+
+
+        // *** Show Modal Functionality ***
+        function showDetailedModal(cardId) {
+            const data = getModalContent(cardId);
             if (!data) return;
 
-            // Set Modal Content
-            modalTitle.textContent = data.title;
+            modalTitle.textContent = data.title; // Set the modal title dynamically
             locationList.innerHTML = ''; // Clear previous content
 
             data.locations.forEach(location => {
-                const item = document.createElement('div');
-                item.className = 'location-item';
-                item.innerHTML = `<span>${location.name}</span> <i class="fas fa-arrow-right text-sm"></i>`;
                 
-                // Click handler for location item: now redirects to the specified link
-                item.onclick = () => {
-                    window.location.href = location.link;
-                };
-                locationList.appendChild(item);
+                // Style adjustment for multi-level data
+                if (location.isMajorHeader && location.isTypeHeader) {
+                    const item = document.createElement('div');
+                    item.className = 'text-xl font-bold text-primary-glow mt-6 mb-3 p-2 border-b-2 border-primary/50';
+                    item.innerHTML = location.name;
+                    locationList.appendChild(item);
+                } else if (location.isTypeHeader) {
+                     // Mini-Type Header (now clickable)
+                    const item = document.createElement('a');
+                    item.href = location.link;
+                    item.className = 'text-lg font-bold text-white mt-3 mb-1 px-2 block hover:text-primary transition-colors';
+                    item.innerHTML = location.name;
+                    
+                    // Link handling for Mini-Type Headers
+                    item.addEventListener('click', (e) => {
+                         e.preventDefault(); 
+                         closeLocationModal();
+                         setTimeout(() => {
+                            window.location.href = location.link; // ACTUAL NAVIGATION ADDED HERE
+                         }, 100); 
+                    });
+                    locationList.appendChild(item);
+                } 
+                
+                // MICRO-TYPE - Now a clickable link
+                else {
+                    const item = document.createElement('a');
+                    item.href = location.link;
+                    item.className = 'location-item text-sm py-2 px-4 hover:bg-primary/20 transition-colors'; 
+                    item.innerHTML = `<span>${location.name}</span> <i class="fas fa-arrow-right text-sm"></i>`;
+                    
+                    item.addEventListener('click', (e) => {
+                         e.preventDefault(); // Prevent default link behavior first
+                         closeLocationModal();
+                         
+                         // Navigate after closing modal
+                         setTimeout(() => {
+                            window.location.href = location.link; // ACTUAL NAVIGATION ADDED HERE
+                         }, 100); 
+                    });
+                    locationList.appendChild(item);
+                }
             });
 
             // Show Modal
@@ -863,26 +1152,48 @@
             modalOverlay.style.opacity = 0;
             // Hide after transition completes
             setTimeout(() => {
-                modalOverlay.style.display = 'none';
+                document.getElementById('location-modal-overlay').style.display = 'none';
                 document.body.style.overflow = ''; 
             }, 300);
         }
-
-        // Attach event listeners for close button and overlay
-        modalCloseButton.addEventListener('click', closeLocationModal);
-        modalOverlay.addEventListener('click', (e) => {
-            // Close when clicking outside the content area
-            if (e.target === modalOverlay) {
+        
+        // --- ATTACHING EVENT LISTENERS ---
+        // Attaching close logic to the new button ID
+        document.getElementById('modal-close-button-new').addEventListener('click', closeLocationModal);
+        // Attaching click outside modal logic
+        document.getElementById('location-modal-overlay').addEventListener('click', (e) => {
+            if (e.target === document.getElementById('location-modal-overlay')) {
                 closeLocationModal();
             }
         });
+
+
+        // --- START: DROPDOWN / ACCORDION LOGIC (Header Navigation) ---
         
-        // --- START: DROPDOWN / ACCORDION LOGIC ---
-        
+        const locationData_Dropdowns = {
+            'dropdown-bridal': {
+                 title: 'Bridal Mehndi Types',
+                 locations: [
+                    { name: "Traditional Bridal Mehndi", link: "bridal_traditional.html" }, 
+                    { name: "Arabic Bridal Mehndi", link: "bridal_arabic.html" }, 
+                    { name: "Indo-Western Bridal Mehndi", link: "bridal_indowestern.html" }
+                 ]
+            },
+            'dropdown-festive': { 
+                title: 'Festive Mehndi Types',
+                locations: [
+                    { name: "Indian", link: "indian_festive_mehndi.html" }, 
+                    { name: "Arabic", link: "festive_arabic.html" }, 
+                    { name: "Indo-Arabic", link: "indo_arabic_festive.html" }, 
+                    { name: "Moroccan / Geometric", link: "moroccan_festive_mehndi.html" },
+                    { name: "Minimal Festive Mehndi", link: "minimal_festive_mehndi.html" } // Link to this page
+                 ]
+            }
+        };
+
         function generateDropdownContent(dataId, containerId) {
             const container = document.getElementById(containerId);
-            // Use the dedicated keys for header/mobile dropdowns
-            const data = locationData[dataId]; 
+            const data = locationData_Dropdowns[dataId]; 
             if (!container || !data) return;
 
             container.innerHTML = data.locations.map(item => `
@@ -933,15 +1244,21 @@
         // --- END: DROPDOWN / ACCORDION LOGIC ---
 
         document.addEventListener('DOMContentLoaded', () => {
-            // initializeSlider(); // Removed, as slider is static
+            initializeSlider();
             initializeDropdowns();
             
-            // Attach click listeners to all 5 new cards to open the modal:
-            document.getElementById('premium-card-a').addEventListener('click', () => showLocationModal('premium-card-a'));
-            document.getElementById('premium-card-b').addEventListener('click', () => showLocationModal('premium-card-b'));
-            document.getElementById('premium-card-c').addEventListener('click', () => showLocationModal('premium-card-c'));
-            document.getElementById('premium-card-d').addEventListener('click', () => showLocationModal('premium-card-d'));
-            document.getElementById('premium-card-e').addEventListener('click', () => showLocationModal('premium-card-e'));
+            // Re-attaching the click handlers to the new showDetailedModal function (11 Cards)
+            document.getElementById('premium-card-1').addEventListener('click', () => showDetailedModal('premium-card-1'));
+            document.getElementById('premium-card-2').addEventListener('click', () => showDetailedModal('premium-card-2'));
+            document.getElementById('premium-card-3').addEventListener('click', () => showDetailedModal('premium-card-3'));
+            document.getElementById('premium-card-4').addEventListener('click', () => showDetailedModal('premium-card-4'));
+            document.getElementById('premium-card-5').addEventListener('click', () => showDetailedModal('premium-card-5'));
+            document.getElementById('premium-card-6').addEventListener('click', () => showDetailedModal('premium-card-6'));
+            document.getElementById('premium-card-7').addEventListener('click', () => showDetailedModal('premium-card-7'));
+            document.getElementById('premium-card-8').addEventListener('click', () => showDetailedModal('premium-card-8'));
+            document.getElementById('premium-card-9').addEventListener('click', () => showDetailedModal('premium-card-9'));
+            document.getElementById('premium-card-10').addEventListener('click', () => showDetailedModal('premium-card-10'));
+            document.getElementById('premium-card-11').addEventListener('click', () => showDetailedModal('premium-card-11'));
         });
         
         // --- START: DYNAMIC THEME COLOR CHANGER (7 THEMES, 7 SECONDS) ---
