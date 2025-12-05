@@ -170,8 +170,36 @@
         }
         .premium-desc {
             margin-top:8px; font-size:15px; line-height:1.4; color:#e9e9e9;
-            opacity:0.95; text-align: center; margin-bottom: 5px;
+            opacity:0.95;
+            text-align: center; margin-bottom: 5px;
         }
+
+        /* --- CUSTOM CSS FOR RESPONSIVE HEADINGS --- */
+        /* Default (Mobile First): Use data-mobile-title for smaller text */
+        .premium-card .premium-title[data-mobile-title]:before {
+            content: attr(data-mobile-title);
+            display: block;
+            font-size: 1.1rem; /* Slightly larger than original font size for the short title */
+            font-weight: 800;
+        }
+        /* Hide the long title on mobile */
+        .premium-card .premium-title > span {
+            display: none;
+        }
+
+        /* Medium/PC View: Show the long title, hide the short title */
+        @media (min-width: 768px) {
+            .premium-card .premium-title[data-mobile-title]:before {
+                content: none;
+            }
+            .premium-card .premium-title > span {
+                display: inline;
+                font-size: 1.1rem; /* Reverts to original size setting in HTML */
+                font-weight: 700;
+            }
+        }
+        /* ------------------------------------------- */
+
 
         /* --- GRID AND RESPONSIVENESS (ग्रिड और प्रतिक्रियाशीलता) --- */
         .card-grid-container {
@@ -194,7 +222,7 @@
             }
         }
         
-        /* ADJUSTED: 4 cards in a row for screens >= 1200px (to fit 11 cards elegantly) */
+        /* ADJUSTED: 4 cards in a row for screens >= 1200px (to fit 10 cards elegantly) */
         @media(min-width: 1200px){
             .card-grid-container {
                 grid-template-columns: repeat(4, 1fr); 
@@ -455,13 +483,13 @@
                     </div>
 
                     <!-- Link 3: Custom Mehndi (Direct Link) -->
-                    <a href="custom_mehndi.html" class="text-white text-lg relative group py-1 hover:text-primary">
+                    <a href="custom_mehndi.html" class="text-white text-lg relative py-1 hover:text-primary">
                         Custom
                         <span class="absolute left-0 bottom-0 h-1 w-0 bg-primary/70 group-hover:w-full transition-all duration-300 rounded-full"></span>
                     </a>
                     
                     <!-- Link 4: Meet Me (Direct Link) -->
-                    <a href="meet_me.html" class="text-white text-lg relative group py-1 hover:text-primary">
+                    <a href="meet_me.html" class="text-white text-lg relative py-1 hover:text-primary">
                         Meet Me
                         <span class="absolute left-0 bottom-0 h-1 w-0 bg-primary/70 group-hover:w-full transition-all duration-300 rounded-full"></span>
                     </a>
@@ -521,14 +549,14 @@
                 <div class="border-t border-primary/30 w-full my-4"></div>
 
                 <!-- Direct Link 3: Custom Mehndi -->
-                <a href="custom_mehndi.html" class="text-white text-lg relative group py-1 hover:text-primary">
+                <a href="custom_mehndi.html" class="text-white text-lg relative py-1 hover:text-primary">
                     Custom Mehndi
                     <span class="absolute left-0 bottom-0 h-1 w-0 bg-primary/70 group-hover:w-full transition-all duration-300 rounded-full"></span>
                 </a>
                 <div class="border-t border-primary/30 w-full my-4"></div>
                 
                 <!-- Direct Link 4: Meet Me -->
-                <a href="meet_me.html" class="text-white text-lg relative group py-1 hover:text-primary">
+                <a href="meet_me.html" class="text-white text-lg relative py-1 hover:text-primary">
                     Meet Me
                     <span class="absolute left-0 bottom-0 h-1 w-0 bg-primary/70 group-hover:w-full transition-all duration-300 rounded-full"></span>
                 </a>
@@ -559,8 +587,7 @@
             <section class="latest-forms">
                 <!-- Title is now placed relative to the inner section for Z-index -->
                 <div class="text-center mb-6">
-                    <!-- Updated class to use primary color glow -->
-                    <h2 class="text-2xl sm:text-3xl font-extrabold text-primary-glow border-b-4 border-primary/50 inline-block px-4 pb-1"></h2>
+                    <!-- Customisable Main Heading (Removed spotlight heading to only use modal title) -->
                 </div>
                 
                 <div class="slider-container relative">
@@ -575,115 +602,126 @@
         </div>
         <!-- END SLIDE SECTION WRAPPER -->
 
-        <!-- NEW HEADING ADDED HERE -->
+        <!-- CARD SECTION HEADING -->
         <div class="text-center mb-8 mt-4">
             <h2 class="text-xl md:text-4xl font-extrabold text-primary-glow border-b-4 border-primary/50 inline-block px-6 pb-2 uppercase tracking-wide">
                 Our Service Types
             </h2>
         </div>
-        <!-- END NEW HEADING -->
+        <!-- END CARD SECTION HEADING -->
 
         <section id="service-cards">
-            <!-- Grid container now optimized for 11 cards -->
+            <!-- Grid container now optimized for 11 cards (10 styles + 1 Micro Bank) -->
             <div class="card-grid-container">
                 
-                <!-- CARD 1: Minimal Indo-Western Bridal Mehndi -->
+                <!-- CARD 1: Indo–Western Minimal Bridal Mehndi -->
                 <div class="premium-card" id="premium-card-1">
                     <div class="inner-box">
-                        <img src="https://placehold.co/300x170/331A1A/FFC72C?text=Minimal+Style" alt="Minimal Indo-Western" onerror="this.onerror=null;this.src='https://placehold.co/300x170/331A1A/FFC72C?text=Minimal+Style';">
+                        <img src="https://placehold.co/300x170/331A1A/FFC72C?text=Minimal+Indo" alt="Indo–Western Minimal Bridal Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/331A1A/FFC72C?text=Minimal+Indo';">
                     </div>
-                    <div class="premium-title">Minimal Indo-Western</div>
-                    <div class="premium-desc">Single-line trails, open space florals, dot-work, and geometric minimalism.</div>
+                    <!-- Custom Heading -->
+                    <div class="premium-title" data-mobile-title="1. Minimal Indo-West"><span>1. Indo–Western Minimal</span></div>
+                    <div class="premium-desc">Wrist Bands, Finger Trails, Negative-Space Minimal.</div>
                 </div>
 
-                <!-- CARD 2: Geometric Indo-Western Bridal Mehndi -->
+                <!-- CARD 2: Indo–Western Geometric Bridal Mehndi -->
                 <div class="premium-card" id="premium-card-2">
                     <div class="inner-box">
-                        <img src="https://placehold.co/300x170/221A33/FFC72C?text=Geometric+Grid" alt="Geometric Indo-Western" onerror="this.onerror=null;this.src='https://placehold.co/300x170/221A33/FFC72C?text=Geometric+Grid';">
+                        <img src="https://placehold.co/300x170/221A33/FFC72C?text=Geometric+Indo" alt="Indo–Western Geometric Bridal Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/221A33/FFC72C?text=Geometric+Indo';">
                     </div>
-                    <div class="premium-title">Geometric Indo-Western</div>
-                    <div class="premium-desc">Triangle–Diamond patterns, grid designs, and symmetric wrist bands.</div>
+                    <!-- Custom Heading -->
+                    <div class="premium-title" data-mobile-title="2. Geometric Indo-West"><span>2. Indo–Western Geometric</span></div>
+                    <div class="premium-desc">Triangle/Diamond, Square/Grid, and Diamond Layering.</div>
                 </div>
 
-                <!-- CARD 3: Modern Fusion Indo-Western Mehndi -->
+                <!-- CARD 3: Indo–Western Floral Fusion Mehndi -->
                 <div class="premium-card" id="premium-card-3">
                     <div class="inner-box">
-                        <img src="https://placehold.co/300x170/1A2733/FFC72C?text=Modern+Fusion" alt="Modern Fusion Indo-Western" onerror="this.onerror=null;this.src='https://placehold.co/300x170/1A2733/FFC72C?text=Modern+Fusion';">
+                        <img src="https://placehold.co/300x170/1A2733/FFC72C?text=Floral+Fusion" alt="Indo–Western Floral Fusion Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/1A2733/FFC72C?text=Floral+Fusion';">
                     </div>
-                    <div class="premium-title">Modern Fusion Style</div>
-                    <div class="premium-desc">Abstract doodles, modern shapes, artistic wrist cuffs, and bracelet styles.</div>
+                    <!-- Custom Heading -->
+                    <div class="premium-title" data-mobile-title="3. Floral Fusion"><span>3. Indo–Western Floral Fusion</span></div>
+                    <div class="premium-desc">Western Roses, Lotus + Modern Leaves, and Floral Chains.</div>
                 </div>
 
-                <!-- CARD 4: Tattoo-Style Indo-Western Bridal Mehndi -->
+                <!-- CARD 4: Mandala + Western Art Fusion Mehndi -->
                 <div class="premium-card" id="premium-card-4">
                     <div class="inner-box">
-                        <img src="https://placehold.co/300x170/332D1A/FFC72C?text=Tattoo+Fusion" alt="Tattoo-Style Indo-Western" onerror="this.onerror=null;this.src='https://placehold.co/300x170/332D1A/FFC72C?text=Tattoo+Fusion';">
+                        <img src="https://placehold.co/300x170/332D1A/FFC72C?text=Mandala+West" alt="Mandala + Western Art Fusion Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/332D1A/FFC72C?text=Mandala+West';">
                     </div>
-                    <div class="premium-title">Tattoo-Style Fusion</div>
-                    <div class="premium-desc">Black-ink inspired, wrist/arm tattoo styles, and typography integration.</div>
+                    <!-- Custom Heading -->
+                    <div class="premium-title" data-mobile-title="4. Mandala Fusion"><span>4. Mandala + Western Art Fusion</span></div>
+                    <div class="premium-desc">Half Mandala, Mandala Wrist Cuff, and Layered Mandala.</div>
                 </div>
 
-                <!-- CARD 5: Jewellery-Inspired Indo-Western Bridal Mehndi -->
+                <!-- CARD 5: Indo–Western Bracelet & Jewelry Mehndi -->
                 <div class="premium-card" id="premium-card-5">
                     <div class="inner-box">
-                        <img src="https://placehold.co/300x170/10241D/FFC72C?text=Jewellery+Mehndi" alt="Jewellery-Inspired" onerror="this.onerror=null;this.src='https://placehold.co/300x170/10241D/FFC72C?text=Jewellery+Mehndi';">
+                        <img src="https://placehold.co/300x170/10241D/FFC72C?text=Jewelry+Mehndi" alt="Indo–Western Bracelet & Jewelry Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/10241D/FFC72C?text=Jewelry+Mehndi';">
                     </div>
-                    <div class="premium-title">Jewellery-Inspired</div>
-                    <div class="premium-desc">Haath-Phool, Bracelet-Kada, Ring-Style, Anklet, and Armlet Fusion designs.</div>
+                    <!-- Custom Heading -->
+                    <div class="premium-title" data-mobile-title="5. Jewelry Mehndi"><span>5. Indo–Western Jewelry Mehndi</span></div>
+                    <div class="premium-desc">Bracelet Chains, Finger Rings, and Hand Harness (Hathphool).</div>
                 </div>
                 
-                <!-- CARD 6: Mandala Indo-Western Bridal Mehndi -->
+                <!-- CARD 6: Indo–Western Abstract Bridal Mehndi -->
                 <div class="premium-card" id="premium-card-6">
                     <div class="inner-box">
-                        <img src="https://placehold.co/300x170/5C2828/FFC72C?text=Mandala+Fusion" alt="Mandala Indo-Western" onerror="this.onerror=null;this.src='https://placehold.co/300x170/5C2828/FFC72C?text=Mandala+Fusion';">
+                        <img src="https://placehold.co/300x170/5C2828/FFC72C?text=Abstract+Lines" alt="Indo–Western Abstract Bridal Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/5C2828/FFC72C?text=Abstract+Lines';">
                     </div>
-                    <div class="premium-title">Mandala Fusion</div>
-                    <div class="premium-desc">Western Mandala, Mandala + Geometry, Centerpiece Minimal, and Cuff styles.</div>
+                    <!-- Custom Heading -->
+                    <div class="premium-title" data-mobile-title="6. Abstract Indo-West"><span>6. Indo–Western Abstract Bridal</span></div>
+                    <div class="premium-desc">Freeform Lines, Asymmetrical Art, and Modern Minimal Abstract.</div>
                 </div>
 
-                <!-- CARD 7: Portrait + Western Fusion Bridal Mehndi -->
+                <!-- CARD 7: Indo–Western Tattoo-Style Bridal Mehndi -->
                 <div class="premium-card" id="premium-card-7">
                     <div class="inner-box">
-                        <img src="https://placehold.co/300x170/242010/FFC72C?text=Portrait+Western" alt="Portrait + Western Fusion" onerror="this.onerror=null;this.src='https://placehold.co/300x170/242010/FFC72C?text=Portrait+Western';">
+                        <img src="https://placehold.co/300x170/242010/FFC72C?text=Tattoo+Style" alt="Indo–Western Tattoo-Style Bridal Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/242010/FFC72C?text=Tattoo+Style';">
                     </div>
-                    <div class="premium-title">Portrait + Western Fusion</div>
-                    <div class="premium-desc">Western Outfit Portrait, Silhouette, Love-Story, and Western Font Initials.</div>
+                    <!-- Custom Heading -->
+                    <div class="premium-title" data-mobile-title="7. Tattoo Style"><span>7. Indo–Western Tattoo-Style</span></div>
+                    <div class="premium-desc">Finger/Arm Tattoo, and Shoulder/Back Tattoo Mehndi.</div>
                 </div>
 
-                <!-- CARD 8: Floral Indo-Western Bridal Mehndi -->
+                <!-- CARD 8: Indo–Western Glitter Fusion Bridal Mehndi -->
                 <div class="premium-card" id="premium-card-8">
                     <div class="inner-box">
-                        <img src="https://placehold.co/300x170/1C3144/FFC72C?text=Floral+Indo+West" alt="Floral Indo-Western" onerror="this.onerror=null;this.src='https://placehold.co/300x170/1C3144/FFC72C?text=Floral+Indo+West';">
+                        <img src="https://placehold.co/300x170/1C3144/FFC72C?text=Glitter+Fusion" alt="Indo–Western Glitter Fusion Bridal Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/1C3144/FFC72C?text=Glitter+Fusion';">
                     </div>
-                    <div class="premium-title">Floral Indo-Western</div>
-                    <div class="premium-desc">Rose Motif Fusion, Western Bouquet, 3D/Shaded Floral, and Vine Mix.</div>
+                    <!-- Custom Heading -->
+                    <div class="premium-title" data-mobile-title="8. Glitter Fusion"><span>8. Indo–Western Glitter Fusion</span></div>
+                    <div class="premium-desc">Glitter Trail, Dual-Color Fusion, and Glitter Mandala.</div>
                 </div>
                 
-                <!-- CARD 9: Western Motif Fusion Bridal Mehndi -->
+                <!-- CARD 9: Indo–Western Modern Shaded Mehndi -->
                 <div class="premium-card" id="premium-card-9">
                     <div class="inner-box">
-                        <img src="https://placehold.co/300x170/283C5C/FFC72C?text=Western+Motif" alt="Western Motif Fusion" onerror="this.onerror=null;this.src='https://placehold.co/300x170/283C5C/FFC72C?text=Western+Motif';">
+                        <img src="https://placehold.co/300x170/283C5C/FFC72C?text=Modern+Shaded" alt="Indo–Western Modern Shaded Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/283C5C/FFC72C?text=Modern+Shaded';">
                     </div>
-                    <div class="premium-title">Western Motif Fusion</div>
-                    <div class="premium-desc">Feathers, Dreamcatchers, Butterflies, Heart/Infinity, and Crown Motifs.</div>
+                    <!-- Custom Heading -->
+                    <div class="premium-title" data-mobile-title="9. Modern Shaded"><span>9. Indo–Western Modern Shaded</span></div>
+                    <div class="premium-desc">Soft Western Shading, Shadow Floral Fusion, and Shaded Mandala.</div>
                 </div>
                 
-                <!-- CARD 10: Glitter & Highlight Indo-Western Mehndi -->
+                <!-- CARD 10: Indo–Western Bridal Trails -->
                 <div class="premium-card" id="premium-card-10">
                     <div class="inner-box">
-                        <img src="https://placehold.co/300x170/3B285C/FFC72C?text=Glitter+Color" alt="Glitter & Highlight" onerror="this.onerror=null;this.src='https://placehold.co/300x170/3B285C/FFC72C?text=Glitter+Color';">
+                        <img src="https://placehold.co/300x170/3B285C/FFC72C?text=Bridal+Trails" alt="Indo–Western Bridal Trails" onerror="this.onerror=null;this.src='https://placehold.co/300x170/3B285C/FFC72C?text=Bridal+Trails';">
                     </div>
-                    <div class="premium-title">Glitter & Highlight</div>
-                    <div class="premium-desc">Silver/Gold accents, Stone/Bead Decor, Color-Fill, and Shine-Effect Outlining.</div>
+                    <!-- Custom Heading -->
+                    <div class="premium-title" data-mobile-title="10. Bridal Trails"><span>10. Indo–Western Bridal Trails</span></div>
+                    <div class="premium-desc">Diagonal, Extended Arm, and Finger-to-Wrist Trails.</div>
                 </div>
 
-                <!-- CARD 11: Full-Hand Indo-Western Bridal Mehndi (New Card) -->
+                <!-- CARD 11: Indo–Western Royal Fusion Bridal Mehndi -->
                 <div class="premium-card" id="premium-card-11">
                     <div class="inner-box">
-                        <img src="https://placehold.co/300x170/1A332D/FFC72C?text=Full+Hand+Fusion" alt="Full-Hand Indo-Western" onerror="this.onerror=null;this.src='https://placehold.co/300x170/1A332D/FFC72C?text=Full+Hand+Fusion';">
+                        <img src="https://placehold.co/300x170/1A332D/FFC72C?text=Royal+Fusion" alt="Indo–Western Royal Fusion Bridal Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/1A332D/FFC72C?text=Royal+Fusion';">
                     </div>
-                    <div class="premium-title">Full-Hand Fusion</div>
-                    <div class="premium-desc">Full Coverage, Arabic + Western Mix, Mandala + Western Fill, and Dual-Style Arms.</div>
+                    <!-- Custom Heading -->
+                    <div class="premium-title" data-mobile-title="11. Royal Fusion"><span>11. Indo–Western Royal Fusion</span></div>
+                    <div class="premium-desc">Royal Indian Motifs, Peacock + Modern Geometry, and Mughlai Arches.</div>
                 </div>
             </div>
         </section>
@@ -691,7 +729,6 @@
     <!-- END MAIN CONTENT AREA -->
     
     <!-- === FIXED BOTTOM NAVIGATION (निश्चित बॉटम नेविगेशन) === -->
-    <!-- Note: Bottom nav links simplified for 11 cards -->
     <nav 
         class="bottom-nav-fixed" 
         style="padding-bottom: env(safe-area-inset-bottom);" 
@@ -720,19 +757,19 @@
                 >
                     <i class="fas fa-home central-fab-icon"></i>
                 </a>
-                <span class="central-fab-label">Home</span>
+                <span class="font-medium">Home</span>
             </div>
             
-            <!-- Item 4: Tattoo (Card 4) -->
-            <a href="#premium-card-4" class="nav-item-shs w-1/5" onclick="scrollToSection('premium-card-4')">
+            <!-- Item 4: Tattoo (Card 7) -->
+            <a href="#premium-card-7" class="nav-item-shs w-1/5" onclick="scrollToSection('premium-card-7')">
                 <i class="fas fa-tattoo nav-icon-shs"></i>
                 <span class="font-medium">Tattoo</span>
             </a>
             
-            <!-- Item 5: Jewellery (Card 5) -->
-            <a href="#premium-card-5" class="nav-item-shs w-1/5" onclick="scrollToSection('premium-card-5')">
-                <i class="fas fa-ring nav-icon-shs"></i>
-                <span class="font-medium">Jewellery</span>
+            <!-- Item 5: Glam (Card 8) -->
+            <a href="#premium-card-8" class="nav-item-shs w-1/5" onclick="scrollToSection('premium-card-8')">
+                <i class="fas fa-gem nav-icon-shs"></i>
+                <span class="font-medium">Glam</span>
             </a>
             
         </div>
@@ -743,8 +780,9 @@
     <div id="location-modal-overlay" class="modal-overlay">
         <div id="location-modal-content" class="modal-content">
             <div class="flex justify-between items-center mb-4 p-2">
-                <h3 id="modal-title" class="text-xl font-bold text-primary-glow">Available Designs (डिज़ाइन)</h3>
-                <!-- CLOSE BUTTON ADDED HERE -->
+                <!-- MODAL TITLE IS NOW CUSTOMIZABLE -->
+                <h3 id="modal-title" class="text-xl font-bold text-primary-glow">Indo–Western Bridal Mehndi Master List</h3>
+                <!-- CLOSE BUTTON -->
                 <button id="modal-close-button-new" onclick="closeLocationModal()" class="text-white hover:text-primary transition-colors p-2 rounded-full hover:bg-white/10" aria-label="Close modal">
                     <i class="fas fa-times text-2xl"></i>
                 </button>
@@ -902,7 +940,7 @@
             showSlide(currentSlide);
             startAutoSlide();
 
-            // Re-adding listeners for the navigation buttons which were removed earlier
+            // Re-adding listeners for the navigation buttons
             const prevBtn = document.getElementById('prev-btn');
             const nextBtn = document.getElementById('next-btn');
 
@@ -927,127 +965,132 @@
         
         // --- START: MODAL/LOCATION SELECTION LOGIC (पॉपअप/लोकेशन चयन लॉजिक) ---
         const modalOverlay = document.getElementById('location-modal-overlay');
-        const modalCloseButton = document.getElementById('modal-close-button-new'); // USING NEW ID
+        const modalCloseButton = document.getElementById('modal-close-button-new'); 
         const modalTitle = document.getElementById('modal-title');
         const locationList = document.getElementById('location-list');
 
-        // Main Data Structure holding the full Indo-Western chart (11 main styles)
+        // Main Data Structure holding the full Indo-Western chart (11 styles)
         const locationData_All = {
-            'Minimal Indo-Western Bridal Mehndi': { 
-                'Single-Line Trail': ["Single-Line Trail"],
-                'Open-Space Floral Fusion': ["Open-Space Floral Fusion"],
-                'Dot-Work Minimal Design': ["Dot-Work Minimal Design"],
-                'Finger-Only Indo-Western': ["Finger-Only Indo-Western"],
-                'Geometric Minimal Fusion': ["Geometric Minimal Fusion"]
+            'Indo–Western Minimal Bridal Mehndi': { 
+                'Minimal Wrist Bands': { name: "Minimal Wrist Bands", link: "indo_west_minimal_bands.html", micro: ["Mini: Tiny florals", "Micro: 1-dot fillers"] },
+                'Minimal Finger Trails': { name: "Minimal Finger Trails", link: "indo_west_minimal_finger.html", micro: ["Mini: Straight vine", "Micro: Mini curve dots"] },
+                'Negative-Space Minimal': { name: "Negative-Space Minimal", link: "indo_west_minimal_negative.html", micro: ["Mini: Hollow leaves", "Micro: Cut-out micro spaces"] }
             },
-            'Geometric Indo-Western Bridal Mehndi': {
-                'Triangle–Diamond Pattern': ["Triangle–Diamond Pattern"],
-                'Mandala + Geometry Fusion': ["Mandala + Geometry Fusion"],
-                'Net/Grid Fusion Design': ["Net/Grid Fusion Design"],
-                'Western Line-Art Elements': ["Western Line-Art Elements"],
-                'Symmetric Wrist Bands': ["Symmetric Wrist Bands"]
+            'Indo–Western Geometric Bridal Mehndi': {
+                'Triangle Geometry': { name: "Triangle Geometry", link: "indo_west_geo_triangle.html", micro: ["Mini: Small triangles", "Micro: Micro-line shading"] },
+                'Square & Grid Western Style': { name: "Square & Grid Western Style", link: "indo_west_geo_grid.html", micro: ["Mini: Box patterns", "Micro: Grid fillers"] },
+                'Diamond Layering': { name: "Diamond Layering", link: "indo_west_geo_diamond.html", micro: ["Mini: Diamond chain", "Micro: Dot diamonds"] }
             },
-            'Modern Fusion Indo-Western Mehndi': {
-                'Abstract Fusion Patterns': ["Abstract Fusion Patterns"],
-                'Modern Doodles + Mehndi': ["Modern Doodles + Mehndi"],
-                'Floral + Western Shapes': ["Floral + Western Shapes"],
-                'Artistic Wrist Cuff': ["Artistic Wrist Cuff"],
-                'Bracelet-Style Western Design': ["Bracelet-Style Western Design"]
+            'Indo–Western Floral Fusion Mehndi': {
+                'Western Roses + Indian Vines': { name: "Western Roses + Indian Vines", link: "indo_west_floral_rose.html", micro: ["Mini: Soft rose petals", "Micro: Petal fade"] },
+                'Lotus + Modern Leaves': { name: "Lotus + Modern Leaves", link: "indo_west_floral_lotus.html", micro: ["Mini: Side lotus", "Micro: Micro-veins"] },
+                'Floral Chains': { name: "Floral Chains", link: "indo_west_floral_chains.html", micro: ["Mini: Linked buds", "Micro: Bead dots"] }
             },
-            'Tattoo-Style Indo-Western Bridal Mehndi': {
-                'Black-Ink Inspired Mehndi': ["Black-Ink Inspired Mehndi"],
-                'Minimal Tattoo Fusion': ["Minimal Tattoo Fusion"],
-                'Modern Wrist Tattoo Style': ["Modern Wrist Tattoo Style"],
-                'Shoulder/Arm Tattoo Fusion': ["Shoulder/Arm Tattoo Fusion"],
-                'Typography + Mehndi Tattoo': ["Typography + Mehndi Tattoo"]
+            'Mandala + Western Art Fusion Mehndi': {
+                'Half Mandala Mix': { name: "Half Mandala Mix", link: "indo_west_mandala_half.html", micro: ["Mini: Semi-circle petals", "Micro: Micro swirls"] },
+                'Mandala Wrist Cuff': { name: "Mandala Wrist Cuff", link: "indo_west_mandala_cuff.html", micro: ["Mini: Ring mandala", "Micro: Mini shading"] },
+                'Layered Mandala': { name: "Layered Mandala", link: "indo_west_mandala_layered.html", micro: ["Mini: Outer petals", "Micro: Tiny curves"] }
             },
-            'Jewellery-Inspired Indo-Western Bridal Mehndi': {
-                'Haath-Phool Style Mehndi': ["Haath-Phool Style Mehndi"],
-                'Bracelet-Kada Fusion': ["Bracelet-Kada Fusion"],
-                'Ring-Style Finger Design': ["Ring-Style Finger Design"],
-                'Anklet-Inspired Patterns': ["Anklet-Inspired Patterns"],
-                'Armlet (Bajuband) Fusion Design': ["Armlet (Bajuband) Fusion Design"]
+            'Indo–Western Bracelet & Jewelry Mehndi': {
+                'Bracelet Chains': { name: "Bracelet Chains", link: "indo_west_jewelry_bracelet.html", micro: ["Mini: Thin band chain", "Micro: Bead micro-dots"] },
+                'Finger Rings': { name: "Finger Rings", link: "indo_west_jewelry_ring.html", micro: ["Mini: Ring pattern", "Micro: Mini clasp dots"] },
+                'Hand Harness (Hathphool)': { name: "Hand Harness (Hathphool)", link: "indo_west_jewelry_hathphool.html", micro: ["Mini: Central flower", "Micro: Micro-connector lines"] }
             },
-            'Mandala Indo-Western Bridal Mehndi': {
-                'Western Mandala Fusion': ["Western Mandala Fusion"],
-                'Mandala + Leaves Trails': ["Mandala + Leaves Trails"],
-                'Mandala + Geometry': ["Mandala + Geometry"],
-                'Centerpiece Mandala Minimal': ["Centerpiece Mandala Minimal"],
-                'Mandala + Wrist Cuff': ["Mandala + Wrist Cuff"]
+            'Indo–Western Abstract Bridal Mehndi': {
+                'Freeform Abstract Lines': { name: "Freeform Abstract Lines", link: "indo_west_abstract_lines.html", micro: ["Mini: Wave strokes", "Micro: Micro-break lines"] },
+                'Asymmetrical Art': { name: "Asymmetrical Art", link: "indo_west_abstract_asym.html", micro: ["Mini: Off-center vines", "Micro: Dot accents"] },
+                'Modern Minimal Abstract': { name: "Modern Minimal Abstract", link: "indo_west_abstract_minimal.html", micro: ["Mini: Single shape", "Micro: Bare-space lines"] }
             },
-            'Portrait + Western Fusion Bridal Mehndi': {
-                'Bride/Groom Portrait (Western Outfit)': ["Bride/Groom Portrait (Western Outfit)"],
-                'Couple Silhouette': ["Couple Silhouette"],
-                'Love-Story Western Theme': ["Love-Story Western Theme"],
-                'Initials/Names Western Font': ["Initials/Names Western Font"],
-                'Proposal-Theme Indo-Western': ["Proposal-Theme Indo-Western"]
+            'Indo–Western Tattoo-Style Bridal Mehndi': {
+                'Finger Tattoo Style': { name: "Finger Tattoo Style", link: "indo_west_tattoo_finger.html", micro: ["Mini: Mini arrows", "Micro: Micro stripes"] },
+                'Arm Tattoo Pattern': { name: "Arm Tattoo Pattern", link: "indo_west_tattoo_arm.html", micro: ["Mini: Outline motifs", "Micro: 1-line shading"] },
+                'Shoulder/Back Tattoo Mehndi': { name: "Shoulder/Back Tattoo Mehndi", link: "indo_west_tattoo_back.html", micro: ["Mini: Simple floral", "Micro: Micro beads"] }
             },
-            'Floral Indo-Western Bridal Mehndi': {
-                'Rose Motif Fusion': ["Rose Motif Fusion"],
-                'Western Bouquet Floral': ["Western Bouquet Floral"],
-                '3D Floral Western Style': ["3D Floral Western Style"],
-                'Shaded Floral Indo Fusion': ["Shaded Floral Indo Fusion"],
-                'Vine + Leaf Mix': ["Vine + Leaf Mix"]
+            'Indo–Western Glitter Fusion Bridal Mehndi': {
+                'Glitter Trail': { name: "Glitter Trail", link: "indo_west_glitter_trail.html", micro: ["Mini: Glitter outline", "Micro: Sparkle dots"] },
+                'Dual-Color Glitter Fusion': { name: "Dual-Color Glitter Fusion", link: "indo_west_glitter_dual.html", micro: ["Mini: Rose shine", "Micro: Color micro-shine"] },
+                'Glitter Mandala': { name: "Glitter Mandala", link: "indo_west_glitter_mandala.html", micro: ["Mini: Diamond shine", "Micro: Highlight fillers"] }
             },
-            'Western Motif Fusion Bridal Mehndi': {
-                'Feathers Fusion': ["Feathers Fusion"],
-                'Dreamcatcher Fusion': ["Dreamcatcher Fusion"],
-                'Butterfly Patterns': ["Butterfly Patterns"],
-                'Heart/Infinity Symbols': ["Heart/Infinity Symbols"],
-                'Crown & Queen Motifs': ["Crown & Queen Motifs"]
+            'Indo–Western Modern Shaded Mehndi': {
+                'Soft Western Shading': { name: "Soft Western Shading", link: "indo_west_shaded_soft.html", micro: ["Mini: Gradient flowers", "Micro: Airbrush micro-lines"] },
+                'Shadow Floral Fusion': { name: "Shadow Floral Fusion", link: "indo_west_shaded_shadow.html", micro: ["Mini: Double outline", "Micro: Slight shade"] },
+                'Shaded Mandala Fusion': { name: "Shaded Mandala Fusion", link: "indo_west_shaded_mandala.html", micro: ["Mini: Half-shade petals", "Micro: Inner haze"] }
             },
-            'Glitter & Highlight Indo-Western Mehndi': {
-                'Silver Glitter Fusion': ["Silver Glitter Fusion"],
-                'Gold Highlight Mehndi': ["Gold Highlight Mehndi"],
-                'Stone/Bead Decor': ["Stone/Bead Decor"],
-                'Colored Indo-Western Fusion': ["Colored Indo-Western Fusion"],
-                'Shine-Effect Outlining': ["Shine-Effect Outlining"]
+            'Indo–Western Bridal Trails': {
+                'Diagonal Indo–Western Trail': { name: "Diagonal Indo–Western Trail", link: "indo_west_trails_diagonal.html", micro: ["Mini: Zig-zag vines", "Micro: Leaf dots"] },
+                'Extended Arm Trail': { name: "Extended Arm Trail", link: "indo_west_trails_extended.html", micro: ["Mini: Floral beads", "Micro: Micro swirls"] },
+                'Finger-to-Wrist Trail': { name: "Finger-to-Wrist Trail", link: "indo_west_trails_finger.html", micro: ["Mini: Straight chain", "Micro: Chain dots"] }
             },
-            'Full-Hand Indo-Western Bridal Mehndi': {
-                'Full Coverage Fusion': ["Full Coverage Fusion"],
-                'Arabic + Western Mix': ["Arabic + Western Mix"],
-                'Mandala + Western Fill': ["Mandala + Western Fill"],
-                'Dual-Style Fusion Arms': ["Dual-Style Fusion Arms"],
-                'Unified Front-Back Full Design': ["Unified Front-Back Full Design"]
+            'Indo–Western Royal Fusion Bridal Mehndi': { 
+                'Royal Indian Motifs + Western Vines': { name: "Royal Indian Motifs + Western Vines", link: "indo_west_royal_motifs.html", micro: ["Mini: Elephant outline", "Micro: Fine ears"] },
+                'Peacock + Modern Geometry': { name: "Peacock + Modern Geometry", link: "indo_west_royal_peacock.html", micro: ["Mini: Peacock feather", "Micro: Feather lines"] },
+                'Mughlai Arches + Western Minimalism': { name: "Mughlai Arches + Western Minimalism", link: "indo_west_royal_arches.html", micro: ["Mini: Arch top", "Micro: Micro strokes"] }
             }
         };
 
+
         const cardMap = {
-            'premium-card-1': 'Minimal Indo-Western Bridal Mehndi',
-            'premium-card-2': 'Geometric Indo-Western Bridal Mehndi',
-            'premium-card-3': 'Modern Fusion Indo-Western Mehndi',
-            'premium-card-4': 'Tattoo-Style Indo-Western Bridal Mehndi',
-            'premium-card-5': 'Jewellery-Inspired Indo-Western Bridal Mehndi',
-            'premium-card-6': 'Mandala Indo-Western Bridal Mehndi',
-            'premium-card-7': 'Portrait + Western Fusion Bridal Mehndi',
-            'premium-card-8': 'Floral Indo-Western Bridal Mehndi',
-            'premium-card-9': 'Western Motif Fusion Bridal Mehndi',
-            'premium-card-10': 'Glitter & Highlight Indo-Western Mehndi',
-            'premium-card-11': 'Full-Hand Indo-Western Bridal Mehndi' // New 11th card
+            'premium-card-1': 'Indo–Western Minimal Bridal Mehndi',
+            'premium-card-2': 'Indo–Western Geometric Bridal Mehndi',
+            'premium-card-3': 'Indo–Western Floral Fusion Mehndi',
+            'premium-card-4': 'Mandala + Western Art Fusion Mehndi',
+            'premium-card-5': 'Indo–Western Bracelet & Jewelry Mehndi',
+            'premium-card-6': 'Indo–Western Abstract Bridal Mehndi',
+            'premium-card-7': 'Indo–Western Tattoo-Style Bridal Mehndi',
+            'premium-card-8': 'Indo–Western Glitter Fusion Bridal Mehndi',
+            'premium-card-9': 'Indo–Western Modern Shaded Mehndi',
+            'premium-card-10': 'Indo–Western Bridal Trails',
+            'premium-card-11': 'Indo–Western Royal Fusion Bridal Mehndi' 
         };
 
 
         // Helper to extract the data for the modal based on card ID
         const getModalContent = (cardId) => {
             const mainStyle = cardMap[cardId];
-            if (!mainStyle || !locationData_All[mainStyle]) return null;
+            const dataRoot = locationData_All[mainStyle];
+            
+            if (!mainStyle || !dataRoot) return null;
 
-            const styleData = locationData_All[mainStyle];
             let locations = [];
 
-            // Flatten the dictionary into a list for the modal
-            Object.entries(styleData).forEach(([type, subs]) => {
-                locations.push({
-                    name: type,
-                    isTypeHeader: true
-                });
-                subs.forEach(sub => {
-                    locations.push({
-                        name: sub,
-                        isTypeHeader: false
+            // Helper function to process nested dictionary structure and add placeholder links
+            const processNestedData = (data) => {
+                if (typeof data === 'object' && data !== null && !Array.isArray(data)) { // FIX: Corrected ArrayArray to Array.isArray
+                    Object.entries(data).forEach(([key, value]) => {
+                        // Check for the known 'micro' structure
+                        if (value.name && value.link && Array.isArray(value.micro)) {
+                            // Mini-Type Header (Sub-type header)
+                            locations.push({ 
+                                name: `• ${value.name}`, 
+                                isTypeHeader: true,
+                                link: value.link 
+                            });
+                            // Micro-Types (Actual click items)
+                            value.micro.forEach(micro => {
+                                locations.push({ 
+                                    name: micro, 
+                                    isTypeHeader: false,
+                                    // Generating a placeholder link based on micro-type name for simplicity
+                                    link: `micro_${micro.toLowerCase().replace(/[^a-z0-9→]/g, '_')}.html` 
+                                });
+                            });
+                        } else {
+                            // This path shouldn't be hit for the Indo-Western data structure provided
+                            locations.push({ name: `--- ${key} ---`, isTypeHeader: true, isMajorHeader: true });
+                            processNestedData(value);
+                        }
                     });
-                });
-            });
+                } else if (Array.isArray(data)) {
+                    // This path is not used in the provided structure
+                    data.forEach(item => {
+                         locations.push({ name: item, isTypeHeader: false, link: `micro_${item.toLowerCase().replace(/[^a-z0-9→]/g, '_')}.html` });
+                    });
+                }
+            };
+            
+            // Start processing based on the main category type
+            // locations.push({ name: `--- ${mainStyle} ---`, isTypeHeader: true, isMajorHeader: true }); // Removed from modal body
+            processNestedData(dataRoot);
             
             return {
                 title: `${mainStyle} Designs`,
@@ -1061,21 +1104,56 @@
             const data = getModalContent(cardId);
             if (!data) return;
 
-            modalTitle.textContent = data.title;
+            // FIX: Set the modal title to the static, user-customizable text
+            // The user wants to set this manually in the HTML and expects it to stay static
+            
             locationList.innerHTML = ''; // Clear previous content
 
             data.locations.forEach(location => {
-                const item = document.createElement('div');
-                if (location.isTypeHeader) {
-                    // Style for the bold Type Header
-                    item.className = 'text-lg font-bold text-primary-glow mt-4 mb-2 p-2 border-b border-primary/50';
+                
+                // Style adjustment for multi-level data
+                if (location.isMajorHeader && location.isTypeHeader) {
+                    const item = document.createElement('div');
+                    item.className = 'text-xl font-bold text-primary-glow mt-6 mb-3 p-2 border-b-2 border-primary/50';
                     item.innerHTML = location.name;
-                } else {
-                    // Style for the Sub-Type Link
-                    item.className = 'location-item cursor-default'; // Made non-clickable for display
-                    item.innerHTML = `<span>${location.name}</span> <i class="fas fa-check text-green-400 text-sm"></i>`;
+                    locationList.appendChild(item);
+                } else if (location.isTypeHeader) {
+                     // Mini-Type Header (now clickable)
+                    const item = document.createElement('a');
+                    item.href = location.link;
+                    item.className = 'text-lg font-bold text-white mt-3 mb-1 px-2 block hover:text-primary transition-colors';
+                    item.innerHTML = location.name;
+                    
+                    // Added dummy link handling for Mini-Type Headers
+                    item.addEventListener('click', (e) => {
+                         e.preventDefault(); 
+                         closeLocationModal();
+                         setTimeout(() => {
+                            console.log(`Navigating to Mini-Type: ${location.link}`);
+                            // In a real application: window.location.href = location.link;
+                         }, 100); 
+                    });
+                    locationList.appendChild(item);
+                } 
+                
+                // MICRO-TYPE - Now a clickable link
+                else {
+                    const item = document.createElement('a');
+                    item.href = location.link;
+                    item.className = 'location-item text-sm py-2 px-4 hover:bg-primary/20 transition-colors'; 
+                    item.innerHTML = `<span>${location.name}</span> <i class="fas fa-arrow-right text-sm"></i>`;
+                    
+                    item.addEventListener('click', (e) => {
+                         e.preventDefault(); // Prevent default link behavior first
+                         closeLocationModal();
+                         
+                         // Navigate after closing modal
+                         setTimeout(() => {
+                            window.location.href = location.link; // ACTUAL NAVIGATION ADDED HERE
+                         }, 100); 
+                    });
+                    locationList.appendChild(item);
                 }
-                locationList.appendChild(item);
             });
 
             // Show Modal
@@ -1091,7 +1169,7 @@
             modalOverlay.style.opacity = 0;
             // Hide after transition completes
             setTimeout(() => {
-                modalOverlay.style.display = 'none';
+                document.getElementById('location-modal-overlay').style.display = 'none';
                 document.body.style.overflow = ''; 
             }, 300);
         }
@@ -1100,8 +1178,8 @@
         // Attaching close logic to the new button ID
         document.getElementById('modal-close-button-new').addEventListener('click', closeLocationModal);
         // Attaching click outside modal logic
-        modalOverlay.addEventListener('click', (e) => {
-            if (e.target === modalOverlay) {
+        document.getElementById('location-modal-overlay').addEventListener('click', (e) => {
+            if (e.target === document.getElementById('location-modal-overlay')) {
                 closeLocationModal();
             }
         });
@@ -1197,7 +1275,6 @@
             document.getElementById('premium-card-8').addEventListener('click', () => showDetailedModal('premium-card-8'));
             document.getElementById('premium-card-9').addEventListener('click', () => showDetailedModal('premium-card-9'));
             document.getElementById('premium-card-10').addEventListener('click', () => showDetailedModal('premium-card-10'));
-            // New 11th card listener
             document.getElementById('premium-card-11').addEventListener('click', () => showDetailedModal('premium-card-11'));
         });
         
