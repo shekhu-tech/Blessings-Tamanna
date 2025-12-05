@@ -58,11 +58,14 @@
             background-image: url('bridal.png');
         }
 
+        /* Removed #bg-video-pc CSS and associated media query logic */
+
+
         .fixed-header-container {
             position: fixed; top: 0; left: 0; right: 0; z-index: 100;
         }
         
-        /* --- MOBILE SIDEBAR STYLES (मोबाइल साइडबार) --- */
+        /* --- MOBILE SIDEBAR STYLES (मोबाइल साइडबार) */
         .mobile-menu-panel {
             top: 85px; 
             height: calc(100vh - 165px);
@@ -167,8 +170,36 @@
         }
         .premium-desc {
             margin-top:8px; font-size:15px; line-height:1.4; color:#e9e9e9;
-            opacity:0.95; text-align: center; margin-bottom: 5px;
+            opacity:0.95;
+            text-align: center; margin-bottom: 5px;
         }
+
+        /* --- CUSTOM CSS FOR RESPONSIVE HEADINGS --- */
+        /* Default (Mobile First): Use data-mobile-title for smaller text */
+        .premium-card .premium-title[data-mobile-title]:before {
+            content: attr(data-mobile-title);
+            display: block;
+            font-size: 1.1rem; /* Slightly larger than original font size for the short title */
+            font-weight: 800;
+        }
+        /* Hide the long title on mobile */
+        .premium-card .premium-title > span {
+            display: none;
+        }
+
+        /* Medium/PC View: Show the long title, hide the short title */
+        @media (min-width: 768px) {
+            .premium-card .premium-title[data-mobile-title]:before {
+                content: none;
+            }
+            .premium-card .premium-title > span {
+                display: inline;
+                font-size: 1.1rem; /* Reverts to original size setting in HTML */
+                font-weight: 700;
+            }
+        }
+        /* ------------------------------------------- */
+
 
         /* --- GRID AND RESPONSIVENESS (ग्रिड और प्रतिक्रियाशीलता) --- */
         .card-grid-container {
@@ -191,10 +222,16 @@
             }
         }
         
-        /* ADJUSTED: 4 cards in a row for screens >= 1400px (Large PC) for 6 items (4x2 or 3x2) */
-        @media(min-width: 1400px){
+        /* ADJUSTED: 4 cards in a row for screens >= 1200px (to fit 10 cards elegantly) */
+        @media(min-width: 1200px){
             .card-grid-container {
                 grid-template-columns: repeat(4, 1fr); 
+            }
+        }
+        /* New: 5 cards across on very large screens (1400px+) */
+        @media(min-width: 1400px){
+            .card-grid-container {
+                grid-template-columns: repeat(5, 1fr); 
             }
         }
         
@@ -400,6 +437,7 @@
     
     <!-- BACKGROUND MEDIA ELEMENTS -->
     <div id="fixed-media-background"></div>
+    <!-- Removed video element #bg-video-pc -->
     <!-- END BACKGROUND MEDIA ELEMENTS -->
 
     <!-- HEADER (शीर्षक) -->
@@ -408,13 +446,15 @@
               <div class="container mx-auto flex justify-between items-center px-2 sm:px-4" style="padding-top: env(safe-area-inset-top);">
                 <!-- Logo and Title (लोगो और शीर्षक) -->
                 <a href="main.html" class="flex items-center no-underline">
+                  <!-- rentist.jpg इमेज का उपयोग किया गया -->
                   <img src="blessingsssl.png" alt="Rentist Logo" class="h-10 w-10 mr-3 rounded-full border border-primary/50 object-cover" onerror="this.onerror=null;this.src='https://placehold.co/48x48/1C3144/76FF03?text=R';"/>
                    <span class="text-xl sm:text-3xl font-extrabold text-white tracking-tight flex items-center">
-                    <img src="blessingsss.png" alt="Logo" class="h-[35px] w-auto object-contain inline-block" onerror="this.onerror=null;this.src='https://placehold.co/100x35/1C3144/76FF03?text=SkillAurA';" />
+                    <img src="blessingsss.png" alt="Logo" class="h-[35px] w-auto object-contain inline-block" onerror="this.onerror=null;this.src='https://placehold.co/100x35/1C3144/76FF03?text=SkillAurA';" /> <!-- Placeholder color changed -->
                   </span>
                 </a>
 
                 <!-- Desktop Navigation (डेस्कटॉप नेविगेशन) -->
+                <!-- UPDATED CLASS for 1200px breakpoint logic -->
                 <div class="desktop-nav-area hidden items-center space-x-10">
                   <nav class="flex space-x-8 font-extrabold">
                     
@@ -434,7 +474,7 @@
                     <div class="relative group">
                         <a href="#" class="text-white text-lg relative py-1 hover:text-primary flex items-center">
                             Festive <i class="fas fa-caret-down ml-1 text-xs transition-transform duration-300 group-hover:rotate-180"></i>
-                            <span class="absolute left-0 bottom-0 h-1 w-0 bg-primary/70 group-hover:w-full transition-all duration-300 rounded-full"></span>
+                            <span class="absolute left:0 bottom-0 h:1 w-0 bg-primary/70 group-hover:w-full transition-all duration-300 rounded-full"></span>
                         </a>
                         <!-- Dropdown Content Container -->
                         <div id="dropdown-festive" class="absolute hidden group-hover:block w-64 mt-2 bg-premium-bg-dark border border-primary/50 rounded-xl shadow-2xl z-50 p-2 transform origin-top transition-all duration-300 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 translate-y-2">
@@ -443,13 +483,13 @@
                     </div>
 
                     <!-- Link 3: Custom Mehndi (Direct Link) -->
-                    <a href="custom_mehndi.html" class="text-white text-lg relative group py-1 hover:text-primary">
+                    <a href="custom_mehndi.html" class="text-white text-lg relative py-1 hover:text-primary">
                         Custom
                         <span class="absolute left-0 bottom-0 h-1 w-0 bg-primary/70 group-hover:w-full transition-all duration-300 rounded-full"></span>
                     </a>
                     
                     <!-- Link 4: Meet Me (Direct Link) -->
-                    <a href="meet_me.html" class="text-white text-lg relative group py-1 hover:text-primary">
+                    <a href="meet_me.html" class="text-white text-lg relative py-1 hover:text-primary">
                         Meet Me
                         <span class="absolute left-0 bottom-0 h-1 w-0 bg-primary/70 group-hover:w-full transition-all duration-300 rounded-full"></span>
                     </a>
@@ -509,14 +549,14 @@
                 <div class="border-t border-primary/30 w-full my-4"></div>
 
                 <!-- Direct Link 3: Custom Mehndi -->
-                <a href="custom_mehndi.html" class="text-white text-lg relative group py-1 hover:text-primary">
+                <a href="custom_mehndi.html" class="text-white text-lg relative py-1 hover:text-primary">
                     Custom Mehndi
                     <span class="absolute left-0 bottom-0 h-1 w-0 bg-primary/70 group-hover:w-full transition-all duration-300 rounded-full"></span>
                 </a>
                 <div class="border-t border-primary/30 w-full my-4"></div>
                 
                 <!-- Direct Link 4: Meet Me -->
-                <a href="meet_me.html" class="text-white text-lg relative group py-1 hover:text-primary">
+                <a href="meet_me.html" class="text-white text-lg relative py-1 hover:text-primary">
                     Meet Me
                     <span class="absolute left-0 bottom-0 h-1 w-0 bg-primary/70 group-hover:w-full transition-all duration-300 rounded-full"></span>
                 </a>
@@ -547,75 +587,141 @@
             <section class="latest-forms">
                 <!-- Title is now placed relative to the inner section for Z-index -->
                 <div class="text-center mb-6">
-                    <!-- Updated class to use primary color glow -->
-                    <h2 class="text-2xl sm:text-3xl font-extrabold text-primary-glow border-b-4 border-primary/50 inline-block px-4 pb-1"></h2>
+                    <!-- Customisable Main Heading (Removed spotlight heading to only use modal title) -->
                 </div>
                 
                 <div class="slider-container relative">
                     <!-- Slides Wrapper will contain the dynamic content over the image -->
                     <div id="slides-wrapper" class="relative w-full h-full"></div>
- 
+
+                    <!-- Navigation Buttons -->
+                    <button id="prev-btn" class="absolute top-1/2 left-4 transform -translate-y-1/2 bg-white bg-opacity-15 hover:bg-opacity-25 text-primary p-2 rounded-full shadow-lg transition-all z-20">❮</button>
+                    <button id="next-btn" class="absolute top-1/2 right-4 transform -translate-y-1/2 bg-white bg-opacity-15 hover:bg-opacity-25 text-primary p-2 rounded-full shadow-lg transition-all z-20">❯</button>
+                    
             </section>
         </div>
         <!-- END SLIDE SECTION WRAPPER -->
 
-        <!-- START: Updated Card Grid for 6 Styles -->
-        <section class="mb-12">
-            <h2 class="text-2xl sm:text-3xl font-extrabold text-primary-glow text-center mb-8 border-b-4 border-primary/50 inline-block px-4 pb-1 mx-auto block">Arabic Festive Mehndi</h2>
+        <!-- CARD SECTION HEADING -->
+        <div class="text-center mb-8 mt-4">
+            <h2 class="text-xl md:text-4xl font-extrabold text-primary-glow border-b-4 border-primary/50 inline-block px-6 pb-2 uppercase tracking-wide">
+                Our Service Types
+            </h2>
+        </div>
+        <!-- END CARD SECTION HEADING -->
+
+        <section id="service-cards">
+            <!-- Grid container now optimized for 11 cards (10 styles + 1 Micro Bank) -->
             <div class="card-grid-container">
                 
-                <!-- CARD 1: Classic Arabic Festive Mehndi -->
+                <!-- CARD 1: Simple Arabic Festive Mehndi -->
                 <div class="premium-card" id="premium-card-1">
                     <div class="inner-box">
-                        <img src="https://placehold.co/300x170/331A1A/FFC72C?text=Classic+Festive" alt="Classic Arabic Festive Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/331A1A/FFC72C?text=Classic+Festive';">
+                        <img src="https://placehold.co/300x170/331A1A/FFC72C?text=Simple+Arabic" alt="Simple Arabic Festive Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/331A1A/FFC72C?text=Simple+Arabic';">
                     </div>
-                    <div class="premium-title">Classic Arabic Festive Mehndi</div>
-                    <div class="premium-desc">Bold outlines, flowing vines, and traditional floral patterns.</div>
+                    <!-- Custom Heading -->
+                    <div class="premium-title" data-mobile-title="1. Simple Festive"><span>1. Simple Arabic Festive</span></div>
+                    <div class="premium-desc">Floral, Leaf, and Curve Trails with simple shading.</div>
                 </div>
 
-                <!-- CARD 2: Shaded Arabic Festive Mehndi -->
+                <!-- CARD 2: Bold-Outline Arabic Festive Mehndi -->
                 <div class="premium-card" id="premium-card-2">
                     <div class="inner-box">
-                        <img src="https://placehold.co/300x170/221A33/FFC72C?text=Shaded+Festive" alt="Shaded Arabic Festive Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/221A33/FFC72C?text=Shaded+Festive';">
+                        <img src="https://placehold.co/300x170/221A33/FFC72C?text=Bold+Outline" alt="Bold-Outline Arabic Festive Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/221A33/FFC72C?text=Bold+Outline';">
                     </div>
-                    <div class="premium-title">Shaded Arabic Festive Mehndi</div>
-                    <div class="premium-desc">Dark–light shading effects for depth in floral and leaf designs.</div>
+                    <!-- Custom Heading -->
+                    <div class="premium-title" data-mobile-title="2. Bold Outline"><span>2. Bold-Outline Arabic Festive</span></div>
+                    <div class="premium-desc">Thick Floral, Bold Curve Trails, and Heavy Leaf designs.</div>
                 </div>
 
-                <!-- CARD 3: Gulf / Khaleeji Arabic Festive Mehndi -->
+                <!-- CARD 3: Shaded Arabic Festive Mehndi -->
                 <div class="premium-card" id="premium-card-3">
                     <div class="inner-box">
-                        <img src="https://placehold.co/300x170/1A2733/FFC72C?text=Khaleeji+Festive" alt="Gulf / Khaleeji Arabic Festive Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/1A2733/FFC72C?text=Khaleeji+Festive';">
+                        <img src="https://placehold.co/300x170/1A2733/FFC72C?text=Shaded+Arabic" alt="Shaded Arabic Festive Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/1A2733/FFC72C?text=Shaded+Arabic';">
                     </div>
-                    <div class="premium-title">Gulf / Khaleeji Arabic Festive Mehndi</div>
-                    <div class="premium-desc">Thick strokes, heavy shading, and elaborate finger work.</div>
+                    <!-- Custom Heading -->
+                    <div class="premium-title" data-mobile-title="3. Shaded Festive"><span>3. Shaded Arabic Festive</span></div>
+                    <div class="premium-desc">Soft Shaded Flowers, Leaf Vine Shading, and Shadow Arabic.</div>
                 </div>
 
-                <!-- CARD 4: Minimal Arabic Festive Mehndi -->
+                <!-- CARD 4: Finger-Focused Arabic Festive Mehndi -->
                 <div class="premium-card" id="premium-card-4">
                     <div class="inner-box">
-                        <img src="https://placehold.co/300x170/332D1A/FFC72C?text=Minimal+Festive" alt="Minimal Arabic Festive Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/332D1A/FFC72C?text=Minimal+Festive';">
+                        <img src="https://placehold.co/300x170/332D1A/FFC72C?text=Finger+Focus" alt="Finger-Focused Arabic Festive Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/332D1A/FFC72C?text=Finger+Focus';">
                     </div>
-                    <div class="premium-title">Minimal Arabic Festive Mehndi</div>
-                    <div class="premium-desc">Clean, simple, and elegant patterns suitable for quick festive occasions.</div>
+                    <!-- Custom Heading -->
+                    <div class="premium-title" data-mobile-title="4. Finger Focused"><span>4. Finger-Focused Arabic Festive</span></div>
+                    <div class="premium-desc">Finger Top, Finger Bands, and Full Finger Trails.</div>
                 </div>
 
-                <!-- CARD 5: Rose Arabic Festive Mehndi -->
+                <!-- CARD 5: Wrist & Bracelet Arabic Festive Mehndi -->
                 <div class="premium-card" id="premium-card-5">
                     <div class="inner-box">
-                        <img src="https://placehold.co/300x170/10241D/FFC72C?text=Rose+Festive" alt="Rose Arabic Festive Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/10241D/FFC72C?text=Rose+Festive';">
+                        <img src="https://placehold.co/300x170/10241D/FFC72C?text=Wrist+Bracelet" alt="Wrist & Bracelet Arabic Festive Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/10241D/FFC72C?text=Wrist+Bracelet';">
                     </div>
-                    <div class="premium-title">Rose Arabic Festive Mehndi</div>
-                    <div class="premium-desc">Dominated by bold rose motifs, trails, and rose mandala styles.</div>
+                    <!-- Custom Heading -->
+                    <div class="premium-title" data-mobile-title="5. Wrist/Bracelet"><span>5. Wrist & Bracelet Arabic Festive</span></div>
+                    <div class="premium-desc">Bracelet Arabic, Half-Cuff, and Wrist Mandala Fusion.</div>
                 </div>
                 
-                <!-- CARD 6: Indo-Arabic Festive Mehndi -->
+                <!-- CARD 6: Quick Festive Arabic Trails -->
                 <div class="premium-card" id="premium-card-6">
                     <div class="inner-box">
-                        <img src="https://placehold.co/300x170/5C2828/FFC72C?text=Indo+Arabic+Festive" alt="Indo-Arabic Festive Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/5C2828/FFC72C?text=Indo+Arabic+Festive';">
+                        <img src="https://placehold.co/300x170/5C2828/FFC72C?text=Quick+Trails" alt="Quick Festive Arabic Trails" onerror="this.onerror=null;this.src='https://placehold.co/300x170/5C2828/FFC72C?text=Quick+Trails';">
                     </div>
-                    <div class="premium-title">Indo-Arabic Festive Mehndi</div>
-                    <div class="premium-desc">A beautiful fusion of Arabic flow and Indian traditional fills (jaali, mandala).</div>
+                    <!-- Custom Heading -->
+                    <div class="premium-title" data-mobile-title="6. Quick Trails"><span>6. Quick Festive Arabic Trails</span></div>
+                    <div class="premium-desc">Diagonal Trail, Side Trail, and Finger-to-Wrist Trails.</div>
+                </div>
+
+                <!-- CARD 7: Empty-Space Arabic Festive Mehndi -->
+                <div class="premium-card" id="premium-card-7">
+                    <div class="inner-box">
+                        <img src="https://placehold.co/300x170/242010/FFC72C?text=Empty+Space" alt="Empty-Space Arabic Festive Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/242010/FFC72C?text=Empty+Space';">
+                    </div>
+                    <!-- Custom Heading -->
+                    <div class="premium-title" data-mobile-title="7. Empty Space"><span>7. Empty-Space Arabic Festive</span></div>
+                    <div class="premium-desc">Negative Space Flowers, Gap-Based Arabic, and Hollow Vine Work.</div>
+                </div>
+
+                <!-- CARD 8: Modern Minimal Arabic Festive Mehndi -->
+                <div class="premium-card" id="premium-card-8">
+                    <div class="inner-box">
+                        <img src="https://placehold.co/300x170/1C3144/FFC72C?text=Minimal+Modern" alt="Modern Minimal Arabic Festive Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/1C3144/FFC72C?text=Minimal+Modern';">
+                    </div>
+                    <!-- Custom Heading -->
+                    <div class="premium-title" data-mobile-title="8. Modern Minimal"><span>8. Modern Minimal Arabic Festive</span></div>
+                    <div class="premium-desc">Minimal Roses, Minimal Trail, and Minimal Finger Art.</div>
+                </div>
+                
+                <!-- CARD 9: Dual-Tone Arabic Festive Mehndi -->
+                <div class="premium-card" id="premium-card-9">
+                    <div class="inner-box">
+                        <img src="https://placehold.co/300x170/283C5C/FFC72C?text=Dual+Tone" alt="Dual-Tone Arabic Festive Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/283C5C/FFC72C?text=Dual+Tone';">
+                    </div>
+                    <!-- Custom Heading -->
+                    <div class="premium-title" data-mobile-title="9. Dual-Tone Arabic"><span>9. Dual-Tone Arabic Festive</span></div>
+                    <div class="premium-desc">Brown + Black, Red + Black, and Multi-shade Arabic.</div>
+                </div>
+                
+                <!-- CARD 10: Floral-Heavy Arabic Festive Mehndi -->
+                <div class="premium-card" id="premium-card-10">
+                    <div class="inner-box">
+                        <img src="https://placehold.co/300x170/3B285C/FFC72C?text=Floral+Heavy" alt="Floral-Heavy Arabic Festive Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/3B285C/FFC72C?text=Floral+Heavy';">
+                    </div>
+                    <!-- Custom Heading -->
+                    <div class="premium-title" data-mobile-title="10. Floral Heavy"><span>10. Floral-Heavy Arabic Festive</span></div>
+                    <div class="premium-desc">Flower Chain, Large Petal Arabic, and Clustered Floral Festive.</div>
+                </div>
+
+                <!-- CARD 11: Glitter & Glam Arabic Festive Mehndi -->
+                <div class="premium-card" id="premium-card-11">
+                    <div class="inner-box">
+                        <img src="https://placehold.co/300x170/1A332D/FFC72C?text=Glitter+Glam" alt="Glitter & Glam Arabic Festive Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/1A332D/FFC72C?text=Glitter+Glam';">
+                    </div>
+                    <!-- Custom Heading -->
+                    <div class="premium-title" data-mobile-title="11. Glitter & Glam"><span>11. Glitter & Glam Arabic Festive</span></div>
+                    <div class="premium-desc">Glitter, Stone, and Metallic Arabic accents.</div>
                 </div>
             </div>
         </section>
@@ -630,19 +736,19 @@
     >
         <div class="flex justify-around items-end h-20 relative px-2">
             
-            <!-- Item 1: Classic (Card 1 से लिंक्ड) -->
+            <!-- Item 1: Simple (Card 1) -->
             <a href="#premium-card-1" class="nav-item-shs w-1/5" onclick="scrollToSection('premium-card-1')">
                 <i class="fas fa-leaf nav-icon-shs"></i>
-                <span class="font-medium">Classic</span>
+                <span class="font-medium">Simple</span>
             </a>
 
-            <!-- Item 2: Shaded (Card 2 से लिंक्ड) -->
-            <a href="#premium-card-2" class="nav-item-shs w-1/5" onclick="scrollToSection('premium-card-2')">
-                <i class="fas fa-sun nav-icon-shs"></i>
+            <!-- Item 2: Shaded (Card 3) -->
+            <a href="#premium-card-3" class="nav-item-shs w-1/5" onclick="scrollToSection('premium-card-3')">
+                <i class="fas fa-palette nav-icon-shs"></i>
                 <span class="font-medium">Shaded</span>
             </a>
             
-            <!-- Central FAB Button (Home - index.html से लिंक्ड) -->
+            <!-- Central FAB Button (Home - main.html से लिंक्ड) -->
             <div class="central-nav-item-shs w-1/5">
                 <a 
                     href="main.html" 
@@ -651,19 +757,19 @@
                 >
                     <i class="fas fa-home central-fab-icon"></i>
                 </a>
-                <span class="central-fab-label">Home</span>
+                <span class="font-medium">Home</span>
             </div>
             
-            <!-- Item 4: Khaleeji (Card 3 से लिंक्ड) -->
-            <a href="#premium-card-3" class="nav-item-shs w-1/5" onclick="scrollToSection('premium-card-3')">
-                <i class="fas fa-star-of-life nav-icon-shs"></i>
-                <span class="font-medium">Khaleeji</span>
+            <!-- Item 4: Finger (Card 4) -->
+            <a href="#premium-card-4" class="nav-item-shs w-1/5" onclick="scrollToSection('premium-card-4')">
+                <i class="fas fa-hand-pointer nav-icon-shs"></i>
+                <span class="font-medium">Finger</span>
             </a>
             
-            <!-- Item 5: Indo-Arabic (Card 6 से लिंक्ड) -->
+            <!-- Item 5: Trails (Card 6) -->
             <a href="#premium-card-6" class="nav-item-shs w-1/5" onclick="scrollToSection('premium-card-6')">
-                <i class="fas fa-infinity nav-icon-shs"></i>
-                <span class="font-medium">Fusion</span>
+                <i class="fas fa-route nav-icon-shs"></i>
+                <span class="font-medium">Trails</span>
             </a>
             
         </div>
@@ -674,8 +780,10 @@
     <div id="location-modal-overlay" class="modal-overlay">
         <div id="location-modal-content" class="modal-content">
             <div class="flex justify-between items-center mb-4 p-2">
-                <h3 id="modal-title" class="text-xl font-bold text-primary-glow">Available Designs (डिज़ाइन)</h3>
-                <button id="modal-close-button" class="text-white hover:text-primary transition-colors p-2 rounded-full hover:bg-white/10" aria-label="Close modal">
+                <!-- MODAL TITLE IS NOW CUSTOMIZABLE -->
+                <h3 id="modal-title" class="text-xl font-bold text-primary-glow">Arabic Festive Mehndi Styles</h3>
+                <!-- CLOSE BUTTON -->
+                <button id="modal-close-button-new" onclick="closeLocationModal()" class="text-white hover:text-primary transition-colors p-2 rounded-full hover:bg-white/10" aria-label="Close modal">
                     <i class="fas fa-times text-2xl"></i>
                 </button>
             </div>
@@ -743,10 +851,9 @@
         }
         
          // --- START: SLIDER LOGIC (Moved inside DOMContentLoaded) ---
+        // Variables for slider logic
         const sliderBg = document.getElementById('slider-bg');
         const slidesWrapper = document.getElementById('slides-wrapper');
-        const prevBtn = document.getElementById('prev-btn');
-        const nextBtn = document.getElementById('next-btn');
         
         let slidesData = [];
         let currentSlide = 0;
@@ -760,11 +867,11 @@
         }
 
         async function fetchSlidesData() {
-            // Hardcoded placeholder slide data for Arabic Festive styles
+            // Hardcoded placeholder slide data for Festive Arabic styles
             return [
-                { "title": "", "date": "10 Mar", "link": "af_classic_flow.html", "deadline": "2026-03-10", "bgImage": "" },
-                { "title": "", "date": "22 Mar", "link": "af_shaded_dual.html", "deadline": "2026-03-22", "bgImage": "" },
-                { "title": "", "date": "05 Apr", "link": "af_rose_mandala.html", "deadline": "2026-04-05", "bgImage": "" }
+                { "title": "Simple Floral Trails for Quick Application", "date": "10 Aug", "link": "festive_simple_floral.html", "deadline": "2026-08-10", "bgImage": "https://placehold.co/800x350/FFC72C/331A1A?text=Simple+Arabic+Festive" },
+                { "title": "Gulf Khaleeji Bold Shading and Rose Motifs", "date": "20 Aug", "link": "festive_khaleeji.html", "deadline": "2026-08-20", "bgImage": "https://placehold.co/800x350/FFB433/1A2733?text=Khaleeji+Festive" },
+                { "title": "Back-Hand Diagonal Trails and Fusion", "date": "30 Aug", "link": "festive_backhand.html", "deadline": "2026-08-30", "bgImage": "https://placehold.co/800x350/FF5733/221A33?text=Backhand+Arabic" }
             ];
         }
 
@@ -780,6 +887,7 @@
                 
                 // Link is now assigned directly from item.link (internal page)
                 slide.href = item.link; 
+                // Removed target="_blank" for internal links
                 
                 slide.className = `slide absolute top-0 left-0 w-full h-full opacity-0 transition-opacity duration-1000`;
                 slide.style.zIndex = index === 0 ? 1 : 0;
@@ -832,96 +940,249 @@
             showSlide(currentSlide);
             startAutoSlide();
 
-            prevBtn.addEventListener('click', () => {
-                currentSlide = (currentSlide - 1 + slidesData.length) % slidesData.length;
-                showSlide(currentSlide);
-                startAutoSlide();
-            });
+            // Re-adding listeners for the navigation buttons
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
 
-            nextBtn.addEventListener('click', () => {
-                currentSlide = (currentSlide + 1) % slidesData.length;
-                showSlide(currentSlide);
-                startAutoSlide();
-            });
+            if (prevBtn) {
+                prevBtn.addEventListener('click', () => {
+                    currentSlide = (currentSlide - 1 + slidesData.length) % slidesData.length;
+                    showSlide(currentSlide);
+                    startAutoSlide();
+                });
+            }
+
+            if (nextBtn) {
+                nextBtn.addEventListener('click', () => {
+                    currentSlide = (currentSlide + 1) % slidesData.length;
+                    showSlide(currentSlide);
+                    startAutoSlide();
+                });
+            }
         }
         // --- END: SLIDER LOGIC ---
 
         
         // --- START: MODAL/LOCATION SELECTION LOGIC (पॉपअप/लोकेशन चयन लॉजिक) ---
         const modalOverlay = document.getElementById('location-modal-overlay');
-        const modalCloseButton = document.getElementById('modal-close-button');
+        const modalCloseButton = document.getElementById('modal-close-button-new'); 
         const modalTitle = document.getElementById('modal-title');
         const locationList = document.getElementById('location-list');
 
-        // Arabic Festive Mehndi Data (6 Cards)
-        const locationData = {
-            'premium-card-1': { // 1. Classic Arabic Festive Mehndi
-                title: 'Classic Arabic Festive Mehndi',
-                desc: 'Bold outlines, flowing vines, and traditional floral patterns.',
-                locations: [
-                    { name: "Floral Vine Arabic", link: "af_classic_floral.html" },
-                    { name: "Leaf Trails Arabic", link: "af_classic_leaf.html" },
-                    { name: "Diagonal Arabic Flow", link: "af_classic_diagonal.html" },
-                    { name: "Back-Hand Arabic Chain Style", link: "af_classic_chain.html" },
-                    { name: "Finger Tip Arabic Pattern", link: "af_classic_fingertip.html" },
-                ]
+        // Main Data Structure holding the full Festive Arabic chart (11 styles)
+        const locationData_All = {
+            'Simple Arabic Festive Mehndi': { 
+                'Simple Floral Arabic': { name: "Simple Floral Arabic", link: "arabic_festive_simple_floral.html", micro: ["Mini: Single flowers", "Micro: 3-dot filler"] },
+                'Simple Leaf Vine': { name: "Simple Leaf Vine", link: "arabic_festive_simple_leaf.html", micro: ["Mini: Leaf chain", "Micro: Thin stem"] },
+                'Simple Curve Trails': { name: "Simple Curve Trails", link: "arabic_festive_simple_curve.html", micro: ["Mini: S-curve", "Micro: Curve dots"] }
             },
-            'premium-card-2': { // 2. Shaded Arabic Festive Mehndi
-                title: 'Shaded Arabic Festive Mehndi',
-                desc: 'Dark–light shading effects for depth in floral and leaf designs.',
-                locations: [
-                    { name: "Dark–Light Floral Shades", link: "af_shaded_floral.html" },
-                    { name: "Petal Shading Arabic", link: "af_shaded_petal.html" },
-                    { name: "3D Shaded Arabic Flowers", link: "af_shaded_3d.html" },
-                    { name: "Dual-Tone Leaf Shading", link: "af_shaded_dual.html" },
-                    { name: "Shaded Mandala Arabic", link: "af_shaded_mandala.html" },
-                ]
+            'Bold-Outline Arabic Festive Mehndi': {
+                'Thick Floral Arabic': { name: "Thick Floral Arabic", link: "arabic_festive_bold_floral.html", micro: ["Mini: Bold petals", "Micro: Edge dots"] },
+                'Bold Curve Trails': { name: "Bold Curve Trails", link: "arabic_festive_bold_curve.html", micro: ["Mini: Wide curve", "Micro: Mini strokes"] },
+                'Bold Leaf Arabic': { name: "Bold Leaf Arabic", link: "arabic_festive_bold_leaf.html", micro: ["Mini: Heavy leaf", "Micro: Inner shading"] }
             },
-            'premium-card-3': { // 3. Gulf / Khaleeji Arabic Festive Mehndi
-                title: 'Khaleeji Arabic Festive Mehndi',
-                desc: 'Thick strokes, heavy shading, and elaborate finger work.',
-                locations: [
-                    { name: "Thick Outline Khaleeji Style", link: "af_khaleeji_thick.html" },
-                    { name: "Heavy Shading Khaleeji", link: "af_khaleeji_heavy.html" },
-                    { name: "Bold Finger Wrap Style", link: "af_khaleeji_wrap.html" },
-                    { name: "Khaleeji Floral Geometry", link: "af_khaleeji_geo.html" },
-                    { name: "Spiral & Dome Patterns", link: "af_khaleeji_spiral.html" },
-                ]
+            'Shaded Arabic Festive Mehndi': {
+                'Soft Shaded Flowers': { name: "Soft Shaded Flowers", link: "arabic_festive_shaded_soft.html", micro: ["Mini: Light petal shade", "Micro: Micro-blur"] },
+                'Shaded Leaf Vine': { name: "Shaded Leaf Vine", link: "arabic_festive_shaded_leaf.html", micro: ["Mini: Side shading", "Micro: Thin gradient"] },
+                'Shadow Arabic': { name: "Shadow Arabic", link: "arabic_festive_shaded_shadow.html", micro: ["Mini: Double outline", "Micro: Under-shadow"] }
             },
-            'premium-card-4': { // 4. Minimal Arabic Festive Mehndi
-                title: 'Minimal Arabic Festive Mehndi',
-                desc: 'Clean, simple, and elegant patterns suitable for quick festive occasions.',
-                locations: [
-                    { name: "Tiny Vine Minimal Style", link: "af_minimal_vine.html" },
-                    { name: "Single Motif Arabic", link: "af_minimal_motif.html" },
-                    { name: "Finger-Only Arabic Design", link: "af_minimal_finger.html" },
-                    { name: "Wrist Bracelet Arabic", link: "af_minimal_bracelet.html" },
-                    { name: "Negative Space Minimal Arabic", link: "af_minimal_negative.html" },
-                ]
+            'Finger-Focused Arabic Festive Mehndi': {
+                'Finger Top Arabic': { name: "Finger Top Arabic", link: "arabic_festive_finger_top.html", micro: ["Mini: Half flowers", "Micro: Finger dots"] },
+                'Finger Bands': { name: "Finger Bands", link: "arabic_festive_finger_bands.html", micro: ["Mini: Ring shapes", "Micro: Bead dots"] },
+                'Full Finger Trails': { name: "Full Finger Trails", link: "arabic_festive_finger_full.html", micro: ["Mini: Straight vine", "Micro: Mini leaves"] }
             },
-            'premium-card-5': { // 5. Rose Arabic Festive Mehndi
-                title: 'Rose Arabic Festive Mehndi',
-                desc: 'Dominated by bold rose motifs, trails, and rose mandala styles.',
-                locations: [
-                    { name: "Rose Trail Arabic", link: "af_rose_trail.html" },
-                    { name: "Rose Bracelet Mehndi", link: "af_rose_bracelet.html" },
-                    { name: "Bold Rose Motif Arabic", link: "af_rose_bold.html" },
-                    { name: "Rose Mandala Style", link: "af_rose_mandala.html" },
-                    { name: "Rose + Leaves Combination", link: "af_rose_combo.html" },
-                ]
+            'Wrist & Bracelet Arabic Festive Mehndi': {
+                'Bracelet Arabic': { name: "Bracelet Arabic", link: "arabic_festive_wrist_bracelet.html", micro: ["Mini: Wrist chain", "Micro: Micro beads"] },
+                'Half-Cuff Arabic': { name: "Half-Cuff Arabic", link: "arabic_festive_wrist_half.html", micro: ["Mini: Half cuff", "Micro: Small spirals"] },
+                'Wrist Mandala Fusion': { name: "Wrist Mandala Fusion", link: "arabic_festive_wrist_mandala.html", micro: ["Mini: Half mandala", "Micro: Circle dots"] }
             },
-            'premium-card-6': { // 6. Indo-Arabic Festive Mehndi
-                title: 'Indo-Arabic Festive Mehndi',
-                desc: 'A beautiful fusion of Arabic flow and Indian traditional fills (jaali, mandala).',
-                locations: [
-                    { name: "Arabic Vines + Indian Fills", link: "af_indo_vines.html" },
-                    { name: "Mandala + Arabic Outline", link: "af_indo_mandala.html" },
-                    { name: "Jaali + Arabic Trail", link: "af_indo_jaali.html" },
-                    { name: "Arabic Shading + Indian Motifs", link: "af_indo_shading.html" },
-                    { name: "Floral Indo-Arabic Fusion", link: "af_indo_floral_fusion.html" },
-                ]
+            'Quick Festive Arabic Trails': {
+                'Diagonal Trail': { name: "Diagonal Trail", link: "arabic_festive_trail_diagonal.html", micro: ["Mini: Vine trail", "Micro: Leaf dots"] },
+                'Side Trail': { name: "Side Trail", link: "arabic_festive_trail_side.html", micro: ["Mini: Slim branch", "Micro: Curl dots"] },
+                'Finger-to-Wrist Trail': { name: "Finger-to-Wrist Trail", link: "arabic_festive_trail_finger.html", micro: ["Mini: Flower chain", "Micro: Micro links"] }
             },
-            // Existing Header Data (Dropdowns) - Kept for template consistency
+            'Empty-Space Arabic Festive Mehndi': {
+                'Negative Space Flowers': { name: "Negative Space Flowers", link: "arabic_festive_empty_negative.html", micro: ["Mini: Hollow petals", "Micro: Empty dots"] },
+                'Gap-Based Arabic': { name: "Gap-Based Arabic", link: "arabic_festive_empty_gap.html", micro: ["Mini: Space blocks", "Micro: Small breaks"] },
+                'Hollow Vine Work': { name: "Hollow Vine Work", link: "arabic_festive_empty_hollow.html", micro: ["Mini: Hollow leaf", "Micro: Thin outline"] }
+            },
+            'Modern Minimal Arabic Festive Mehndi': {
+                'Minimal Roses': { name: "Minimal Roses", link: "arabic_festive_minimal_roses.html", micro: ["Mini: Thin rose", "Micro: Dot center"] },
+                'Minimal Trail': { name: "Minimal Trail", link: "arabic_festive_minimal_trail.html", micro: ["Mini: 3-leaf vine", "Micro: Curve micro-dot"] },
+                'Minimal Finger Art': { name: "Minimal Finger Art", link: "arabic_festive_minimal_finger.html", micro: ["Mini: Arrow motifs", "Micro: Line micro-cuts"] }
+            },
+            'Dual-Tone Arabic Festive Mehndi': {
+                'Brown + Black Arabic': { name: "Brown + Black Arabic", link: "arabic_festive_dual_brown.html", micro: ["Mini: Brown fill", "Micro: Black border"] },
+                'Red + Black Arabic': { name: "Red + Black Arabic", link: "arabic_festive_dual_red.html", micro: ["Mini: Red shading", "Micro: Red dots"] },
+                'Multi-shade Arabic': { name: "Multi-shade Arabic", link: "arabic_festive_dual_multi.html", micro: ["Mini: Dual fade", "Micro: Two-color micro-fill"] }
+            },
+            'Floral-Heavy Arabic Festive Mehndi': {
+                'Flower Chain Arabic': { name: "Flower Chain Arabic", link: "arabic_festive_heavy_chain.html", micro: ["Mini: Linked buds", "Micro: 3-dots"] },
+                'Large Petal Arabic': { name: "Large Petal Arabic", link: "arabic_festive_heavy_petal.html", micro: ["Mini: Thick petals", "Micro: Inner split line"] },
+                'Clustered Floral Festive': { name: "Clustered Floral Festive", link: "arabic_festive_heavy_cluster.html", micro: ["Mini: Rose bunch", "Micro: Leaf micro-veins"] }
+            },
+            'Glitter & Glam Arabic Festive Mehndi': { 
+                'Glitter Arabic': { name: "Glitter Arabic", link: "arabic_festive_glitter.html", micro: ["Mini: Glitter petal", "Micro: Sparkle dot"] },
+                'Stone Arabic': { name: "Stone Arabic", link: "arabic_festive_stone.html", micro: ["Mini: Center stone", "Micro: Micro-stone"] },
+                'Metallic Arabic': { name: "Metallic Arabic", link: "arabic_festive_metallic.html", micro: ["Mini: Metallic outline", "Micro: Chrome dots"] }
+            }
+        };
+
+
+        const cardMap = {
+            'premium-card-1': 'Simple Arabic Festive Mehndi',
+            'premium-card-2': 'Bold-Outline Arabic Festive Mehndi',
+            'premium-card-3': 'Shaded Arabic Festive Mehndi',
+            'premium-card-4': 'Finger-Focused Arabic Festive Mehndi',
+            'premium-card-5': 'Wrist & Bracelet Arabic Festive Mehndi',
+            'premium-card-6': 'Quick Festive Arabic Trails',
+            'premium-card-7': 'Empty-Space Arabic Festive Mehndi',
+            'premium-card-8': 'Modern Minimal Arabic Festive Mehndi',
+            'premium-card-9': 'Dual-Tone Arabic Festive Mehndi',
+            'premium-card-10': 'Floral-Heavy Arabic Festive Mehndi',
+            'premium-card-11': 'Glitter & Glam Arabic Festive Mehndi' 
+        };
+
+
+        // Helper to extract the data for the modal based on card ID
+        const getModalContent = (cardId) => {
+            const mainStyle = cardMap[cardId];
+            const dataRoot = locationData_All[mainStyle];
+            
+            if (!mainStyle || !dataRoot) return null;
+
+            let locations = [];
+
+            // Helper function to process nested dictionary structure and add placeholder links
+            const processNestedData = (data) => {
+                if (typeof data === 'object' && data !== null && !Array.isArray(data)) {
+                    Object.entries(data).forEach(([key, value]) => {
+                        // Check for the known 'micro' structure
+                        if (value.name && value.link && Array.isArray(value.micro)) {
+                            // Mini-Type Header (Sub-type header)
+                            locations.push({ 
+                                name: `• ${value.name}`, 
+                                isTypeHeader: true,
+                                link: value.link 
+                            });
+                            // Micro-Types (Actual click items)
+                            value.micro.forEach(micro => {
+                                locations.push({ 
+                                    name: micro, 
+                                    isTypeHeader: false,
+                                    // Generating a placeholder link based on micro-type name for simplicity
+                                    link: `micro_${micro.toLowerCase().replace(/[^a-z0-9→]/g, '_')}.html` 
+                                });
+                            });
+                        } else {
+                            // This path shouldn't be hit for the Festive Arabic data structure provided
+                            locations.push({ name: `--- ${key} ---`, isTypeHeader: true, isMajorHeader: true });
+                            processNestedData(value);
+                        }
+                    });
+                }
+            };
+            
+            // Start processing based on the main category type
+            locations.push({ name: `--- ${mainStyle} ---`, isTypeHeader: true, isMajorHeader: true });
+            processNestedData(dataRoot);
+            
+            return {
+                title: `${mainStyle} Designs`,
+                locations: locations
+            };
+        };
+
+
+        // *** Show Modal Functionality ***
+        function showDetailedModal(cardId) {
+            const data = getModalContent(cardId);
+            if (!data) return;
+
+            // FIX: Set the modal title to the static, user-customizable text
+            // The user wants to set this manually in the HTML and expects it to stay static
+            
+            locationList.innerHTML = ''; // Clear previous content
+
+            data.locations.forEach(location => {
+                
+                // Style adjustment for multi-level data
+                if (location.isMajorHeader && location.isTypeHeader) {
+                    const item = document.createElement('div');
+                    item.className = 'text-xl font-bold text-primary-glow mt-6 mb-3 p-2 border-b-2 border-primary/50';
+                    item.innerHTML = location.name;
+                    locationList.appendChild(item);
+                } else if (location.isTypeHeader) {
+                     // Mini-Type Header (now clickable)
+                    const item = document.createElement('a');
+                    item.href = location.link;
+                    item.className = 'text-lg font-bold text-white mt-3 mb-1 px-2 block hover:text-primary transition-colors';
+                    item.innerHTML = location.name;
+                    
+                    // Added dummy link handling for Mini-Type Headers
+                    item.addEventListener('click', (e) => {
+                         e.preventDefault(); 
+                         closeLocationModal();
+                         setTimeout(() => {
+                            console.log(`Navigating to Mini-Type: ${location.link}`);
+                            // In a real application: window.location.href = location.link;
+                         }, 100); 
+                    });
+                    locationList.appendChild(item);
+                } 
+                
+                // MICRO-TYPE - Now a clickable link
+                else {
+                    const item = document.createElement('a');
+                    item.href = location.link;
+                    item.className = 'location-item text-sm py-2 px-4 hover:bg-primary/20 transition-colors'; 
+                    item.innerHTML = `<span>${location.name}</span> <i class="fas fa-arrow-right text-sm"></i>`;
+                    
+                    item.addEventListener('click', (e) => {
+                         e.preventDefault(); // Prevent default link behavior first
+                         closeLocationModal();
+                         
+                         // Navigate after closing modal
+                         setTimeout(() => {
+                            window.location.href = location.link; // ACTUAL NAVIGATION ADDED HERE
+                         }, 100); 
+                    });
+                    locationList.appendChild(item);
+                }
+            });
+
+            // Show Modal
+            modalOverlay.style.display = 'flex';
+            setTimeout(() => {
+                modalOverlay.style.opacity = 1;
+            }, 10);
+            document.body.style.overflow = 'hidden'; // Prevent body scroll
+        }
+
+        // Fix: Use the standard closeLocationModal and attach it to the new button ID
+        function closeLocationModal() {
+            modalOverlay.style.opacity = 0;
+            // Hide after transition completes
+            setTimeout(() => {
+                document.getElementById('location-modal-overlay').style.display = 'none';
+                document.body.style.overflow = ''; 
+            }, 300);
+        }
+        
+        // --- ATTACHING EVENT LISTENERS ---
+        // Attaching close logic to the new button ID
+        document.getElementById('modal-close-button-new').addEventListener('click', closeLocationModal);
+        // Attaching click outside modal logic
+        document.getElementById('location-modal-overlay').addEventListener('click', (e) => {
+            if (e.target === document.getElementById('location-modal-overlay')) {
+                closeLocationModal();
+            }
+        });
+
+
+        // --- START: DROPDOWN / ACCORDION LOGIC (Header Navigation) ---
+        
+        const locationData_Dropdowns = {
             'dropdown-bridal': {
                  title: 'Bridal Mehndi Types',
                  locations: [
@@ -938,63 +1199,13 @@
                     { name: "Indo-Arabic", link: "festive_indoarabic.html" },
                     { name: "Moroccan / Geometric", link: "festive_geometric.html" },
                     { name: "Minimal Festive Mehndi", link: "festive_minimal.html" }
-                ]
+                 ]
             }
         };
 
-
-        function showLocationModal(cardId) {
-            const data = locationData[cardId];
-            if (!data) return;
-
-            // Set Modal Content
-            modalTitle.textContent = data.title;
-            locationList.innerHTML = ''; // Clear previous content
-
-            data.locations.forEach(location => {
-                const item = document.createElement('div');
-                item.className = 'location-item';
-                item.innerHTML = `<span>${location.name}</span> <i class="fas fa-arrow-right text-sm"></i>`;
-                
-                // Click handler for location item: now redirects to the specified link
-                item.onclick = () => {
-                    window.location.href = location.link;
-                };
-                locationList.appendChild(item);
-            });
-
-            // Show Modal
-            modalOverlay.style.display = 'flex';
-            setTimeout(() => {
-                modalOverlay.style.opacity = 1;
-            }, 10);
-            document.body.style.overflow = 'hidden'; // Prevent body scroll
-        }
-
-        function closeLocationModal() {
-            modalOverlay.style.opacity = 0;
-            // Hide after transition completes
-            setTimeout(() => {
-                modalOverlay.style.display = 'none';
-                document.body.style.overflow = ''; 
-            }, 300);
-        }
-
-        // Attach event listeners for close button and overlay
-        modalCloseButton.addEventListener('click', closeLocationModal);
-        modalOverlay.addEventListener('click', (e) => {
-            // Close when clicking outside the content area
-            if (e.target === modalOverlay) {
-                closeLocationModal();
-            }
-        });
-        
-        // --- START: DROPDOWN / ACCORDION LOGIC ---
-        
         function generateDropdownContent(dataId, containerId) {
             const container = document.getElementById(containerId);
-            // Use the dedicated keys for header/mobile dropdowns
-            const data = locationData[dataId]; 
+            const data = locationData_Dropdowns[dataId]; 
             if (!container || !data) return;
 
             container.innerHTML = data.locations.map(item => `
@@ -1048,13 +1259,18 @@
             initializeSlider();
             initializeDropdowns();
             
-            // Attach click listeners to all 6 cards to open the modal:
-            document.getElementById('premium-card-1').addEventListener('click', () => showLocationModal('premium-card-1'));
-            document.getElementById('premium-card-2').addEventListener('click', () => showLocationModal('premium-card-2'));
-            document.getElementById('premium-card-3').addEventListener('click', () => showLocationModal('premium-card-3'));
-            document.getElementById('premium-card-4').addEventListener('click', () => showLocationModal('premium-card-4'));
-            document.getElementById('premium-card-5').addEventListener('click', () => showLocationModal('premium-card-5'));
-            document.getElementById('premium-card-6').addEventListener('click', () => showLocationModal('premium-card-6'));
+            // Re-attaching the click handlers to the new showDetailedModal function (11 Cards)
+            document.getElementById('premium-card-1').addEventListener('click', () => showDetailedModal('premium-card-1'));
+            document.getElementById('premium-card-2').addEventListener('click', () => showDetailedModal('premium-card-2'));
+            document.getElementById('premium-card-3').addEventListener('click', () => showDetailedModal('premium-card-3'));
+            document.getElementById('premium-card-4').addEventListener('click', () => showDetailedModal('premium-card-4'));
+            document.getElementById('premium-card-5').addEventListener('click', () => showDetailedModal('premium-card-5'));
+            document.getElementById('premium-card-6').addEventListener('click', () => showDetailedModal('premium-card-6'));
+            document.getElementById('premium-card-7').addEventListener('click', () => showDetailedModal('premium-card-7'));
+            document.getElementById('premium-card-8').addEventListener('click', () => showDetailedModal('premium-card-8'));
+            document.getElementById('premium-card-9').addEventListener('click', () => showDetailedModal('premium-card-9'));
+            document.getElementById('premium-card-10').addEventListener('click', () => showDetailedModal('premium-card-10'));
+            document.getElementById('premium-card-11').addEventListener('click', () => showDetailedModal('premium-card-11'));
         });
         
         // --- START: DYNAMIC THEME COLOR CHANGER (7 THEMES, 7 SECONDS) ---
