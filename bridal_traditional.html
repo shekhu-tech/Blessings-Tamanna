@@ -594,6 +594,9 @@
                     <!-- Slides Wrapper will contain the dynamic content over the image -->
                     <div id="slides-wrapper" class="relative w-full h-full"></div>
 
+                    <!-- Navigation Buttons -->
+                    <button id="prev-btn" class="absolute top-1/2 left-4 transform -translate-y-1/2 bg-white bg-opacity-15 hover:bg-opacity-25 text-primary p-2 rounded-full shadow-lg transition-all z-20">❮</button>
+                    <button id="next-btn" class="absolute top-1/2 right-4 transform -translate-y-1/2 bg-white bg-opacity-15 hover:bg-opacity-25 text-primary p-2 rounded-full shadow-lg transition-all z-20">❯</button>
                     
             </section>
         </div>
@@ -602,7 +605,7 @@
         <!-- CARD SECTION HEADING -->
         <div class="text-center mb-8 mt-4">
             <h2 class="text-xl md:text-4xl font-extrabold text-primary-glow border-b-4 border-primary/50 inline-block px-6 pb-2 uppercase tracking-wide">
-                Our Service Types
+                Our Service
             </h2>
         </div>
         <!-- END CARD SECTION HEADING -->
@@ -709,6 +712,16 @@
                     <!-- Custom Heading: Only State Name -->
                     <div class="premium-title" data-mobile-title="10. SRI LANKAN Trad."><span>10. SRI LANKAN TRADITIONAL</span></div>
                     <div class="premium-desc">Island flower vines, Spiral tips, and Tribal dots + line mix.</div>
+                </div>
+
+                <!-- CARD 11: COMPLETE BRIDAL ELEMENT MICRO-TYPE BANK (Micro-Type Bank) -->
+                <div class="premium-card" id="premium-card-11">
+                    <div class="inner-box">
+                        <img src="https://placehold.co/300x170/1A332D/FFC72C?text=Micro+Elements" alt="Micro-Type Bank" onerror="this.onerror=null;this.src='https://placehold.co/300x170/1A332D/FFC72C?text=Micro+Elements';">
+                    </div>
+                    <!-- Custom Heading: Only State Name -->
+                    <div class="premium-title" data-mobile-title="11. Micro Element Bank"><span>11. Micro-Type Element Bank</span></div>
+                    <div class="premium-desc">Filler, Floral, Geometric, and Motif micro-types used across all styles.</div>
                 </div>
             </div>
         </section>
@@ -1021,7 +1034,12 @@
             'Sri Lankan Traditional Mehndi': {
                 'Sri Lankan Traditional': { name: "Sri Lankan Traditional", link: "srilankan_trad.html", micro: ["Island flower vines", "Spiral tips", "Tribal dots + line mix"] }
             },
-             
+             'Complete Bridal Element Micro-Type Bank': {
+                'Floral Micro-types': { name: "Floral Micro-types", link: "micro_floral.html", micro: ["Dot flower", "Semi-bud", "Tulip micro-curve", "2-line leaf", "Tri-leaf edge"] },
+                'Geometric Micro-types': { name: "Geometric Micro-types", link: "micro_geometric.html", micro: ["Tiny grid box", "Micro jaali", "Diamond chain", "Staircase line"] },
+                'Traditional Motif Micro-types': { name: "Traditional Motif Micro-types", link: "micro_motifs.html", micro: ["Doli wheel", "Kalash line", "Swastik micro", "Mandap pillar dots"] },
+                'Filler Micro-types': { name: "Filler Micro-types", link: "micro_filler.html", micro: ["Speckle dots", "Mesh fill", "Leaf shading", "Micro-curved filler"] }
+            }
         };
 
 
