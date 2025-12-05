@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Moroccan / Geometric Festive Mehndi</title>
+    <title>Moroccan Geometric Festive Mehndi Styles</title>
     <!-- Tailwind CSS CDN (Self-contained styling) -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Font Awesome (for icons) -->
@@ -12,7 +12,7 @@
     <!-- Fonts (Inter/Noto Sans Devanagari for readability) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=Noto+Sans+Devanagari:wght+400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=Noto+Sans+Devanagari:wght@400;500;700&display=swap" rel="stylesheet">
     
     <style>
         /* --- GLOBAL & THEME VARIABLES (थीम वेरिएबल्स) --- */
@@ -54,7 +54,7 @@
             background-position: center;
             background-repeat: no-repeat;
             opacity: 0.5; /* Subtle visibility */
-            /* Using a generic Geometric/Moroccan image placeholder */
+            /* Mobile Image used for all screen sizes now */
             background-image: url('bridal.png');
         }
 
@@ -62,7 +62,7 @@
             position: fixed; top: 0; left: 0; right: 0; z-index: 100;
         }
         
-        /* --- MOBILE SIDEBAR STYLES (मोबाइल साइडबार) --- */
+        /* --- MOBILE SIDEBAR STYLES (मोबाइल साइडबार) */
         .mobile-menu-panel {
             top: 85px; 
             height: calc(100vh - 165px);
@@ -167,8 +167,36 @@
         }
         .premium-desc {
             margin-top:8px; font-size:15px; line-height:1.4; color:#e9e9e9;
-            opacity:0.95; text-align: center; margin-bottom: 5px;
+            opacity:0.95;
+            text-align: center; margin-bottom: 5px;
         }
+
+        /* --- CUSTOM CSS FOR RESPONSIVE HEADINGS --- */
+        /* Default (Mobile First): Use data-mobile-title for smaller text */
+        .premium-card .premium-title[data-mobile-title]:before {
+            content: attr(data-mobile-title);
+            display: block;
+            font-size: 1.1rem; /* Slightly larger than original font size for the short title */
+            font-weight: 800;
+        }
+        /* Hide the long title on mobile */
+        .premium-card .premium-title > span {
+            display: none;
+        }
+
+        /* Medium/PC View: Show the long title, hide the short title */
+        @media (min-width: 768px) {
+            .premium-card .premium-title[data-mobile-title]:before {
+                content: none;
+            }
+            .premium-card .premium-title > span {
+                display: inline;
+                font-size: 1.1rem; /* Reverts to original size setting in HTML */
+                font-weight: 700;
+            }
+        }
+        /* ------------------------------------------- */
+
 
         /* --- GRID AND RESPONSIVENESS (ग्रिड और प्रतिक्रियाशीलता) --- */
         .card-grid-container {
@@ -191,7 +219,13 @@
             }
         }
         
-        /* 5 cards in a row for screens >= 1400px (Adjusted for 5 cards) */
+        /* ADJUSTED: 4 cards in a row for screens >= 1200px (to fit 11 cards elegantly) */
+        @media(min-width: 1200px){
+            .card-grid-container {
+                grid-template-columns: repeat(4, 1fr); 
+            }
+        }
+        /* New: 5 cards across on very large screens (1400px+) */
         @media(min-width: 1400px){
             .card-grid-container {
                 grid-template-columns: repeat(5, 1fr); 
@@ -242,6 +276,14 @@
             margin-bottom: 0.5rem; 
             word-wrap: break-word; 
             white-space: normal;
+        }
+
+        #prev-btn, #next-btn {
+            background-color: rgba(255, 255, 255, 0.15); 
+            color: var(--color-primary); /* Dynamic Primary Color */
+            border: 1px solid var(--color-primary); /* Dynamic Primary Color */
+            /* Dynamic Button Shadow using RGB */
+            box-shadow: 0 0 10px rgba(var(--color-primary-rgb), 0.4); 
         }
 
         /* --- Global Styles (Updated to reflect new primary color for glow) --- */
@@ -323,7 +365,9 @@
         }
 
         .modal-content {
+            /* Removed absolute positioning and top/bottom to make it content-aware */
             position: relative; 
+            /* Removed transform X to keep centering simple */
             transform: none; 
             
             width: 95%; 
@@ -349,6 +393,7 @@
             background: var(--premium-bg-dark); /* Dynamic Inner BG */
             border: 1.5px solid rgba(var(--color-primary-rgb), 1);
             box-shadow: inset 0 0 35px rgba(var(--color-primary-rgb), 0.45), 0 0 25px rgba(var(--color-primary-rgb), 0.3);
+            /* flex-grow: 1; <- Removed to allow height to shrink */
             overflow-y: auto; /* Enable scrolling for the location list if needed */
         }
 
@@ -402,6 +447,7 @@
                 </a>
 
                 <!-- Desktop Navigation (डेस्कटॉप नेविगेशन) -->
+                <!-- UPDATED CLASS for 1200px breakpoint logic -->
                 <div class="desktop-nav-area hidden items-center space-x-10">
                   <nav class="flex space-x-8 font-extrabold">
                     
@@ -421,7 +467,7 @@
                     <div class="relative group">
                         <a href="#" class="text-white text-lg relative py-1 hover:text-primary flex items-center">
                             Festive <i class="fas fa-caret-down ml-1 text-xs transition-transform duration-300 group-hover:rotate-180"></i>
-                            <span class="absolute left-0 bottom-0 h-1 w-0 bg-primary/70 group-hover:w-full transition-all duration-300 rounded-full"></span>
+                            <span class="absolute left:0 bottom-0 h:1 w-0 bg-primary/70 group-hover:w-full transition-all duration-300 rounded-full"></span>
                         </a>
                         <!-- Dropdown Content Container -->
                         <div id="dropdown-festive" class="absolute hidden group-hover:block w-64 mt-2 bg-premium-bg-dark border border-primary/50 rounded-xl shadow-2xl z-50 p-2 transform origin-top transition-all duration-300 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 translate-y-2">
@@ -430,13 +476,13 @@
                     </div>
 
                     <!-- Link 3: Custom Mehndi (Direct Link) -->
-                    <a href="custom_mehndi.html" class="text-white text-lg relative group py-1 hover:text-primary">
+                    <a href="custom_mehndi.html" class="text-white text-lg relative py-1 hover:text-primary">
                         Custom
                         <span class="absolute left-0 bottom-0 h-1 w-0 bg-primary/70 group-hover:w-full transition-all duration-300 rounded-full"></span>
                     </a>
                     
                     <!-- Link 4: Meet Me (Direct Link) -->
-                    <a href="meet_me.html" class="text-white text-lg relative group py-1 hover:text-primary">
+                    <a href="meet_me.html" class="text-white text-lg relative py-1 hover:text-primary">
                         Meet Me
                         <span class="absolute left-0 bottom-0 h-1 w-0 bg-primary/70 group-hover:w-full transition-all duration-300 rounded-full"></span>
                     </a>
@@ -496,14 +542,14 @@
                 <div class="border-t border-primary/30 w-full my-4"></div>
 
                 <!-- Direct Link 3: Custom Mehndi -->
-                <a href="custom_mehndi.html" class="text-white text-lg relative group py-1 hover:text-primary">
+                <a href="custom_mehndi.html" class="text-white text-lg relative py-1 hover:text-primary">
                     Custom Mehndi
                     <span class="absolute left-0 bottom-0 h-1 w-0 bg-primary/70 group-hover:w-full transition-all duration-300 rounded-full"></span>
                 </a>
                 <div class="border-t border-primary/30 w-full my-4"></div>
                 
                 <!-- Direct Link 4: Meet Me -->
-                <a href="meet_me.html" class="text-white text-lg relative group py-1 hover:text-primary">
+                <a href="meet_me.html" class="text-white text-lg relative py-1 hover:text-primary">
                     Meet Me
                     <span class="absolute left-0 bottom-0 h-1 w-0 bg-primary/70 group-hover:w-full transition-all duration-300 rounded-full"></span>
                 </a>
@@ -518,6 +564,7 @@
                 <p class="text-xs text-center text-gray-500 mt-auto">© 2025 Blessingsss.in</p>
             </div>
         </div>
+        <!-- REMOVED lg:hidden from the class list -->
         <div id="mobile-menu-overlay" class="fixed inset-0 bg-black/70 mobile-menu-overlay hidden"></div>
     </div>
     <!-- END HEADER & SIDEBAR -->
@@ -526,90 +573,146 @@
     <!-- MAIN CONTENT AREA (मुख्य सामग्री क्षेत्र) -->
     <main class="container mx-auto p-4 md:p-8 lg:p-12" style="min-height: calc(100vh - 160px);">
         
-       
-            
  <!-- SLIDE SECTION WRAPPER (FOR DYNAMIC BACKGROUND & BORDER) -->
         <div id="slider-bg"> 
             <section class="latest-forms">
-                <!-- Title is now placed relative to the inner section for Z-index -->
                 <div class="text-center mb-6">
-                    <!-- UPDATED: Main title for Moroccan / Geometric -->
-                    <h2 class="text-2xl sm:text-4xl font-extrabold text-primary-glow border-b-4 border-primary/50 inline-block px-4 pb-1"></h2>
+                    <!-- Customisable Main Heading (Removed spotlight heading to only use modal title) -->
                 </div>
                 
                 <div class="slider-container relative">
                     <!-- Slides Wrapper will contain the dynamic content over the image -->
-                    <div id="slides-wrapper" class="relative w-full h-full">
-                        <!-- Default Slide Content for Geometric Theme -->
-                        <div class="slide absolute top-0 left-0 w-full h-full opacity-100 transition-opacity duration-1000 active" style="z-index: 1;">
-                            <div class="slide-content-wrapper p-4 md:p-12 absolute bottom-0 bg-black/50 w-full rounded-b-[35px] text-left">
-                                <h3 class="post-name text-3xl md:text-5xl">Sharp Lines and Modern Geometry</h3>
-                                <p class="last-date text-white/80 mt-2">Explore the contemporary, non-floral beauty of bold Moroccan and precise geometric patterns.</p>
-                                <a href="#premium-card-a" class="apply-btn bg-primary hover:bg-primary/90 text-black font-bold py-2 px-6 rounded-full mt-4 transition-transform transform hover:scale-105 shadow-xl">
-                                    View Styles
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+                    <div id="slides-wrapper" class="relative w-full h-full"></div>
 
-                    <!-- Navigation Buttons (Hidden as they are not needed for a static page but kept for structure) -->
-                    <button id="prev-btn" class="hidden absolute top-1/2 left-4 transform -translate-y-1/2 p-3 rounded-full z-10 text-xl"><i class="fas fa-chevron-left"></i></button>
-                    <button id="next-btn" class="hidden absolute top-1/2 right-4 transform -translate-y-1/2 p-3 rounded-full z-10 text-xl"><i class="fas fa-chevron-right"></i></button>
+                    <!-- Navigation Buttons -->
+                    <button id="prev-btn" class="absolute top-1/2 left-4 transform -translate-y-1/2 bg-white bg-opacity-15 hover:bg-opacity-25 text-primary p-2 rounded-full shadow-lg transition-all z-20">❮</button>
+                    <button id="next-btn" class="absolute top-1/2 right-4 transform -translate-y-1/2 bg-white bg-opacity-15 hover:bg-opacity-25 text-primary p-2 rounded-full shadow-lg transition-all z-20">❯</button>
                     
             </section>
         </div>
         <!-- END SLIDE SECTION WRAPPER -->
 
-        <!-- START: Updated Card Grid for 5 Moroccan/Geometric Styles -->
-        <section class="mb-12">
-            <h2 class="text-xl sm:text-2xl font-extrabold text-primary-glow text-center mb-8 inline-block px-4 pb-1 mx-auto block">Festive Geometric Types</h2>
+        <!-- CARD SECTION HEADING -->
+        <div class="text-center mb-8 mt-4">
+            <h2 class="text-xl md:text-4xl font-extrabold text-primary-glow border-b-4 border-primary/50 inline-block px-6 pb-2 uppercase tracking-wide">
+                Geometric festive Styles
+            </h2>
+        </div>
+        <!-- END CARD SECTION HEADING -->
+
+        <section id="service-cards">
+            <!-- Grid container now optimized for 11 cards -->
             <div class="card-grid-container">
                 
-                <!-- CARD A: Line & Bar Pattern Mehndi -->
-                <div class="premium-card" id="premium-card-a">
+                <!-- CARD 1: Zigzag Tribal Lines (1.1) -->
+                <div class="premium-card" id="premium-card-1">
                     <div class="inner-box">
-                        <img src="https://placehold.co/300x170/331A1A/33D1FF?text=Line+Pattern" alt="Line & Bar Pattern Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/331A1A/33D1FF?text=Line+Pattern';">
+                        <img src="https://placehold.co/300x170/331A1A/FFC72C?text=Zigzag+Tribal" alt="Zigzag Tribal Lines Moroccan Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/331A1A/FFC72C?text=Zigzag+Tribal';">
                     </div>
-                    <div class="premium-title">A. Line & Bar Pattern Mehndi</div>
-                    <div class="premium-desc">Designs built purely on straight, solid, or broken lines and geometric bars.</div>
+                    <!-- Custom Heading -->
+                    <div class="premium-title" data-mobile-title="1. Zigzag Tribal Lines"><span>1. Zigzag Tribal Lines</span></div>
+                    <div class="premium-desc">Thick, Double, and Broken Zigzags with micro stroke detailing.</div>
                 </div>
 
-                <!-- CARD B: Geometric Shapes Mehndi -->
-                <div class="premium-card" id="premium-card-b">
+                <!-- CARD 2: Diamond Grid (Rhombus Style) (1.2) -->
+                <div class="premium-card" id="premium-card-2">
                     <div class="inner-box">
-                        <img src="https://placehold.co/300x170/221A33/33D1FF?text=Geometric+Shapes" alt="Geometric Shapes Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/221A33/33D1FF?text=Geometric+Shapes';">
+                        <img src="https://placehold.co/300x170/221A33/FFC72C?text=Diamond+Grid" alt="Diamond Grid (Rhombus Style) Moroccan Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/221A33/FFC72C?text=Diamond+Grid';">
                     </div>
-                    <div class="premium-title">B. Geometric Shapes Mehndi</div>
-                    <div class="premium-desc">Focuses on prominent use of shapes like triangles, squares, and diamonds.</div>
+                    <!-- Custom Heading -->
+                    <div class="premium-title" data-mobile-title="2. Diamond Grid"><span>2. Diamond Grid (Rhombus Style)</span></div>
+                    <div class="premium-desc">Full-Palm, Split Grid, and Side Blocks with cross-line shading.</div>
                 </div>
 
-                <!-- CARD C: Grid / Box Moroccan Mehndi -->
-                <div class="premium-card" id="premium-card-c">
+                <!-- CARD 3: Arrow & Triangle Tribal Blocks (1.3) -->
+                <div class="premium-card" id="premium-card-3">
                     <div class="inner-box">
-                        <img src="https://placehold.co/300x170/1A2733/33D1FF?text=Grid+Box" alt="Grid / Box Moroccan Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/1A2733/33D1FF?text=Grid+Box';">
+                        <img src="https://placehold.co/300x170/1A2733/FFC72C?text=Arrow+Blocks" alt="Arrow & Triangle Tribal Blocks Moroccan Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/1A2733/FFC72C?text=Arrow+Blocks';">
                     </div>
-                    <div class="premium-title">C. Grid / Box Moroccan Mehndi</div>
-                    <div class="premium-desc">Classic Moroccan style emphasizing full-hand grid and checkerboard patterns.</div>
+                    <!-- Custom Heading -->
+                    <div class="premium-title" data-mobile-title="3. Arrow & Triangle"><span>3. Arrow & Triangle Tribal Blocks</span></div>
+                    <div class="premium-desc">Upward Arrows, Triangle Stacks, and Opposite Arrow Bands with angular dots.</div>
                 </div>
 
-                <!-- CARD D: Tribal Moroccan Mehndi -->
-                <div class="premium-card" id="premium-card-d">
+                <!-- CARD 4: Geometric Florals (Flower + Geometry) (2.1) -->
+                <div class="premium-card" id="premium-card-4">
                     <div class="inner-box">
-                        <img src="https://placehold.co/300x170/332D1A/33D1FF?text=Tribal+Moroccan" alt="Tribal Moroccan Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/332D1A/33D1FF?text=Tribal+Moroccan';">
+                        <img src="https://placehold.co/300x170/332D1A/FFC72C?text=Geometric+Floral" alt="Geometric Florals Moroccan Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/332D1A/FFC72C?text=Geometric+Floral';">
                     </div>
-                    <div class="premium-title">D. Tribal Moroccan Mehndi</div>
-                    <div class="premium-desc">Uses Berber motifs, arrows, and desert symbols for an ancient, symbolic look.</div>
+                    <!-- Custom Heading -->
+                    <div class="premium-title" data-mobile-title="4. Geometric Florals"><span>4. Geometric Florals (Fusion)</span></div>
+                    <div class="premium-desc">Hexagon Flower, Diamond Petal, and Square Rose fusion designs.</div>
+                </div>
+
+                <!-- CARD 5: Mandala + Geometry Fusion (2.2) -->
+                <div class="premium-card" id="premium-card-5">
+                    <div class="inner-box">
+                        <img src="https://placehold.co/300x170/10241D/FFC72C?text=Mandala+Geometry" alt="Mandala + Geometry Fusion Moroccan Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/10241D/FFC72C?text=Mandala+Geometry';">
+                    </div>
+                    <!-- Custom Heading -->
+                    <div class="premium-title" data-mobile-title="5. Mandala Fusion"><span>5. Mandala + Geometry Fusion</span></div>
+                    <div class="premium-desc">Geometric Mandala, Half-Mandala Grid, and Mandala + Block patterns.</div>
                 </div>
                 
-                <!-- CARD E: Minimal Geometric Mehndi -->
-                <div class="premium-card" id="premium-card-e">
+                <!-- CARD 6: Geometric Swirls (Rare Moroccan Style) (2.3) -->
+                <div class="premium-card" id="premium-card-6">
                     <div class="inner-box">
-                        <img src="https://placehold.co/300x170/1D1024/33D1FF?text=Minimal+Geometric" alt="Minimal Geometric Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/1D1024/33D1FF?text=Minimal+Geometric';">
+                        <img src="https://placehold.co/300x170/5C2828/FFC72C?text=Geometric+Swirls" alt="Geometric Swirls Moroccan Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/5C2828/FFC72C?text=Geometric+Swirls';">
                     </div>
-                    <div class="premium-title">E. Minimal Geometric Mehndi</div>
-                    <div class="premium-desc">Tiny, sparse arrangements of lines and shapes for a subtle, high-fashion impact.</div>
+                    <!-- Custom Heading -->
+                    <div class="premium-title" data-mobile-title="6. Geometric Swirls"><span>6. Geometric Swirls (Rare Style)</span></div>
+                    <div class="premium-desc">Spiral Square, Spiral Triangle, and Spiral Wave patterns with micro-line fills.</div>
+                </div>
+
+                <!-- CARD 7: Tribal Wrist Bands (3.1) -->
+                <div class="premium-card" id="premium-card-7">
+                    <div class="inner-box">
+                        <img src="https://placehold.co/300x170/242010/FFC72C?text=Tribal+Wrist" alt="Tribal Wrist Bands Moroccan Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/242010/FFC72C?text=Tribal+Wrist';">
+                    </div>
+                    <!-- Custom Heading -->
+                    <div class="premium-title" data-mobile-title="7. Tribal Wrist Bands"><span>7. Tribal Wrist Bands</span></div>
+                    <div class="premium-desc">Triple Layer, Arrowhead, and Diamond-Link bands with detailed dot chains.</div>
+                </div>
+
+                <!-- CARD 8: Finger Ring Bands (3.2) -->
+                <div class="premium-card" id="premium-card-8">
+                    <div class="inner-box">
+                        <img src="https://placehold.co/300x170/1C3144/FFC72C?text=Finger+Rings" alt="Finger Ring Bands Moroccan Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/1C3144/FFC72C?text=Finger+Rings';">
+                    </div>
+                    <!-- Custom Heading -->
+                    <div class="premium-title" data-mobile-title="8. Finger Rings"><span>8. Finger Ring Bands</span></div>
+                    <div class="premium-desc">Geometric, Arrow, and Square-Ring patterns focused on finger detailing.</div>
                 </div>
                 
+                <!-- CARD 9: Cuff Style Bands (3.3) -->
+                <div class="premium-card" id="premium-card-9">
+                    <div class="inner-box">
+                        <img src="https://placehold.co/300x170/283C5C/FFC72C?text=Cuff+Style" alt="Cuff Style Bands Moroccan Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/283C5C/FFC72C?text=Cuff+Style';">
+                    </div>
+                    <!-- Custom Heading -->
+                    <div class="premium-title" data-mobile-title="9. Cuff Style"><span>9. Cuff Style Bands</span></div>
+                    <div class="premium-desc">Thick Tribal, Angular, and Patterned Cuffs with inside grids and shaded edges.</div>
+                </div>
+                
+                <!-- CARD 10: Full-Hand Block Sections (4.1) -->
+                <div class="premium-card" id="premium-card-10">
+                    <div class="inner-box">
+                        <img src="https://placehold.co/300x170/3B285C/FFC72C?text=Full+Hand+Block" alt="Full-Hand Block Sections Moroccan Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/3B285C/FFC72C?text=Full+Hand+Block';">
+                    </div>
+                    <!-- Custom Heading -->
+                    <div class="premium-title" data-mobile-title="10. Full-Hand Blocks"><span>10. Full-Hand Block Sections</span></div>
+                    <div class="premium-desc">Segment Squares, Tribal Panels, and Diagonal Block Dividers using micro mesh.</div>
+                </div>
+
+                <!-- CARD 11: Patterned Palm + Finger Geometry (4.3) -->
+                <div class="premium-card" id="premium-card-11">
+                    <div class="inner-box">
+                        <img src="https://placehold.co/300x170/1A332D/FFC72C?text=Palm+Finger+Geo" alt="Patterned Palm + Finger Geometry Moroccan Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/1A332D/FFC72C?text=Palm+Finger+Geo';">
+                    </div>
+                    <!-- Custom Heading -->
+                    <div class="premium-title" data-mobile-title="11. Palm + Finger Geo"><span>11. Patterned Palm + Finger Geometry</span></div>
+                    <div class="premium-desc">Palm Diamond Center, Finger Grid, and mixed blocks with micro angles and dots.</div>
+                </div>
             </div>
         </section>
     </main>
@@ -623,19 +726,19 @@
     >
         <div class="flex justify-around items-end h-20 relative px-2">
             
-            <!-- Item 1: Line (Card A से लिंक्ड) -->
-            <a href="#premium-card-a" class="nav-item-shs w-1/5" onclick="scrollToSection('premium-card-a')">
-                <i class="fas fa-grip-lines-vertical nav-icon-shs"></i>
-                <span class="font-medium">Lines</span>
+            <!-- Item 1: Zigzag (Card 1) -->
+            <a href="#premium-card-1" class="nav-item-shs w-1/5" onclick="scrollToSection('premium-card-1')">
+                <i class="fas fa-slash nav-icon-shs"></i>
+                <span class="font-medium">Zigzag</span>
             </a>
 
-            <!-- Item 2: Shapes (Card B से लिंक्ड) -->
-            <a href="#premium-card-b" class="nav-item-shs w-1/5" onclick="scrollToSection('premium-card-b')">
-                <i class="fas fa-shapes nav-icon-shs"></i>
-                <span class="font-medium">Shapes</span>
+            <!-- Item 2: Diamond (Card 2) -->
+            <a href="#premium-card-2" class="nav-item-shs w-1/5" onclick="scrollToSection('premium-card-2')">
+                <i class="fas fa-th-large nav-icon-shs"></i>
+                <span class="font-medium">Diamond</span>
             </a>
             
-            <!-- Central FAB Button (Home - index.html से लिंक्ड) -->
+            <!-- Central FAB Button (Home - main.html से लिंक्ड) -->
             <div class="central-nav-item-shs w-1/5">
                 <a 
                     href="main.html" 
@@ -644,19 +747,19 @@
                 >
                     <i class="fas fa-home central-fab-icon"></i>
                 </a>
-                <span class="central-fab-label">Home</span>
+                <span class="font-medium">Home</span>
             </div>
             
-            <!-- Item 4: Grid (Card C से लिंक्ड) -->
-            <a href="#premium-card-c" class="nav-item-shs w-1/5" onclick="scrollToSection('premium-card-c')">
-                <i class="fas fa-border-all nav-icon-shs"></i>
-                <span class="font-medium">Grid</span>
+            <!-- Item 4: Bracelet (Card 7) -->
+            <a href="#premium-card-7" class="nav-item-shs w-1/5" onclick="scrollToSection('premium-card-7')">
+                <i class="fas fa-hand-fist nav-icon-shs"></i>
+                <span class="font-medium">Bracelet</span>
             </a>
             
-            <!-- Item 5: Tribal (Card D से लिंक्ड) -->
-            <a href="#premium-card-d" class="nav-item-shs w-1/5" onclick="scrollToSection('premium-card-d')">
-                <i class="fas fa-hands nav-icon-shs"></i>
-                <span class="font-medium">Tribal</span>
+            <!-- Item 5: Full-Hand (Card 10) -->
+            <a href="#premium-card-10" class="nav-item-shs w-1/5" onclick="scrollToSection('premium-card-10')">
+                <i class="fas fa-shapes nav-icon-shs"></i>
+                <span class="font-medium">Full Hand</span>
             </a>
             
         </div>
@@ -667,8 +770,10 @@
     <div id="location-modal-overlay" class="modal-overlay">
         <div id="location-modal-content" class="modal-content">
             <div class="flex justify-between items-center mb-4 p-2">
-                <h3 id="modal-title" class="text-xl font-bold text-primary-glow">Available Locations (स्थान)</h3>
-                <button id="modal-close-button" class="text-white hover:text-primary transition-colors p-2 rounded-full hover:bg-white/10" aria-label="Close modal">
+                <!-- MODAL TITLE IS NOW CUSTOMIZABLE -->
+                <h3 id="modal-title" class="text-xl font-bold text-primary-glow">Moroccan Geometric Festive Mehndi Styles</h3>
+                <!-- CLOSE BUTTON -->
+                <button id="modal-close-button-new" onclick="closeLocationModal()" class="text-white hover:text-primary transition-colors p-2 rounded-full hover:bg-white/10" aria-label="Close modal">
                     <i class="fas fa-times text-2xl"></i>
                 </button>
             </div>
@@ -735,121 +840,303 @@
             }
         }
         
-         // --- START: SLIDER LOGIC (Modified for static content) ---
+         // --- START: SLIDER LOGIC (Moved inside DOMContentLoaded) ---
+        // Variables for slider logic
         const sliderBg = document.getElementById('slider-bg');
+        const slidesWrapper = document.getElementById('slides-wrapper');
         
+        let slidesData = [];
+        let currentSlide = 0;
+        let slideInterval;
+        const slideDuration = 5000;
+
+        function formatDate(dateStr) {
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            const date = new Date(dateStr);
+            return date.toLocaleDateString('en-IN', options);
+        }
+
         async function fetchSlidesData() {
+            // Hardcoded placeholder slide data for Moroccan/Geometric Festive styles
             return [
-                { "title": "Geometric/Moroccan Designs", "date": "Festive Styles", "link": "#", "deadline": "2026-12-12", "bgImage": "" }
+                { "title": "Traditional Zigzag & Rhombus Geometric Patterns", "date": "10 Dec", "link": "moroccan_traditional_geo.html", "deadline": "2026-12-10", "bgImage": "https://placehold.co/800x350/FFC72C/331A1A?text=Moroccan+Traditional" },
+                { "title": "Modern Fusion: Geometric Florals & Swirls", "date": "20 Dec", "link": "moroccan_modern_fusion.html", "deadline": "2026-12-20", "bgImage": "https://placehold.co/800x350/FFB433/1A2733?text=Geometric+Fusion" },
+                { "title": "Heavy Full-Hand Blocks & Tribal Wrist Bands", "date": "30 Dec", "link": "moroccan_fullhand_bands.html", "deadline": "2026-12-30", "bgImage": "https://placehold.co/800x350/FF5733/221A33?text=Moroccan+Tribal" }
             ];
         }
 
+        function createSlides(data) {
+            slidesWrapper.innerHTML = '';
+            data.forEach((item, index) => {
+                const slide = document.createElement('a');
+                const deadline = new Date(item.deadline);
+                const now = new Date();
+                const isExpired = deadline < now;
+                // Button Text
+                const buttonText = isExpired ? 'Expired' : 'View Details';
+                
+                // Link is now assigned directly from item.link (internal page)
+                slide.href = item.link; 
+                // Removed target="_blank" for internal links
+                
+                slide.className = `slide absolute top-0 left-0 w-full h-full opacity-0 transition-opacity duration-1000`;
+                slide.style.zIndex = index === 0 ? 1 : 0;
+                
+                let contentHTML = `
+                    <div class="slide-content-wrapper p-4 md:p-12 absolute bottom-0 bg-black/50 w-full rounded-b-[35px] text-left">
+                        <h3 class="post-name text-3xl md:text-5xl">${item.title}</h3>
+                        <p class="last-date text-white/80 mt-2">Date: ${item.date}</p>
+                        <button class="apply-btn bg-primary hover:bg-primary/90 text-black font-bold py-2 px-6 rounded-full mt-4 transition-transform transform hover:scale-105 shadow-xl" ${isExpired ? 'disabled' : ''}>
+                            ${buttonText}
+                        </button>
+                    </div>
+                `;
+                
+                slide.innerHTML = contentHTML;
+                slidesWrapper.appendChild(slide);
+            });
+        }
+
+        function showSlide(index) {
+            const slides = document.querySelectorAll('.slide');
+            slides.forEach((slide, i) => {
+                slide.classList.remove('active');
+                slide.style.opacity = 0;
+                slide.style.zIndex = 0;
+            });
+            
+            if (slides[index]) {
+                slides[index].classList.add('active');
+                slides[index].style.opacity = 1;
+                slides[index].style.zIndex = 1;
+                
+                if (slidesData[index] && slidesData[index].bgImage) {
+                     sliderBg.style.backgroundImage = `url('${slidesData[index].bgImage}')`;
+                }
+            }
+        }
+
+        function startAutoSlide() {
+            clearInterval(slideInterval);
+            slideInterval = setInterval(() => {
+                currentSlide = (currentSlide + 1) % slidesData.length;
+                showSlide(currentSlide);
+            }, slideDuration);
+        }
+
+        async function initializeSlider() {
+            slidesData = await fetchSlidesData();
+            createSlides(slidesData);
+            showSlide(currentSlide);
+            startAutoSlide();
+
+            // Re-adding listeners for the navigation buttons
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+
+            if (prevBtn) {
+                prevBtn.addEventListener('click', () => {
+                    currentSlide = (currentSlide - 1 + slidesData.length) % slidesData.length;
+                    showSlide(currentSlide);
+                    startAutoSlide();
+                });
+            }
+
+            if (nextBtn) {
+                nextBtn.addEventListener('click', () => {
+                    currentSlide = (currentSlide + 1) % slidesData.length;
+                    showSlide(currentSlide);
+                    startAutoSlide();
+                });
+            }
+        }
         // --- END: SLIDER LOGIC ---
 
         
         // --- START: MODAL/LOCATION SELECTION LOGIC (पॉपअप/लोकेशन चयन लॉजिक) ---
         const modalOverlay = document.getElementById('location-modal-overlay');
-        const modalCloseButton = document.getElementById('modal-close-button');
+        const modalCloseButton = document.getElementById('modal-close-button-new'); 
         const modalTitle = document.getElementById('modal-title');
         const locationList = document.getElementById('location-list');
 
-        // UPDATED LOCATION DATA FOR MOROCCAN / GEOMETRIC FESTIVE MEHNDI TYPES
-        const locationData = {
-            'premium-card-a': { // A. Line & Bar Pattern Mehndi
-                title: 'Line & Bar Types',
-                desc: 'Designs built purely on straight, solid, or broken lines and geometric bars.',
-                locations: [
-                    { name: "Vertical Lines", link: "geometric_line_vertical.html" },
-                    { name: "Horizontal Bars", link: "geometric_line_horizontal.html" },
-                    { name: "Overlap Line Work", link: "geometric_line_overlap.html" },
-                    { name: "Broken Line Style", link: "geometric_line_broken.html" },
-                    { name: "Tribal Lines", link: "geometric_line_tribal.html" },
-                ]
+        // Main Data Structure holding the full Moroccan Geometric Festive chart (11 styles)
+        const locationData_All = {
+            'Zigzag Tribal Lines': {
+                'Thick Zigzag': { name: "Thick Zigzag", link: "moroccan_zigzag_thick.html", micro: ["Edge dots", "Micro strokes", "Half-line shading", "Tip arrows"] },
+                'Double Zigzag': { name: "Double Zigzag", link: "moroccan_zigzag_double.html", micro: ["Edge dots", "Micro strokes", "Half-line shading", "Tip arrows"] },
+                'Broken Zigzag': { name: "Broken Zigzag", link: "moroccan_zigzag_broken.html", micro: ["Edge dots", "Micro strokes", "Half-line shading", "Tip arrows"] }
             },
-            'premium-card-b': { // B. Geometric Shapes Mehndi
-                title: 'Geometric Shapes Types',
-                desc: 'Focuses on prominent use of shapes like triangles, squares, and diamonds.',
-                locations: [
-                    { name: "Square Patterns", link: "geometric_shapes_square.html" },
-                    { name: "Triangle Grids", link: "geometric_shapes_triangle.html" },
-                    { name: "Diamond Shapes", link: "geometric_shapes_diamond.html" },
-                    { name: "Chevron Shapes", link: "geometric_shapes_chevron.html" },
-                    { name: "Hexagon Line Art", link: "geometric_shapes_hexagon.html" },
-                ]
+            'Diamond Grid (Rhombus Style)': {
+                'Full-Palm Diamonds': { name: "Full-Palm Diamonds", link: "moroccan_diamond_full.html", micro: ["Inside dot-fill", "Cross-line shading", "Micro-square corners", "Dot connectors"] },
+                'Split Diamond Grid': { name: "Split Diamond Grid", link: "moroccan_diamond_split.html", micro: ["Inside dot-fill", "Cross-line shading", "Micro-square corners", "Dot connectors"] },
+                'Side-Hand Diamond Blocks': { name: "Side-Hand Diamond Blocks", link: "moroccan_diamond_side.html", micro: ["Inside dot-fill", "Cross-line shading", "Micro-square corners", "Dot connectors"] }
             },
-            'premium-card-c': { // C. Grid / Box Moroccan Mehndi
-                title: 'Grid / Box Moroccan Types',
-                desc: 'Classic Moroccan style emphasizing full-hand grid and checkerboard patterns.',
-                locations: [
-                    { name: "Full Box Pattern", link: "geometric_grid_fullbox.html" },
-                    { name: "Box + Dot Pattern", link: "geometric_grid_boxdot.html" },
-                    { name: "Box Mandala", link: "geometric_grid_boxmandala.html" },
-                    { name: "Diagonal Boxes", link: "geometric_grid_diagonal.html" },
-                    { name: "Checker Box", link: "geometric_grid_checker.html" },
-                ]
+            'Arrow & Triangle Tribal Blocks': {
+                'Upward Arrows': { name: "Upward Arrows", link: "moroccan_arrow_upward.html", micro: ["Taper lines", "Micro triangle fill", "Angular dots", "Line shading"] },
+                'Triangle Stacks': { name: "Triangle Stacks", link: "moroccan_arrow_stacks.html", micro: ["Taper lines", "Micro triangle fill", "Angular dots", "Line shading"] },
+                'Opposite Arrow Bands': { name: "Opposite Arrow Bands", link: "moroccan_arrow_opposite.html", micro: ["Taper lines", "Micro triangle fill", "Angular dots", "Line shading"] }
             },
-            'premium-card-d': { // D. Tribal Moroccan Mehndi
-                title: 'Tribal Moroccan Types',
-                desc: 'Uses Berber motifs, arrows, and desert symbols for an ancient, symbolic look.',
-                locations: [
-                    { name: "Berber Tribal Motifs", link: "geometric_tribal_berber.html" },
-                    { name: "Arrow Patterns", link: "geometric_tribal_arrow.html" },
-                    { name: "Zig-Zag Tribal", link: "geometric_tribal_zigzag.html" },
-                    { name: "Tribal Wrist Band", link: "geometric_tribal_wristband.html" },
-                    { name: "Desert Tribal Symbols", link: "geometric_tribal_desert.html" },
-                ]
+            'Geometric Florals (Flower + Geometry)': {
+                'Hexagon Flower': { name: "Hexagon Flower", link: "moroccan_floral_hexagon.html", micro: ["Dot petals", "Angle shading", "Tiny spirals", "Triangle buds"] },
+                'Diamond Petal Flower': { name: "Diamond Petal Flower", link: "moroccan_floral_diamond.html", micro: ["Dot petals", "Angle shading", "Tiny spirals", "Triangle buds"] },
+                'Square Rose': { name: "Square Rose", link: "moroccan_floral_square.html", micro: ["Dot petals", "Angle shading", "Tiny spirals", "Triangle buds"] }
             },
-            'premium-card-e': { // E. Minimal Geometric Mehndi
-                title: 'Minimal Geometric Types',
-                desc: 'Tiny, sparse arrangements of lines and shapes for a subtle, high-fashion impact.',
-                locations: [
-                    { name: "Simple Lines", link: "geometric_minimal_lines.html" },
-                    { name: "Tiny Shapes", link: "geometric_minimal_shapes.html" },
-                    { name: "Finger Geometry", link: "geometric_minimal_finger.html" },
-                    { name: "Triangle Tip Art", link: "geometric_minimal_triangle.html" },
-                    { name: "Minimal Grid", link: "geometric_minimal_grid.html" },
-                ]
+            'Mandala + Geometry Fusion': {
+                'Geometric Mandala': { name: "Geometric Mandala", link: "moroccan_mandala_geo.html", micro: ["Micro-circles", "Inner triangles", "Shaded rings", "Dot mandala caps"] },
+                'Half-Mandala Grid': { name: "Half-Mandala Grid", link: "moroccan_mandala_half.html", micro: ["Micro-circles", "Inner triangles", "Shaded rings", "Dot mandala caps"] },
+                'Mandala + Block': { name: "Mandala + Block", link: "moroccan_mandala_block.html", micro: ["Micro-circles", "Inner triangles", "Shaded rings", "Dot mandala caps"] }
             },
-            // Existing Header Data (Dropdowns) - Included for site navigation consistency
-            'dropdown-bridal': {
-                 title: 'Bridal Mehndi Types',
-                 locations: [
-                    { name: "Traditional Bridal Mehndi", link: "bridal_traditional.html" }, 
-                    { name: "Arabic Bridal Mehndi", link: "bridal_arabic.html" }, 
-                    { name: "Indo-Western Bridal Mehndi", link: "bridal_indowestern.html" }
-                 ]
+            'Geometric Swirls (Rare Moroccan Style)': {
+                'Spiral Square': { name: "Spiral Square", link: "moroccan_swirl_square.html", micro: ["Micro curls", "Dot spirals", "Mini grid", "Micro-line spiral fill"] },
+                'Spiral Triangle': { name: "Spiral Triangle", link: "moroccan_swirl_triangle.html", micro: ["Micro curls", "Dot spirals", "Mini grid", "Micro-line spiral fill"] },
+                'Spiral Wave': { name: "Spiral Wave", link: "moroccan_swirl_wave.html", micro: ["Micro curls", "Dot spirals", "Mini grid", "Micro-line spiral fill"] }
             },
-            'dropdown-festive': { 
-                title: 'Festive Mehndi Types',
-                locations: [
-                    { name: "Arabic", link: "festive_arabic.html" }, 
-                    { name: "Indian", link: "festive_indian.html" }, 
-                    { name: "Indo-Arabic", link: "festive_indoarabic.html" },
-                    { name: "Moroccan / Geometric", link: "festive_geometric.html" }, // Self-link
-                    { name: "Minimal Festive Mehndi", link: "festive_minimal.html" }
-                ]
+            'Tribal Wrist Bands': {
+                'Triple Layer Band': { name: "Triple Layer Band", link: "moroccan_band_triple.html", micro: ["Dot chain", "Side triangles", "Line dots", "Micro diamonds"] },
+                'Arrowhead Band': { name: "Arrowhead Band", link: "moroccan_band_arrowhead.html", micro: ["Dot chain", "Side triangles", "Line dots", "Micro diamonds"] },
+                'Diamond-Link Band': { name: "Diamond-Link Band", link: "moroccan_band_diamond.html", micro: ["Dot chain", "Side triangles", "Line dots", "Micro diamonds"] }
+            },
+            'Finger Ring Bands': {
+                'Geometric Finger Ring': { name: "Geometric Finger Ring", link: "moroccan_finger_ring.html", micro: ["Mini cross-lines", "Dot-tips", "Nail triangles", "Micro curve strokes"] },
+                'Arrow Finger Band': { name: "Arrow Finger Band", link: "moroccan_finger_arrow.html", micro: ["Mini cross-lines", "Dot-tips", "Nail triangles", "Micro curve strokes"] },
+                'Square-Ring Pattern': { name: "Square-Ring Pattern", link: "moroccan_finger_square.html", micro: ["Mini cross-lines", "Dot-tips", "Nail triangles", "Micro curve strokes"] }
+            },
+            'Cuff Style Bands': {
+                'Thick Tribal Cuff': { name: "Thick Tribal Cuff", link: "moroccan_cuff_thick.html", micro: ["Inside grids", "Shaded edges", "Triangle caps", "Micro blocks"] },
+                'Angular Cuff': { name: "Angular Cuff", link: "moroccan_cuff_angular.html", micro: ["Inside grids", "Shaded edges", "Triangle caps", "Micro blocks"] },
+                'Patterned Cuff': { name: "Patterned Cuff", link: "moroccan_cuff_patterned.html", micro: ["Inside grids", "Shaded edges", "Triangle caps", "Micro blocks"] }
+            },
+            'Full-Hand Block Sections': {
+                'Segment Squares': { name: "Segment Squares", link: "moroccan_fullhand_segment.html", micro: ["Micro mesh", "Tiny arrows", "Dot shading", "Border shading"] },
+                'Tribal Panels': { name: "Tribal Panels", link: "moroccan_fullhand_panels.html", micro: ["Micro mesh", "Tiny arrows", "Dot shading", "Border shading"] },
+                'Diagonal Block Dividers': { name: "Diagonal Block Dividers", link: "moroccan_fullhand_diagonal.html", micro: ["Micro mesh", "Tiny arrows", "Dot shading", "Border shading"] }
+            },
+            'Patterned Palm + Finger Geometry': {
+                'Palm Diamond Center': { name: "Palm Diamond Center", link: "moroccan_palm_diamond.html", micro: ["Dot mesh", "Micro angles", "Cross shading", "Tip triangle caps"] },
+                'Finger Grid': { name: "Finger Grid", link: "moroccan_palm_grid.html", micro: ["Dot mesh", "Micro angles", "Cross shading", "Tip triangle caps"] },
+                'Palm Blocks + Finger Arrows': { name: "Palm Blocks + Finger Arrows", link: "moroccan_palm_mixed.html", micro: ["Dot mesh", "Micro angles", "Cross shading", "Tip triangle caps"] }
             }
         };
 
 
-        function showLocationModal(cardId) {
-            const data = locationData[cardId];
+        const cardMap = {
+            'premium-card-1': 'Zigzag Tribal Lines',
+            'premium-card-2': 'Diamond Grid (Rhombus Style)',
+            'premium-card-3': 'Arrow & Triangle Tribal Blocks',
+            'premium-card-4': 'Geometric Florals (Flower + Geometry)',
+            'premium-card-5': 'Mandala + Geometry Fusion',
+            'premium-card-6': 'Geometric Swirls (Rare Moroccan Style)',
+            'premium-card-7': 'Tribal Wrist Bands',
+            'premium-card-8': 'Finger Ring Bands',
+            'premium-card-9': 'Cuff Style Bands',
+            'premium-card-10': 'Full-Hand Block Sections',
+            'premium-card-11': 'Patterned Palm + Finger Geometry' 
+        };
+
+
+        // Helper to extract the data for the modal based on card ID
+        const getModalContent = (cardId) => {
+            const mainStyle = cardMap[cardId];
+            const dataRoot = locationData_All[mainStyle];
+            
+            if (!mainStyle || !dataRoot) return null;
+
+            let locations = [];
+
+            // Helper function to process nested dictionary structure and add placeholder links
+            const processNestedData = (data, prefix = 'style_') => {
+                if (typeof data === 'object' && data !== null && !Array.isArray(data)) {
+                    Object.entries(data).forEach(([key, value]) => {
+                        // Check for the known 'micro' structure
+                        if (value.name && value.link && Array.isArray(value.micro)) {
+                            // Mini-Type Header (Sub-type header) - Now clickable link
+                            locations.push({ 
+                                name: `• ${value.name}`, 
+                                isTypeHeader: true,
+                                link: value.link 
+                            });
+                            // Micro-Types (Actual click items)
+                            value.micro.forEach(micro => {
+                                // Generate unique, clean link based on key and micro-type name
+                                const microLink = `${prefix}${key.toLowerCase().replace(/[^a-z0-9]/g, '_')}_${micro.toLowerCase().replace(/[^a-z0-9]/g, '_')}.html`;
+                                locations.push({ 
+                                    name: micro, 
+                                    isTypeHeader: false,
+                                    link: microLink
+                                });
+                            });
+                        } else {
+                            // This path shouldn't be hit for the Festive Arabic data structure provided
+                            locations.push({ name: `--- ${key} ---`, isTypeHeader: true, isMajorHeader: true });
+                            processNestedData(value, prefix);
+                        }
+                    });
+                }
+            };
+            
+            // Start processing based on the main category type
+            locations.push({ name: `--- ${mainStyle} ---`, isTypeHeader: true, isMajorHeader: true });
+            processNestedData(dataRoot, mainStyle.toLowerCase().replace(/[^a-z0-9]/g, '_'));
+            
+            return {
+                title: `${mainStyle} Designs`,
+                locations: locations
+            };
+        };
+
+
+        // *** Show Modal Functionality ***
+        function showDetailedModal(cardId) {
+            const data = getModalContent(cardId);
             if (!data) return;
 
-            // Set Modal Content
-            modalTitle.textContent = data.title;
+            modalTitle.textContent = data.title; // Set the modal title dynamically
             locationList.innerHTML = ''; // Clear previous content
 
             data.locations.forEach(location => {
-                const item = document.createElement('div');
-                item.className = 'location-item';
-                item.innerHTML = `<span>${location.name}</span> <i class="fas fa-arrow-right text-sm"></i>`;
                 
-                // Click handler for location item: now redirects to the specified link
-                item.onclick = () => {
-                    window.location.href = location.link;
-                };
-                locationList.appendChild(item);
+                // Style adjustment for multi-level data
+                if (location.isMajorHeader && location.isTypeHeader) {
+                    const item = document.createElement('div');
+                    item.className = 'text-xl font-bold text-primary-glow mt-6 mb-3 p-2 border-b-2 border-primary/50';
+                    item.innerHTML = location.name;
+                    locationList.appendChild(item);
+                } else if (location.isTypeHeader) {
+                     // Mini-Type Header (now clickable)
+                    const item = document.createElement('a');
+                    item.href = location.link;
+                    item.className = 'text-lg font-bold text-white mt-3 mb-1 px-2 block hover:text-primary transition-colors';
+                    item.innerHTML = location.name;
+                    
+                    // Link handling for Mini-Type Headers
+                    item.addEventListener('click', (e) => {
+                         e.preventDefault(); 
+                         closeLocationModal();
+                         setTimeout(() => {
+                            window.location.href = location.link; // ACTUAL NAVIGATION ADDED HERE
+                         }, 100); 
+                    });
+                    locationList.appendChild(item);
+                } 
+                
+                // MICRO-TYPE - Now a clickable link
+                else {
+                    const item = document.createElement('a');
+                    item.href = location.link;
+                    item.className = 'location-item text-sm py-2 px-4 hover:bg-primary/20 transition-colors'; 
+                    item.innerHTML = `<span>${location.name}</span> <i class="fas fa-arrow-right text-sm"></i>`;
+                    
+                    item.addEventListener('click', (e) => {
+                         e.preventDefault(); // Prevent default link behavior first
+                         closeLocationModal();
+                         
+                         // Navigate after closing modal
+                         setTimeout(() => {
+                            window.location.href = location.link; // ACTUAL NAVIGATION ADDED HERE
+                         }, 100); 
+                    });
+                    locationList.appendChild(item);
+                }
             });
 
             // Show Modal
@@ -864,26 +1151,48 @@
             modalOverlay.style.opacity = 0;
             // Hide after transition completes
             setTimeout(() => {
-                modalOverlay.style.display = 'none';
+                document.getElementById('location-modal-overlay').style.display = 'none';
                 document.body.style.overflow = ''; 
             }, 300);
         }
-
-        // Attach event listeners for close button and overlay
-        modalCloseButton.addEventListener('click', closeLocationModal);
-        modalOverlay.addEventListener('click', (e) => {
-            // Close when clicking outside the content area
-            if (e.target === modalOverlay) {
+        
+        // --- ATTACHING EVENT LISTENERS ---
+        // Attaching close logic to the new button ID
+        document.getElementById('modal-close-button-new').addEventListener('click', closeLocationModal);
+        // Attaching click outside modal logic
+        document.getElementById('location-modal-overlay').addEventListener('click', (e) => {
+            if (e.target === document.getElementById('location-modal-overlay')) {
                 closeLocationModal();
             }
         });
+
+
+        // --- START: DROPDOWN / ACCORDION LOGIC (Header Navigation) ---
         
-        // --- START: DROPDOWN / ACCORDION LOGIC ---
-        
+        const locationData_Dropdowns = {
+            'dropdown-bridal': {
+                 title: 'Bridal Mehndi Types',
+                 locations: [
+                    { name: "Traditional Bridal Mehndi", link: "bridal_traditional.html" }, 
+                    { name: "Arabic Bridal Mehndi", link: "bridal_arabic.html" }, 
+                    { name: "Indo-Western Bridal Mehndi", link: "bridal_indowestern.html" }
+                 ]
+            },
+            'dropdown-festive': { 
+                title: 'Festive Mehndi Types',
+                locations: [
+                    { name: "Indian", link: "indian_festive_mehndi.html" }, 
+                    { name: "Arabic", link: "festive_arabic.html" }, 
+                    { name: "Indo-Arabic", link: "indo_arabic_festive.html" }, 
+                    { name: "Moroccan / Geometric", link: "moroccan_festive_mehndi.html" }, // Link to this page
+                    { name: "Minimal Festive Mehndi", link: "festive_minimal.html" }
+                 ]
+            }
+        };
+
         function generateDropdownContent(dataId, containerId) {
             const container = document.getElementById(containerId);
-            // Use the dedicated keys for header/mobile dropdowns
-            const data = locationData[dataId]; 
+            const data = locationData_Dropdowns[dataId]; 
             if (!container || !data) return;
 
             container.innerHTML = data.locations.map(item => `
@@ -934,17 +1243,21 @@
         // --- END: DROPDOWN / ACCORDION LOGIC ---
 
         document.addEventListener('DOMContentLoaded', () => {
-            // initializeSlider(); // Removed, as slider is static
+            initializeSlider();
             initializeDropdowns();
             
-            // Attach click listeners to all 5 new cards to open the modal:
-            document.getElementById('premium-card-a').addEventListener('click', () => showLocationModal('premium-card-a'));
-            document.getElementById('premium-card-b').addEventListener('click', () => showLocationModal('premium-card-b'));
-            document.getElementById('premium-card-c').addEventListener('click', () => showLocationModal('premium-card-c'));
-            document.getElementById('premium-card-d').addEventListener('click', () => showLocationModal('premium-card-d'));
-            document.getElementById('premium-card-e').addEventListener('click', () => showLocationModal('premium-card-e'));
-            
-            // Card E is now included, so we remove the check to hide it.
+            // Re-attaching the click handlers to the new showDetailedModal function (11 Cards)
+            document.getElementById('premium-card-1').addEventListener('click', () => showDetailedModal('premium-card-1'));
+            document.getElementById('premium-card-2').addEventListener('click', () => showDetailedModal('premium-card-2'));
+            document.getElementById('premium-card-3').addEventListener('click', () => showDetailedModal('premium-card-3'));
+            document.getElementById('premium-card-4').addEventListener('click', () => showDetailedModal('premium-card-4'));
+            document.getElementById('premium-card-5').addEventListener('click', () => showDetailedModal('premium-card-5'));
+            document.getElementById('premium-card-6').addEventListener('click', () => showDetailedModal('premium-card-6'));
+            document.getElementById('premium-card-7').addEventListener('click', () => showDetailedModal('premium-card-7'));
+            document.getElementById('premium-card-8').addEventListener('click', () => showDetailedModal('premium-card-8'));
+            document.getElementById('premium-card-9').addEventListener('click', () => showDetailedModal('premium-card-9'));
+            document.getElementById('premium-card-10').addEventListener('click', () => showDetailedModal('premium-card-10'));
+            document.getElementById('premium-card-11').addEventListener('click', () => showDetailedModal('premium-card-11'));
         });
         
         // --- START: DYNAMIC THEME COLOR CHANGER (7 THEMES, 7 SECONDS) ---
