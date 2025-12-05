@@ -45,7 +45,7 @@
             z-index: 1; 
         }
 
-        /* --- FIXED BACKGROUND MEDIA CONTAINER (Video Removed, Image retained) --- */
+        /* --- FIXED BACKGROUND MEDIA CONTAINER (Image retained) --- */
         #fixed-media-background {
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
@@ -62,7 +62,7 @@
             position: fixed; top: 0; left: 0; right: 0; z-index: 100;
         }
         
-        /* --- MOBILE SIDEBAR STYLES (मोबाइल साइडबार) --- */
+        /* --- MOBILE SIDEBAR STYLES (मोबाइल साइडबार) */
         .mobile-menu-panel {
             top: 85px; 
             height: calc(100vh - 165px);
@@ -167,8 +167,36 @@
         }
         .premium-desc {
             margin-top:8px; font-size:15px; line-height:1.4; color:#e9e9e9;
-            opacity:0.95; text-align: center; margin-bottom: 5px;
+            opacity:0.95;
+            text-align: center; margin-bottom: 5px;
         }
+
+        /* --- CUSTOM CSS FOR RESPONSIVE HEADINGS --- */
+        /* Default (Mobile First): Use data-mobile-title for smaller text */
+        .premium-card .premium-title[data-mobile-title]:before {
+            content: attr(data-mobile-title);
+            display: block;
+            font-size: 1.1rem; /* Slightly larger than original font size for the short title */
+            font-weight: 800;
+        }
+        /* Hide the long title on mobile */
+        .premium-card .premium-title > span {
+            display: none;
+        }
+
+        /* Medium/PC View: Show the long title, hide the short title */
+        @media (min-width: 768px) {
+            .premium-card .premium-title[data-mobile-title]:before {
+                content: none;
+            }
+            .premium-card .premium-title > span {
+                display: inline;
+                font-size: 1.1rem; /* Reverts to original size setting in HTML */
+                font-weight: 700;
+            }
+        }
+        /* ------------------------------------------- */
+
 
         /* --- GRID AND RESPONSIVENESS (ग्रिड और प्रतिक्रियाशीलता) --- */
         .card-grid-container {
@@ -191,7 +219,13 @@
             }
         }
         
-        /* ADJUSTED: 4 cards in a row for screens >= 1400px (Large PC) for 5 items (5x1 or 3x2) */
+        /* ADJUSTED: 4 cards in a row for screens >= 1200px (to fit 11 cards elegantly) */
+        @media(min-width: 1200px){
+            .card-grid-container {
+                grid-template-columns: repeat(4, 1fr); 
+            }
+        }
+        /* New: 5 cards across on very large screens (1400px+) */
         @media(min-width: 1400px){
             .card-grid-container {
                 grid-template-columns: repeat(5, 1fr); 
@@ -235,8 +269,6 @@
             }
         }
 
-        /* ... (other slider styles) ... */
-        
         .slide-content-wrapper .post-name {
             font-weight: 1000;
             line-height: 1.2;
@@ -245,7 +277,6 @@
             word-wrap: break-word; 
             white-space: normal;
         }
-        /* ... (other slider styles) ... */
 
         #prev-btn, #next-btn {
             background-color: rgba(255, 255, 255, 0.15); 
@@ -408,13 +439,15 @@
               <div class="container mx-auto flex justify-between items-center px-2 sm:px-4" style="padding-top: env(safe-area-inset-top);">
                 <!-- Logo and Title (लोगो और शीर्षक) -->
                 <a href="main.html" class="flex items-center no-underline">
+                  <!-- rentist.jpg इमेज का उपयोग किया गया -->
                   <img src="blessingsssl.png" alt="Rentist Logo" class="h-10 w-10 mr-3 rounded-full border border-primary/50 object-cover" onerror="this.onerror=null;this.src='https://placehold.co/48x48/1C3144/76FF03?text=R';"/>
                    <span class="text-xl sm:text-3xl font-extrabold text-white tracking-tight flex items-center">
-                    <img src="blessingsss.png" alt="Logo" class="h-[35px] w-auto object-contain inline-block" onerror="this.onerror=null;this.src='https://placehold.co/100x35/1C3144/76FF03?text=SkillAurA';" />
+                    <img src="blessingsss.png" alt="Logo" class="h-[35px] w-auto object-contain inline-block" onerror="this.onerror=null;this.src='https://placehold.co/100x35/1C3144/76FF03?text=SkillAurA';" /> <!-- Placeholder color changed -->
                   </span>
                 </a>
 
                 <!-- Desktop Navigation (डेस्कटॉप नेविगेशन) -->
+                <!-- UPDATED CLASS for 1200px breakpoint logic -->
                 <div class="desktop-nav-area hidden items-center space-x-10">
                   <nav class="flex space-x-8 font-extrabold">
                     
@@ -434,7 +467,7 @@
                     <div class="relative group">
                         <a href="#" class="text-white text-lg relative py-1 hover:text-primary flex items-center">
                             Festive <i class="fas fa-caret-down ml-1 text-xs transition-transform duration-300 group-hover:rotate-180"></i>
-                            <span class="absolute left-0 bottom-0 h-1 w-0 bg-primary/70 group-hover:w-full transition-all duration-300 rounded-full"></span>
+                            <span class="absolute left:0 bottom-0 h:1 w-0 bg-primary/70 group-hover:w-full transition-all duration-300 rounded-full"></span>
                         </a>
                         <!-- Dropdown Content Container -->
                         <div id="dropdown-festive" class="absolute hidden group-hover:block w-64 mt-2 bg-premium-bg-dark border border-primary/50 rounded-xl shadow-2xl z-50 p-2 transform origin-top transition-all duration-300 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 translate-y-2">
@@ -443,13 +476,13 @@
                     </div>
 
                     <!-- Link 3: Custom Mehndi (Direct Link) -->
-                    <a href="custom_mehndi.html" class="text-white text-lg relative group py-1 hover:text-primary">
+                    <a href="custom_mehndi.html" class="text-white text-lg relative py-1 hover:text-primary">
                         Custom
                         <span class="absolute left-0 bottom-0 h-1 w-0 bg-primary/70 group-hover:w-full transition-all duration-300 rounded-full"></span>
                     </a>
                     
                     <!-- Link 4: Meet Me (Direct Link) -->
-                    <a href="meet_me.html" class="text-white text-lg relative group py-1 hover:text-primary">
+                    <a href="meet_me.html" class="text-white text-lg relative py-1 hover:text-primary">
                         Meet Me
                         <span class="absolute left-0 bottom-0 h-1 w-0 bg-primary/70 group-hover:w-full transition-all duration-300 rounded-full"></span>
                     </a>
@@ -508,15 +541,15 @@
                 </div>
                 <div class="border-t border-primary/30 w-full my-4"></div>
 
-                <!-- Direct Link 3: Custom Mehndi (Direct Link) -->
-                <a href="custom_mehndi.html" class="text-white text-lg relative group py-1 hover:text-primary">
+                <!-- Direct Link 3: Custom Mehndi -->
+                <a href="custom_mehndi.html" class="text-white text-lg relative py-1 hover:text-primary">
                     Custom Mehndi
                     <span class="absolute left-0 bottom-0 h-1 w-0 bg-primary/70 group-hover:w-full transition-all duration-300 rounded-full"></span>
                 </a>
                 <div class="border-t border-primary/30 w-full my-4"></div>
                 
-                <!-- Direct Link 4: Meet Me (Direct Link) -->
-                <a href="meet_me.html" class="text-white text-lg relative group py-1 hover:text-primary">
+                <!-- Direct Link 4: Meet Me -->
+                <a href="meet_me.html" class="text-white text-lg relative py-1 hover:text-primary">
                     Meet Me
                     <span class="absolute left-0 bottom-0 h-1 w-0 bg-primary/70 group-hover:w-full transition-all duration-300 rounded-full"></span>
                 </a>
@@ -540,75 +573,146 @@
     <!-- MAIN CONTENT AREA (मुख्य सामग्री क्षेत्र) -->
     <main class="container mx-auto p-4 md:p-8 lg:p-12" style="min-height: calc(100vh - 160px);">
         
-       
-            
  <!-- SLIDE SECTION WRAPPER (FOR DYNAMIC BACKGROUND & BORDER) -->
         <div id="slider-bg"> 
             <section class="latest-forms">
-                <!-- Title is now placed relative to the inner section for Z-index -->
                 <div class="text-center mb-6">
-                    <!-- Updated class to use primary color glow -->
-                    <h2 class="text-2xl sm:text-3xl font-extrabold text-primary-glow border-b-4 border-primary/50 inline-block px-4 pb-1"></h2>
+                    <!-- Customisable Main Heading (Removed spotlight heading to only use modal title) -->
                 </div>
                 
                 <div class="slider-container relative">
                     <!-- Slides Wrapper will contain the dynamic content over the image -->
                     <div id="slides-wrapper" class="relative w-full h-full"></div>
 
+                    <!-- Navigation Buttons -->
+                    <button id="prev-btn" class="absolute top-1/2 left-4 transform -translate-y-1/2 bg-white bg-opacity-15 hover:bg-opacity-25 text-primary p-2 rounded-full shadow-lg transition-all z-20">❮</button>
+                    <button id="next-btn" class="absolute top-1/2 right-4 transform -translate-y-1/2 bg-white bg-opacity-15 hover:bg-opacity-25 text-primary p-2 rounded-full shadow-lg transition-all z-20">❯</button>
+                    
             </section>
         </div>
         <!-- END SLIDE SECTION WRAPPER -->
 
-        <!-- START: Updated Card Grid for 5 Styles -->
-        <section class="mb-12">
-            <h2 class="text-2xl sm:text-3xl font-extrabold text-primary-glow text-center mb-8 border-b-4 border-primary/50 inline-block px-4 pb-1 mx-auto block">Indian Festive Mehndi</h2>
+        <!-- CARD SECTION HEADING -->
+        <div class="text-center mb-8 mt-4">
+            <h2 class="text-xl md:text-4xl font-extrabold text-primary-glow border-b-4 border-primary/50 inline-block px-6 pb-2 uppercase tracking-wide">
+                Indian Festive Styles
+            </h2>
+        </div>
+        <!-- END CARD SECTION HEADING -->
+
+        <section id="service-cards">
+            <!-- Grid container now optimized for 11 cards -->
             <div class="card-grid-container">
                 
-                <!-- CARD A: Mandala Indian Mehndi -->
-                <div class="premium-card" id="premium-card-A">
+                <!-- CARD 1: Peacock Style -->
+                <div class="premium-card" id="premium-card-1">
                     <div class="inner-box">
-                        <img src="https://placehold.co/300x170/331A1A/FFC72C?text=Mandala+Indian" alt="Mandala Indian Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/331A1A/FFC72C?text=Mandala+Indian';">
+                        <img src="https://placehold.co/300x170/331A1A/FFC72C?text=Peacock+Style" alt="Peacock Style Indian Festive Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/331A1A/FFC72C?text=Peacock+Style';">
                     </div>
-                    <div class="premium-title">A. Mandala Indian Mehndi</div>
-                    <div class="premium-desc">Features circular patterns including layered, center, and Jaali Mandalas.</div>
+                    <!-- Custom Heading -->
+                    <div class="premium-title" data-mobile-title="1. Peacock Style"><span>1. Peacock Style (Indian)</span></div>
+                    <div class="premium-desc">Full Peacock, Side Peacock, Peacock Pair with detailed featherwork.</div>
                 </div>
 
-                <!-- CARD B: Peacock Indian Mehndi -->
-                <div class="premium-card" id="premium-card-B">
+                <!-- CARD 2: Mandala Style -->
+                <div class="premium-card" id="premium-card-2">
                     <div class="inner-box">
-                        <img src="https://placehold.co/300x170/221A33/FFC72C?text=Peacock+Indian" alt="Peacock Indian Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/221A33/FFC72C?text=Peacock+Indian';">
+                        <img src="https://placehold.co/300x170/221A33/FFC72C?text=Mandala+Style" alt="Mandala Style Indian Festive Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/221A33/FFC72C?text=Mandala+Style';">
                     </div>
-                    <div class="premium-title">B. Peacock Indian Mehndi</div>
-                    <div class="premium-desc">Designs emphasizing full peacock motifs, feathers, and peacock wrist bands.</div>
+                    <!-- Custom Heading -->
+                    <div class="premium-title" data-mobile-title="2. Mandala Style"><span>2. Mandala Style (Indian)</span></div>
+                    <div class="premium-desc">Central Mandala, Layered Mandala, Mandala + Jaal with detailed shading.</div>
                 </div>
 
-                <!-- CARD C: Floral Indian Mehndi -->
-                <div class="premium-card" id="premium-card-C">
+                <!-- CARD 3: Paisley (Keri) Style -->
+                <div class="premium-card" id="premium-card-3">
                     <div class="inner-box">
-                        <img src="https://placehold.co/300x170/1A2733/FFC72C?text=Floral+Indian" alt="Floral Indian Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/1A2733/FFC72C?text=Floral+Indian';">
+                        <img src="https://placehold.co/300x170/1A2733/FFC72C?text=Paisley+Style" alt="Paisley (Keri) Style Indian Festive Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/1A2733/FFC72C?text=Paisley+Style';">
                     </div>
-                    <div class="premium-title">C. Floral Indian Mehndi</div>
-                    <div class="premium-desc">Includes Lotus, Rose, Sunflower, Creeper trails, and detailed leafy combinations.</div>
+                    <!-- Custom Heading -->
+                    <div class="premium-title" data-mobile-title="3. Paisley/Keri"><span>3. Paisley (Keri) Style</span></div>
+                    <div class="premium-desc">Double Keri, Slim Keri, Floral Keri with intricate fills and mesh caps.</div>
                 </div>
 
-                <!-- CARD D: Traditional Symbolic Mehndi -->
-                <div class="premium-card" id="premium-card-D">
+                <!-- CARD 4: Floral Indian -->
+                <div class="premium-card" id="premium-card-4">
                     <div class="inner-box">
-                        <img src="https://placehold.co/300x170/332D1A/FFC72C?text=Symbolic+Indian" alt="Traditional Symbolic Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/332D1A/FFC72C?text=Symbolic+Indian';">
+                        <img src="https://placehold.co/300x170/332D1A/FFC72C?text=Floral+Indian" alt="Floral Indian Festive Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/332D1A/FFC72C?text=Floral+Indian';">
                     </div>
-                    <div class="premium-title">D. Traditional Symbolic Mehndi</div>
-                    <div class="premium-desc">Cultural motifs like Kalash, Swastik, Diya, Doli, and Conch Shells (Shankh).</div>
+                    <!-- Custom Heading -->
+                    <div class="premium-title" data-mobile-title="4. Floral Indian"><span>4. Floral Indian</span></div>
+                    <div class="premium-desc">Lotus trail, Rose shading, Marigold bunch with vein and spiral work.</div>
                 </div>
 
-                <!-- CARD E: Net/Jaali Indian Mehndi -->
-                <div class="premium-card" id="premium-card-E">
+                <!-- CARD 5: Elephant / Doli Motif -->
+                <div class="premium-card" id="premium-card-5">
                     <div class="inner-box">
-                        <img src="https://placehold.co/300x170/10241D/FFC72C?text=Net+Indian" alt="Net/Jaali Indian Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/10241D/FFC72C?text=Net+Indian';">
+                        <img src="https://placehold.co/300x170/10241D/FFC72C?text=Elephant+Motif" alt="Elephant / Doli Motif Festive Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/10241D/FFC72C?text=Elephant+Motif';">
                     </div>
-                    <div class="premium-title">E. Net/Jaali Indian Mehndi</div>
-                    <div class="premium-desc">Intricate lattice work including Criss-Cross, Diamond Net, and Finger Jaali.</div>
+                    <!-- Custom Heading -->
+                    <div class="premium-title" data-mobile-title="5. Elephant/Doli"><span>5. Elephant / Doli Motif</span></div>
+                    <div class="premium-desc">Elephant parade, Lotus elephant, Doli corner designs for traditional events.</div>
                 </div>
                 
+                <!-- CARD 6: Arabic Festive Mehndi (Fusion Focus) -->
+                <div class="premium-card" id="premium-card-6">
+                    <div class="inner-box">
+                        <img src="https://placehold.co/300x170/5C2828/FFC72C?text=Arabic+Fusion" alt="Arabic Festive Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/5C2828/FFC72C?text=Arabic+Fusion';">
+                    </div>
+                    <!-- Custom Heading -->
+                    <div class="premium-title" data-mobile-title="6. Arabic Fusion"><span>6. Arabic Festive (Fusion Styles)</span></div>
+                    <div class="premium-desc">Shaded, Gulf, Indo-Arabic, and Bracelet Arabic for a modern festive look.</div>
+                </div>
+
+                <!-- CARD 7: Indo-Western Festive Mehndi -->
+                <div class="premium-card" id="premium-card-7">
+                    <div class="inner-box">
+                        <img src="https://placehold.co/300x170/242010/FFC72C?text=Indo+Western" alt="Indo-Western Festive Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/242010/FFC72C?text=Indo+Western';">
+                    </div>
+                    <!-- Custom Heading -->
+                    <div class="premium-title" data-mobile-title="7. Indo-Western"><span>7. Indo-Western Festive</span></div>
+                    <div class="premium-desc">Minimal, Tattoo Style, Geometric Fusion, and Modern Bracelet designs.</div>
+                </div>
+
+                <!-- CARD 8: Regional North Indian (Rajasthani / Marwari) -->
+                <div class="premium-card" id="premium-card-8">
+                    <div class="inner-box">
+                        <img src="https://placehold.co/300x170/1C3144/FFC72C?text=North+Indian" alt="Regional North Indian Festive Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/1C3144/FFC72C?text=North+Indian';">
+                    </div>
+                    <!-- Custom Heading -->
+                    <div class="premium-title" data-mobile-title="8. North Indian"><span>8. Regional (Rajasthani/Marwari)</span></div>
+                    <div class="premium-desc">Jodhpuri, Full Mesh Work, Heavy Dots, and Peacock Band traditions.</div>
+                </div>
+                
+                <!-- CARD 9: Regional West Indian (Gujarati / Punjabi) -->
+                <div class="premium-card" id="premium-card-9">
+                    <div class="inner-box">
+                        <img src="https://placehold.co/300x170/283C5C/FFC72C?text=West+Indian" alt="Regional West Indian Festive Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/283C5C/FFC72C?text=West+Indian';">
+                    </div>
+                    <!-- Custom Heading -->
+                    <div class="premium-title" data-mobile-title="9. West Indian"><span>9. Regional (Gujarati/Punjabi)</span></div>
+                    <div class="premium-desc">Garba Theme, Phulkari Style, Tribal, and Bandhani Inspired motifs.</div>
+                </div>
+                
+                <!-- CARD 10: South Indian & Minimal Festive -->
+                <div class="premium-card" id="premium-card-10">
+                    <div class="inner-box">
+                        <img src="https://placehold.co/300x170/3B285C/FFC72C?text=South+Minimal" alt="South Indian & Minimal Festive Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/3B285C/FFC72C?text=South+Minimal';">
+                    </div>
+                    <!-- Custom Heading -->
+                    <div class="premium-title" data-mobile-title="10. South & Minimal"><span>10. South Indian & Minimal</span></div>
+                    <div class="premium-desc">Temple Style, Mango (South Keri), Finger Only, and Wrist Bands.</div>
+                </div>
+
+                <!-- CARD 11: Kids & Ultimate Fusion -->
+                <div class="premium-card" id="premium-card-11">
+                    <div class="inner-box">
+                        <img src="https://placehold.co/300x170/1A332D/FFC72C?text=Kids+Fusion" alt="Kids & Ultimate Fusion Festive Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/1A332D/FFC72C?text=Kids+Fusion';">
+                    </div>
+                    <!-- Custom Heading -->
+                    <div class="premium-title" data-mobile-title="11. Kids & Fusion"><span>11. Kids & Ultimate Fusion</span></div>
+                    <div class="premium-desc">Cartoon/Fun Shapes, Floral for Kids, and Complex Arabic + Indian Fusions.</div>
+                </div>
             </div>
         </section>
     </main>
@@ -622,19 +726,19 @@
     >
         <div class="flex justify-around items-end h-20 relative px-2">
             
-            <!-- Item 1: Mandala (Card A से लिंक्ड) -->
-            <a href="#premium-card-A" class="nav-item-shs w-1/5" onclick="scrollToSection('premium-card-A')">
-                <i class="fas fa-compact-disc nav-icon-shs"></i>
-                <span class="font-medium">Mandala</span>
-            </a>
-
-            <!-- Item 2: Peacock (Card B से लिंक्ड) -->
-            <a href="#premium-card-B" class="nav-item-shs w-1/5" onclick="scrollToSection('premium-card-B')">
-                <i class="fas fa-feather-alt nav-icon-shs"></i>
+            <!-- Item 1: Peacock (Card 1) -->
+            <a href="#premium-card-1" class="nav-item-shs w-1/5" onclick="scrollToSection('premium-card-1')">
+                <i class="fas fa-feather nav-icon-shs"></i>
                 <span class="font-medium">Peacock</span>
             </a>
+
+            <!-- Item 2: Mandala (Card 2) -->
+            <a href="#premium-card-2" class="nav-item-shs w-1/5" onclick="scrollToSection('premium-card-2')">
+                <i class="fas fa-dharmachakra nav-icon-shs"></i>
+                <span class="font-medium">Mandala</span>
+            </a>
             
-            <!-- Central FAB Button (Home - index.html से लिंक्ड) -->
+            <!-- Central FAB Button (Home - main.html से लिंक्ड) -->
             <div class="central-nav-item-shs w-1/5">
                 <a 
                     href="main.html" 
@@ -643,19 +747,19 @@
                 >
                     <i class="fas fa-home central-fab-icon"></i>
                 </a>
-                <span class="central-fab-label">Home</span>
+                <span class="font-medium">Home</span>
             </div>
             
-            <!-- Item 4: Symbolic (Card D से लिंक्ड) -->
-            <a href="#premium-card-D" class="nav-item-shs w-1/5" onclick="scrollToSection('premium-card-D')">
-                <i class="fas fa-bell nav-icon-shs"></i>
-                <span class="font-medium">Symbolic</span>
+            <!-- Item 4: Elephant/Doli (Card 5) -->
+            <a href="#premium-card-5" class="nav-item-shs w-1/5" onclick="scrollToSection('premium-card-5')">
+                <i class="fas fa-truck-moving nav-icon-shs"></i>
+                <span class="font-medium">Motifs</span>
             </a>
             
-            <!-- Item 5: Jaali (Card E से लिंक्ड) -->
-            <a href="#premium-card-E" class="nav-item-shs w-1/5" onclick="scrollToSection('premium-card-E')">
-                <i class="fas fa-grip-lines nav-icon-shs"></i>
-                <span class="font-medium">Jaali</span>
+            <!-- Item 5: Rajasthani (Card 8) -->
+            <a href="#premium-card-8" class="nav-item-shs w-1/5" onclick="scrollToSection('premium-card-8')">
+                <i class="fas fa-fort-awesome nav-icon-shs"></i>
+                <span class="font-medium">Regional</span>
             </a>
             
         </div>
@@ -666,8 +770,10 @@
     <div id="location-modal-overlay" class="modal-overlay">
         <div id="location-modal-content" class="modal-content">
             <div class="flex justify-between items-center mb-4 p-2">
-                <h3 id="modal-title" class="text-xl font-bold text-primary-glow">Available Designs (डिज़ाइन)</h3>
-                <button id="modal-close-button" class="text-white hover:text-primary transition-colors p-2 rounded-full hover:bg-white/10" aria-label="Close modal">
+                <!-- MODAL TITLE IS NOW CUSTOMIZABLE -->
+                <h3 id="modal-title" class="text-xl font-bold text-primary-glow">Indian Festive Mehndi Styles</h3>
+                <!-- CLOSE BUTTON -->
+                <button id="modal-close-button-new" onclick="closeLocationModal()" class="text-white hover:text-primary transition-colors p-2 rounded-full hover:bg-white/10" aria-label="Close modal">
                     <i class="fas fa-times text-2xl"></i>
                 </button>
             </div>
@@ -735,10 +841,9 @@
         }
         
          // --- START: SLIDER LOGIC (Moved inside DOMContentLoaded) ---
+        // Variables for slider logic
         const sliderBg = document.getElementById('slider-bg');
         const slidesWrapper = document.getElementById('slides-wrapper');
-        const prevBtn = document.getElementById('prev-btn');
-        const nextBtn = document.getElementById('next-btn');
         
         let slidesData = [];
         let currentSlide = 0;
@@ -754,9 +859,9 @@
         async function fetchSlidesData() {
             // Hardcoded placeholder slide data for Indian Festive styles
             return [
-                { "title": "", "date": "10 Apr", "link": "indian_mandala.html", "deadline": "2026-04-10", "bgImage": "" },
-                { "title": "", "date": "22 Apr", "link": "indian_peacock.html", "deadline": "2026-04-22", "bgImage": "" },
-                { "title": "", "date": "05 May", "link": "indian_jaali.html", "deadline": "2026-05-05", "bgImage": "" }
+                { "title": "Peacock Featherwork & Jali: Traditional Indian", "date": "10 Sept", "link": "indian_peacock_jali.html", "deadline": "2026-09-10", "bgImage": "https://placehold.co/800x350/FFC72C/331A1A?text=Indian+Peacock+Design" },
+                { "title": "Mandala and Paisley Fusion: Layered Elegance", "date": "20 Sept", "link": "indian_mandala_paisley.html", "deadline": "2026-09-20", "bgImage": "https://placehold.co/800x350/FFB433/1A2733?text=Mandala+Fusion" },
+                { "title": "Regional Styles: Rajasthani and Gujarati Motifs", "date": "30 Sept", "link": "indian_regional_mix.html", "deadline": "2026-09-30", "bgImage": "https://placehold.co/800x350/FF5733/221A33?text=Rajasthani+Motifs" }
             ];
         }
 
@@ -772,6 +877,7 @@
                 
                 // Link is now assigned directly from item.link (internal page)
                 slide.href = item.link; 
+                // Removed target="_blank" for internal links
                 
                 slide.className = `slide absolute top-0 left-0 w-full h-full opacity-0 transition-opacity duration-1000`;
                 slide.style.zIndex = index === 0 ? 1 : 0;
@@ -824,124 +930,214 @@
             showSlide(currentSlide);
             startAutoSlide();
 
-            prevBtn.addEventListener('click', () => {
-                currentSlide = (currentSlide - 1 + slidesData.length) % slidesData.length;
-                showSlide(currentSlide);
-                startAutoSlide();
-            });
+            // Re-adding listeners for the navigation buttons
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
 
-            nextBtn.addEventListener('click', () => {
-                currentSlide = (currentSlide + 1) % slidesData.length;
-                showSlide(currentSlide);
-                startAutoSlide();
-            });
+            if (prevBtn) {
+                prevBtn.addEventListener('click', () => {
+                    currentSlide = (currentSlide - 1 + slidesData.length) % slidesData.length;
+                    showSlide(currentSlide);
+                    startAutoSlide();
+                });
+            }
+
+            if (nextBtn) {
+                nextBtn.addEventListener('click', () => {
+                    currentSlide = (currentSlide + 1) % slidesData.length;
+                    showSlide(currentSlide);
+                    startAutoSlide();
+                });
+            }
         }
         // --- END: SLIDER LOGIC ---
 
         
         // --- START: MODAL/LOCATION SELECTION LOGIC (पॉपअप/लोकेशन चयन लॉजिक) ---
         const modalOverlay = document.getElementById('location-modal-overlay');
-        const modalCloseButton = document.getElementById('modal-close-button');
+        const modalCloseButton = document.getElementById('modal-close-button-new'); 
         const modalTitle = document.getElementById('modal-title');
         const locationList = document.getElementById('location-list');
 
-        // Indian Festive Mehndi Data (5 Cards: A, B, C, D, E)
-        const locationData = {
-            'premium-card-A': { // A. Mandala Indian Mehndi
-                title: 'Mandala Indian Mehndi',
-                desc: 'Features circular patterns including layered, center, and Jaali Mandalas.',
-                locations: [
-                    { name: "Center Mandala", link: "if_mandala_center.html" },
-                    { name: "Layered Mandala", link: "if_mandala_layered.html" },
-                    { name: "Mandala + Dots Ring", link: "if_mandala_dots.html" },
-                    { name: "Half Mandala", link: "if_mandala_half.html" },
-                    { name: "Mandala With Jaali", link: "if_mandala_jaali.html" },
-                ]
+        // Main Data Structure holding the full Indian Festive chart (11 styles)
+        const locationData_All = {
+            'Peacock Style (Indian)': { 
+                'Full Peacock': { name: "Full Peacock", link: "indian_festive_peacock_full.html", micro: ["Feather strokes", "Spiral crown", "Shaded wings", "Tail jali"] },
+                'Side Peacock': { name: "Side Peacock", link: "indian_festive_peacock_side.html", micro: ["Feather strokes", "Spiral crown", "Shaded wings", "Tail jali"] },
+                'Peacock Pair': { name: "Peacock Pair", link: "indian_festive_peacock_pair.html", micro: ["Feather strokes", "Spiral crown", "Shaded wings", "Tail jali"] }
             },
-            'premium-card-B': { // B. Peacock Indian Mehndi
-                title: 'Peacock Indian Mehndi',
-                desc: 'Designs emphasizing full peacock motifs, feathers, and peacock wrist bands.',
-                locations: [
-                    { name: "Peacock Feather Trail", link: "if_peacock_feather.html" },
-                    { name: "Full Peacock Motif", link: "if_peacock_full.html" },
-                    { name: "Peacock + Floral", link: "if_peacock_floral.html" },
-                    { name: "Double Peacock Style", link: "if_peacock_double.html" },
-                    { name: "Peacock Wrist Band", link: "if_peacock_wrist.html" },
-                ]
+            'Mandala Style (Indian)': {
+                'Central Mandala': { name: "Central Mandala", link: "indian_festive_mandala_central.html", micro: ["Dot-grid", "Circular jali", "Petal shading", "Infinity rim"] },
+                'Layered Mandala': { name: "Layered Mandala", link: "indian_festive_mandala_layered.html", micro: ["Dot-grid", "Circular jali", "Petal shading", "Infinity rim"] },
+                'Mandala + Jaal': { name: "Mandala + Jaal", link: "indian_festive_mandala_jaal.html", micro: ["Dot-grid", "Circular jali", "Petal shading", "Infinity rim"] }
             },
-            'premium-card-C': { // C. Floral Indian Mehndi
-                title: 'Floral Indian Mehndi',
-                desc: 'Includes Lotus, Rose, Sunflower, Creeper trails, and detailed leafy combinations.',
-                locations: [
-                    { name: "Lotus Floral", link: "if_floral_lotus.html" },
-                    { name: "Rose Floral", link: "if_floral_rose.html" },
-                    { name: "Sunflower Floral", link: "if_floral_sunflower.html" },
-                    { name: "Creeper Floral Trail", link: "if_floral_creeper.html" },
-                    { name: "Leafy Floral Combo", link: "if_floral_leafy.html" },
-                ]
+            'Paisley (Keri) Style': {
+                'Double Keri': { name: "Double Keri", link: "indian_festive_keri_double.html", micro: ["Leaf spine", "Swirl fill", "Dot shading", "Mesh caps"] },
+                'Slim Keri': { name: "Slim Keri", link: "indian_festive_keri_slim.html", micro: ["Leaf spine", "Swirl fill", "Dot shading", "Mesh caps"] },
+                'Floral Keri': { name: "Floral Keri", link: "indian_festive_keri_floral.html", micro: ["Leaf spine", "Swirl fill", "Dot shading", "Mesh caps"] }
             },
-            'premium-card-D': { // D. Traditional Symbolic Mehndi
-                title: 'Traditional Symbolic Mehndi',
-                desc: 'Cultural motifs like Kalash, Swastik, Diya, Doli, and Conch Shells (Shankh).',
-                locations: [
-                    { name: "Kalash Motif", link: "if_symbolic_kalash.html" },
-                    { name: "Swastik Style", link: "if_symbolic_swastik.html" },
-                    { name: "Diya/Deepak Pattern", link: "if_symbolic_diya.html" },
-                    { name: "Doli/Palki Elements", link: "if_symbolic_doli.html" },
-                    { name: "Conch Shell (Shankh)", link: "if_symbolic_shankh.html" },
-                ]
+            'Floral Indian': {
+                'Lotus Trail': { name: "Lotus Trail", link: "indian_festive_floral_lotus.html", micro: ["Veins", "Spiral rose", "Petal dip", "Mesh leaves"] },
+                'Rose Shading': { name: "Rose Shading", link: "indian_festive_floral_rose.html", micro: ["Veins", "Spiral rose", "Petal dip", "Mesh leaves"] },
+                'Marigold Bunch': { name: "Marigold Bunch", link: "indian_festive_floral_marigold.html", micro: ["Veins", "Spiral rose", "Petal dip", "Mesh leaves"] }
             },
-            'premium-card-E': { // E. Net/Jaali Indian Mehndi
-                title: 'Net/Jaali Indian Mehndi',
-                desc: 'Intricate lattice work including Criss-Cross, Diamond Net, and Finger Jaali.',
-                locations: [
-                    { name: "Criss-Cross Jaali", link: "if_jaali_criss_cross.html" },
-                    { name: "Diamond Net Pattern", link: "if_jaali_diamond.html" },
-                    { name: "Side Net Fill", link: "if_jaali_side.html" },
-                    { name: "Finger Jaali", link: "if_jaali_finger.html" },
-                    { name: "Wrist Jaali", link: "if_jaali_wrist.html" },
-                ]
+            'Elephant / Doli Motif': {
+                'Elephant Parade': { name: "Elephant Parade", link: "indian_festive_motif_elephant.html", micro: ["Crown dots", "Ear curls", "Cloth shading", "Border beads"] },
+                'Lotus Elephant': { name: "Lotus Elephant", link: "indian_festive_motif_lotus.html", micro: ["Crown dots", "Ear curls", "Cloth shading", "Border beads"] },
+                'Doli Corner': { name: "Doli Corner", link: "indian_festive_motif_doli.html", micro: ["Crown dots", "Ear curls", "Cloth shading", "Border beads"] }
             },
-            // Existing Header Data (Dropdowns) - Kept for template consistency
-            'dropdown-bridal': {
-                 title: 'Bridal Mehndi Types',
-                 locations: [
-                    { name: "Traditional Bridal Mehndi", link: "bridal_traditional.html" }, 
-                    { name: "Arabic Bridal Mehndi", link: "bridal_arabic.html" }, 
-                    { name: "Indo-Western Bridal Mehndi", link: "bridal_indowestern.html" }
-                 ]
+            'Arabic Festive (Fusion Styles)': { // Card 6 combines 4 Arabic styles
+                'Shaded Arabic': { name: "Shaded Arabic", link: "arabic_festive_shaded.html", micro: ["Bold leaves", "Flower dome", "Crescent vines"] },
+                'Gulf Arabic': { name: "Gulf Arabic", link: "arabic_festive_gulf.html", micro: ["Thick floral sets", "Gulf curves", "Open patterns"] },
+                'Indo-Arabic': { name: "Indo-Arabic", link: "arabic_festive_indo.html", micro: ["Indian jali + Arabic vine", "Indian lotus + Arabic shading"] },
+                'Bracelet Arabic': { name: "Bracelet Arabic", link: "arabic_festive_bracelet.html", micro: ["Wrist band", "Half-hand bracelet", "Diagonal bracelet"] }
             },
-            'dropdown-festive': { 
-                title: 'Festive Mehndi Types',
-                locations: [
-                    { name: "Arabic", link: "festive_arabic.html" }, 
-                    { name: "Indian", link: "festive_indian.html" }, 
-                    { name: "Indo-Arabic", link: "festive_indoarabic.html" },
-                    { name: "Moroccan / Geometric", link: "festive_geometric.html" },
-                    { name: "Minimal Festive Mehndi", link: "festive_minimal.html" }
-                ]
+            'Indo-Western Festive': { // Card 7 combines 4 Indo-Western styles
+                'Minimal Indo-Western': { name: "Minimal Indo-Western", link: "indowestern_minimal.html", micro: ["Dot trails", "Geometric ring", "Tiny mandala"] },
+                'Tattoo Style': { name: "Tattoo Style", link: "indowestern_tattoo.html", micro: ["Feather tattoo", "Infinity", "Heartbeat"] },
+                'Geometric Fusion': { name: "Geometric Fusion", link: "indowestern_geometric.html", micro: ["Diamond blocks", "Square mesh", "Angle mandala"] },
+                'Modern Bracelet': { name: "Modern Bracelet", link: "indowestern_modern_bracelet.html", micro: ["Chain bracelet", "Multi-layer band", "Charm bracelet"] }
+            },
+            'Regional (Rajasthani/Marwari)': { // Card 8 combines 2 Regional styles
+                'Rajasthani Jodhpuri Style': { name: "Rajasthani Jodhpuri Style", link: "rajasthani_jodhpuri.html", micro: ["Traditional elephants", "Palki", "Mor"] },
+                'Marwari Heavy Dots': { name: "Marwari Heavy Dots", link: "marwari_heavydots.html", micro: ["Bold dot trails", "Dot mandala"] },
+                'Marwari Traditional Floral': { name: "Marwari Traditional Floral", link: "marwari_floral.html", micro: ["Multi-layer flowers", "Leafy vines"] }
+            },
+            'Regional (Gujarati/Punjabi)': { // Card 9 combines 2 Regional styles
+                'Gujarati Garba Theme': { name: "Gujarati Garba Theme", link: "gujarati_garba.html", micro: ["Dandiya couple", "Circle garba"] },
+                'Punjabi Phulkari Style': { name: "Punjabi Phulkari Style", link: "punjabi_phulkari.html", micro: ["Flower blocks", "Triangle flowers"] },
+                'Punjabi Giddha Theme': { name: "Punjabi Giddha Theme", link: "punjabi_giddha.html", micro: ["Girl silhouette", "Dhol", "Phulkari dupatta"] }
+            },
+            'South Indian & Minimal': { // Card 10 combines 2 styles
+                'South Indian Temple Style': { name: "South Indian Temple Style", link: "south_temple.html", micro: ["Kalash", "Diya", "Bells"] },
+                'Minimal Finger Only': { name: "Minimal Finger Only", link: "minimal_finger.html", micro: ["Dot chain", "Mini leaf", "Small flower"] },
+                'Minimal Wrist Bands': { name: "Minimal Wrist Bands", link: "minimal_wrist.html", micro: ["Simple bracelet", "Repeated circles"] }
+            },
+            'Kids & Ultimate Fusion': { // Card 11 combines 2 styles
+                'Kids Festive Mehndi': { name: "Kids Festive Mehndi", link: "kids_festive.html", micro: ["Cartoon (Butterfly, Heart)", "Floral (Small rose)"] },
+                'Ultimate Fusion Mix': { name: "Ultimate Fusion Mix", link: "fusion_ultimate.html", micro: ["Arabic flowers + Indian jali", "Tattoo lines + Arabic shading", "Mandala + geometric"] }
             }
         };
 
 
-        function showLocationModal(cardId) {
-            const data = locationData[cardId];
+        const cardMap = {
+            'premium-card-1': 'Peacock Style (Indian)',
+            'premium-card-2': 'Mandala Style (Indian)',
+            'premium-card-3': 'Paisley (Keri) Style',
+            'premium-card-4': 'Floral Indian',
+            'premium-card-5': 'Elephant / Doli Motif',
+            'premium-card-6': 'Arabic Festive (Fusion Styles)',
+            'premium-card-7': 'Indo-Western Festive',
+            'premium-card-8': 'Regional (Rajasthani/Marwari)',
+            'premium-card-9': 'Regional (Gujarati/Punjabi)',
+            'premium-card-10': 'South Indian & Minimal',
+            'premium-card-11': 'Kids & Ultimate Fusion' 
+        };
+
+
+        // Helper to extract the data for the modal based on card ID
+        const getModalContent = (cardId) => {
+            const mainStyle = cardMap[cardId];
+            const dataRoot = locationData_All[mainStyle];
+            
+            if (!mainStyle || !dataRoot) return null;
+
+            let locations = [];
+
+            // Helper function to process nested dictionary structure and add placeholder links
+            const processNestedData = (data, prefix = 'style_') => {
+                if (typeof data === 'object' && data !== null && !Array.isArray(data)) {
+                    Object.entries(data).forEach(([key, value]) => {
+                        // Check for the known 'micro' structure
+                        if (value.name && value.link && Array.isArray(value.micro)) {
+                            // Mini-Type Header (Sub-type header) - Now clickable link
+                            locations.push({ 
+                                name: `• ${value.name}`, 
+                                isTypeHeader: true,
+                                link: value.link 
+                            });
+                            // Micro-Types (Actual click items)
+                            value.micro.forEach(micro => {
+                                // Generate unique, clean link based on key and micro-type name
+                                const microLink = `${prefix}${key.toLowerCase().replace(/[^a-z0-9]/g, '_')}_${micro.toLowerCase().replace(/[^a-z0-9]/g, '_')}.html`;
+                                locations.push({ 
+                                    name: micro, 
+                                    isTypeHeader: false,
+                                    link: microLink
+                                });
+                            });
+                        } else {
+                            // This path shouldn't be hit for the Festive Arabic data structure provided
+                            locations.push({ name: `--- ${key} ---`, isTypeHeader: true, isMajorHeader: true });
+                            processNestedData(value, prefix);
+                        }
+                    });
+                }
+            };
+            
+            // Start processing based on the main category type
+            locations.push({ name: `--- ${mainStyle} ---`, isTypeHeader: true, isMajorHeader: true });
+            processNestedData(dataRoot, mainStyle.toLowerCase().replace(/[^a-z0-9]/g, '_'));
+            
+            return {
+                title: `${mainStyle} Designs`,
+                locations: locations
+            };
+        };
+
+
+        // *** Show Modal Functionality ***
+        function showDetailedModal(cardId) {
+            const data = getModalContent(cardId);
             if (!data) return;
 
-            // Set Modal Content
-            modalTitle.textContent = data.title;
+            modalTitle.textContent = data.title; // Set the modal title dynamically
             locationList.innerHTML = ''; // Clear previous content
 
             data.locations.forEach(location => {
-                const item = document.createElement('div');
-                item.className = 'location-item';
-                item.innerHTML = `<span>${location.name}</span> <i class="fas fa-arrow-right text-sm"></i>`;
                 
-                // Click handler for location item: now redirects to the specified link
-                item.onclick = () => {
-                    window.location.href = location.link;
-                };
-                locationList.appendChild(item);
+                // Style adjustment for multi-level data
+                if (location.isMajorHeader && location.isTypeHeader) {
+                    const item = document.createElement('div');
+                    item.className = 'text-xl font-bold text-primary-glow mt-6 mb-3 p-2 border-b-2 border-primary/50';
+                    item.innerHTML = location.name;
+                    locationList.appendChild(item);
+                } else if (location.isTypeHeader) {
+                     // Mini-Type Header (now clickable)
+                    const item = document.createElement('a');
+                    item.href = location.link;
+                    item.className = 'text-lg font-bold text-white mt-3 mb-1 px-2 block hover:text-primary transition-colors';
+                    item.innerHTML = location.name;
+                    
+                    // Link handling for Mini-Type Headers
+                    item.addEventListener('click', (e) => {
+                         e.preventDefault(); 
+                         closeLocationModal();
+                         setTimeout(() => {
+                            window.location.href = location.link; // ACTUAL NAVIGATION ADDED HERE
+                         }, 100); 
+                    });
+                    locationList.appendChild(item);
+                } 
+                
+                // MICRO-TYPE - Now a clickable link
+                else {
+                    const item = document.createElement('a');
+                    item.href = location.link;
+                    item.className = 'location-item text-sm py-2 px-4 hover:bg-primary/20 transition-colors'; 
+                    item.innerHTML = `<span>${location.name}</span> <i class="fas fa-arrow-right text-sm"></i>`;
+                    
+                    item.addEventListener('click', (e) => {
+                         e.preventDefault(); // Prevent default link behavior first
+                         closeLocationModal();
+                         
+                         // Navigate after closing modal
+                         setTimeout(() => {
+                            window.location.href = location.link; // ACTUAL NAVIGATION ADDED HERE
+                         }, 100); 
+                    });
+                    locationList.appendChild(item);
+                }
             });
 
             // Show Modal
@@ -956,26 +1152,48 @@
             modalOverlay.style.opacity = 0;
             // Hide after transition completes
             setTimeout(() => {
-                modalOverlay.style.display = 'none';
+                document.getElementById('location-modal-overlay').style.display = 'none';
                 document.body.style.overflow = ''; 
             }, 300);
         }
-
-        // Attach event listeners for close button and overlay
-        modalCloseButton.addEventListener('click', closeLocationModal);
-        modalOverlay.addEventListener('click', (e) => {
-            // Close when clicking outside the content area
-            if (e.target === modalOverlay) {
+        
+        // --- ATTACHING EVENT LISTENERS ---
+        // Attaching close logic to the new button ID
+        document.getElementById('modal-close-button-new').addEventListener('click', closeLocationModal);
+        // Attaching click outside modal logic
+        document.getElementById('location-modal-overlay').addEventListener('click', (e) => {
+            if (e.target === document.getElementById('location-modal-overlay')) {
                 closeLocationModal();
             }
         });
+
+
+        // --- START: DROPDOWN / ACCORDION LOGIC (Header Navigation) ---
         
-        // --- START: DROPDOWN / ACCORDION LOGIC ---
-        
+        const locationData_Dropdowns = {
+            'dropdown-bridal': {
+                 title: 'Bridal Mehndi Types',
+                 locations: [
+                    { name: "Traditional Bridal Mehndi", link: "bridal_traditional.html" }, 
+                    { name: "Arabic Bridal Mehndi", link: "bridal_arabic.html" }, 
+                    { name: "Indo-Western Bridal Mehndi", link: "bridal_indowestern.html" }
+                 ]
+            },
+            'dropdown-festive': { 
+                title: 'Festive Mehndi Types',
+                locations: [
+                    { name: "Indian", link: "indian_festive_mehndi.html" }, // Link to this page
+                    { name: "Arabic", link: "festive_arabic.html" }, 
+                    { name: "Indo-Arabic", link: "festive_indoarabic.html" },
+                    { name: "Moroccan / Geometric", link: "festive_geometric.html" },
+                    { name: "Minimal Festive Mehndi", link: "festive_minimal.html" }
+                 ]
+            }
+        };
+
         function generateDropdownContent(dataId, containerId) {
             const container = document.getElementById(containerId);
-            // Use the dedicated keys for header/mobile dropdowns
-            const data = locationData[dataId]; 
+            const data = locationData_Dropdowns[dataId]; 
             if (!container || !data) return;
 
             container.innerHTML = data.locations.map(item => `
@@ -1029,12 +1247,18 @@
             initializeSlider();
             initializeDropdowns();
             
-            // Attach click listeners to all 5 cards (A-E) to open the modal:
-            document.getElementById('premium-card-A').addEventListener('click', () => showLocationModal('premium-card-A'));
-            document.getElementById('premium-card-B').addEventListener('click', () => showLocationModal('premium-card-B'));
-            document.getElementById('premium-card-C').addEventListener('click', () => showLocationModal('premium-card-C'));
-            document.getElementById('premium-card-D').addEventListener('click', () => showLocationModal('premium-card-D'));
-            document.getElementById('premium-card-E').addEventListener('click', () => showLocationModal('premium-card-E'));
+            // Re-attaching the click handlers to the new showDetailedModal function (11 Cards)
+            document.getElementById('premium-card-1').addEventListener('click', () => showDetailedModal('premium-card-1'));
+            document.getElementById('premium-card-2').addEventListener('click', () => showDetailedModal('premium-card-2'));
+            document.getElementById('premium-card-3').addEventListener('click', () => showDetailedModal('premium-card-3'));
+            document.getElementById('premium-card-4').addEventListener('click', () => showDetailedModal('premium-card-4'));
+            document.getElementById('premium-card-5').addEventListener('click', () => showDetailedModal('premium-card-5'));
+            document.getElementById('premium-card-6').addEventListener('click', () => showDetailedModal('premium-card-6'));
+            document.getElementById('premium-card-7').addEventListener('click', () => showDetailedModal('premium-card-7'));
+            document.getElementById('premium-card-8').addEventListener('click', () => showDetailedModal('premium-card-8'));
+            document.getElementById('premium-card-9').addEventListener('click', () => showDetailedModal('premium-card-9'));
+            document.getElementById('premium-card-10').addEventListener('click', () => showDetailedModal('premium-card-10'));
+            document.getElementById('premium-card-11').addEventListener('click', () => showDetailedModal('premium-card-11'));
         });
         
         // --- START: DYNAMIC THEME COLOR CHANGER (7 THEMES, 7 SECONDS) ---
