@@ -54,7 +54,6 @@
             background-position: center;
             background-repeat: no-repeat;
             opacity: 0.5; /* Subtle visibility */
-            /* Mobile Image used for all screen sizes now */
             background-image: url('bridal.png');
         }
 
@@ -62,7 +61,7 @@
             position: fixed; top: 0; left: 0; right: 0; z-index: 100;
         }
         
-        /* --- MOBILE SIDEBAR STYLES (मोबाइल साइडबार) */
+        /* --- MOBILE SIDEBAR STYLES (मोबाइल साइडबार) --- */
         .mobile-menu-panel {
             top: 85px; 
             height: calc(100vh - 165px);
@@ -120,63 +119,122 @@
             pointer-events: none; 
         }
 
-        /* --- PREMIUM CARD STYLES (प्रीमियम कार्ड स्टाइल्स) --- */
+        /* === NEW KEYFRAMES FOR ULTRA PRO MAX EFFECTS (Copied from main.html) === */
+        @keyframes ultraFlicker {
+            0% { box-shadow: 0 0 40px rgba(var(--color-primary-rgb), 0.7), inset 0 0 30px rgba(var(--color-primary-rgb), 0.5); }
+            50% { box-shadow: 0 0 45px rgba(var(--color-primary-rgb), 0.9), inset 0 0 35px rgba(var(--color-primary-rgb), 0.6); }
+            100% { box-shadow: 0 0 40px rgba(var(--color-primary-rgb), 0.7), inset 0 0 30px rgba(var(--color-primary-rgb), 0.5); }
+        }
+        
+        @keyframes cardShine {
+            0% { left: -150%; }
+            100% { left: 200%; }
+        }
+        /* === END NEW KEYFRAMES === */
+
+
+        /* --- PREMIUM CARD STYLES (प्रीमियम कार्ड स्टाइल्स) - ULTRA PRO MAX UPDATE (Kept 3D styling from last update) --- */
         .premium-card {
+            /* Enable 3D transforms */
+            perspective: 1000px;
+            transform-style: preserve-3d;
+            
             background: linear-gradient(145deg, var(--premium-outer-bg), var(--bg-main-dark)); /* Dynamic Gradient */
-            padding:10px; 
-            border-radius:35px; 
+            padding: 10px; 
+            border-radius: 35px; 
             /* Dynamic Border using RGB */
-            border:2px solid rgba(var(--color-primary-rgb), 0.7); 
-            /* Dynamic Shadow using RGB */
-            box-shadow: 0 0 20px rgba(var(--color-primary-rgb), 0.4), inset 0 0 30px rgba(var(--color-primary-rgb), 0.3); 
-            transition:0.3s ease-in-out; display: flex; flex-direction: column;
-            align-items: center; justify-content: center; cursor: pointer; 
-            height: 350px; 
-        }
-        .premium-card:hover {
-            /* Dynamic Hover Shadow using RGB */
-            box-shadow: 0 0 35px rgba(var(--color-primary-rgb), 0.9), inset 0 0 30px rgba(var(--color-primary-rgb), 0.45); 
-            transform: translateY(-8px);
-        }
-        .inner-box {
-            background: var(--premium-bg-dark); /* Dynamic Inner BG */
-            padding:15px; border-radius:45px;
-            /* Dynamic Inner Border using RGB */
-            border:1.5px solid rgba(var(--color-primary-rgb), 1); 
-            /* Dynamic Inner Shadow using RGB */
-            box-shadow: inset 0 0 35px rgba(var(--color-primary-rgb), 0.45), 0 0 25px rgba(var(--color-primary-rgb), 0.3); 
-            flex-grow: 1; 
-            display: flex;
+            border:2px solid rgba(var(--color-primary-rgb), 0.8); 
+            
+            /* Enhanced Dynamic Shadow with continuous flicker */
+            box-shadow: 0 0 40px rgba(var(--color-primary-rgb), 0.7), inset 0 0 30px rgba(var(--color-primary-rgb), 0.5);
+            animation: ultraFlicker 4s infinite alternate ease-in-out;
+                
+            transition: transform 0.3s ease-out, box-shadow 0.3s ease-in-out; 
+            display: flex; 
             flex-direction: column;
-            justify-content: center;
-            align-items: center;
+            align-items: center; 
+            justify-content: start; 
+            cursor: pointer; 
+            height: 280px; /* Increased height for content */
+            position: relative; /* For Shine Effect */
+            overflow: hidden; /* For Shine Effect */
         }
-        .inner-box img {
-            width:100%; 
-            height: 170px; 
-            object-fit: cover; border-radius:50px; display:block;
-            /* Dynamic Image Shadow using RGB */
-            box-shadow: 0 0 25px rgba(var(--color-primary-rgb), 0.35), inset 0 0 15px rgba(255,255,255,0.12); 
+        
+        /* 3D Tilt Effect Base State */
+        .premium-card:not(:hover) {
+            transform: scale(1.0) rotateX(0deg) rotateY(0deg);
         }
+
+        .premium-card:hover {
+            /* Pause flicker animation on hover and apply intense static glow */
+            animation: none;
+            box-shadow: 
+                0 0 60px rgba(var(--color-primary-rgb), 1.0), /* EVEN STRONGER hover glow */
+                inset 0 0 45px rgba(var(--color-primary-rgb), 0.7); 
+            
+            /* Tilt transform will be handled by JS on mousemove */
+            transform: translateY(-8px) scale(1.05); /* Slight lift and increased scale on hover */
+        }
+
+        /* === ULTRA PRO MAX SHINE EFFECT (चमकदार लाइटिंग) === */
+        .premium-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -150%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent); /* Gradient shine */
+            transform: skewX(-20deg);
+            pointer-events: none;
+        }
+        
+        /* Apply shine animation on hover for a dramatic effect */
+        .premium-card:hover::after {
+            animation: cardShine 1.5s infinite linear; /* Faster shine on hover */
+        }
+        
+        /* NEW IMAGE STYLE FROM main.html */
+        .premium-card-image {
+            width: 100%; 
+            height: 140px; /* Adjusted height to fit the card better */
+            object-fit: cover; 
+            border-radius: 25px; /* Sharper corners like main.html */
+            display: block;
+            margin-bottom: 10px; 
+            
+            /* SHINING BORDER / SHADOW applied to the image (from main.html) */
+            border: 1px solid var(--color-primary); 
+            box-shadow: 
+                0 0 25px rgba(var(--color-primary-rgb), 0.7), /* Increased image glow */
+                inset 0 0 12px rgba(var(--color-primary-rgb), 0.4); 
+        }
+        
         .premium-title {
-            margin-top:15px; font-size:19px; font-weight:700; 
-            color:var(--color-primary); /* Dynamic Primary Color */
+            margin-top:10px; /* Reduced margin */
+            font-size:19px; 
+            font-weight:700; 
+            color:var(--color-primary); 
             /* Dynamic Text Shadow using RGB */
             text-shadow:0 0 10px rgba(var(--color-primary-rgb), 0.8); 
             text-align: center;
         }
         .premium-desc {
-            margin-top:8px; font-size:15px; line-height:1.4; color:#e9e9e9;
-            opacity:0.95;
-            text-align: center; margin-bottom: 5px;
+            margin-top:5px; /* Reduced margin */
+            font-size:14px; /* Slightly smaller font for desc to fit */
+            line-height:1.3; 
+            color:#e9e9e9;
+            opacity:0.95; 
+            text-align: center; 
+            margin-bottom: 5px;
         }
 
-        /* --- CUSTOM CSS FOR RESPONSIVE HEADINGS --- */
+        /* --- CUSTOM CSS FOR RESPONSIVE HEADINGS (Re-added for Traditional View) --- */
         /* Default (Mobile First): Use data-mobile-title for smaller text */
         .premium-card .premium-title[data-mobile-title]:before {
             content: attr(data-mobile-title);
             display: block;
-            font-size: 1.1rem; /* Slightly larger than original font size for the short title */
+            font-size: 1.1rem; 
             font-weight: 800;
         }
         /* Hide the long title on mobile */
@@ -191,18 +249,74 @@
             }
             .premium-card .premium-title > span {
                 display: inline;
-                font-size: 1.1rem; /* Reverts to original size setting in HTML */
+                font-size: 1.1rem; 
                 font-weight: 700;
             }
         }
         /* ------------------------------------------- */
+
+        /* Custom Styles for Desktop Dropdown */
+        .dropdown-link {
+            display: block;
+            padding: 8px 12px;
+            margin: 4px 0;
+            border-radius: 8px;
+            color: var(--color-text-primary);
+            font-weight: 500;
+            transition: background-color 0.2s, color 0.2s;
+        }
+        .dropdown-link:hover {
+            background-color: rgba(var(--color-primary-rgb), 0.1);
+            color: var(--color-primary);
+        }
+
+        /* === MOBILE DROPDOWN STYLING FIX (FIXED - ULTRA PRO MAX) === */
+        /* Custom Styles for Mobile Accordion Link Items (Sub-links in sidebar) */
+        .mobile-dropdown-link {
+            display: block;
+            /* PADDING FIX: Indent the sub-items to make them look like a dropdown */
+            padding: 8px 0px 8px 15px; 
+            margin: 2px 0;
+            color: #e0e0e0;
+            font-size: 0.9rem;
+            font-weight: 500;
+            /* Border to clearly indicate structure */
+            border-left: 3px solid rgba(var(--color-primary-rgb), 0.3);
+            
+            background-color: transparent;
+            transition: all 0.3s ease-in-out;
+            text-shadow: none;
+        }
+        .mobile-dropdown-link:hover {
+            color: var(--color-primary);
+            border-left-color: var(--color-primary);
+            background-color: rgba(var(--color-primary-rgb), 0.1);
+            /* ADDED: Subtle glow on hover */
+            text-shadow: 0 0 5px rgba(var(--color-primary-rgb), 0.5);
+            transform: translateX(5px);
+        }
+        /* ADDED: Accordion Toggle Button Glow (Main links in sidebar) */
+        .mobile-accordion-toggle {
+            font-weight: 700;
+            position: relative;
+            z-index: 10;
+            /* ADDED: Slight glow/shadow on the button itself */
+            transition: all 0.3s ease-in-out;
+        }
+        .mobile-accordion-toggle:hover {
+            color: var(--color-primary);
+            /* ADDED: Text glow for ultra pro max effect */
+            text-shadow: 0 0 8px rgba(var(--color-primary-rgb), 0.8);
+            transform: scale(1.02);
+        }
+        /* === END MOBILE DROPDOWN STYLING FIX === */
 
 
         /* --- GRID AND RESPONSIVENESS (ग्रिड और प्रतिक्रियाशीलता) --- */
         .card-grid-container {
             display: grid;
             grid-template-columns: 1fr; /* Mobile Default: 1 Column (Phone) */
-            gap: 1.5rem;
+            gap: 1.5rem; 
         }
         
         /* 2 cards in a row for screens >= 768px (Tablet/Small PC) */
@@ -219,7 +333,7 @@
             }
         }
         
-        /* ADJUSTED: 4 cards in a row for screens >= 1200px (to fit 11 cards elegantly) */
+        /* 4 cards in a row for screens >= 1200px (to fit 11 cards elegantly) */
         @media(min-width: 1200px){
             .card-grid-container {
                 grid-template-columns: repeat(4, 1fr); 
@@ -232,7 +346,7 @@
             }
         }
         
-        /* --- SLIDER SPECIFIC STYLES (स्लाइडर विशेष स्टाइल) --- */
+        /* --- SLIDER SPECIFIC STYLES (स्लाइडर विशेष स्टाइल) (Copied from main.html) --- */
         .slider-container {
             position: relative; 
             height: 100%; 
@@ -245,22 +359,34 @@
             padding: 0; 
         }
 
-        /* --- LATEST RECRUITMENT SLIDER STYLES (UPDATED FOR CARD STYLE) --- */
+        /* --- LATEST RECRUITMENT SLIDER STYLES (UPDATED FOR SHINING BORDER) --- */
         #slider-bg {
             position: relative;
             height: 210px; /* Mobile height */
             /* Dynamic Card Styles - uses RGB */
             border-radius: 35px; 
-            border: 2px solid rgba(var(--color-primary-rgb), 0.7); 
-            box-shadow: 0 0 20px rgba(var(--color-primary-rgb), 0.4), inset 0 0 30px rgba(var(--color-primary-rgb), 0.3); 
+            border: 2px solid rgba(var(--color-primary-rgb), 0.8); /* Stronger border */
+            
+            /* SHINING BORDER applied here, matching .premium-card */
+            box-shadow: 
+                0 0 30px rgba(var(--color-primary-rgb), 0.6), 
+                inset 0 0 40px rgba(var(--color-primary-rgb), 0.4); 
+            
             /* End Card Styles */
             margin-bottom: 2rem;
             overflow: hidden;
             background-color: var(--premium-bg-dark); /* Dynamic Inner BG */
-            transition: background-image 0.8s ease-in-out; 
+            transition: background-image 0.8s ease-in-out, box-shadow 0.3s ease-in-out; 
             background-size: cover;
             background-position: center;
             margin-top: 1rem; 
+        }
+        
+        /* Added a subtle hover effect to slider for consistency */
+        #slider-bg:hover {
+             box-shadow: 
+                0 0 45px rgba(var(--color-primary-rgb), 1.0), 
+                inset 0 0 35px rgba(var(--color-primary-rgb), 0.5); 
         }
 
         @media (min-width: 1024px) {
@@ -277,74 +403,16 @@
             word-wrap: break-word; 
             white-space: normal;
         }
-
-        #prev-btn, #next-btn {
-            background-color: rgba(255, 255, 255, 0.15); 
-            color: var(--color-primary); /* Dynamic Primary Color */
-            border: 1px solid var(--color-primary); /* Dynamic Primary Color */
-            /* Dynamic Button Shadow using RGB */
-            box-shadow: 0 0 10px rgba(var(--color-primary-rgb), 0.4); 
-        }
+        
+        /* NOTE: Buttons styles from main.html kept for consistency */
 
         /* --- Global Styles (Updated to reflect new primary color for glow) --- */
         .text-primary-glow { 
             color: var(--color-primary); /* Dynamic Primary Color */
             /* Dynamic Text Shadow using RGB */
-            text-shadow: 0 0 5px rgba(var(--color-primary-rgb), 0.5); 
+            text-shadow: 0 0 10px rgba(var(--color-primary-rgb), 1.0); /* Enhanced glow */
         } 
         
-        /* Mobile Menu On/Off at 1200px (Breakpoint unchanged) */
-        @media (min-width: 1200px) {
-            /* Show Desktop Navigation */
-            .desktop-nav-area { display: flex !important; }
-            /* Hide Mobile Menu Button */
-            #mobile-menu-button { display: none !important; }
-            /* Hide Bottom Nav */
-            #bottom-nav-shs { display: none !important; } 
-        }
-        @media (max-width: 1199px) {
-            /* Hide Desktop Navigation for mobile/tablet/small PC */
-            .desktop-nav-area { display: none !important; }
-            /* Show Mobile Menu Button */
-            #mobile-menu-button { display: block !important; }
-        }
-        
-        /* Custom Styles for Desktop Dropdown */
-        .dropdown-link {
-            display: block;
-            padding: 8px 12px;
-            margin: 4px 0;
-            border-radius: 8px;
-            color: var(--color-text-primary);
-            font-weight: 500;
-            transition: background-color 0.2s, color 0.2s;
-        }
-        .dropdown-link:hover {
-            background-color: rgba(var(--color-primary-rgb), 0.1);
-            color: var(--color-primary);
-        }
-        
-        /* Custom Styles for Mobile Accordion */
-        .mobile-dropdown-link {
-            display: block;
-            padding: 8px 0px 8px 15px; /* Indent the sub-items */
-            margin: 2px 0;
-            color: #e0e0e0;
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: color 0.2s;
-            border-left: 3px solid rgba(var(--color-primary-rgb), 0.3);
-        }
-        .mobile-dropdown-link:hover {
-            color: var(--color-primary);
-            border-left-color: var(--color-primary);
-        }
-        /* Mobile Accordion Toggle Button Style */
-        .mobile-accordion-toggle {
-            font-weight: 700;
-        }
-
-
         /* --- MODAL STYLES (लोकेशन पॉपअप स्टाइल) --- */
         .modal-overlay {
             position: fixed;
@@ -365,14 +433,11 @@
         }
 
         .modal-content {
-            /* Removed absolute positioning and top/bottom to make it content-aware */
             position: relative; 
-            /* Removed transform X to keep centering simple */
             transform: none; 
             
             width: 95%; 
             max-width: 600px;
-            /* Max height to prevent it from consuming the whole screen on large lists */
             max-height: calc(100vh - 160px); 
             
             /* Dynamic Card Styles - uses RGB */
@@ -393,7 +458,6 @@
             background: var(--premium-bg-dark); /* Dynamic Inner BG */
             border: 1.5px solid rgba(var(--color-primary-rgb), 1);
             box-shadow: inset 0 0 35px rgba(var(--color-primary-rgb), 0.45), 0 0 25px rgba(var(--color-primary-rgb), 0.3);
-            /* flex-grow: 1; <- Removed to allow height to shrink */
             overflow-y: auto; /* Enable scrolling for the location list if needed */
         }
 
@@ -417,6 +481,7 @@
             transform: translateX(5px);
             color: var(--color-primary); /* Dynamic Primary Color */
         }
+        
         /* Mobile adjustment for modal content to take less height */
         @media (max-height: 600px) and (max-width: 768px) {
             .modal-content {
@@ -424,7 +489,7 @@
                 max-height: calc(100vh - 80px); 
             }
         }
-
+        
     </style>
 </head>
 <body class="leading-relaxed">
@@ -433,7 +498,7 @@
     <div id="fixed-media-background"></div>
     <!-- END BACKGROUND MEDIA ELEMENTS -->
 
-    <!-- HEADER (शीर्षक) -->
+    <!-- HEADER (शीर्षक) - (Kept from main.html) -->
     <div class="fixed-header-container">
         <header id="main-header" class="bg-glass-bg-dark/90 backdrop-blur-xl shadow-2xl p-4 fixed top-0 left-0 right-0 z-[100] border-b-4 border-primary/50">
               <div class="container mx-auto flex justify-between items-center px-2 sm:px-4" style="padding-top: env(safe-area-inset-top);">
@@ -447,7 +512,6 @@
                 </a>
 
                 <!-- Desktop Navigation (डेस्कटॉप नेविगेशन) -->
-                <!-- UPDATED CLASS for 1200px breakpoint logic -->
                 <div class="desktop-nav-area hidden items-center space-x-10">
                   <nav class="flex space-x-8 font-extrabold">
                     
@@ -467,7 +531,7 @@
                     <div class="relative group">
                         <a href="#" class="text-white text-lg relative py-1 hover:text-primary flex items-center">
                             Festive <i class="fas fa-caret-down ml-1 text-xs transition-transform duration-300 group-hover:rotate-180"></i>
-                            <span class="absolute left:0 bottom-0 h:1 w-0 bg-primary/70 group-hover:w-full transition-all duration-300 rounded-full"></span>
+                            <span class="absolute left-0 bottom-0 h-1 w-0 bg-primary/70 group-hover:w-full transition-all duration-300 rounded-full"></span>
                         </a>
                         <!-- Dropdown Content Container -->
                         <div id="dropdown-festive" class="absolute hidden group-hover:block w-64 mt-2 bg-premium-bg-dark border border-primary/50 rounded-xl shadow-2xl z-50 p-2 transform origin-top transition-all duration-300 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 translate-y-2">
@@ -476,16 +540,29 @@
                     </div>
 
                     <!-- Link 3: Custom Mehndi (Direct Link) -->
-                    <a href="custom_mehndi.html" class="text-white text-lg relative py-1 hover:text-primary">
+                    <a href="custom_mehndi.html" class="text-white text-lg relative group py-1 hover:text-primary">
                         Custom
                         <span class="absolute left-0 bottom-0 h-1 w-0 bg-primary/70 group-hover:w-full transition-all duration-300 rounded-full"></span>
                     </a>
                     
                     <!-- Link 4: Meet Me (Direct Link) -->
-                    <a href="meet_me.html" class="text-white text-lg relative py-1 hover:text-primary">
+                    <a href="meet_me.html" class="text-white text-lg relative group py-1 hover:text-primary">
                         Meet Me
                         <span class="absolute left-0 bottom-0 h-1 w-0 bg-primary/70 group-hover:w-full transition-all duration-300 rounded-full"></span>
                     </a>
+
+                    <!-- Dropdown 3: Our Gallary (NEW) -->
+                    <div class="relative group">
+                        <a href="#" class="text-white text-lg relative py-1 hover:text-primary flex items-center">
+                            Gallary <i class="fas fa-caret-down ml-1 text-xs transition-transform duration-300 group-hover:rotate-180"></i>
+                            <span class="absolute left-0 bottom-0 h-1 w-0 bg-primary/70 group-hover:w-full transition-all duration-300 rounded-full"></span>
+                        </a>
+                        <!-- Dropdown Content Container -->
+                        <div id="dropdown-gallery" class="absolute hidden group-hover:block w-64 mt-2 bg-premium-bg-dark border border-primary/50 rounded-xl shadow-2xl z-50 p-2 transform origin-top transition-all duration-300 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 translate-y-2">
+                            <!-- Links populated by JS -->
+                        </div>
+                    </div>
+                    
                   </nav>
                   
                   <!-- Contact Side Bar (संपर्क साइड बार) -->
@@ -542,19 +619,31 @@
                 <div class="border-t border-primary/30 w-full my-4"></div>
 
                 <!-- Direct Link 3: Custom Mehndi -->
-                <a href="custom_mehndi.html" class="text-white text-lg relative py-1 hover:text-primary">
+                <a href="custom_mehndi.html" class="text-white text-lg relative group py-1 hover:text-primary">
                     Custom Mehndi
                     <span class="absolute left-0 bottom-0 h-1 w-0 bg-primary/70 group-hover:w-full transition-all duration-300 rounded-full"></span>
                 </a>
                 <div class="border-t border-primary/30 w-full my-4"></div>
                 
                 <!-- Direct Link 4: Meet Me -->
-                <a href="meet_me.html" class="text-white text-lg relative py-1 hover:text-primary">
+                <a href="meet_me.html" class="text-white text-lg relative group py-1 hover:text-primary">
                     Meet Me
                     <span class="absolute left-0 bottom-0 h-1 w-0 bg-primary/70 group-hover:w-full transition-all duration-300 rounded-full"></span>
                 </a>
 
                 <div class="border-t border-primary/30 w-full my-4"></div>
+                <!-- Sidebar Accordion 3: Our Gallary (NEW 6th Card Option) -->
+                <div class="w-full">
+                    <button id="mobile-gallery-toggle" class="mobile-accordion-toggle w-full text-white text-lg relative py-1 hover:text-primary flex justify-between items-center pr-2">
+                        Our Gallary <i id="icon-gallery-mobile" class="fas fa-chevron-down text-sm transition-transform duration-300"></i>
+                    </button>
+                    <div id="mobile-gallery-dropdown" class="h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                         <!-- Links populated by JS -->
+                    </div>
+                </div>
+                <div class="border-t border-primary/30 w-full my-4"></div>
+
+
                 <div class="flex flex-col items-start space-y-3 pt-4 bg-black/30 p-4 rounded-xl shadow-2xl border border-primary/50">
                   <h4 class="text-base font-bold text-primary mb-1">Need Help? (24x7)</h4>
                   <a href="tel:8816014071" class="flex items-center font-extrabold text-white text-xl p-3 rounded-full bg-primary/90 w-full justify-center">
@@ -573,9 +662,12 @@
     <!-- MAIN CONTENT AREA (मुख्य सामग्री क्षेत्र) -->
     <main class="container mx-auto p-4 md:p-8 lg:p-12" style="min-height: calc(100vh - 160px);">
         
- <!-- SLIDE SECTION WRAPPER (FOR DYNAMIC BACKGROUND & BORDER) -->
+        
+            
+        <!-- SLIDE SECTION WRAPPER (FOR DYNAMIC BACKGROUND & BORDER) -->
         <div id="slider-bg"> 
             <section class="latest-forms">
+                <!-- Title is now placed relative to the inner section for Z-index -->
                 <div class="text-center mb-6">
                     <!-- Customisable Main Heading (Removed spotlight heading to only use modal title) -->
                 </div>
@@ -592,7 +684,7 @@
         </div>
         <!-- END SLIDE SECTION WRAPPER -->
 
-        <!-- CARD SECTION HEADING -->
+        <!-- CARD SECTION HEADING (Updated Heading for Arabic Festive View) -->
         <div class="text-center mb-8 mt-4">
             <h2 class="text-xl md:text-4xl font-extrabold text-primary-glow border-b-4 border-primary/50 inline-block px-6 pb-2 uppercase tracking-wide">
                 Indian Festive Styles
@@ -601,14 +693,17 @@
         <!-- END CARD SECTION HEADING -->
 
         <section id="service-cards">
-            <!-- Grid container now optimized for 11 cards -->
+            <!-- Grid container now optimized for 11 cards (10 styles + 1 Micro Bank) -->
             <div class="card-grid-container">
                 
                 <!-- CARD 1: Peacock Style -->
                 <div class="premium-card" id="premium-card-1">
-                    <div class="inner-box">
-                        <img src="https://placehold.co/300x170/331A1A/FFC72C?text=Peacock+Style" alt="Peacock Style Indian Festive Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/331A1A/FFC72C?text=Peacock+Style';">
-                    </div>
+                    <img 
+                        src="https://placehold.co/400x200/331A1A/FFC72C?text=Peacock+Style" 
+                        alt="Peacock Style Indian Festive Mehndi" 
+                        class="premium-card-image"
+                        onerror="this.onerror=null;this.src='https://placehold.co/400x200/331A1A/FFC72C?text=Peacock+Style';"
+                    >
                     <!-- Custom Heading -->
                     <div class="premium-title" data-mobile-title="1. Peacock Style"><span>1. Peacock Style (Indian)</span></div>
                     <div class="premium-desc">Full Peacock, Side Peacock, Peacock Pair with detailed featherwork.</div>
@@ -616,9 +711,12 @@
 
                 <!-- CARD 2: Mandala Style -->
                 <div class="premium-card" id="premium-card-2">
-                    <div class="inner-box">
-                        <img src="https://placehold.co/300x170/221A33/FFC72C?text=Mandala+Style" alt="Mandala Style Indian Festive Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/221A33/FFC72C?text=Mandala+Style';">
-                    </div>
+                    <img 
+                        src="https://placehold.co/400x200/221A33/FFC72C?text=Mandala+Style" 
+                        alt="Mandala Style Indian Festive Mehndi" 
+                        class="premium-card-image" 
+                        onerror="this.onerror=null;this.src='https://placehold.co/400x200/221A33/FFC72C?text=Mandala+Style';"
+                    >
                     <!-- Custom Heading -->
                     <div class="premium-title" data-mobile-title="2. Mandala Style"><span>2. Mandala Style (Indian)</span></div>
                     <div class="premium-desc">Central Mandala, Layered Mandala, Mandala + Jaal with detailed shading.</div>
@@ -626,9 +724,12 @@
 
                 <!-- CARD 3: Paisley (Keri) Style -->
                 <div class="premium-card" id="premium-card-3">
-                    <div class="inner-box">
-                        <img src="https://placehold.co/300x170/1A2733/FFC72C?text=Paisley+Style" alt="Paisley (Keri) Style Indian Festive Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/1A2733/FFC72C?text=Paisley+Style';">
-                    </div>
+                    <img 
+                        src="https://placehold.co/400x200/1A2733/FFC72C?text=Paisley+Style" 
+                        alt="Paisley (Keri) Style Indian Festive Mehndi" 
+                        class="premium-card-image" 
+                        onerror="this.onerror=null;this.src='https://placehold.co/400x200/1A2733/FFC72C?text=Paisley+Style';"
+                    >
                     <!-- Custom Heading -->
                     <div class="premium-title" data-mobile-title="3. Paisley/Keri"><span>3. Paisley (Keri) Style</span></div>
                     <div class="premium-desc">Double Keri, Slim Keri, Floral Keri with intricate fills and mesh caps.</div>
@@ -636,9 +737,12 @@
 
                 <!-- CARD 4: Floral Indian -->
                 <div class="premium-card" id="premium-card-4">
-                    <div class="inner-box">
-                        <img src="https://placehold.co/300x170/332D1A/FFC72C?text=Floral+Indian" alt="Floral Indian Festive Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/332D1A/FFC72C?text=Floral+Indian';">
-                    </div>
+                    <img 
+                        src="https://placehold.co/400x200/332D1A/FFC72C?text=Floral+Indian" 
+                        alt="Floral Indian Festive Mehndi" 
+                        class="premium-card-image" 
+                        onerror="this.onerror=null;this.src='https://placehold.co/400x200/332D1A/FFC72C?text=Floral+Indian';"
+                    >
                     <!-- Custom Heading -->
                     <div class="premium-title" data-mobile-title="4. Floral Indian"><span>4. Floral Indian</span></div>
                     <div class="premium-desc">Lotus trail, Rose shading, Marigold bunch with vein and spiral work.</div>
@@ -646,9 +750,12 @@
 
                 <!-- CARD 5: Elephant / Doli Motif -->
                 <div class="premium-card" id="premium-card-5">
-                    <div class="inner-box">
-                        <img src="https://placehold.co/300x170/10241D/FFC72C?text=Elephant+Motif" alt="Elephant / Doli Motif Festive Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/10241D/FFC72C?text=Elephant+Motif';">
-                    </div>
+                    <img 
+                        src="https://placehold.co/400x200/10241D/FFC72C?text=Elephant+Motif" 
+                        alt="Elephant / Doli Motif Festive Mehndi" 
+                        class="premium-card-image" 
+                        onerror="this.onerror=null;this.src='https://placehold.co/400x200/10241D/FFC72C?text=Elephant+Motif';"
+                    >
                     <!-- Custom Heading -->
                     <div class="premium-title" data-mobile-title="5. Elephant/Doli"><span>5. Elephant / Doli Motif</span></div>
                     <div class="premium-desc">Elephant parade, Lotus elephant, Doli corner designs for traditional events.</div>
@@ -656,9 +763,12 @@
                 
                 <!-- CARD 6: Arabic Festive Mehndi (Fusion Focus) -->
                 <div class="premium-card" id="premium-card-6">
-                    <div class="inner-box">
-                        <img src="https://placehold.co/300x170/5C2828/FFC72C?text=Arabic+Fusion" alt="Arabic Festive Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/5C2828/FFC72C?text=Arabic+Fusion';">
-                    </div>
+                    <img 
+                        src="https://placehold.co/400x200/5C2828/FFC72C?text=Arabic+Fusion" 
+                        alt="Arabic Festive Mehndi" 
+                        class="premium-card-image" 
+                        onerror="this.onerror=null;this.src='https://placehold.co/400x200/5C2828/FFC72C?text=Arabic+Fusion';"
+                    >
                     <!-- Custom Heading -->
                     <div class="premium-title" data-mobile-title="6. Arabic Fusion"><span>6. Arabic Festive (Fusion Styles)</span></div>
                     <div class="premium-desc">Shaded, Gulf, Indo-Arabic, and Bracelet Arabic for a modern festive look.</div>
@@ -666,9 +776,12 @@
 
                 <!-- CARD 7: Indo-Western Festive Mehndi -->
                 <div class="premium-card" id="premium-card-7">
-                    <div class="inner-box">
-                        <img src="https://placehold.co/300x170/242010/FFC72C?text=Indo+Western" alt="Indo-Western Festive Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/242010/FFC72C?text=Indo+Western';">
-                    </div>
+                    <img 
+                        src="https://placehold.co/400x200/242010/FFC72C?text=Indo+Western" 
+                        alt="Indo-Western Festive Mehndi" 
+                        class="premium-card-image" 
+                        onerror="this.onerror=null;this.src='https://placehold.co/400x200/242010/FFC72C?text=Indo+Western';"
+                    >
                     <!-- Custom Heading -->
                     <div class="premium-title" data-mobile-title="7. Indo-Western"><span>7. Indo-Western Festive</span></div>
                     <div class="premium-desc">Minimal, Tattoo Style, Geometric Fusion, and Modern Bracelet designs.</div>
@@ -676,9 +789,12 @@
 
                 <!-- CARD 8: Regional North Indian (Rajasthani / Marwari) -->
                 <div class="premium-card" id="premium-card-8">
-                    <div class="inner-box">
-                        <img src="https://placehold.co/300x170/1C3144/FFC72C?text=North+Indian" alt="Regional North Indian Festive Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/1C3144/FFC72C?text=North+Indian';">
-                    </div>
+                    <img 
+                        src="https://placehold.co/400x200/1C3144/FFC72C?text=North+Indian" 
+                        alt="Regional North Indian Festive Mehndi" 
+                        class="premium-card-image" 
+                        onerror="this.onerror=null;this.src='https://placehold.co/400x200/1C3144/FFC72C?text=North+Indian';"
+                    >
                     <!-- Custom Heading -->
                     <div class="premium-title" data-mobile-title="8. North Indian"><span>8. Regional (Rajasthani/Marwari)</span></div>
                     <div class="premium-desc">Jodhpuri, Full Mesh Work, Heavy Dots, and Peacock Band traditions.</div>
@@ -686,9 +802,12 @@
                 
                 <!-- CARD 9: Regional West Indian (Gujarati / Punjabi) -->
                 <div class="premium-card" id="premium-card-9">
-                    <div class="inner-box">
-                        <img src="https://placehold.co/300x170/283C5C/FFC72C?text=West+Indian" alt="Regional West Indian Festive Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/283C5C/FFC72C?text=West+Indian';">
-                    </div>
+                    <img 
+                        src="https://placehold.co/400x200/283C5C/FFC72C?text=West+Indian" 
+                        alt="Regional West Indian Festive Mehndi" 
+                        class="premium-card-image" 
+                        onerror="this.onerror=null;this.src='https://placehold.co/400x200/283C5C/FFC72C?text=West+Indian';"
+                    >
                     <!-- Custom Heading -->
                     <div class="premium-title" data-mobile-title="9. West Indian"><span>9. Regional (Gujarati/Punjabi)</span></div>
                     <div class="premium-desc">Garba Theme, Phulkari Style, Tribal, and Bandhani Inspired motifs.</div>
@@ -696,9 +815,12 @@
                 
                 <!-- CARD 10: South Indian & Minimal Festive -->
                 <div class="premium-card" id="premium-card-10">
-                    <div class="inner-box">
-                        <img src="https://placehold.co/300x170/3B285C/FFC72C?text=South+Minimal" alt="South Indian & Minimal Festive Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/3B285C/FFC72C?text=South+Minimal';">
-                    </div>
+                    <img 
+                        src="https://placehold.co/400x200/3B285C/FFC72C?text=South+Minimal" 
+                        alt="South Indian & Minimal Festive Mehndi" 
+                        class="premium-card-image" 
+                        onerror="this.onerror=null;this.src='https://placehold.co/400x200/3B285C/FFC72C?text=South+Minimal';"
+                    >
                     <!-- Custom Heading -->
                     <div class="premium-title" data-mobile-title="10. South & Minimal"><span>10. South Indian & Minimal</span></div>
                     <div class="premium-desc">Temple Style, Mango (South Keri), Finger Only, and Wrist Bands.</div>
@@ -706,9 +828,12 @@
 
                 <!-- CARD 11: Kids & Ultimate Fusion -->
                 <div class="premium-card" id="premium-card-11">
-                    <div class="inner-box">
-                        <img src="https://placehold.co/300x170/1A332D/FFC72C?text=Kids+Fusion" alt="Kids & Ultimate Fusion Festive Mehndi" onerror="this.onerror=null;this.src='https://placehold.co/300x170/1A332D/FFC72C?text=Kids+Fusion';">
-                    </div>
+                    <img 
+                        src="https://placehold.co/400x200/1A332D/FFC72C?text=Kids+Fusion" 
+                        alt="Kids & Ultimate Fusion Festive Mehndi" 
+                        class="premium-card-image" 
+                        onerror="this.onerror=null;this.src='https://placehold.co/400x200/1A332D/FFC72C?text=Kids+Fusion';"
+                    >
                     <!-- Custom Heading -->
                     <div class="premium-title" data-mobile-title="11. Kids & Fusion"><span>11. Kids & Ultimate Fusion</span></div>
                     <div class="premium-desc">Cartoon/Fun Shapes, Floral for Kids, and Complex Arabic + Indian Fusions.</div>
@@ -747,7 +872,7 @@
                 >
                     <i class="fas fa-home central-fab-icon"></i>
                 </a>
-                <span class="font-medium">Home</span>
+                <span class="central-fab-label">Home</span>
             </div>
             
             <!-- Item 4: Elephant/Doli (Card 5) -->
@@ -756,7 +881,7 @@
                 <span class="font-medium">Motifs</span>
             </a>
             
-            <!-- Item 5: Rajasthani (Card 8) -->
+            <!-- Item 5: Regional (Card 8) -->
             <a href="#premium-card-8" class="nav-item-shs w-1/5" onclick="scrollToSection('premium-card-8')">
                 <i class="fas fa-fort-awesome nav-icon-shs"></i>
                 <span class="font-medium">Regional</span>
@@ -818,12 +943,8 @@
         mobileMenuCloseButton.addEventListener('click', toggleMobileMenu);
         mobileMenuOverlay.addEventListener('click', toggleMobileMenu);
 
-        menuLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                // Close menu when a link is clicked
-                setTimeout(toggleMobileMenu, 200); 
-            });
-        });
+        // Note: The previous logic of querying all .menu-link elements is kept here for safety, 
+        // though the mobile links are now generated dynamically below.
         
         function scrollToSection(id) {
             const element = document.getElementById(id);
@@ -840,7 +961,7 @@
             }
         }
         
-         // --- START: SLIDER LOGIC (Moved inside DOMContentLoaded) ---
+         // --- START: SLIDER LOGIC (Festive Indian data) ---
         // Variables for slider logic
         const sliderBg = document.getElementById('slider-bg');
         const slidesWrapper = document.getElementById('slides-wrapper');
@@ -849,12 +970,6 @@
         let currentSlide = 0;
         let slideInterval;
         const slideDuration = 5000;
-
-        function formatDate(dateStr) {
-            const options = { year: 'numeric', month: 'long', day: 'numeric' };
-            const date = new Date(dateStr);
-            return date.toLocaleDateString('en-IN', options);
-        }
 
         async function fetchSlidesData() {
             // Hardcoded placeholder slide data for Indian Festive styles
@@ -877,7 +992,6 @@
                 
                 // Link is now assigned directly from item.link (internal page)
                 slide.href = item.link; 
-                // Removed target="_blank" for internal links
                 
                 slide.className = `slide absolute top-0 left-0 w-full h-full opacity-0 transition-opacity duration-1000`;
                 slide.style.zIndex = index === 0 ? 1 : 0;
@@ -951,6 +1065,46 @@
             }
         }
         // --- END: SLIDER LOGIC ---
+        
+        // --- START: 3D TILT EFFECT LOGIC (3D झुकाव प्रभाव) ---
+
+        const tiltCards = document.querySelectorAll('.premium-card');
+        const TILT_STRENGTH = 10; // Max rotation in degrees
+        const SHADOW_OFFSET = 20; // Max shadow offset in pixels
+
+        tiltCards.forEach(card => {
+            const cardRect = card.getBoundingClientRect();
+            
+            // This function resets the tilt when mouse leaves (or on touch end)
+            const resetTilt = () => {
+                card.style.transform = 'translateY(0px) rotateX(0deg) rotateY(0deg) scale(1.0)';
+            };
+
+            // Only apply this logic on desktop (non-touch devices)
+            if (!('ontouchstart' in window)) { 
+                card.addEventListener('mousemove', (e) => {
+                    // Get card position and center
+                    const rect = card.getBoundingClientRect();
+                    const centerX = rect.left + rect.width / 2;
+                    const centerY = rect.top + rect.height / 2;
+
+                    // Calculate mouse position relative to center (-1 to 1 range)
+                    const x = (e.clientX - centerX) / (rect.width / 2);
+                    const y = (e.clientY - centerY) / (rect.height / 2);
+
+                    // Calculate rotation angles
+                    const rotateX = -y * TILT_STRENGTH; // Tilt up/down
+                    const rotateY = x * TILT_STRENGTH;  // Tilt left/right
+
+                    // Apply 3D transform and slight lift
+                    card.style.transform = `translateY(-8px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`; 
+                });
+
+                card.addEventListener('mouseleave', resetTilt);
+            }
+        });
+
+        // --- END: 3D TILT EFFECT LOGIC ---
 
         
         // --- START: MODAL/LOCATION SELECTION LOGIC (पॉपअप/लोकेशन चयन लॉजिक) ---
@@ -1068,8 +1222,8 @@
                             });
                         } else {
                             // This path shouldn't be hit for the Festive Arabic data structure provided
-                            locations.push({ name: `--- ${key} ---`, isTypeHeader: true, isMajorHeader: true });
-                            processNestedData(value, prefix);
+                             locations.push({ name: `--- ${key} ---`, isTypeHeader: true, isMajorHeader: true });
+                             processNestedData(value, prefix);
                         }
                     });
                 }
@@ -1091,7 +1245,8 @@
             const data = getModalContent(cardId);
             if (!data) return;
 
-            modalTitle.textContent = data.title; // Set the modal title dynamically
+            modalTitle.textContent = "Indian Festive Mehndi Styles"; // Static Title
+            
             locationList.innerHTML = ''; // Clear previous content
 
             data.locations.forEach(location => {
@@ -1103,13 +1258,12 @@
                     item.innerHTML = location.name;
                     locationList.appendChild(item);
                 } else if (location.isTypeHeader) {
-                     // Mini-Type Header (now clickable)
+                     // Mini-Type Header (now clickable link)
                     const item = document.createElement('a');
                     item.href = location.link;
                     item.className = 'text-lg font-bold text-white mt-3 mb-1 px-2 block hover:text-primary transition-colors';
                     item.innerHTML = location.name;
                     
-                    // Link handling for Mini-Type Headers
                     item.addEventListener('click', (e) => {
                          e.preventDefault(); 
                          closeLocationModal();
@@ -1148,6 +1302,7 @@
             document.body.style.overflow = 'hidden'; // Prevent body scroll
         }
 
+        // Fix: Use the standard closeLocationModal and attach it to the new button ID
         function closeLocationModal() {
             modalOverlay.style.opacity = 0;
             // Hide after transition completes
@@ -1171,33 +1326,84 @@
         // --- START: DROPDOWN / ACCORDION LOGIC (Header Navigation) ---
         
         const locationData_Dropdowns = {
-            'dropdown-bridal': {
-                 title: 'Bridal Mehndi Types',
-                 locations: [
-                    { name: "Traditional Bridal Mehndi", link: "bridal_traditional.html" }, 
+            // Updated keys to match the header dropdown IDs (dropdown-bridal, mobile-bridal-dropdown, etc.)
+            'dropdown-bridal': { 
+                title: 'Bridal Mehndi Types',
+                locations: [
+                    { name: "Traditional Bridal Mehndi", link: "tradi.html" }, 
                     { name: "Arabic Bridal Mehndi", link: "bridal_arabic.html" }, 
                     { name: "Indo-Western Bridal Mehndi", link: "bridal_indowestern.html" }
-                 ]
+                ]
             },
             'dropdown-festive': { 
                 title: 'Festive Mehndi Types',
                 locations: [
-                    { name: "Indian", link: "indian_festive_mehndi.html" }, // Link to this page
                     { name: "Arabic", link: "festive_arabic.html" }, 
+                    { name: "Indian", link: "festive_indian.html" }, 
                     { name: "Indo-Arabic", link: "festive_indoarabic.html" },
                     { name: "Moroccan / Geometric", link: "festive_geometric.html" },
                     { name: "Minimal Festive Mehndi", link: "festive_minimal.html" }
-                 ]
+                ]
+            },
+             'dropdown-gallery': { 
+                title: 'Our Gallary Collections',
+                locations: [
+                    { name: "Traditional Bridal Collection", link: "tradi.html" }, 
+                    { name: "Arabic Bridal Collection", link: "one.html" }, 
+                    { name: "Indo-Western Bridal Collection", link: "two.html" }, 
+                    { name: "Festive Arabic Designs", link: "thre.html" }, 
+                    { name: "Festive Indian Designs", link: "indian_festive_mehndi.html" }, 
+                    { name: "Festive Indo-Arabic Designs", link: "indo_arabic_festive.html" },
+                    { name: "Moroccan / Geometric Designs", link: "tradi.html" }, 
+                    { name: "Minimal Festive Designs", link: "festive_minimal.html" }
+                ]
+            },
+            // Mapping keys for mobile sidebars
+             'mobile-bridal-dropdown': {
+                title: 'Bridal Mehndi Types',
+                locations: [
+                    { name: "Traditional Bridal Mehndi", link: "tradi.html" }, 
+                    { name: "Arabic Bridal Mehndi", link: "bridal_arabic.html" }, 
+                    { name: "Indo-Western Bridal Mehndi", link: "bridal_indowestern.html" }
+                ]
+            },
+            'mobile-festive-dropdown': {
+                title: 'Festive Mehndi Types',
+                locations: [
+                    { name: "Arabic", link: "festive_arabic.html" }, 
+                    { name: "Indian", link: "festive_indian.html" }, 
+                    { name: "Indo-Arabic", link: "festive_indoarabic.html" },
+                    { name: "Moroccan / Geometric", link: "festive_geometric.html" },
+                    { name: "Minimal Festive Mehndi", link: "festive_minimal.html" }
+                ]
+            },
+            // NEW MOBILE GALLARY MAPPING
+            'mobile-gallery-dropdown': { 
+                title: 'Our Gallary Collections',
+                locations: [
+                    { name: "Traditional Bridal Collection", link: "tradi.html" }, 
+                    { name: "Arabic Bridal Collection", link: "one.html" }, 
+                    { name: "Indo-Western Bridal Collection", link: "two.html" }, 
+                    { name: "Festive Arabic Designs", link: "thre.html" }, 
+                    { name: "Festive Indian Designs", link: "indian_festive_mehndi.html" }, 
+                    { name: "Festive Indo-Arabic Designs", link: "indo_arabic_festive.html" },
+                    { name: "Moroccan / Geometric Designs", link: "tradi.html" }, 
+                    { name: "Minimal Festive Designs", link: "festive_minimal.html" }
+                ]
             }
         };
+
 
         function generateDropdownContent(dataId, containerId) {
             const container = document.getElementById(containerId);
             const data = locationData_Dropdowns[dataId]; 
             if (!container || !data) return;
 
+            // Use 'dropdown-link' for desktop and 'mobile-dropdown-link' for mobile
+            const className = containerId.startsWith('mobile') ? 'mobile-dropdown-link' : 'dropdown-link';
+            
             container.innerHTML = data.locations.map(item => `
-                <a href="${item.link}" class="dropdown-link mobile-dropdown-link">${item.name}</a>
+                <a href="${item.link}" class="${className}">${item.name}</a>
             `).join('');
         }
         
@@ -1228,19 +1434,23 @@
         }
         
         function initializeDropdowns() {
-            // 1. Generate Desktop Dropdown Content (Using dedicated dropdown keys)
+            // 1. Generate Desktop Dropdown Content 
             generateDropdownContent('dropdown-bridal', 'dropdown-bridal');
             generateDropdownContent('dropdown-festive', 'dropdown-festive');
+            generateDropdownContent('dropdown-gallery', 'dropdown-gallery'); 
             
-            // 2. Generate Mobile Accordion Content (Using dedicated dropdown keys)
-            generateDropdownContent('dropdown-bridal', 'mobile-bridal-dropdown');
-            generateDropdownContent('dropdown-festive', 'mobile-festive-dropdown');
+            // 2. Generate Mobile Accordion Content
+            generateDropdownContent('dropdown-bridal', 'mobile-bridal-dropdown'); // Use dropdown-bridal data for mobile
+            generateDropdownContent('dropdown-festive', 'mobile-festive-dropdown'); // Use dropdown-festive data for mobile
+            generateDropdownContent('dropdown-gallery', 'mobile-gallery-dropdown'); // Use dropdown-gallery data for mobile
             
             // 3. Setup Mobile Accordion Toggles
             setupMobileAccordion('mobile-bridal-toggle', 'mobile-bridal-dropdown', 'icon-bridal-mobile');
             setupMobileAccordion('mobile-festive-toggle', 'mobile-festive-dropdown', 'icon-festive-mobile');
+            setupMobileAccordion('mobile-gallery-toggle', 'mobile-gallery-dropdown', 'icon-gallery-mobile'); 
         }
-
+        
+        
         // --- END: DROPDOWN / ACCORDION LOGIC ---
 
         document.addEventListener('DOMContentLoaded', () => {
