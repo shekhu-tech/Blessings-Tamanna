@@ -550,6 +550,19 @@
                         Meet Me
                         <span class="absolute left-0 bottom-0 h-1 w-0 bg-primary/70 group-hover:w-full transition-all duration-300 rounded-full"></span>
                     </a>
+
+                    <!-- Dropdown 3: Our Gallary (NEW) -->
+                    <div class="relative group">
+                        <a href="#" class="text-white text-lg relative py-1 hover:text-primary flex items-center">
+                            Gallary <i class="fas fa-caret-down ml-1 text-xs transition-transform duration-300 group-hover:rotate-180"></i>
+                            <span class="absolute left-0 bottom-0 h-1 w-0 bg-primary/70 group-hover:w-full transition-all duration-300 rounded-full"></span>
+                        </a>
+                        <!-- Dropdown Content Container -->
+                        <div id="dropdown-gallery" class="absolute hidden group-hover:block w-64 mt-2 bg-premium-bg-dark border border-primary/50 rounded-xl shadow-2xl z-50 p-2 transform origin-top transition-all duration-300 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 translate-y-2">
+                            <!-- Links populated by JS -->
+                        </div>
+                    </div>
+                    
                   </nav>
                   
                   <!-- Contact Side Bar (संपर्क साइड बार) -->
@@ -617,8 +630,19 @@
                     Meet Me
                     <span class="absolute left-0 bottom-0 h-1 w-0 bg-primary/70 group-hover:w-full transition-all duration-300 rounded-full"></span>
                 </a>
-
                 <div class="border-t border-primary/30 w-full my-4"></div>
+                
+                <!-- Sidebar Accordion 3: Our Gallary (NEW 6th Card Option) -->
+                <div class="w-full">
+                    <button id="mobile-gallery-toggle" class="mobile-accordion-toggle w-full text-white text-lg relative py-1 hover:text-primary flex justify-between items-center pr-2">
+                        Our Gallary <i id="icon-gallery-mobile" class="fas fa-chevron-down text-sm transition-transform duration-300"></i>
+                    </button>
+                    <div id="mobile-gallery-dropdown" class="h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                         <!-- Links populated by JS -->
+                    </div>
+                </div>
+                <div class="border-t border-primary/30 w-full my-4"></div>
+
                 <div class="flex flex-col items-start space-y-3 pt-4 bg-black/30 p-4 rounded-xl shadow-2xl border border-primary/50">
                   <h4 class="text-base font-bold text-primary mb-1">Need Help? (24x7)</h4>
                   <a href="tel:8816014071" class="flex items-center font-extrabold text-white text-xl p-3 rounded-full bg-primary/90 w-full justify-center">
@@ -1019,21 +1043,21 @@
                     { name: "Arabic", link: "festive_arabic.html" }, 
                     { name: "Indian", link: "festive_indian.html" }, 
                     { name: "Indo-Arabic", link: "festive_indioarabic.html" },
-                    { name: "Moroccan / Geometric", link: "festive_geometric.html" }, // Link back to tradi.html (current page)
+                    { name: "Moroccan / Geometric", link: "festive_geometric.html" }, 
                     { name: "Minimal Festive Mehndi", link: "festive_minimal.html" }
                 ]
             },
-            'premium-card-6': { // Our Gallary - FIX: Missing comma added here
-                title: 'Our Gallary',
+            'premium-card-6': { // Our Gallary 
+                title: 'Our Gallary Collections',
                 locations: [
-                    { name: "Traditional Bridal Mehndi", link: "tradi.html" }, 
-                    { name: "Arabic Bridal Mehndi", link: "one.html" }, 
-                    { name: "Indo-Western Bridal Mehndi", link: "two.html" }, // <-- COMMA ADDED HERE (कॉमा यहाँ जोड़ा गया)
-                    { name: "festive Arabic", link: "thre.html" }, 
-                    { name: "festive Indian", link: "indian_festive_mehndi.html" }, 
-                    { name: "Festive Indo-Arabic", link: "indo_arabic_festive.html" },
-                    { name: "festive Moroccan / Geometric", link: "tradi.html" }, 
-                    { name: "Festive Minimal Festive Mehndi", link: "festive_minimal.html" }
+                    { name: "Traditional Bridal Collection", link: "tradi.html" }, 
+                    { name: "Arabic Bridal Collection", link: "one.html" }, 
+                    { name: "Indo-Western Bridal Collection", link: "two.html" }, 
+                    { name: "Festive Arabic Designs", link: "thre.html" }, 
+                    { name: "Festive Indian Designs", link: "indian_festive_mehndi.html" }, 
+                    { name: "Festive Indo-Arabic Designs", link: "indo_arabic_festive.html" },
+                    { name: "Moroccan / Geometric Designs", link: "tradi.html" }, 
+                    { name: "Minimal Festive Designs", link: "festive_minimal.html" }
                 ]
             }
 
@@ -1134,14 +1158,17 @@
             // 1. Generate Desktop Dropdown Content
             generateDropdownContent('premium-card-2', 'dropdown-bridal');
             generateDropdownContent('premium-card-3', 'dropdown-festive');
+            generateDropdownContent('premium-card-6', 'dropdown-gallery'); // NEW DESKTOP GALLARY
             
             // 2. Generate Mobile Accordion Content
             generateDropdownContent('premium-card-2', 'mobile-bridal-dropdown');
             generateDropdownContent('premium-card-3', 'mobile-festive-dropdown');
+            generateDropdownContent('premium-card-6', 'mobile-gallery-dropdown'); // NEW MOBILE GALLARY
             
             // 3. Setup Mobile Accordion Toggles
             setupMobileAccordion('mobile-bridal-toggle', 'mobile-bridal-dropdown', 'icon-bridal-mobile');
             setupMobileAccordion('mobile-festive-toggle', 'mobile-festive-dropdown', 'icon-festive-mobile');
+            setupMobileAccordion('mobile-gallery-toggle', 'mobile-gallery-dropdown', 'icon-gallery-mobile'); // NEW ACCORDION GALLARY
         }
 
         // --- END: DROPDOWN / ACCORDION LOGIC ---
