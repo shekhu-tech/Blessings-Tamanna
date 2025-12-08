@@ -141,7 +141,7 @@
             
             background: linear-gradient(145deg, var(--premium-outer-bg), var(--bg-main-dark)); /* Dynamic Gradient */
             padding: 10px; 
-            border-radius: 25px; 
+            border-radius: 35px; /* CORRECTED: Changed from 25px to 35px */
             /* Dynamic Border using RGB */
             border:2px solid rgba(var(--color-primary-rgb), 0.8); 
             
@@ -254,6 +254,62 @@
             }
         }
         /* ------------------------------------------- */
+
+        /* Custom Styles for Desktop Dropdown */
+        .dropdown-link {
+            display: block;
+            padding: 8px 12px;
+            margin: 4px 0;
+            border-radius: 8px;
+            color: var(--color-text-primary);
+            font-weight: 500;
+            transition: background-color 0.2s, color 0.2s;
+        }
+        .dropdown-link:hover {
+            background-color: rgba(var(--color-primary-rgb), 0.1);
+            color: var(--color-primary);
+        }
+
+        /* === MOBILE DROPDOWN STYLING FIX (FIXED - ULTRA PRO MAX) === */
+        /* Custom Styles for Mobile Accordion Link Items (Sub-links in sidebar) */
+        .mobile-dropdown-link {
+            display: block;
+            /* PADDING FIX: Indent the sub-items to make them look like a dropdown */
+            padding: 8px 0px 8px 15px; 
+            margin: 2px 0;
+            color: #e0e0e0;
+            font-size: 0.9rem;
+            font-weight: 500;
+            /* Border to clearly indicate structure */
+            border-left: 3px solid rgba(var(--color-primary-rgb), 0.3);
+            
+            background-color: transparent;
+            transition: all 0.3s ease-in-out;
+            text-shadow: none;
+        }
+        .mobile-dropdown-link:hover {
+            color: var(--color-primary);
+            border-left-color: var(--color-primary);
+            background-color: rgba(var(--color-primary-rgb), 0.1);
+            /* ADDED: Subtle glow on hover */
+            text-shadow: 0 0 5px rgba(var(--color-primary-rgb), 0.5);
+            transform: translateX(5px);
+        }
+        /* ADDED: Accordion Toggle Button Glow (Main links in sidebar) */
+        .mobile-accordion-toggle {
+            font-weight: 700;
+            position: relative;
+            z-index: 10;
+            /* ADDED: Slight glow/shadow on the button itself */
+            transition: all 0.3s ease-in-out;
+        }
+        .mobile-accordion-toggle:hover {
+            color: var(--color-primary);
+            /* ADDED: Text glow for ultra pro max effect */
+            text-shadow: 0 0 8px rgba(var(--color-primary-rgb), 0.8);
+            transform: scale(1.02);
+        }
+        /* === END MOBILE DROPDOWN STYLING FIX === */
 
 
         /* --- GRID AND RESPONSIVENESS (ग्रिड और प्रतिक्रियाशीलता) --- */
@@ -494,6 +550,19 @@
                         Meet Me
                         <span class="absolute left-0 bottom-0 h-1 w-0 bg-primary/70 group-hover:w-full transition-all duration-300 rounded-full"></span>
                     </a>
+
+                    <!-- Dropdown 3: Our Gallary (NEW) -->
+                    <div class="relative group">
+                        <a href="#" class="text-white text-lg relative py-1 hover:text-primary flex items-center">
+                            Gallary <i class="fas fa-caret-down ml-1 text-xs transition-transform duration-300 group-hover:rotate-180"></i>
+                            <span class="absolute left-0 bottom-0 h-1 w-0 bg-primary/70 group-hover:w-full transition-all duration-300 rounded-full"></span>
+                        </a>
+                        <!-- Dropdown Content Container -->
+                        <div id="dropdown-gallery" class="absolute hidden group-hover:block w-64 mt-2 bg-premium-bg-dark border border-primary/50 rounded-xl shadow-2xl z-50 p-2 transform origin-top transition-all duration-300 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 translate-y-2">
+                            <!-- Links populated by JS -->
+                        </div>
+                    </div>
+                    
                   </nav>
                   
                   <!-- Contact Side Bar (संपर्क साइड बार) -->
@@ -561,8 +630,20 @@
                     Meet Me
                     <span class="absolute left-0 bottom-0 h-1 w-0 bg-primary/70 group-hover:w-full transition-all duration-300 rounded-full"></span>
                 </a>
-
                 <div class="border-t border-primary/30 w-full my-4"></div>
+                
+                <!-- Sidebar Accordion 3: Our Gallary (NEW 6th Card Option) -->
+                <div class="w-full">
+                    <button id="mobile-gallery-toggle" class="mobile-accordion-toggle w-full text-white text-lg relative py-1 hover:text-primary flex justify-between items-center pr-2">
+                        Our Gallary <i id="icon-gallery-mobile" class="fas fa-chevron-down text-sm transition-transform duration-300"></i>
+                    </button>
+                    <div id="mobile-gallery-dropdown" class="h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                         <!-- Links populated by JS -->
+                    </div>
+                </div>
+                <div class="border-t border-primary/30 w-full my-4"></div>
+
+
                 <div class="flex flex-col items-start space-y-3 pt-4 bg-black/30 p-4 rounded-xl shadow-2xl border border-primary/50">
                   <h4 class="text-base font-bold text-primary mb-1">Need Help? (24x7)</h4>
                   <a href="tel:8816014071" class="flex items-center font-extrabold text-white text-xl p-3 rounded-full bg-primary/90 w-full justify-center">
@@ -581,7 +662,7 @@
     <!-- MAIN CONTENT AREA (मुख्य सामग्री क्षेत्र) -->
     <main class="container mx-auto p-4 md:p-8 lg:p-12" style="min-height: calc(100vh - 160px);">
         
-       
+        
             
         <!-- SLIDE SECTION WRAPPER (FOR DYNAMIC BACKGROUND & BORDER) -->
         <div id="slider-bg"> 
@@ -1131,7 +1212,7 @@
                                     link: `micro_${micro.toLowerCase().replace(/[^a-z0-9→]/g, '_')}.html` 
                                 });
                             });
-                        }
+                        } 
                     });
                 }
             };
@@ -1235,12 +1316,12 @@
         // Re-defining data structure to match expected format for dropdown generation
         const locationData_Dropdowns = {
             'premium-card-2': { // This references Bridal Mehndi from the main page
-                 title: 'Bridal Mehndi Types',
-                 locations: [
+                title: 'Bridal Mehndi Types',
+                locations: [
                     { name: "Traditional Bridal Mehndi", link: "tradi.html" }, 
                     { name: "Arabic Bridal Mehndi", link: "bridal_arabic.html" }, 
                     { name: "Indo-Western Bridal Mehndi", link: "bridal_indowestern.html" }
-                 ]
+                ]
             },
             'premium-card-3': { // This references Festive Mehndi from the main page
                 title: 'Festive Mehndi Types',
@@ -1250,6 +1331,20 @@
                     { name: "Indo-Arabic", link: "festive_indoarabic.html" },
                     { name: "Moroccan / Geometric", link: "festive_geometric.html" },
                     { name: "Minimal Festive Mehndi", link: "festive_minimal.html" }
+                ]
+            },
+            // NEW: Gallary Data added here (premium-card-6 key used to map back to a typical main-page structure)
+            'premium-card-6': { 
+                title: 'Our Gallary Collections',
+                locations: [
+                    { name: "Traditional Bridal Collection", link: "tradi.html" }, 
+                    { name: "Arabic Bridal Collection", link: "one.html" }, 
+                    { name: "Indo-Western Bridal Collection", link: "two.html" }, 
+                    { name: "Festive Arabic Designs", link: "thre.html" }, 
+                    { name: "Festive Indian Designs", link: "indian_festive_mehndi.html" }, 
+                    { name: "Festive Indo-Arabic Designs", link: "indo_arabic_festive.html" },
+                    { name: "Moroccan / Geometric Designs", link: "tradi.html" }, 
+                    { name: "Minimal Festive Designs", link: "festive_minimal.html" }
                 ]
             }
         };
@@ -1298,14 +1393,17 @@
             // 1. Generate Desktop Dropdown Content (Using the mock main page card IDs)
             generateDropdownContent('premium-card-2', 'dropdown-bridal');
             generateDropdownContent('premium-card-3', 'dropdown-festive');
+            generateDropdownContent('premium-card-6', 'dropdown-gallery'); // <--- NEW DESKTOP GALLARY
             
             // 2. Generate Mobile Accordion Content
             generateDropdownContent('premium-card-2', 'mobile-bridal-dropdown');
             generateDropdownContent('premium-card-3', 'mobile-festive-dropdown');
+            generateDropdownContent('premium-card-6', 'mobile-gallery-dropdown'); // <--- NEW MOBILE GALLARY
             
             // 3. Setup Mobile Accordion Toggles
             setupMobileAccordion('mobile-bridal-toggle', 'mobile-bridal-dropdown', 'icon-bridal-mobile');
             setupMobileAccordion('mobile-festive-toggle', 'mobile-festive-dropdown', 'icon-festive-mobile');
+            setupMobileAccordion('mobile-gallery-toggle', 'mobile-gallery-dropdown', 'icon-gallery-mobile'); // <--- NEW ACCORDION GALLARY
         }
 
         // --- END: DROPDOWN / ACCORDION LOGIC ---
