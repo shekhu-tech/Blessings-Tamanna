@@ -12,7 +12,7 @@
     <!-- Fonts (Inter/Noto Sans Devanagari for readability) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=Noto+Sans+Devanagari:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=Noto+Sans+Devanagari:wght+400;500;700&display=swap" rel="stylesheet">
     
     <style>
         /* --- GLOBAL & THEME VARIABLES (थीम वेरिएबल्स) --- */
@@ -45,7 +45,7 @@
             z-index: 1; 
         }
 
-        /* --- FIXED BACKGROUND MEDIA CONTAINER (Video Removed, Image retained) --- */
+        /* --- FIXED BACKGROUND MEDIA CONTAINER (Image retained) --- */
         #fixed-media-background {
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
@@ -54,12 +54,8 @@
             background-position: center;
             background-repeat: no-repeat;
             opacity: 0.5; /* Subtle visibility */
-            /* Mobile Image used for all screen sizes now */
             background-image: url('bridal.png');
         }
-
-        /* Removed #bg-video-pc CSS and associated media query logic */
-
 
         .fixed-header-container {
             position: fixed; top: 0; left: 0; right: 0; z-index: 100;
@@ -123,73 +119,115 @@
             pointer-events: none; 
         }
 
-        /* --- PREMIUM CARD STYLES (प्रीमियम कार्ड स्टाइल्स) - UPDATED --- */
+        /* === NEW KEYFRAMES FOR ULTRA PRO MAX EFFECTS === */
+        @keyframes ultraFlicker {
+            0% { box-shadow: 0 0 40px rgba(var(--color-primary-rgb), 0.7), inset 0 0 30px rgba(var(--color-primary-rgb), 0.5); }
+            50% { box-shadow: 0 0 45px rgba(var(--color-primary-rgb), 0.9), inset 0 0 35px rgba(var(--color-primary-rgb), 0.6); }
+            100% { box-shadow: 0 0 40px rgba(var(--color-primary-rgb), 0.7), inset 0 0 30px rgba(var(--color-primary-rgb), 0.5); }
+        }
+        
+        @keyframes cardShine {
+            0% { left: -150%; }
+            100% { left: 200%; }
+        }
+        /* === END NEW KEYFRAMES === */
+
+
+        /* --- PREMIUM CARD STYLES (प्रीमियम कार्ड स्टाइल्स) - ULTRA PRO MAX UPDATE --- */
         .premium-card {
+            /* Enable 3D transforms */
+            perspective: 1000px;
+            transform-style: preserve-3d;
+            
             background: linear-gradient(145deg, var(--premium-outer-bg), var(--bg-main-dark)); /* Dynamic Gradient */
-            padding: 10px; /* OUTER PADDING RETAINED (10px) */
+            padding: 10px; 
             border-radius: 35px; 
             /* Dynamic Border using RGB */
-            border:2px solid rgba(var(--color-primary-rgb), 0.8); /* Slightly stronger border */
+            border:2px solid rgba(var(--color-primary-rgb), 0.8); 
             
-            /* Dynamic Shadow for SHINING BORDER (Increased Glow) */
-            box-shadow: 
-                0 0 30px rgba(var(--color-primary-rgb), 0.6), /* Increased outer glow */
-                inset 0 0 40px rgba(var(--color-primary-rgb), 0.4); /* Increased inner glow */
+            /* Enhanced Dynamic Shadow with continuous flicker */
+            box-shadow: 0 0 40px rgba(var(--color-primary-rgb), 0.7), inset 0 0 30px rgba(var(--color-primary-rgb), 0.5);
+            animation: ultraFlicker 4s infinite alternate ease-in-out;
                 
-            transition:0.3s ease-in-out; 
+            transition: transform 0.3s ease-out, box-shadow 0.3s ease-in-out; 
             display: flex; 
             flex-direction: column;
             align-items: center; 
             justify-content: start; 
             cursor: pointer; 
-            height: 280px; /* CARD HEIGHT SET TO 400px */
+            height: 280px; 
+            position: relative; /* For Shine Effect */
+            overflow: hidden; /* For Shine Effect */
         }
+
+        /* 3D Tilt Effect Base State */
+        .premium-card:not(:hover) {
+            transform: scale(1.0) rotateX(0deg) rotateY(0deg);
+        }
+
         .premium-card:hover {
-            /* Dynamic Hover Shadow using RGB */
+            /* Pause flicker animation on hover and apply intense static glow */
+            animation: none;
             box-shadow: 
-                0 0 45px rgba(var(--color-primary-rgb), 1.0), /* Even stronger hover glow */
-                inset 0 0 30px rgba(var(--color-primary-rgb), 0.5); 
-            transform: translateY(-8px);
+                0 0 60px rgba(var(--color-primary-rgb), 1.0), /* EVEN STRONGER hover glow */
+                inset 0 0 45px rgba(var(--color-primary-rgb), 0.7); 
+            
+            /* Tilt transform will be handled by JS on mousemove */
+            transform: translateY(-8px) scale(1.05); /* Slight lift and increased scale on hover */
+        }
+
+        /* === ULTRA PRO MAX SHINE EFFECT (चमकदार लाइटिंग) === */
+        .premium-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -150%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent); /* Gradient shine */
+            transform: skewX(-20deg);
+            pointer-events: none;
+        }
+        
+        /* Apply shine animation on hover for a dramatic effect */
+        .premium-card:hover::after {
+            animation: cardShine 1.5s infinite linear; /* Faster shine on hover */
         }
         
         /* NEW Image style - UPDATED WITH SHINING BORDER */
         .premium-card-image {
             width: 100%; 
-            height: 140px; /* IMAGE HEIGHT SET TO 180px */
+            height: 140px; 
             object-fit: cover; 
-            /* Apply border-radius to match the inner aesthetic */
             border-radius: 25px; 
             display: block;
-            margin-bottom: 10px; /* Spacing between image and title */
+            margin-bottom: 10px; 
             
-            /* SHINING BORDER / SHADOW applied to the image (Inner Shadow Removed) */
-            border: 1px solid var(--color-primary); /* Use primary color for image border */
+            /* SHINING BORDER / SHADOW applied to the image */
+            border: 1px solid var(--color-primary); 
             box-shadow: 
-                0 0 20px rgba(var(--color-primary-rgb), 0.5), /* Outer glow for the image */
-                inset 0 0 10px rgba(var(--color-primary-rgb), 0.3); /* Inner glow for a subtle effect */
+                0 0 25px rgba(var(--color-primary-rgb), 0.7), /* Increased image glow */
+                inset 0 0 12px rgba(var(--color-primary-rgb), 0.4); 
         }
         
-        /* Removed .premium-card-content-area style block (padding is now on .premium-card) */
-
         .premium-title {
-            margin-top:15px; /* Restored larger top margin */
-            font-size:19px; font-weight:700; 
-            color:var(--color-primary); /* Dynamic Primary Color */
+            margin-top:15px; 
+            font-size:20px; font-weight:800; /* Increased font weight */
+            color:var(--color-primary); 
             /* Dynamic Text Shadow using RGB */
-            text-shadow:0 0 10px rgba(var(--color-primary-rgb), 0.8); 
+            text-shadow:0 0 15px rgba(var(--color-primary-rgb), 1.0); /* Enhanced text shadow */
             text-align: center;
         }
         .premium-desc {
             margin-top:8px; font-size:15px; line-height:1.4; color:#e9e9e9;
             opacity:0.95; text-align: center; margin-bottom: 5px;
-            /* Removed redundant padding from previous structure */
         }
 
         /* --- GRID AND RESPONSIVENESS (ग्रिड और प्रतिक्रियाशीलता) --- */
         .card-grid-container {
             display: grid;
             grid-template-columns: 1fr; /* Mobile Default: 1 Column (Phone) */
-            gap: 1.5rem; /* THIS GAP IS KEPT SAME AS REQUESTED */
+            gap: 1.5rem; 
         }
         
         /* 2 cards in a row for screens >= 768px (Tablet/Small PC) */
@@ -236,8 +274,8 @@
             
             /* SHINING BORDER applied here, matching .premium-card */
             box-shadow: 
-                0 0 30px rgba(var(--color-primary-rgb), 0.6), /* Increased outer glow */
-                inset 0 0 40px rgba(var(--color-primary-rgb), 0.4); /* Increased inner glow */
+                0 0 30px rgba(var(--color-primary-rgb), 0.6), 
+                inset 0 0 40px rgba(var(--color-primary-rgb), 0.4); 
             
             /* End Card Styles */
             margin-bottom: 2rem;
@@ -252,7 +290,7 @@
         /* Added a subtle hover effect to slider for consistency */
         #slider-bg:hover {
              box-shadow: 
-                0 0 45px rgba(var(--color-primary-rgb), 1.0), /* Stronger hover glow */
+                0 0 45px rgba(var(--color-primary-rgb), 1.0), 
                 inset 0 0 35px rgba(var(--color-primary-rgb), 0.5); 
         }
 
@@ -262,8 +300,6 @@
             }
         }
 
-        /* ... (other slider styles) ... */
-        
         .slide-content-wrapper .post-name {
             font-weight: 1000;
             line-height: 1.2;
@@ -272,7 +308,6 @@
             word-wrap: break-word; 
             white-space: normal;
         }
-        /* ... (other slider styles) ... */
 
         #prev-btn, #next-btn {
             background-color: rgba(255, 255, 255, 0.15); 
@@ -286,24 +321,10 @@
         .text-primary-glow { 
             color: var(--color-primary); /* Dynamic Primary Color */
             /* Dynamic Text Shadow using RGB */
-            text-shadow: 0 0 5px rgba(var(--color-primary-rgb), 0.5); 
+            text-shadow: 0 0 10px rgba(var(--color-primary-rgb), 1.0); /* Enhanced glow */
         } 
         
-        /* Mobile Menu On/Off at 1200px (Breakpoint unchanged) */
-        @media (min-width: 1200px) {
-            /* Show Desktop Navigation */
-            .desktop-nav-area { display: flex !important; }
-            /* Hide Mobile Menu Button */
-            #mobile-menu-button { display: none !important; }
-            /* Hide Bottom Nav */
-            #bottom-nav-shs { display: none !important; } 
-        }
-        @media (max-width: 1199px) {
-            /* Hide Desktop Navigation for mobile/tablet/small PC */
-            .desktop-nav-area { display: none !important; }
-            /* Show Mobile Menu Button */
-            #mobile-menu-button { display: block !important; }
-        }
+        /* ... (other media queries and styles) ... */
         
         /* Custom Styles for Desktop Dropdown */
         .dropdown-link {
@@ -361,14 +382,11 @@
         }
 
         .modal-content {
-            /* Removed absolute positioning and top/bottom to make it content-aware */
             position: relative; 
-            /* Removed transform X to keep centering simple */
             transform: none; 
             
             width: 95%; 
             max-width: 600px;
-            /* Max height to prevent it from consuming the whole screen on large lists */
             max-height: calc(100vh - 160px); 
             
             /* Dynamic Card Styles - uses RGB */
@@ -389,7 +407,6 @@
             background: var(--premium-bg-dark); /* Dynamic Inner BG */
             border: 1.5px solid rgba(var(--color-primary-rgb), 1);
             box-shadow: inset 0 0 35px rgba(var(--color-primary-rgb), 0.45), 0 0 25px rgba(var(--color-primary-rgb), 0.3);
-            /* flex-grow: 1; <- Removed to allow height to shrink */
             overflow-y: auto; /* Enable scrolling for the location list if needed */
         }
 
@@ -427,7 +444,6 @@
     
     <!-- BACKGROUND MEDIA ELEMENTS -->
     <div id="fixed-media-background"></div>
-    <!-- Removed video element #bg-video-pc -->
     <!-- END BACKGROUND MEDIA ELEMENTS -->
 
     <!-- HEADER (शीर्षक) -->
@@ -444,7 +460,6 @@
                 </a>
 
                 <!-- Desktop Navigation (डेस्कटॉप नेविगेशन) -->
-                <!-- UPDATED CLASS for 1200px breakpoint logic -->
                 <div class="desktop-nav-area hidden items-center space-x-10">
                   <nav class="flex space-x-8 font-extrabold">
                     
@@ -657,7 +672,6 @@
     <!-- END MAIN CONTENT AREA -->
     
     <!-- === FIXED BOTTOM NAVIGATION (निश्चित बॉटम नेविगेशन) === -->
-    <!-- REMOVED lg:hidden from the class list -->
     <nav 
         class="bottom-nav-fixed" 
         style="padding-bottom: env(safe-area-inset-bottom);" 
@@ -777,7 +791,7 @@
             }
         }
         
-         // --- START: SLIDER LOGIC (Moved inside DOMContentLoaded) ---
+         // --- START: SLIDER LOGIC ---
         // Variables for slider logic
         const sliderBg = document.getElementById('slider-bg');
         const slidesWrapper = document.getElementById('slides-wrapper');
@@ -798,12 +812,12 @@
         async function fetchSlidesData() {
             // Hardcoded data source - updated links to point to internal HTML pages
             return [
-                { "title": "", "date": "12 Dec", "link": "room_details_1.html", "deadline": "202-12-12", "bgImage": "bridal.png" },
-                { "title": "", "date": "", "link": "flat_details_2.html", "deadline": "2025-12-25", "bgImage": "festive.png" },
-                { "title": "", "date": "", "link": "pg_details_3.html", "deadline": "2026-02-05", "bgImage": "custom.png" },
-                { "title": "", "date": "", "link": "hostel_details_4.html", "deadline": "2026-03-18", "bgImage": "bridal.png" },
-                { "title": "", "date": "", "link": "house_details_5.html", "deadline": "2026-02-01", "bgImage": "festive.png" },
-                { "title": "", "date": "", "link": "house_details_6.html", "deadline": "2026-05-07", "bgImage": "custom.png" } // Corrected key to bgImage
+                { "title": "Check Our New Bridal Designs", "date": "12 Dec", "link": "room_details_1.html", "deadline": "202-12-12", "bgImage": "bridal.png" },
+                { "title": "Festive Mehndi Ideas For Diwali", "date": "", "link": "flat_details_2.html", "deadline": "2025-12-25", "bgImage": "festive.png" },
+                { "title": "Get Your Custom Mehndi Design", "date": "", "link": "pg_details_3.html", "deadline": "2026-02-05", "bgImage": "custom.png" },
+                { "title": "Traditional Indian Mehndi Collection", "date": "", "link": "hostel_details_4.html", "deadline": "2026-03-18", "bgImage": "bridal.png" },
+                { "title": "Simple Arabic Style Mehndi", "date": "", "link": "house_details_5.html", "deadline": "2026-02-01", "bgImage": "festive.png" },
+                { "title": "Geometric & Modern Mehndi Styles", "date": "", "link": "house_details_6.html", "deadline": "2026-05-07", "bgImage": "custom.png" } 
             ];
         }
 
@@ -815,20 +829,19 @@
                 const now = new Date();
                 const isExpired = deadline < now;
                 // Button Text
-                const buttonText = isExpired ? 'आवेदन बंद' : 'Click To View Details';
+                const buttonText = isExpired ? 'Check Previous Collection' : 'Click To View Details';
                 
                 // Link is now assigned directly from item.link (internal page)
                 slide.href = item.link; 
-                // Removed target="_blank" for internal links
                 
                 slide.className = `slide absolute top-0 left-0 w-full h-full opacity-0 transition-opacity duration-1000`;
                 slide.style.zIndex = index === 0 ? 1 : 0;
                 
                 let contentHTML = `
-                    <div class="slide-content-wrapper">
-                        <h3 class="post-name">${item.title}</h3>
-                        <p class="last-date">Last Date: ${item.date}</p>
-                        <button class="apply-btn" ${isExpired ? 'disabled' : ''}>
+                    <div class="slide-content-wrapper p-8 absolute bottom-0 left-0 right-0 bg-black/50 backdrop-blur-sm rounded-b-[35px] z-10">
+                        <h3 class="post-name text-2xl sm:text-3xl">${item.title}</h3>
+                        <p class="last-date text-sm font-light text-gray-300">New Collection</p>
+                        <button class="mt-3 px-4 py-2 bg-primary text-black font-bold rounded-xl shadow-lg hover:bg-opacity-90 transition-colors" ${isExpired ? 'disabled' : ''}>
                             ${buttonText}
                         </button>
                     </div>
@@ -868,7 +881,7 @@
 
         async function initializeSlider() {
             slidesData = await fetchSlidesData();
-            slidesData.sort((a, b) => new Date(a.deadline) - new Date(b.deadline));
+            // Note: Removed the sorting logic here to preserve original order unless required.
             createSlides(slidesData);
             showSlide(currentSlide);
             startAutoSlide();
@@ -886,7 +899,59 @@
             });
         }
         // --- END: SLIDER LOGIC ---
+        
+        
+        // --- START: 3D TILT EFFECT LOGIC (3D झुकाव प्रभाव) ---
 
+        const tiltCards = document.querySelectorAll('.premium-card');
+        const TILT_STRENGTH = 10; // Max rotation in degrees
+        const SHADOW_OFFSET = 20; // Max shadow offset in pixels
+
+        tiltCards.forEach(card => {
+            const cardRect = card.getBoundingClientRect();
+            
+            // This function resets the tilt when mouse leaves (or on touch end)
+            const resetTilt = () => {
+                card.style.transform = 'translateY(0px) rotateX(0deg) rotateY(0deg) scale(1.0)';
+                card.style.boxShadow = card.dataset.originalShadow; // Restore original box-shadow
+            };
+
+            // Only apply this logic on desktop (non-touch devices)
+            if (!('ontouchstart' in window)) { 
+                card.addEventListener('mousemove', (e) => {
+                    // Get card position and center
+                    const rect = card.getBoundingClientRect();
+                    const centerX = rect.left + rect.width / 2;
+                    const centerY = rect.top + rect.height / 2;
+
+                    // Calculate mouse position relative to center (-1 to 1 range)
+                    const x = (e.clientX - centerX) / (rect.width / 2);
+                    const y = (e.clientY - centerY) / (rect.height / 2);
+
+                    // Calculate rotation angles
+                    const rotateX = -y * TILT_STRENGTH; // Tilt up/down
+                    const rotateY = x * TILT_STRENGTH;  // Tilt left/right
+
+                    // Apply 3D transform and slight lift
+                    card.style.transform = `translateY(-8px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`; /* Increased scale on move */
+
+                    // --- Dynamic Lighting/Shadow based on tilt ---
+                    const shadowX = -x * SHADOW_OFFSET;
+                    const shadowY = -y * SHADOW_OFFSET;
+                    
+                    // Original dynamic shadows from CSS are complex, let's keep the existing ones on hover
+                    // and just update the main transform for the 3D effect.
+                    // The CSS handles the `box-shadow` property on `:hover`.
+                    
+                    // The ::after element's shine animation is already handled by CSS :hover
+                });
+
+                card.addEventListener('mouseleave', resetTilt);
+            }
+        });
+
+        // --- END: 3D TILT EFFECT LOGIC ---
+        
         
         // --- START: MODAL/LOCATION SELECTION LOGIC (पॉपअप/लोकेशन चयन लॉजिक) ---
         const modalOverlay = document.getElementById('location-modal-overlay');
@@ -895,7 +960,6 @@
         const locationList = document.getElementById('location-list');
 
         // Sample Location Data (लोकेशन के लिए नमूना डेटा)
-        // This data is now used for Dropdowns/Accordions AND the Modal (for consistency)
         const locationData = {
             'premium-card-2': { // Bridal Mehndi
                 title: 'Bridal Mehndi Types ',
@@ -917,14 +981,12 @@
             }
         };
 
-        function alertMessage(message) {
-            // Placeholder for real app functionality. Using console.log instead of alert().
-            console.log("Action: " + message);
-        }
-
         function showLocationModal(cardId) {
             const data = locationData[cardId];
-            if (!data) return;
+            if (!data) {
+                 // For custom and meet me cards, the inline onclick handles the redirect.
+                 return;
+            }
 
             // Set Modal Content
             modalTitle.textContent = data.title;
@@ -975,8 +1037,11 @@
             const data = locationData[dataId];
             if (!container || !data) return;
 
+            // Use 'dropdown-link' for desktop and 'mobile-dropdown-link' for mobile
+            const className = containerId.startsWith('mobile') ? 'mobile-dropdown-link' : 'dropdown-link';
+            
             container.innerHTML = data.locations.map(item => `
-                <a href="${item.link}" class="dropdown-link mobile-dropdown-link">${item.name}</a>
+                <a href="${item.link}" class="${className}">${item.name}</a>
             `).join('');
         }
         
@@ -1007,7 +1072,7 @@
         }
         
         function initializeDropdowns() {
-            // 1. Generate Desktop Dropdown Content (same content used for mobile)
+            // 1. Generate Desktop Dropdown Content
             generateDropdownContent('premium-card-2', 'dropdown-bridal');
             generateDropdownContent('premium-card-3', 'dropdown-festive');
             
@@ -1025,10 +1090,6 @@
         document.addEventListener('DOMContentLoaded', () => {
             initializeSlider();
             initializeDropdowns();
-            
-            // Attach click listeners to cards:
-            // Since we added inline onclick handlers back to the HTML, 
-            // no block listeners are needed here for the card selection logic.
         });
         
         // --- START: DYNAMIC THEME COLOR CHANGER (7 THEMES, 7 SECONDS) ---
