@@ -188,6 +188,34 @@
             transform: skewX(-20deg);
             pointer-events: none;
         }
+
+        .desktop-dropdown-content {
+            position: absolute; 
+            top: 100%; /* Position below the link */
+            left: 0;
+            width: 256px; /* w-64 equivalent */
+            margin-top: 8px; /* mt-2 equivalent */
+            background: var(--premium-bg-dark); 
+            border: 1px solid var(--color-primary); /* Adjusted border from primary/50 for clarity */
+            border-radius: 0.75rem; /* rounded-xl equivalent */
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.5), 0 10px 10px -5px rgba(0,0,0,0.2); /* shadow-2xl equivalent */
+            z-index: 50; 
+            padding: 8px; /* p-2 equivalent */
+            
+            /* Transition properties for smooth toggle */
+            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out, visibility 0.3s;
+            
+            /* Default Hidden State */
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+        }
+
+        .desktop-dropdown-content.open {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
         
         /* Apply shine animation on hover for a dramatic effect */
         .premium-card:hover::after {
@@ -270,6 +298,7 @@
             color: var(--color-primary);
         }
 
+
         /* === MOBILE DROPDOWN STYLING FIX (FIXED - ULTRA PRO MAX) === */
         /* Custom Styles for Mobile Accordion Link Items (Sub-links in sidebar) */
         .mobile-dropdown-link {
@@ -345,6 +374,19 @@
                 grid-template-columns: repeat(5, 1fr); 
             }
         }
+
+        /* --- CUSTOM 1100px BREAKPOINT OVERRIDE (मोबाइल मेन्यू 1100px पर बंद होगा) --- */
+        @media (min-width: 1100px) {
+            /* Show Desktop Navigation (Overrides 'hidden' default which is active below xl) */
+            .desktop-nav-area {
+                display: flex !important; 
+            }
+            /* Hide Mobile Menu Button (Overrides default visibility which is active below xl) */
+            #mobile-menu-button {
+                display: none !important; 
+            }
+        }
+        /* --- END CUSTOM 1100px BREAKPOINT OVERRIDE --- */
         
         /* --- SLIDER SPECIFIC STYLES (स्लाइडर विशेष स्टाइल) (Copied from main.html) --- */
         .slider-container {
@@ -512,29 +554,30 @@
                 </a>
 
                 <!-- Desktop Navigation (डेस्कटॉप नेविगेशन) -->
-                <div class="desktop-nav-area hidden items-center space-x-10">
+                <!-- UPDATED: Changed lg:flex to xl:flex to temporarily shift breakpoint to 1280px, overridden by custom CSS at 1100px -->
+                <div class="desktop-nav-area hidden xl:flex items-center space-x-10">
                   <nav class="flex space-x-8 font-extrabold">
                     
                     <!-- Dropdown 1: Bridal Mehndi -->
                     <div class="relative group">
-                        <a href="#" class="text-white text-lg relative py-1 hover:text-primary flex items-center">
-                            Bridal<i class="fas fa-caret-down ml-1 text-xs transition-transform duration-300 group-hover:rotate-180"></i>
+                        <a href="#" id="desktop-bridal-link" class="text-white text-lg relative py-1 hover:text-primary flex items-center">
+                            Bridal<i id="desktop-bridal-icon" class="fas fa-caret-down ml-1 text-xs transition-transform duration-300"></i>
                             <span class="absolute left-0 bottom-0 h-1 w-0 bg-primary/70 group-hover:w-full transition-all duration-300 rounded-full"></span>
                         </a>
                         <!-- Dropdown Content Container -->
-                        <div id="dropdown-bridal" class="absolute hidden group-hover:block w-64 mt-2 bg-premium-bg-dark border border-primary/50 rounded-xl shadow-2xl z-50 p-2 transform origin-top transition-all duration-300 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 translate-y-2">
+                        <div id="dropdown-bridal" class="desktop-dropdown-content">
                             <!-- Links populated by JS -->
                         </div>
                     </div>
                     
                     <!-- Dropdown 2: Festive Mehndi -->
                     <div class="relative group">
-                        <a href="#" class="text-white text-lg relative py-1 hover:text-primary flex items-center">
-                            Festive <i class="fas fa-caret-down ml-1 text-xs transition-transform duration-300 group-hover:rotate-180"></i>
+                        <a href="#" id="desktop-festive-link" class="text-white text-lg relative py-1 hover:text-primary flex items-center">
+                            Festive <i id="desktop-festive-icon" class="fas fa-caret-down ml-1 text-xs transition-transform duration-300"></i>
                             <span class="absolute left-0 bottom-0 h-1 w-0 bg-primary/70 group-hover:w-full transition-all duration-300 rounded-full"></span>
                         </a>
                         <!-- Dropdown Content Container -->
-                        <div id="dropdown-festive" class="absolute hidden group-hover:block w-64 mt-2 bg-premium-bg-dark border border-primary/50 rounded-xl shadow-2xl z-50 p-2 transform origin-top transition-all duration-300 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 translate-y-2">
+                        <div id="dropdown-festive" class="desktop-dropdown-content">
                             <!-- Links populated by JS -->
                         </div>
                     </div>
@@ -553,12 +596,12 @@
 
                     <!-- Dropdown 3: Our Gallary (NEW) -->
                     <div class="relative group">
-                        <a href="#" class="text-white text-lg relative py-1 hover:text-primary flex items-center">
-                            Gallary <i class="fas fa-caret-down ml-1 text-xs transition-transform duration-300 group-hover:rotate-180"></i>
+                        <a href="#" id="desktop-gallery-link" class="text-white text-lg relative py-1 hover:text-primary flex items-center">
+                            Gallary <i id="desktop-gallery-icon" class="fas fa-caret-down ml-1 text-xs transition-transform duration-300"></i>
                             <span class="absolute left-0 bottom-0 h-1 w-0 bg-primary/70 group-hover:w-full transition-all duration-300 rounded-full"></span>
                         </a>
                         <!-- Dropdown Content Container -->
-                        <div id="dropdown-gallery" class="absolute hidden group-hover:block w-64 mt-2 bg-premium-bg-dark border border-primary/50 rounded-xl shadow-2xl z-50 p-2 transform origin-top transition-all duration-300 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 translate-y-2">
+                        <div id="dropdown-gallery" class="desktop-dropdown-content">
                             <!-- Links populated by JS -->
                         </div>
                     </div>
@@ -577,7 +620,8 @@
                 </div>
 
                 <!-- Mobile Menu Button (मोबाइल मेन्यू बटन) -->
-                <button id="mobile-menu-button" class="text-primary p-2 rounded-full bg-primary/10" aria-label="Toggle menu" aria-expanded="false">
+                <!-- UPDATED: Changed lg:hidden to xl:hidden to temporarily shift breakpoint to 1280px, overridden by custom CSS at 1100px -->
+                <button id="mobile-menu-button" class="text-primary p-2 rounded-full bg-primary/10 xl:hidden" aria-label="Toggle menu" aria-expanded="false">
                   <i class="fas fa-bars text-2xl text-primary" id="mobile-menu-icon"></i>
                 </button>
               </div>
@@ -669,7 +713,7 @@
                 <!-- Title is now placed relative to the inner section for Z-index -->
                 <div class="text-center mb-6">
                     <!-- Updated class to use primary color glow -->
-                    <h2 class="text-2xl sm:text-3xl font-extrabold text-primary-glow border-b-4 border-primary/50 inline-block px-4 pb-1"></h2>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-primary-glow border-b-4 border-primary/50 inline-block px-4 pb-1">Featured Designs</h2>
                 </div>
                 
                 <div class="slider-container relative">
@@ -871,6 +915,55 @@
                 });
             }
         }
+
+        // Function to set up the desktop click toggle for navigation links
+        function setupDesktopToggle(linkId, contentId, iconId) {
+            const link = document.getElementById(linkId);
+            const content = document.getElementById(contentId);
+            const icon = document.getElementById(iconId);
+
+            if (link && content) {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    
+                    // Close all other open desktop dropdowns
+                    document.querySelectorAll('.desktop-dropdown-content.open').forEach(openContent => {
+                        const openContentId = openContent.id;
+                        if (openContentId !== contentId) {
+                            openContent.classList.remove('open');
+                            const otherIcon = document.getElementById(openContentId.replace('dropdown', 'desktop') + '-icon');
+                            if (otherIcon) {
+                                otherIcon.classList.remove('rotate-180');
+                            }
+                        }
+                    });
+
+                    // Toggle current dropdown
+                    const isOpen = content.classList.toggle('open');
+                    if (icon) {
+                        if (isOpen) {
+                            icon.classList.add('rotate-180');
+                        } else {
+                            icon.classList.remove('rotate-180');
+                        }
+                    }
+                });
+
+                // Close dropdown if user clicks anywhere else on the document
+                document.addEventListener('click', (e) => {
+                    // Check if the click is outside the link AND outside the content
+                    if (content.classList.contains('open') && 
+                        !link.contains(e.target) && 
+                        !content.contains(e.target)) {
+                        
+                        content.classList.remove('open');
+                        if (icon) {
+                            icon.classList.remove('rotate-180');
+                        }
+                    }
+                });
+            }
+        }
         
          // --- START: SLIDER LOGIC ---
         // Variables for slider logic
@@ -980,56 +1073,15 @@
         // --- END: SLIDER LOGIC ---
         
         
-        // --- START: 3D TILT EFFECT LOGIC (3D झुकाव प्रभाव) ---
-
-        const tiltCards = document.querySelectorAll('.premium-card');
-        const TILT_STRENGTH = 10; // Max rotation in degrees
-        const SHADOW_OFFSET = 20; // Max shadow offset in pixels
-
-        tiltCards.forEach(card => {
-            const cardRect = card.getBoundingClientRect();
-            
-            // This function resets the tilt when mouse leaves (or on touch end)
-            const resetTilt = () => {
-                card.style.transform = 'translateY(0px) rotateX(0deg) rotateY(0deg) scale(1.0)';
-            };
-
-            // Only apply this logic on desktop (non-touch devices)
-            if (!('ontouchstart' in window)) { 
-                card.addEventListener('mousemove', (e) => {
-                    // Get card position and center
-                    const rect = card.getBoundingClientRect();
-                    const centerX = rect.left + rect.width / 2;
-                    const centerY = rect.top + rect.height / 2;
-
-                    // Calculate mouse position relative to center (-1 to 1 range)
-                    const x = (e.clientX - centerX) / (rect.width / 2);
-                    const y = (e.clientY - centerY) / (rect.height / 2);
-
-                    // Calculate rotation angles
-                    const rotateX = -y * TILT_STRENGTH; // Tilt up/down
-                    const rotateY = x * TILT_STRENGTH;  // Tilt left/right
-
-                    // Apply 3D transform and slight lift
-                    card.style.transform = `translateY(-8px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`; 
-                });
-
-                card.addEventListener('mouseleave', resetTilt);
-            }
-        });
-
-        // --- END: 3D TILT EFFECT LOGIC ---
-        
-        
         // --- START: MODAL/LOCATION SELECTION LOGIC (पॉपअप/लोकेशन चयन लॉजिक) ---
         const modalOverlay = document.getElementById('location-modal-overlay');
         const modalCloseButton = document.getElementById('modal-close-button');
         const modalTitle = document.getElementById('modal-title');
         const locationList = document.getElementById('location-list');
 
-        // Sample Location Data (लोकेशन के लिए नमूना डेटा)
+        // Sample Location Data (Restored original 7 items for Gallery)
         const locationData = {
-            'premium-card-2': { // Bridal Mehndi
+            'premium-card-2': { // Bridal Mehndi (3 items, removed 'View Your Listings')
                 title: 'Bridal Mehndi Types ',
                 locations: [
                     { name: "Traditional Bridal Mehndi", link: "bridal_traditional.html" }, 
@@ -1037,27 +1089,25 @@
                     { name: "Indo-Western Bridal Mehndi", link: "bridal_indowestern.html" }
                 ]
             },
-            'premium-card-3': { // Festive Mehndi
+            'premium-card-3': { // Festive Mehndi (4 items, removed 'View Your Listings')
                 title: 'Festive Mehndi Types ',
                 locations: [
-                    { name: "Arabic", link: "festive_arabic.html" }, 
-                    { name: "Indian", link: "festive_indian.html" }, 
-                    { name: "Indo-Arabic", link: "festive_indioarabic.html" },
-                    { name: "Moroccan / Geometric", link: "festive_geometric.html" }, 
-                    { name: "Minimal Festive Mehndi", link: "festive_minimal.html" }
+                    { name: "Arabic Festive Designs", link: "festive_arabic.html" }, 
+                    { name: "Indian Festive Designs", link: "festive_indian.html" }, 
+                    { name: "Moroccan / Geometric Designs", link: "festive_geometric.html" }, 
+                    { name: "Minimal Festive Designs", link: "festive_minimal.html" }
                 ]
             },
-            'premium-card-6': { // Our Gallary 
+            'premium-card-6': { // Our Gallary (Restored ALL 7 items, removed 'View Your Listings')
                 title: 'Our Gallary Collections',
                 locations: [
                     { name: "Traditional Bridal Collection", link: "tradi.html" }, 
                     { name: "Arabic Bridal Collection", link: "one.html" }, 
                     { name: "Indo-Western Bridal Collection", link: "two.html" }, 
                     { name: "Festive Arabic Designs", link: "thre.html" }, 
-                    { name: "Festive Indian Designs", link: "indian_festive_mehndi.html" }, 
+                    { name: "Festive Indian Designs", link: "indian_festive_mehndi.html" },
                     { name: "Festive Indo-Arabic Designs", link: "festive_indioarabic.html" },
-                    { name: "Moroccan / Geometric Designs", link: "tradi.html" }, 
-                    { name: "Minimal Festive Designs", link: "festive_minimal.html" }
+                    { name: "Moroccan / Geometric Designs", link: "tradi_geometric.html" } // Restored 7th item
                 ]
             }
 
@@ -1123,6 +1173,7 @@
             // Use 'dropdown-link' for desktop and 'mobile-dropdown-link' for mobile
             const className = containerId.startsWith('mobile') ? 'mobile-dropdown-link' : 'dropdown-link';
             
+            // Generate content from the updated locationData (which excludes "View Your Listings")
             container.innerHTML = data.locations.map(item => `
                 <a href="${item.link}" class="${className}">${item.name}</a>
             `).join('');
@@ -1155,10 +1206,15 @@
         }
         
         function initializeDropdowns() {
-            // 1. Generate Desktop Dropdown Content
+            // 1. Generate Desktop Dropdown Content and Setup Toggle
             generateDropdownContent('premium-card-2', 'dropdown-bridal');
+            setupDesktopToggle('desktop-bridal-link', 'dropdown-bridal', 'desktop-bridal-icon');
+
             generateDropdownContent('premium-card-3', 'dropdown-festive');
+            setupDesktopToggle('desktop-festive-link', 'dropdown-festive', 'desktop-festive-icon');
+            
             generateDropdownContent('premium-card-6', 'dropdown-gallery'); // NEW DESKTOP GALLARY
+            setupDesktopToggle('desktop-gallery-link', 'dropdown-gallery', 'desktop-gallery-icon');
             
             // 2. Generate Mobile Accordion Content
             generateDropdownContent('premium-card-2', 'mobile-bridal-dropdown');
@@ -1182,11 +1238,6 @@
             document.getElementById('premium-card-2').addEventListener('click', () => showLocationModal('premium-card-2'));
             document.getElementById('premium-card-3').addEventListener('click', () => showLocationModal('premium-card-3'));
             document.getElementById('premium-card-6').addEventListener('click', () => showLocationModal('premium-card-6')); // Card 6 handler added
-            
-            // Explicit redirects for other cards based on main.html logic
-            // Note: The HTML already has inline onclick for 4 and 5, but we ensure the JS listener is not attached if it's a direct link.
-            // Since the HTML already uses window.location.href for 4 and 5, we rely on that.
-            // Removed redundant listeners for 4 and 5 that were causing issues or were unnecessary.
             
             console.log("All card handlers initialized.");
         });
