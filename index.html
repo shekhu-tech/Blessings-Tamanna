@@ -2,11 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <!-- Viewport-fit=cover ensures full screen usage on modern mobile devices -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"> 
     <title>Tamanna Sharma...</title>
-    <!-- Tailwind CSS CDN --><script src="https://cdn.tailwindcss.com"></script>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Fonts matching index.html --><link rel="preconnect" href="https://fonts.googleapis.com">
+    <!-- Fonts matching index.html -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=Noto+Sans+Devanagari:wght@400;500;700&display=swap" rel="stylesheet">
     
@@ -23,17 +26,36 @@
         /* --- Global Styles --- */
         body {
             font-family: 'Inter', 'Noto Sans Devangari', sans-serif;
-            background-color: #0d0d10; /* Slightly darker base for better effect */
+            /* Background color removed as image will cover it */
             color: var(--color-text-primary);
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            overflow: hidden; /* Hide scrollbar during splash */
-            transition: opacity 1.5s ease-out; /* Fade-out transition */
-            position: relative; /* For particle effect */
+            overflow: hidden; /* Hide scrollbar */
+            transition: opacity 1.5s ease-out; 
+            position: relative;
         }
 
+        /* New: Image Background Styling (Responsive) - Replaces Video */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* अपनी इमेज फ़ाइल का URL यहां 'your_image_url.jpg' की जगह डालें */
+            /* अगर इमेज नहीं दिख रही है, तो सुनिश्चित करें कि यह URL सही है और इमेज मौजूद है। */
+            background-image: url('bridal.png'); 
+            background-size: cover; /* इमेज पूरे स्क्रीन को कवर करेगी */
+            background-position: center; /* इमेज को सेंटर करें */
+            background-repeat: no-repeat;
+            z-index: -100; /* सुनिश्चित करें कि यह सबसे निचली परत है */
+            /* फिल्टर: अब थोड़ी अधिक रोशनी (brightness 0.5) के साथ ताकि इमेज दिखे */
+            filter: brightness(0.5) contrast(1.2); 
+        }
+        
         /* New: Fixed Gradient Overlay for Focus */
         .gradient-overlay {
             position: fixed;
@@ -41,9 +63,9 @@
             left: 0;
             width: 100%;
             height: 100%;
-            /* Radial gradient to focus attention on the center */
-            background: radial-gradient(circle at center, rgba(30, 30, 35, 0.4) 0%, rgba(13, 13, 16, 0.8) 70%, rgba(13, 13, 16, 1) 100%);
-            z-index: -2; 
+            /* ग्रेडिएंट को थोड़ा पारदर्शी (transparent) बनाया गया है ताकि बैकग्राउंड इमेज ज़्यादा दिखे */
+            background: radial-gradient(circle at center, rgba(30, 30, 35, 0.2) 0%, rgba(13, 13, 16, 0.7) 70%, rgba(13, 13, 16, 0.9) 100%);
+            z-index: -98; /* इमेज के ऊपर, कंटेंट के नीचे */
         }
 
         /* New: Moving Grid/Circuit Effect (Ultra Pro Max Background) */
@@ -59,7 +81,7 @@
             background-size: 50px 50px;
             animation: moveGrid 30s linear infinite;
             opacity: 0.1;
-            z-index: -3;
+            z-index: -99; /* इमेज के ऊपर, ग्रेडिएंट के नीचे */
         }
         @keyframes moveGrid {
             from { background-position: 0 0; }
@@ -92,7 +114,7 @@
             animation: ultraPulseShadow 3s infinite cubic-bezier(0.4, 0, 0.6, 1);
             border: 4px solid var(--electric-gold-glow);
             /* FUTURISTIC / CIRCUITRY BACKGROUND */
-            background-image: url('https://placehold.co/200x200/282a36/FFD700?text=Circuit'); /* Placeholder for futuristic pattern */
+            background-image: url('bridal.png'); /* Placeholder for futuristic pattern */
             background-size: cover;
             background-position: center;
             position: relative; 
@@ -129,7 +151,7 @@
         /* Particle background (Z-index updated) */
         .particle-bg {
             position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%; z-index: -1; overflow: hidden; pointer-events: none;
+            top: 0; left: 0; width: 100%; height: 100%; z-index: -97; overflow: hidden; pointer-events: none; /* z-index adjusted */
         }
         .particle {
             position: absolute; background: rgba(var(--color-primary-rgb), 0.3); border-radius: 50%;
@@ -193,11 +215,14 @@
 </head>
 <body>
 
-    <!-- Ultra Pro Max Background Enhancements -->
+    <!-- VIDEO BACKGROUND REMOVED. Image background is now set using body::before CSS pseudo-element. -->
+    
+    <!-- Ultra Pro Max Background Enhancements (Over the image) -->
     <div class="grid-overlay"></div>
     <div class="gradient-overlay"></div>
     
-    <!-- Particle Background --><div class="particle-bg"></div>
+    <!-- Particle Background (Over the image and overlays) -->
+    <div class="particle-bg"></div>
 
     <!-- Ultra Pro Max Splash Screen Container -->
     <!-- Adjusted max-w and p-8 for better mobile responsiveness -->
