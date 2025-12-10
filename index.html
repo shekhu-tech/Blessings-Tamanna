@@ -26,7 +26,6 @@
         /* --- Global Styles --- */
         body {
             font-family: 'Inter', 'Noto Sans Devangari', sans-serif;
-            /* Background color removed as image will cover it */
             color: var(--color-text-primary);
             min-height: 100vh;
             display: flex;
@@ -35,26 +34,17 @@
             overflow: hidden; /* Hide scrollbar */
             transition: opacity 1.5s ease-out; 
             position: relative;
-        }
-
-        /* New: Image Background Styling (Responsive) - Replaces Video */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            
+            /* New: Image Background Styling directly on the Body */
             /* अपनी इमेज फ़ाइल का URL यहां 'your_image_url.jpg' की जगह डालें */
-            /* अगर इमेज नहीं दिख रही है, तो सुनिश्चित करें कि यह URL सही है और इमेज मौजूद है। */
             background-image: url('bridal.png'); 
             background-size: cover; /* इमेज पूरे स्क्रीन को कवर करेगी */
             background-position: center; /* इमेज को सेंटर करें */
             background-repeat: no-repeat;
-            z-index: -100; /* सुनिश्चित करें कि यह सबसे निचली परत है */
-            /* फिल्टर: अब थोड़ी अधिक रोशनी (brightness 0.5) के साथ ताकि इमेज दिखे */
-            filter: brightness(0.5) contrast(1.2); 
+            background-attachment: fixed; /* सुनिश्चित करता है कि यह फिक्स्ड रहे, मोबाइल के लिए महत्वपूर्ण */
         }
+        
+        /* Removed body::before CSS as it is replaced by body background properties */
         
         /* New: Fixed Gradient Overlay for Focus */
         .gradient-overlay {
@@ -64,8 +54,17 @@
             width: 100%;
             height: 100%;
             /* ग्रेडिएंट को थोड़ा पारदर्शी (transparent) बनाया गया है ताकि बैकग्राउंड इमेज ज़्यादा दिखे */
-            background: radial-gradient(circle at center, rgba(30, 30, 35, 0.2) 0%, rgba(13, 13, 16, 0.7) 70%, rgba(13, 13, 16, 0.9) 100%);
-            z-index: -98; /* इमेज के ऊपर, कंटेंट के नीचे */
+            /* डार्कनेस और कंट्रास्ट को यहीं मैनेज किया गया है, 'filter' को body से हटा दिया गया है */
+            background: 
+                /* ऊपर से एक काला, पारदर्शी ओवरले */
+                rgba(0, 0, 0, 0.45); 
+            
+            /* सेंटर पर फोकस के लिए रेडियल ग्रेडिएंट */
+            background-image: 
+                radial-gradient(circle at center, rgba(30, 30, 35, 0.05) 0%, rgba(13, 13, 16, 0.6) 70%, rgba(13, 13, 16, 0.8) 100%),
+                linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)); /* बेस डार्कनेस */
+                
+            z-index: -98; /* कंटेंट के नीचे */
         }
 
         /* New: Moving Grid/Circuit Effect (Ultra Pro Max Background) */
@@ -81,7 +80,7 @@
             background-size: 50px 50px;
             animation: moveGrid 30s linear infinite;
             opacity: 0.1;
-            z-index: -99; /* इमेज के ऊपर, ग्रेडिएंट के नीचे */
+            z-index: -99; /* इमेज और ग्रेडिएंट के बीच */
         }
         @keyframes moveGrid {
             from { background-position: 0 0; }
@@ -215,7 +214,7 @@
 </head>
 <body>
 
-    <!-- VIDEO BACKGROUND REMOVED. Image background is now set using body::before CSS pseudo-element. -->
+    <!-- VIDEO BACKGROUND REMOVED. Image background is now set directly on the body tag. -->
     
     <!-- Ultra Pro Max Background Enhancements (Over the image) -->
     <div class="grid-overlay"></div>
