@@ -137,6 +137,7 @@
         }
 
         /* Skillaura text shimmer */
+        /* यह स्टाइल अब h1 पर उपयोग नहीं होगा, क्योंकि h1 को इमेज से बदल दिया गया है */
         .shimmer-text {
             background: linear-gradient(90deg, #333 0%, var(--electric-gold-glow) 50%, #333 100%);
             background-size: 200% auto;
@@ -216,6 +217,15 @@
             text-shadow: 0 0 3px rgba(255, 215, 0, 0.8);
         }
 
+        /* New Style: For the PNG image replacement (Optional: if we want to size it manually) */
+        .title-image {
+            max-width: 100%; /* Ensure it fits in the container */
+            height: auto;
+            margin-top: 1rem;
+            /* Optional: Add glow or shadow to the image */
+            filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.8));
+        }
+
     </style>
 </head>
 <body>
@@ -241,11 +251,12 @@
                  onerror="this.onerror=null;this.src='https://placehold.co/96x96/FFD700/1A1C20?text=YTG';" />
         </div>
         
-        <!-- Company Name -->
-        <!-- mt-2 for minimal gap --><br><br>
-        <h1 class="text-4xl sm:text-5xl font-extrabold text-white mt-2 drop-shadow-lg tracking-wider shimmer-text">
-            Blessingss
-        </h1>
+        <!-- Company Name (Replaced H1 text with IMG) -->
+        <div class="mt-2 mb-2 flex justify-center">
+            <!-- H1 tag removed and replaced by IMG tag as requested -->
+            <img src="tamannasharma.png" alt="Blessingss Logo Text" class="title-image" 
+                 onerror="this.onerror=null;this.src='https://placehold.co/200x50/1A1C20/FFD700?text=Blessingss+PNG+Error';" />
+        </div>
         
         <!-- Tagline (Gold Gradient Effect) -->
         <!-- mt-1 mb-1 for minimal gap -->
@@ -276,7 +287,7 @@
         const SPLASH_DURATION = 3000; 
         // रीडायरेक्ट में देरी, ताकि 100% भरने का दृश्य सुनिश्चित हो सके।
         const REDIRECT_DELAY = 100; 
-        const REDIRECT_URL = 'https://blessingsss.in/main.html'; // Your main file
+        const REDIRECT_URL = 'main.html'; // Your main file
         const HAS_VISITED_KEY = 'hasVisitedSplash'; // localStorage key
 
         // Thematic Loading Text Array
