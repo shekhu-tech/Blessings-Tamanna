@@ -755,7 +755,7 @@
                         class="premium-card-image" 
                         onerror="this.onerror=null;this.src='https://placehold.co/400x200/5C2828/FFC72C?text=Turkish+Ottoman';"
                     >
-                    <!-- Custom Heading: Now shows full title on all devices -->
+                    <!-- Custom Heading: Now shows full full on all devices -->
                     <div class="premium-title"><span>6. TURKISH / OTTOMAN TRAD.</span></div>
                     <div class="premium-desc">Tulip motifs, Iznik patterns, and Ottoman swirl connected vines.</div>
                 </div>
@@ -1097,7 +1097,7 @@
 
         // Main Data Structure holding the full traditional chart (10 main styles + 1 Micro-Bank)
         const locationData_All = {
-            // UPDATED: Set micro: [] for all sub-types under Indian Traditional
+            // Card 1-10: Applying the 'traditional_bridal_mehndi_' prefix to all links and ensuring micros are empty.
             'Indian Traditional Bridal Mehndi': { 
                 'Rajasthani ': {
                     'Peacock Themes': { name: "Peacock Themes", link: "traditional_bridal_mehndi_indian_raj_peacock.html", micro: [] }, 
@@ -1129,48 +1129,48 @@
                     'Bharatanatyam Poses': { name: "Bharatanatyam Poses", link: "traditional_bridal_mehndi_indian_south_dance.html", micro: [] }
                 }
             },
-            // UPDATED: Set micro: [] for all sub-types under Pakistani Traditional
+            // Card 2: Applying the 'traditional_bridal_mehndi_' prefix to all links and ensuring micros are empty.
             'Pakistani Traditional Bridal Mehndi': {
                 'Indo–Pak Bridal Mehndi': { name: "Indo–Pak Bridal Mehndi", link: "traditional_bridal_mehndi_pak_indopak.html", micro: [] },
                 'Mughlai Pakistani Bridal': { name: "Mughlai Pakistani Bridal", link: "traditional_bridal_mehndi_pak_mughlai.html", micro: [] },
                 'Lahore Lace Style': { name: "Lahore Lace Style", link: "traditional_bridal_mehndi_pak_lahore_lace.html", micro: [] }
             },
-            // UPDATED: Set micro: [] for all sub-types under Arabic Traditional
+            // Card 3: Applying the 'traditional_bridal_mehndi_' prefix to all links and ensuring micros are empty.
             'Arabic Traditional Bridal Mehndi': {
                 'Gulf Arabic Bridal': { name: "Gulf Arabic Bridal", link: "traditional_bridal_mehndi_arab_gulf.html", micro: [] },
                 'Khaleeji Bridal': { name: "Khaleeji Bridal", link: "traditional_bridal_mehndi_arab_khaleeji.html", micro: [] },
                 'Shaded Arabic Bridal': { name: "Shaded Arabic Bridal", link: "traditional_bridal_mehndi_arab_shaded.html", micro: [] }
             },
-            // UPDATED: Set micro: [] for all sub-types under Persian / Iranian Traditional
+            // Card 4: Applying the 'traditional_bridal_mehndi_' prefix to all links and ensuring micros are empty.
             'Persian / Iranian Traditional Mehndi': {
                 'Persian Floral': { name: "Persian Floral", link: "traditional_bridal_mehndi_persian_floral.html", micro: [] },
                 'Isfahan Tile Art': { name: "Isfahan Tile Art", link: "traditional_bridal_mehndi_persian_isfahan.html", micro: [] }
             },
-            // UPDATED: Set micro: [] for all sub-types under Afghani Traditional
+            // Card 5: Applying the 'traditional_bridal_mehndi_' prefix to all links and ensuring micros are empty.
             'Afghani Traditional Bridal Mehndi': {
                 'Afghani Traditional': { name: "Afghani Traditional", link: "traditional_bridal_mehndi_afghani_trad.html", micro: [] }
             },
-            // UPDATED: Set micro: [] for all sub-types under Turkish / Ottoman Bridal
+            // Card 6: Applying the 'traditional_bridal_mehndi_' prefix to all links and ensuring micros are empty.
             'Turkish / Ottoman Bridal Mehndi': {
                 'Turkish / Ottoman': { name: "Turkish / Ottoman", link: "traditional_bridal_mehndi_turkish_ottoman.html", micro: [] }
             },
-            // UPDATED: Set micro: [] for all sub-types under Moroccan Traditional
+            // Card 7: Applying the 'traditional_bridal_mehndi_' prefix to all links and ensuring micros are empty.
             'Moroccan Traditional Mehndi': {
                 'Moroccan Traditional': { name: "Moroccan Traditional", link: "traditional_bridal_mehndi_moroccan_trad.html", micro: [] }
             },
-            // UPDATED: Set micro: [] for all sub-types under Bangladeshi Traditional
+            // Card 8: Applying the 'traditional_bridal_mehndi_' prefix to all links and ensuring micros are empty.
             'Bangladeshi Traditional Mehndi': {
                 'Bangladeshi Traditional': { name: "Bangladeshi Traditional", link: "traditional_bridal_mehndi_bangla_trad.html", micro: [] }
             },
-            // UPDATED: Set micro: [] for all sub-types under Nepalese / Newari Bridal
+            // Card 9: Applying the 'traditional_bridal_mehndi_' prefix to all links and ensuring micros are empty.
             'Nepalese / Newari Bridal Mehndi': {
                 'Nepalese / Newari': { name: "Nepalese / Newari", link: "traditional_bridal_mehndi_nepal_newari.html", micro: [] }
             },
-            // UPDATED: Set micro: [] for all sub-types under Sri Lankan Traditional
+            // Card 10: Applying the 'traditional_bridal_mehndi_' prefix to all links and ensuring micros are empty.
             'Sri Lankan Traditional Mehndi': {
                 'Sri Lankan Traditional': { name: "Sri Lankan Traditional", link: "traditional_bridal_mehndi_srilankan_trad.html", micro: [] }
             },
-           // Card 11 (Micro Bank) - UPDATED: Only the 4 main types remain, and all nested micros are removed.
+            // Card 11 (Micro Bank): Updated structure as requested, with fixed links and empty micro array.
             'Complete Bridal Element Micro-Type Bank': {
                 'Floral Micro-types': { name: "Floral Micro-types", link: "traditional_bridal_mehndi_micro_floral.html", micro: [] },
                 'Geometric Micro-types': { name: "Geometric Micro-types", link: "traditional_bridal_mehndi_micro_geometric.html", micro: [] },
@@ -1178,7 +1178,6 @@
                 'Filler Micro-types': { name: "Filler Micro-types", link: "traditional_bridal_mehndi_micro_filler.html", micro: [] }
             }
         };
-        
 
 
         const cardMap = {
@@ -1213,19 +1212,19 @@
                         if (value.name && value.link && Array.isArray(value.micro)) {
                             
                             // Determine if this item is the final clickable link or just a header for micros
-                            // It is a final link if micro array is empty (Cards 1-10 as requested)
+                            // It is a final link if micro array is empty (which is true for cards 1-11 now)
                             const isFinalLink = value.micro.length === 0;
 
                             locations.push({ 
                                 name: value.name, 
-                                // Only a header if it has micro-types (i.e., micro.length > 0)
+                                // Only a header if it has micro-types (which is false for all except complex Indian headers)
                                 isTypeHeader: !isFinalLink, 
                                 // New property to denote final link that should be clickable
                                 isClickableType: isFinalLink,
                                 link: value.link 
                             });
 
-                            // Micro-Types (Actual click items) - ONLY add if micro array is NOT empty
+                            // Micro-Types (Actual click items) - This block is now generally skipped for cards 1-11
                             if (value.micro.length > 0) {
                                 value.micro.forEach(micro => {
                                     locations.push({ 
@@ -1261,18 +1260,8 @@
                     processNestedData(styleData);
                 });
                 
-            } else if (mainStyle === 'Complete Bridal Element Micro-Type Bank') {
-                 // Special handling for the Micro Bank (no anchor link is needed for the major headers here)
-                 const bankData = locationData_All['Complete Bridal Element Micro-Type Bank'];
-                 Object.entries(bankData).forEach(([type, value]) => {
-                    locations.push({ name: type, isTypeHeader: true, isMajorHeader: true });
-                    // Micro Bank items MUST be the clickable type now, even if they have links in the data
-                    value.micro.forEach(micro => {
-                        locations.push({ name: micro, isTypeHeader: false, isClickableType: true, link: `micro_${micro.toLowerCase().replace(/[^a-z0-9]/g, '_')}.html` });
-                    });
-                });
-
-            } else { // All other simple categories (Pakistani, Arabic, Persian, etc.)
+            } else { // All other simple categories (Pakistani, Arabic, Persian, etc.) AND CARD 11
+                // Card 11 will now be processed here like Pakistani/Arabic etc., resulting in 4 clickable links.
                 processNestedData(dataRoot);
             }
             
@@ -1297,19 +1286,19 @@
                 
                 // Style adjustment for multi-level data
                 if (location.isMajorHeader && location.isTypeHeader) {
-                    // Renders: ✅ Rajasthani 
+                    // Renders: ✅ Rajasthani (Used for Indian Regional Styles)
                     const item = document.createElement('div');
                     item.className = 'text-xl font-bold text-primary-glow mt-6 mb-3 p-2 border-b-2 border-primary/50';
                     item.innerHTML = location.name;
                     locationList.appendChild(item);
                 } else if (location.isTypeHeader) {
-                    // Renders: • Floral Micro-types (Header for micro bank)
+                    // This path is now mostly unused for links in this simplified structure
                     const item = document.createElement('div');
                     item.className = 'text-lg font-bold text-white mt-3 mb-1 px-2';
                     item.innerHTML = `• ${location.name}`;
                     locationList.appendChild(item);
                 } else if (location.isClickableType) { 
-                    // NEW: Handles the final sub-type link (e.g., Peacock Themes, or all Micro Bank items)
+                    // Handles the final sub-type link (e.g., Peacock Themes, Indo-Pak, or Card 11's 4 types)
                     const item = document.createElement('a');
                     item.href = location.link;
                     // Changed class to make it visually distinct and more clickable
@@ -1325,23 +1314,7 @@
                     });
                     locationList.appendChild(item);
                 } 
-                // Existing MICRO-TYPE (Only renders if the micro array was NOT empty, which is now only for the Micro Bank - Card 11)
-                else { 
-                    // This section handles the micro-type list items (Card 11 content)
-                    const item = document.createElement('a');
-                    item.href = location.link;
-                    item.className = 'location-item text-sm py-2 px-4 hover:bg-primary/20 transition-colors'; 
-                    item.innerHTML = `<span>${location.name}</span> <i class="fas fa-arrow-right text-sm"></i>`;
-                    
-                    item.addEventListener('click', (e) => {
-                         e.preventDefault(); 
-                         closeLocationModal();
-                         setTimeout(() => {
-                            window.location.href = location.link; 
-                         }, 100); 
-                    });
-                    locationList.appendChild(item);
-                }
+                // The nested MICRO-TYPE logic (else) is now skipped for all cards.
             });
 
             // Show Modal
