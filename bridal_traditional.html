@@ -12,7 +12,7 @@
     <!-- Fonts (Inter/Noto Sans Devanagari for readability) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=Noto+Sans+Devanagari:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=Noto+Sans+Devanagari:wght+400;500;700&display=swap" rel="stylesheet">
     
     <style>
         /* --- GLOBAL & THEME VARIABLES (थीम वेरिएबल्स) --- */
@@ -231,30 +231,12 @@
             text-align: center; 
             margin-bottom: 5px;
         }
-
-        /* --- CUSTOM CSS FOR RESPONSIVE HEADINGS (Re-added for Traditional View) --- */
-        /* Default (Mobile First): Use data-mobile-title for smaller text */
-        .premium-card .premium-title[data-mobile-title]:before {
-            content: attr(data-mobile-title);
-            display: block;
-            font-size: 1.1rem; 
-            font-weight: 800;
-        }
-        /* Hide the long title on mobile */
+        
+        /* --- CUSTOM CSS FOR FULL HEADINGS ON ALL DEVICES (Requested Change) --- */
         .premium-card .premium-title > span {
-            display: none;
-        }
-
-        /* Medium/PC View: Show the long title, hide the short title */
-        @media (min-width: 768px) {
-            .premium-card .premium-title[data-mobile-title]:before {
-                content: none;
-            }
-            .premium-card .premium-title > span {
-                display: inline;
-                font-size: 1.1rem; 
-                font-weight: 700;
-            }
+            display: inline; /* Ensure it is always displayed on all screen sizes */
+            font-size: 1.1rem; 
+            font-weight: 700;
         }
         /* ------------------------------------------- */
 
@@ -342,6 +324,7 @@
                 grid-template-columns: repeat(4, 1fr); 
             }
         }
+        
         /* New: 5 cards across on very large screens (1400px+) */
         @media(min-width: 1400px){
             .card-grid-container {
@@ -699,7 +682,7 @@
             <!-- Grid container now optimized for 11 cards (10 styles + 1 Micro Bank) -->
             <div class="card-grid-container">
                 
-                <!-- CARD 1: INDIAN TRADITIONAL BRIDAL MEHNDI (UPDATED STRUCTURE) -->
+                <!-- CARD 1: INDIAN TRADITIONAL BRIDAL MEHNDI (UPDATED STRUCTURE - Removed data-mobile-title) -->
                 <div class="premium-card" id="premium-card-1">
                     <img 
                         src="brindiantradi.png" 
@@ -707,12 +690,12 @@
                         class="premium-card-image" 
                         onerror="this.onerror=null;this.src='https://placehold.co/400x200/331A1A/FFC72C?text=Indian+Trad';"
                     >
-                    <!-- Custom Heading: Only State Name -->
-                    <div class="premium-title" data-mobile-title="1. Indian Trad."><span>1. INDIAN TRADITIONAL</span></div>
+                    <!-- Custom Heading: Now shows full title on all devices -->
+                    <div class="premium-title"><span>1. INDIAN TRADITIONAL</span></div>
                     <div class="premium-desc">Rajasthani, Marwadi, Gujarati, Punjabi, and South Indian Styles.</div>
                 </div>
 
-                <!-- CARD 2: PAKISTANI TRADITIONAL BRIDAL MEHNDI (UPDATED STRUCTURE) -->
+                <!-- CARD 2: PAKISTANI TRADITIONAL BRIDAL MEHNDI (UPDATED STRUCTURE - Removed data-mobile-title) -->
                 <div class="premium-card" id="premium-card-2">
                     <img 
                         src="pakistan.png" 
@@ -720,12 +703,12 @@
                         class="premium-card-image" 
                         onerror="this.onerror=null;this.src='https://placehold.co/400x200/221A33/FFC72C?text=Pakistani+Trad';"
                     >
-                    <!-- Custom Heading: Only State Name -->
-                    <div class="premium-title" data-mobile-title="2. PAK Trad."><span>2. PAK TRADITIONAL</span></div>
+                    <!-- Custom Heading: Now shows full title on all devices -->
+                    <div class="premium-title"><span>2. PAK TRADITIONAL</span></div>
                     <div class="premium-desc">Indo-Pak, Mughlai, and Lahore Lace styles with shaded florals.</div>
                 </div>
 
-                <!-- CARD 3: ARABIC TRADITIONAL BRIDAL MEHNDI (UPDATED STRUCTURE) -->
+                <!-- CARD 3: ARABIC TRADITIONAL BRIDAL MEHNDI (UPDATED STRUCTURE - Removed data-mobile-title) -->
                 <div class="premium-card" id="premium-card-3">
                     <img 
                         src="arabic.png" 
@@ -733,12 +716,12 @@
                         class="premium-card-image" 
                         onerror="this.onerror=null;this.src='https://placehold.co/400x200/1A2733/FFC72C?text=Arabic+Trad';"
                     >
-                    <!-- Custom Heading: Only State Name -->
-                    <div class="premium-title" data-mobile-title="3. ARABIC Trad."><span>3. ARABIC TRADITIONAL</span></div>
+                    <!-- Custom Heading: Now shows full title on all devices -->
+                    <div class="premium-title"><span>3. ARABIC TRADITIONAL</span></div>
                     <div class="premium-desc">Gulf, Khaleeji, and Shaded Arabic styles with bold line work.</div>
                 </div>
 
-                <!-- CARD 4: PERSIAN / IRANIAN TRADITIONAL MEHNDI (UPDATED STRUCTURE) -->
+                <!-- CARD 4: PERSIAN / IRANIAN TRADITIONAL MEHNDI (UPDATED STRUCTURE - Removed data-mobile-title) -->
                 <div class="premium-card" id="premium-card-4">
                     <img 
                         src="brpersioniranian.png" 
@@ -746,12 +729,12 @@
                         class="premium-card-image" 
                         onerror="this.onerror=null;this.src='https://placehold.co/400x200/332D1A/FFC72C?text=Persian+Iranian';"
                     >
-                    <!-- Custom Heading: Only State Name -->
-                    <div class="premium-title" data-mobile-title="4. PERSIAN/IRAN."><span>4. PERSIAN/IRANIAN TRAD.</span></div>
+                    <!-- Custom Heading: Now shows full title on all devices -->
+                    <div class="premium-title"><span>4. PERSIAN/IRANIAN TRAD.</span></div>
                     <div class="premium-desc">Persian Floral, Curved Rose, Swirls, and Isfahan Tile Art geometry.</div>
                 </div>
 
-                <!-- CARD 5: AFGHANI TRADITIONAL BRIDAL MEHNDI (UPDATED STRUCTURE) -->
+                <!-- CARD 5: AFGHANI TRADITIONAL BRIDAL MEHNDI (UPDATED STRUCTURE - Removed data-mobile-title) -->
                 <div class="premium-card" id="premium-card-5">
                     <img 
                         src="afgani.png" 
@@ -759,12 +742,12 @@
                         class="premium-card-image" 
                         onerror="this.onerror=null;this.src='https://placehold.co/400x200/10241D/FFC72C?text=Afghani+Tribal';"
                     >
-                    <!-- Custom Heading: Only State Name -->
-                    <div class="premium-title" data-mobile-title="5. AFGHANI Trad."><span>5. AFGHANI TRADITIONAL</span></div>
+                    <!-- Custom Heading: Now shows full title on all devices -->
+                    <div class="premium-title"><span>5. AFGHANI TRADITIONAL</span></div>
                     <div class="premium-desc">Thick outlines, Pointed leaf ends, Tribal dots, and Carpet border motifs.</div>
                 </div>
                 
-                <!-- CARD 6: TURKISH / OTTOMAN BRIDAL MEHNDI (UPDATED STRUCTURE) -->
+                <!-- CARD 6: TURKISH / OTTOMAN BRIDAL MEHNDI (UPDATED STRUCTURE - Removed data-mobile-title) -->
                 <div class="premium-card" id="premium-card-6">
                     <img 
                         src="turkish.png" 
@@ -772,12 +755,12 @@
                         class="premium-card-image" 
                         onerror="this.onerror=null;this.src='https://placehold.co/400x200/5C2828/FFC72C?text=Turkish+Ottoman';"
                     >
-                    <!-- Custom Heading: Only State Name -->
-                    <div class="premium-title" data-mobile-title="6. TURKISH/OTT."><span>6. TURKISH / OTTOMAN TRAD.</span></div>
+                    <!-- Custom Heading: Now shows full title on all devices -->
+                    <div class="premium-title"><span>6. TURKISH / OTTOMAN TRAD.</span></div>
                     <div class="premium-desc">Tulip motifs, Iznik patterns, and Ottoman swirl connected vines.</div>
                 </div>
 
-                <!-- CARD 7: MOROCCAN TRADITIONAL MEHNDI (UPDATED STRUCTURE) -->
+                <!-- CARD 7: MOROCCAN TRADITIONAL MEHNDI (UPDATED STRUCTURE - Removed data-mobile-title) -->
                 <div class="premium-card" id="premium-card-7">
                     <img 
                         src="moreccongeo.png" 
@@ -785,12 +768,12 @@
                         class="premium-card-image" 
                         onerror="this.onerror=null;this.src='https://placehold.co/400x200/242010/FFC72C?text=Moroccan+Geometry';"
                     >
-                    <!-- Custom Heading: Only State Name -->
-                    <div class="premium-title" data-mobile-title="7. MOROCCAN Trad."><span>7. MOROCCAN TRADITIONAL</span></div>
+                    <!-- Custom Heading: Now shows full title on all devices -->
+                    <div class="premium-title"><span>7. MOROCCAN TRADITIONAL</span></div>
                     <div class="premium-desc">Berber symbols, Star grids, Zig-zag lines, and Brick geometry.</div>
                 </div>
 
-                <!-- CARD 8: BANGLADESHI TRADITIONAL MEHNDI (UPDATED STRUCTURE) -->
+                <!-- CARD 8: BANGLADESHI TRADITIONAL MEHNDI (UPDATED STRUCTURE - Removed data-mobile-title) -->
                 <div class="premium-card" id="premium-card-8">
                     <img 
                         src="bangladeshiart.png" 
@@ -798,12 +781,12 @@
                         class="premium-card-image" 
                         onerror="this.onerror=null;this.src='https://placehold.co/400x200/1C3144/FFC72C?text=Bangladeshi+Art';"
                     >
-                    <!-- Custom Heading: Only State Name -->
-                    <div class="premium-title" data-mobile-title="8. BANGLA Trad."><span>8. BANGLADESHI TRADITIONAL</span></div>
+                    <!-- Custom Heading: Now shows full title on all devices -->
+                    <div class="premium-title"><span>8. BANGLADESHI TRADITIONAL</span></div>
                     <div class="premium-desc">Lotus bands, Net fill, Kalka circle, and Bangle-style wraps.</div>
                 </div>
                 
-                <!-- CARD 9: NEPALESE / NEWARI BRIDAL MEHNDI (UPDATED STRUCTURE) -->
+                <!-- CARD 9: NEPALESE / NEWARI BRIDAL MEHNDI (UPDATED STRUCTURE - Removed data-mobile-title) -->
                 <div class="premium-card" id="premium-card-9">
                     <img 
                         src="nepalinerai.png" 
@@ -811,12 +794,12 @@
                         class="premium-card-image" 
                         onerror="this.onerror=null;this.src='https://placehold.co/400x200/283C5C/FFC72C?text=Nepalese+Newari';"
                     >
-                    <!-- Custom Heading: Only State Name -->
-                    <div class="premium-title" data-mobile-title="9. NEPALESE/NEW."><span>9. NEPALESE / NEWARI Bridal</span></div>
+                    <!-- Custom Heading: Now shows full title on all devices -->
+                    <div class="premium-title"><span>9. NEPALESE / NEWARI Bridal</span></div>
                     <div class="premium-desc">Mandap designs, Goddess motifs, and Pagoda border lines.</div>
                 </div>
                 
-                <!-- CARD 10: SRI LANKAN TRADITIONAL MEHNDI (UPDATED STRUCTURE) -->
+                <!-- CARD 10: SRI LANKAN TRADITIONAL MEHNDI (UPDATED STRUCTURE - Removed data-mobile-title) -->
                 <div class="premium-card" id="premium-card-10">
                     <img 
                         src="srilankan.png" 
@@ -824,12 +807,12 @@
                         class="premium-card-image" 
                         onerror="this.onerror=null;this.src='https://placehold.co/400x200/3B285C/FFC72C?text=Sri+Lankan+Motifs';"
                     >
-                    <!-- Custom Heading: Only State Name -->
-                    <div class="premium-title" data-mobile-title="10. SRI LANKAN Trad."><span>10. SRI LANKAN TRADITIONAL</span></div>
+                    <!-- Custom Heading: Now shows full title on all devices -->
+                    <div class="premium-title"><span>10. SRI LANKAN TRADITIONAL</span></div>
                     <div class="premium-desc">Island flower vines, Spiral tips, and Tribal dots + line mix.</div>
                 </div>
 
-                <!-- CARD 11: COMPLETE BRIDAL ELEMENT MICRO-TYPE BANK (UPDATED STRUCTURE) -->
+                <!-- CARD 11: COMPLETE BRIDAL ELEMENT MICRO-TYPE BANK (UPDATED STRUCTURE - Removed data-mobile-title) -->
                 <div class="premium-card" id="premium-card-11">
                     <img 
                         src="microelement.png" 
@@ -837,8 +820,8 @@
                         class="premium-card-image" 
                         onerror="this.onerror=null;this.src='https://placehold.co/400x200/1A332D/FFC72C?text=Micro+Elements';"
                     >
-                    <!-- Custom Heading: Only State Name -->
-                    <div class="premium-title" data-mobile-title="11. Micro Element Bank"><span>11. Micro-Type Element Bank</span></div>
+                    <!-- Custom Heading: Now shows full title on all devices -->
+                    <div class="premium-title"><span>11. Micro-Type Element Bank</span></div>
                     <div class="premium-desc">Filler, Floral, Geometric, and Motif micro-types used across all styles.</div>
                 </div>
             </div>
@@ -1114,69 +1097,80 @@
 
         // Main Data Structure holding the full traditional chart (10 main styles + 1 Micro-Bank)
         const locationData_All = {
+            // UPDATED: Set micro: [] for all sub-types under Indian Traditional
             'Indian Traditional Bridal Mehndi': { 
                 'Rajasthani ': {
-                    'Peacock Themes': { name: "Peacock Themes", link: "indian_raj_peacock.html", micro: ["Full Peacock", "Dual Peacock", "Tail Motif", "Peacock Crown Fillings"] },
-                    'Elephant Motifs': { name: "Elephant Motifs", link: "indian_raj_elephant.html", micro: ["Royal Elephant Pair", "Maharaja Elephant", "Rajkumari Elephant"] },
-                    'Mirror Work Style': { name: "Mirror Work Style", link: "indian_raj_mirror.html", micro: ["Mandala Mirror", "Mini Diamond Mirrors"] },
-                    'Jharokha Designs': { name: "Jharokha Designs", link: "indian_raj_jharokha.html", micro: ["Palace Window", "Queen in Jharokha"] },
-                    'Bride–Groom Motifs': { name: "Bride–Groom Motifs", link: "indian_raj_couple.html", micro: ["Doli Carrying Groom", "Baarat Scenes"] },
-                    'Bandhani Fillings': { name: "Bandhani Fillings", link: "indian_raj_bandhani.html", micro: ["Dotted Bandhej", "Tie-Dye Net Fill"] }
+                    'Peacock Themes': { name: "Peacock Themes", link: "indian_raj_peacock.html", micro: [] }, 
+                    'Elephant Motifs': { name: "Elephant Motifs", link: "indian_raj_elephant.html", micro: [] },
+                    'Mirror Work Style': { name: "Mirror Work Style", link: "indian_raj_mirror.html", micro: [] },
+                    'Jharokha Designs': { name: "Jharokha Designs", link: "indian_raj_jharokha.html", micro: [] },
+                    'Bride–Groom Motifs': { name: "Bride–Groom Motifs", link: "indian_raj_couple.html", micro: [] },
+                    'Bandhani Fillings': { name: "Bandhani Fillings", link: "indian_raj_bandhani.html", micro: [] }
                 },
                 'Marwadi ': {
-                    'Heavy Filled Palms': { name: "Heavy Filled Palms", link: "indian_marwadi_filled.html", micro: ["Fingertip blackout", "Dense jaal"] },
-                    'Round Mandala Centers': { name: "Round Mandala Centers", link: "indian_marwadi_mandala.html", micro: ["Mini lotus", "Micro swirls"] },
-                    'Ghoomar Scenes': { name: "Ghoomar Scenes", link: "indian_marwadi_ghoomar.html", micro: ["Dancing women silhouette", "Ghagra swirl detailing"] }
+                    'Heavy Filled Palms': { name: "Heavy Filled Palms", link: "indian_marwadi_filled.html", micro: [] },
+                    'Round Mandala Centers': { name: "Round Mandala Centers", link: "indian_marwadi_mandala.html", micro: [] },
+                    'Ghoomar Scenes': { name: "Ghoomar Scenes", link: "indian_marwadi_ghoomar.html", micro: [] }
                 },
                 'Gujarati ': {
-                    'Garba Scenes': { name: "Garba Scenes", link: "indian_guj_garba.html", micro: ["Dandiya Couple", "Matki Art"] },
-                    'Navratri Elements': { name: "Navratri Elements", link: "indian_guj_navratri.html", micro: ["Trishul lines", "Shankh curves"] },
-                    'Kutch Borders': { name: "Kutch Borders", link: "indian_guj_kutch.html", micro: ["Thick lattice", "Triangle embroidery"] }
+                    'Garba Scenes': { name: "Garba Scenes", link: "indian_guj_garba.html", micro: [] },
+                    'Navratri Elements': { name: "Navratri Elements", link: "indian_guj_navratri.html", micro: [] },
+                    'Kutch Borders': { name: "Kutch Borders", link: "indian_guj_kutch.html", micro: [] }
                 },
                 'Punjabi ': {
-                    'Kala-Chashma Bride': { name: "Kala-Chashma Bride", link: "indian_punjabi_chashma.html", micro: ["Kala-Chashma Bride"] },
-                    'Braid detailing': { name: "Braid detailing", link: "indian_punjabi_braid.html", micro: ["Nose-ring microdots"] },
-                    'Paranda Elements': { name: "Paranda Elements", link: "indian_punjabi_paranda.html", micro: ["Paranda tassels", "Thread detailing"] },
-                    'Heer–Ranjha Theme': { name: "Heer–Ranjha Theme", link: "indian_punjabi_heer.html", micro: ["Sitar instrument", "Turban micro-lines"] }
+                    'Kala-Chashma Bride': { name: "Kala-Chashma Bride", link: "indian_punjabi_chashma.html", micro: [] },
+                    'Braid detailing': { name: "Braid detailing", link: "indian_punjabi_braid.html", micro: [] },
+                    'Paranda Elements': { name: "Paranda Elements", link: "indian_punjabi_paranda.html", micro: [] },
+                    'Heer–Ranjha Theme': { name: "Heer–Ranjha Theme", link: "indian_punjabi_heer.html", micro: [] }
                 },
                 'South Indian ': {
-                    'Temple Motifs': { name: "Temple Motifs", link: "indian_south_temple.html", micro: ["Gopuram tower", "Nandi outline"] },
-                    'Kumkumam Style': { name: "Kumkumam Style", link: "indian_south_kumkumam.html", micro: ["Dot rangoli", "Mandala lotus"] },
-                    'Bharatanatyam Poses': { name: "Bharatanatyam Poses", link: "indian_south_dance.html", micro: ["Hasta mudras", "Foot ghunghroo"] }
+                    'Temple Motifs': { name: "Temple Motifs", link: "indian_south_temple.html", micro: [] },
+                    'Kumkumam Style': { name: "Kumkumam Style", link: "indian_south_kumkumam.html", micro: [] },
+                    'Bharatanatyam Poses': { name: "Bharatanatyam Poses", link: "indian_south_dance.html", micro: [] }
                 }
             },
+            // UPDATED: Set micro: [] for all sub-types under Pakistani Traditional
             'Pakistani Traditional Bridal Mehndi': {
-                'Indo–Pak Bridal Mehndi': { name: "Indo–Pak Bridal Mehndi", link: "pak_indopak.html", micro: ["Thick floral vines", "Rose bud fill", "Shaded florals (Pakistani signature)"] },
-                'Mughlai Pakistani Bridal': { name: "Mughlai Pakistani Bridal", link: "pak_mughlai.html", micro: ["Arch windows", "Arabic dome shading", "Paisley with leaf-tip fill"] },
-                'Lahore Lace Style': { name: "Lahore Lace Style", link: "pak_lahore_lace.html", micro: ["Lace mesh (ultra-fine)", "Zero-gap fill", "Droplet endings"] }
+                'Indo–Pak Bridal Mehndi': { name: "Indo–Pak Bridal Mehndi", link: "pak_indopak.html", micro: [] },
+                'Mughlai Pakistani Bridal': { name: "Mughlai Pakistani Bridal", link: "pak_mughlai.html", micro: [] },
+                'Lahore Lace Style': { name: "Lahore Lace Style", link: "pak_lahore_lace.html", micro: [] }
             },
+            // UPDATED: Set micro: [] for all sub-types under Arabic Traditional
             'Arabic Traditional Bridal Mehndi': {
-                'Gulf Arabic Bridal': { name: "Gulf Arabic Bridal", link: "arab_gulf.html", micro: ["Bold vines → Mini berry dots → Micro leaves"] },
-                'Khaleeji Bridal': { name: "Khaleeji Bridal", link: "arab_khaleeji.html", micro: ["Symmetric vines", "Teardrop endings", "Palm blackout"] },
-                'Shaded Arabic Bridal': { name: "Shaded Arabic Bridal", link: "arab_shaded.html", micro: ["Shaded roses", "Smudge shading", "Micro-outline stroke"] }
+                'Gulf Arabic Bridal': { name: "Gulf Arabic Bridal", link: "arab_gulf.html", micro: [] },
+                'Khaleeji Bridal': { name: "Khaleeji Bridal", link: "arab_khaleeji.html", micro: [] },
+                'Shaded Arabic Bridal': { name: "Shaded Arabic Bridal", link: "arab_shaded.html", micro: [] }
             },
+            // UPDATED: Set micro: [] for all sub-types under Persian / Iranian Traditional
             'Persian / Iranian Traditional Mehndi': {
-                'Persian Floral': { name: "Persian Floral", link: "persian_floral.html", micro: ["Curved rose", "Persian swirl"] },
-                'Isfahan Tile Art': { name: "Isfahan Tile Art", link: "persian_isfahan.html", micro: ["Geometry blocks", "Micro tessellation"] }
+                'Persian Floral': { name: "Persian Floral", link: "persian_floral.html", micro: [] },
+                'Isfahan Tile Art': { name: "Isfahan Tile Art", link: "persian_isfahan.html", micro: [] }
             },
+            // UPDATED: Set micro: [] for all sub-types under Afghani Traditional
             'Afghani Traditional Bridal Mehndi': {
-                'Afghani Traditional': { name: "Afghani Traditional", link: "afghani_trad.html", micro: ["Thick outlines", "Pointed leaf ends", "Tribal dots", "Carpet border motifs"] }
+                'Afghani Traditional': { name: "Afghani Traditional", link: "afghani_trad.html", micro: [] }
             },
+            // UPDATED: Set micro: [] for all sub-types under Turkish / Ottoman Bridal
             'Turkish / Ottoman Bridal Mehndi': {
-                'Turkish / Ottoman': { name: "Turkish / Ottoman", link: "turkish_ottoman.html", micro: ["Tulip motifs", "Iznik patterns", "Ottoman swirl connected vines"] }
+                'Turkish / Ottoman': { name: "Turkish / Ottoman", link: "turkish_ottoman.html", micro: [] }
             },
+            // UPDATED: Set micro: [] for all sub-types under Moroccan Traditional
             'Moroccan Traditional Mehndi': {
-                'Moroccan Traditional': { name: "Moroccan Traditional", link: "moroccan_trad.html", micro: ["Berber symbols", "Eye symbol", "Star grid", "Tribal squares", "Zig-zag lines", "Brick geometry"] }
+                'Moroccan Traditional': { name: "Moroccan Traditional", link: "moroccan_trad.html", micro: [] }
             },
+            // UPDATED: Set micro: [] for all sub-types under Bangladeshi Traditional
             'Bangladeshi Traditional Mehndi': {
-                'Bangladeshi Traditional': { name: "Bangladeshi Traditional", link: "bangla_trad.html", micro: ["Lotus bands", "Net fill", "Kalka circle", "Bangle-style wraps"] }
+                'Bangladeshi Traditional': { name: "Bangladeshi Traditional", link: "bangla_trad.html", micro: [] }
             },
+            // UPDATED: Set micro: [] for all sub-types under Nepalese / Newari Bridal
             'Nepalese / Newari Bridal Mehndi': {
-                'Nepalese / Newari': { name: "Nepalese / Newari", link: "nepal_newari.html", micro: ["Mandap designs", "Goddess motifs", "Pagoda border lines"] }
+                'Nepalese / Newari': { name: "Nepalese / Newari", link: "nepal_newari.html", micro: [] }
             },
+            // UPDATED: Set micro: [] for all sub-types under Sri Lankan Traditional
             'Sri Lankan Traditional Mehndi': {
-                'Sri Lankan Traditional': { name: "Sri Lankan Traditional", link: "srilankan_trad.html", micro: ["Island flower vines", "Spiral tips", "Tribal dots + line mix"] }
+                'Sri Lankan Traditional': { name: "Sri Lankan Traditional", link: "srilankan_trad.html", micro: [] }
             },
+            // Card 11 (Micro Bank) remains unchanged as it is meant to list micro types
             'Complete Bridal Element Micro-Type Bank': {
                 'Floral Micro-types': { name: "Floral Micro-types", link: "micro_floral.html", micro: ["Dot flower", "Semi-bud", "Tulip micro-curve", "2-line leaf", "Tri-leaf edge"] },
                 'Geometric Micro-types': { name: "Geometric Micro-types", link: "micro_geometric.html", micro: ["Tiny grid box", "Micro jaali", "Diamond chain", "Staircase line"] },
@@ -1216,21 +1210,32 @@
                     Object.entries(data).forEach(([key, value]) => {
                         // Check for the known 'micro' structure
                         if (value.name && value.link && Array.isArray(value.micro)) {
-                            // Mini-Type Header
+                            
+                            // Determine if this item is the final clickable link or just a header for micros
+                            // It is a final link if micro array is empty (Cards 1-10 as requested)
+                            const isFinalLink = value.micro.length === 0;
+
                             locations.push({ 
-                                name: `• ${value.name}`, 
-                                isTypeHeader: true,
+                                name: value.name, 
+                                // Only a header if it has micro-types (i.e., micro.length > 0)
+                                isTypeHeader: !isFinalLink, 
+                                // New property to denote final link that should be clickable
+                                isClickableType: isFinalLink,
                                 link: value.link 
                             });
-                            // Micro-Types (Actual click items)
-                            value.micro.forEach(micro => {
-                                locations.push({ 
-                                    name: micro, 
-                                    isTypeHeader: false,
-                                    // Generating a placeholder link based on micro-type name for simplicity
-                                    link: `micro_${micro.toLowerCase().replace(/[^a-z0-9]/g, '_')}.html` 
+
+                            // Micro-Types (Actual click items) - ONLY add if micro array is NOT empty
+                            if (value.micro.length > 0) {
+                                value.micro.forEach(micro => {
+                                    locations.push({ 
+                                        name: micro, 
+                                        isTypeHeader: false,
+                                        isClickableType: false,
+                                        // Generating a placeholder link based on micro-type name for simplicity
+                                        link: `micro_${micro.toLowerCase().replace(/[^a-z0-9]/g, '_')}.html` 
+                                    });
                                 });
-                            });
+                            }
                         } else {
                             // Recursively handle deeper nesting (like in Indian styles)
                             locations.push({ name: `--- ${key} ---`, isTypeHeader: true, isMajorHeader: true });
@@ -1240,7 +1245,7 @@
                 } else if (Array.isArray(data)) {
                     // Handle arrays if passed directly
                     data.forEach(item => {
-                             locations.push({ name: item, isTypeHeader: false, link: `micro_${item.toLowerCase().replace(/[^a-z0-9]/g, '_')}.html` });
+                             locations.push({ name: item, isTypeHeader: false, isClickableType: false, link: `micro_${item.toLowerCase().replace(/[^a-z0-9]/g, '_')}.html` });
                     });
                 }
             };
@@ -1260,8 +1265,9 @@
                  const bankData = locationData_All['Complete Bridal Element Micro-Type Bank'];
                  Object.entries(bankData).forEach(([type, value]) => {
                     locations.push({ name: type, isTypeHeader: true, isMajorHeader: true });
+                    // Micro Bank items MUST be the clickable type now, even if they have links in the data
                     value.micro.forEach(micro => {
-                        locations.push({ name: micro, isTypeHeader: false, link: `micro_${micro.toLowerCase().replace(/[^a-z0-9]/g, '_')}.html` });
+                        locations.push({ name: micro, isTypeHeader: false, isClickableType: true, link: `micro_${micro.toLowerCase().replace(/[^a-z0-9]/g, '_')}.html` });
                     });
                 });
 
@@ -1290,32 +1296,47 @@
                 
                 // Style adjustment for multi-level data
                 if (location.isMajorHeader && location.isTypeHeader) {
+                    // Renders: ✅ Rajasthani 
                     const item = document.createElement('div');
                     item.className = 'text-xl font-bold text-primary-glow mt-6 mb-3 p-2 border-b-2 border-primary/50';
                     item.innerHTML = location.name;
                     locationList.appendChild(item);
                 } else if (location.isTypeHeader) {
-                     // Mini-Type Header (non-clickable, just a sub-category title)
+                    // Renders: • Floral Micro-types (Header for micro bank)
                     const item = document.createElement('div');
                     item.className = 'text-lg font-bold text-white mt-3 mb-1 px-2';
-                    item.innerHTML = location.name;
+                    item.innerHTML = `• ${location.name}`;
+                    locationList.appendChild(item);
+                } else if (location.isClickableType) { 
+                    // NEW: Handles the final sub-type link (e.g., Peacock Themes, or all Micro Bank items)
+                    const item = document.createElement('a');
+                    item.href = location.link;
+                    // Changed class to make it visually distinct and more clickable
+                    item.className = 'location-item text-base py-3 px-4 hover:bg-primary/20 transition-colors'; 
+                    item.innerHTML = `<span>${location.name}</span> <i class="fas fa-arrow-right text-sm"></i>`;
+                    
+                    item.addEventListener('click', (e) => {
+                         e.preventDefault(); 
+                         closeLocationModal();
+                         setTimeout(() => {
+                            window.location.href = location.link; 
+                         }, 100); 
+                    });
                     locationList.appendChild(item);
                 } 
-                
-                // MICRO-TYPE - Now a clickable link
-                else {
+                // Existing MICRO-TYPE (Only renders if the micro array was NOT empty, which is now only for the Micro Bank - Card 11)
+                else { 
+                    // This section handles the micro-type list items (Card 11 content)
                     const item = document.createElement('a');
                     item.href = location.link;
                     item.className = 'location-item text-sm py-2 px-4 hover:bg-primary/20 transition-colors'; 
                     item.innerHTML = `<span>${location.name}</span> <i class="fas fa-arrow-right text-sm"></i>`;
                     
                     item.addEventListener('click', (e) => {
-                         e.preventDefault(); // Prevent default link behavior first
+                         e.preventDefault(); 
                          closeLocationModal();
-                         
-                         // Navigate after closing modal
                          setTimeout(() => {
-                            window.location.href = location.link; // ACTUAL NAVIGATION ADDED HERE
+                            window.location.href = location.link; 
                          }, 100); 
                     });
                     locationList.appendChild(item);
@@ -1543,9 +1564,9 @@
             // Extract RGB from the Body BG to create the translucent effect
             const bodyRgbMatch = theme.bodyBg.match(/^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i);
             if (bodyRgbMatch) {
-                r = parseInt(bodyRgbMatch[1], 16);
-                g = parseInt(bodyRgbMatch[2], 16);
-                b = parseInt(bodyRgbMatch[3], 16);
+                let r = parseInt(bodyRgbMatch[1], 16);
+                let g = parseInt(bodyRgbMatch[2], 16);
+                let b = parseInt(bodyRgbMatch[3], 16);
                 // Set opacity to 0.7 for glass effect
                 const glassBg = `rgba(${r}, ${g}, ${b}, 0.7)`;
                 root.setProperty('--glass-bg-dark', glassBg);
