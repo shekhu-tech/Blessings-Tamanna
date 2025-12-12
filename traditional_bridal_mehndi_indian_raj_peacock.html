@@ -240,6 +240,7 @@
             border: 2px solid rgba(var(--color-primary-rgb), 0.5); /* Clearer base border */
             font-weight: 500;
             text-align: center;
+            /* Height is fit-to-text due to padding */
             padding: 0.75rem 0.5rem; 
             border-radius: 12px;
             background-color: var(--premium-bg-dark); /* Ensure background is set */
@@ -264,15 +265,42 @@
         }
 
 
-        /* Force 4 columns on small mobile for buttons to fit */
+        /* Adjustments for variant buttons on small mobile */
         @media (max-width: 640px) {
-            .variant-grid {
-                grid-template-columns: repeat(4, 1fr) !important; 
-            }
             .variant-button {
-                font-size: 0.6rem; /* Smaller font for buttons */
-                padding: 0.5rem 0.3rem; 
+                font-size: 0.8rem; /* Slightly smaller font for buttons in vertical stack */
+                padding: 0.75rem 0.5rem; 
             }
+        }
+        
+        /* Style for image navigation buttons (Overlay) */
+        .image-nav-button {
+            background-color: rgba(0, 0, 0, 0.4);
+            color: var(--color-primary);
+            padding: 0.75rem;
+            border-radius: 50%;
+            transition: background-color 0.3s, transform 0.1s;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            z-index: 20;
+        }
+        .image-nav-button:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+            transform: scale(1.1);
+        }
+        
+        /* Style for Utility buttons (Download/View) at top corner */
+        .image-utility-button {
+            background-color: rgba(0, 0, 0, 0.6);
+            color: var(--color-primary);
+            padding: 0.5rem;
+            border-radius: 9999px; /* Fully rounded */
+            transition: background-color 0.3s, transform 0.1s;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            z-index: 20;
+        }
+        .image-utility-button:hover {
+            background-color: rgba(0, 0, 0, 0.9);
+            transform: scale(1.05);
         }
     </style>
 </head>
@@ -452,27 +480,90 @@
         <!-- PRODUCT CARD CONTAINER (The 'Jabardast' Layout - Image/Variants & Details) -->
         <div class="product-container-card">
             
-            <h1 class="text-2xl md:text-5xl font-extrabold text-primary-glow text-center mb-8">
+            <!-- HEADING SIZE ADJUSTED: text-2xl -> text-xl for mobile -->
+            <h1 class="text-xl sm:text-2xl md:text-5xl font-extrabold text-primary-glow text-center mb-8">
                 Rajesthani-Peacock-Style
             </h1>
 
             <!-- New Layout Grid: 2/3 width for image, 1/3 for details on large screens -->
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
                 
-                <!-- COLUMN 1 (LG: 2/3 width): Image and Variants -->
+                <!-- COLUMN 1 (LG: 2/3 width): Image and Variants (Mobile buttons moved here) -->
                 <div class="lg:col-span-2 flex flex-col justify-start space-y-4">
                     <!-- Main Image Viewer (Responsive Height) -->
-                    <div class="flex-grow">
+                    <div class="flex-grow relative"> <!-- Added relative for button positioning -->
                         <img id="main-design-image" 
-                             src="https://placehold.co/1000x500/285C4E/FFC72C?text=Floral+Gulf+Arabic+-+Simple+Design" 
+                             src="https://source.unsplash.com/random/1000x500/?mehndi,bridal,peacock,design,01" 
                              alt="Floral Gulf Arabic Bridal Mehndi Design View" 
                              class="main-design-image"
                              onerror="this.onerror=null;this.src='https://placehold.co/1000x500/285C4E/FFC72C?text=Image+Not+Found';"
                         >
+
+                        <!-- Image Navigation Buttons and Utility (Overlay) -->
+                        <div class="absolute inset-0">
+                            
+                            <!-- TOP OVERLAY: Utility Buttons (Download & View) and Counter -->
+                            <div class="absolute top-0 left-0 right-0 p-3 flex justify-between items-start">
+                                <!-- Utility Buttons (Download & View) -->
+                                <div class="flex space-x-2">
+                                    <button 
+                                        onclick="downloadDesign()" 
+                                        class="image-utility-button"
+                                        aria-label="Download Design"
+                                    >
+                                        <i class="fas fa-download"></i>
+                                    </button>
+                                    <button 
+                                        onclick="showFullscreenModal()" 
+                                        class="image-utility-button"
+                                        aria-label="View Fullscreen"
+                                    >
+                                        <i class="fas fa-expand"></i>
+                                    </button>
+                                </div>
+                                <!-- Design Counter -->
+                                <span id="design-counter" class="bg-black/70 text-primary px-3 py-1 rounded-full text-sm font-semibold self-start shadow-xl border border-primary/50">
+                                    1/10
+                                </span>
+                            </div>
+
+                            <!-- MIDDLE OVERLAY: Carousel Buttons (Previous & Next) -->
+                            <div class="absolute inset-0 flex justify-between items-center px-4">
+                                <button 
+                                    id="prev-design-button" 
+                                    onclick="showPrevDesign()" 
+                                    class="image-nav-button opacity-80"
+                                    aria-label="Previous Design"
+                                >
+                                    <i class="fas fa-chevron-left"></i>
+                                </button>
+                                <button 
+                                    id="next-design-button" 
+                                    onclick="showNextDesign()" 
+                                    class="image-nav-button opacity-80"
+                                    aria-label="Next Design"
+                                >
+                                    <i class="fas fa-chevron-right"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Variants/Coverage Buttons (Mobile ONLY - Vertical Stack, Nominal Gap, BELOW Image) -->
+                    <!-- This selector is visible on small screens (below Image) -->
+                    <div 
+                        id="variant-selector-mobile" 
+                        class="flex flex-col space-y-2 lg:hidden pt-4"
+                    >
+                        <!-- Buttons populated by JS -->
                     </div>
 
-                    <!-- Variants/Coverage Buttons (Horizontal layout) -->
-                    <div id="variant-selector" class="variant-grid grid grid-cols-4 gap-3">
+                    <!-- Variants/Coverage Buttons (Horizontal layout - Desktop/Tablet ONLY) -->
+                    <!-- This selector is visible on large screens (next to image) -->
+                    <div 
+                        id="variant-selector-desktop" 
+                        class="hidden lg:grid grid-cols-4 gap-3 pt-2"
+                    >
                         <!-- Buttons populated by JS -->
                     </div>
                 </div>
@@ -510,6 +601,8 @@
                     <button id="book-now-button" class="cta-button" onclick="showBookingModal()">
                         <i class="fas fa-calendar-alt mr-3"></i> Book Now!
                     </button>
+
+                    <!-- REMOVED variant-selector-mobile from here -->
                 </div>
             </div>
             
@@ -578,19 +671,54 @@
     </nav>
     <!-- ================================================= -->
 
+    <!-- Fullscreen View Modal -->
+    <div id="fullscreen-modal" class="fixed inset-0 bg-black/95 backdrop-blur-md hidden z-[200] flex justify-center items-center p-4">
+        <button onclick="closeFullscreenModal()" class="absolute top-4 right-4 text-white text-3xl p-3 bg-primary/20 rounded-full hover:bg-primary/50 transition-colors z-[210]">
+            <i class="fas fa-times"></i>
+        </button>
+        <img id="modal-image" src="" alt="Full Screen Mehndi Design" class="max-w-full max-h-full object-contain rounded-lg shadow-2xl">
+    </div>
     
     <script>
         
         // --- START: VARIANT AND PRICE LOGIC ---
         
+        // ** Global state variables **
+        let currentVariantIndex = 0; // Tracks which variant is selected (0 to 3)
+        let currentImageIndex = 0; // Tracks which image within the selected variant is displayed (0 to 9)
+
         // ** Global reference for the new dynamic description container **
         const dynamicAboutDesignContentEl = document.getElementById('dynamic-about-design-content');
 
-        // ** 2. NEW VARIANT DATA (MATCHING USER'S REQUIREMENTS) **
+        // ** New references for the elements **
+        const variantSelectorMobileEl = document.getElementById('variant-selector-mobile');
+        const variantSelectorDesktopEl = document.getElementById('variant-selector-desktop');
+        const mainImageElement = document.getElementById('main-design-image');
+        const dynamicPriceEl = document.getElementById('dynamic-price');
+        const dynamicConditionsEl = document.getElementById('dynamic-conditions');
+        const whatsappBottomNavEl = document.getElementById('whatsapp-bottom-nav');
+        const designCounterEl = document.getElementById('design-counter');
+        const fullscreenModalEl = document.getElementById('fullscreen-modal');
+        const modalImageEl = document.getElementById('modal-image');
+
+
+        // ** 2. UPDATED VARIANT DATA (with 10 real image URLs each) **
         const coverageVariants = [
             { 
                 name: "Full-Peacock", 
-                image: "fullpeacock.png",
+                // 10 "Real" Image URLs using Unsplash placeholder service
+                images: [
+                    'fullpeacock.png', 
+                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,fullpeacock,hands,02',
+                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,fullpeacock,hands,03',
+                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,fullpeacock,hands,04',
+                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,fullpeacock,hands,05',
+                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,fullpeacock,feet,06',
+                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,fullpeacock,feet,07',
+                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,fullpeacock,detail,08',
+                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,fullpeacock,detail,09',
+                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,fullpeacock,closeup,10'
+                ],
                 conditionsList: [
                     "Coverage: Back of hand and wrist only (approx. 4-6 inches).", 
                     "Design Time: 30 minutes to 1 hour per hand.",
@@ -598,24 +726,29 @@
                     "Styling: Minimalistic single vine or small floral motifs.",
                     "Ideal For: Guests, small functions, or a subtle look."
                 ], 
-                price: 7500, 
+                price: 5500, 
                 linkName: "Full-Peacock",
                 aboutDesign: [
                     "Rooted in the elegant simplicity of Gulf Arabic tradition, emphasizing negative space.",
                     "Features large, bold, and clearly defined floral patterns, primarily roses.",
                     "Perfect for those seeking a luxurious look without heavy, complex filling.",
-                    "Designed for elegance and speed, ensuring a quick and stunning application.",
-                    "The design maintains exceptional clarity and definition, even in its minimal form.",
-                    "Utilizes the natural curvature of the hand for flowing, vine-like extensions.",
-                    "A classic choice that remains timeless and highly photogenic.",
-                    "Uses a single henna tone for pure Arabic aesthetic integrity.",
-                    "Each motif is strategically placed to enhance the natural beauty of the hand.",
                     "The style allows for easy adaptation to jewelry and accessories."
                 ]
             },
             { 
                 name: "Dual-Peacock", 
-                image: "dualpeacock.png",
+                images: [
+                    'dualpeacock.png',
+                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,dualpeacock,hands,12',
+                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,dualpeacock,hands,13',
+                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,dualpeacock,hands,14',
+                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,dualpeacock,hands,15',
+                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,dualpeacock,feet,16',
+                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,dualpeacock,feet,17',
+                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,dualpeacock,detail,18',
+                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,dualpeacock,detail,19',
+                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,dualpeacock,closeup,20'
+                ],
                 conditionsList: [
                     "Coverage: Detailed design on the entire front and back of the palm, up to the wrist cuff.", 
                     "Design Time: 1.5 - 2 hours per hand.",
@@ -623,24 +756,29 @@
                     "Styling: Dense floral patterns with shading, outline work, and finger-tip coverage.",
                     "Ideal For: Bridesmaids, engagement, or medium-level bridal coverage."
                 ], 
-                price: 12000, 
-                linkName: "Full_Palm",
+                price: 6500, 
+                linkName: "Dual-Peacock",
                 aboutDesign: [
                     "Concentrated density on the core palm area, maximizing the canvas for rich detail.",
                     "Features a balanced blend of bold Arabic motifs and traditional Indian intricate fills.",
                     "Professional shading techniques provide depth and a three-dimensional effect to florals.",
-                    "Covers all finger pads and tips completely, a symbol of good luck and prosperity.",
-                    "The front and back designs are meticulously coordinated for a cohesive look.",
-                    "Ideal coverage level for engagement ceremonies and pre-wedding photo shoots.",
-                    "Designed to look spectacular in close-up photographs due to fine line work.",
-                    "The wrist cuff is detailed with band patterns that transition seamlessly to the arm.",
-                    "Uses dual-cone application (if requested) to achieve deep color variation and contrast.",
                     "A vibrant, expressive design that retains the open, airy feel of the Gulf style."
                 ]
             },
             { 
-                name: "Hand till Knee", 
-                image: "https://placehold.co/1000x500/4D3A1A/FFC72C?text=Bridal+Hand+and+Lower+Leg",
+                name: "Tail-Motif", 
+                images: [
+                    'tailmotif.png',
+                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,tailmotif,hands,22',
+                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,tailmotif,hands,23',
+                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,tailmotif,hands,24',
+                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,tailmotif,hands,25',
+                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,tailmotif,feet,26',
+                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,tailmotif,feet,27',
+                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,tailmotif,detail,28',
+                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,tailmotif,detail,29',
+                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,tailmotif,closeup,30'
+                ],
                 conditionsList: [
                     "Coverage: Full Hand (front & back) up to mid-arm AND lower leg (shin/ankle) up to the knee.", 
                     "Design Time: 4-5 hours total (inclusive of both hands and legs).",
@@ -648,24 +786,30 @@
                     "Styling: Heavy bridal density with custom elements (e.g., bride/groom portraits or names).",
                     "Ideal For: Comprehensive traditional bridal package requiring full coverage."
                 ], 
-                price: 25000, 
-                linkName: "Hand_Till_Knee",
+                price: 7000, 
+                linkName: "tail-Motif",
                 aboutDesign: [
                     "The ultimate bridal experience, offering synchronized Gulf Arabic designs on hands and legs.",
                     "Ensures stylistic continuity, with patterns flowing effortlessly from arms to ankles.",
                     "Leg coverage extends gracefully up to the knee, complementing traditional wear.",
                     "Includes space for personalized elements like hidden names or miniature portraits.",
-                    "The dense coverage minimizes skin space, creating a rich 'jewelry-like' appearance.",
-                    "Utilizes advanced shading and layering for a profound artistic effect.",
-                    "Applicable using our fastest and most experienced team to manage the extensive time frame.",
-                    "This package includes full bridal preparation consultation and aftercare instruction.",
-                    "The design density guarantees a striking, vibrant stain across all covered areas.",
                     "A magnificent statement piece that fulfills the vision of a grand traditional wedding."
                 ]
             },
             { 
-                name: "Full Hand", 
-                image: "https://placehold.co/1000x500/3A2D1A/FFC72C?text=Full+Hand+Upto+Elbow",
+                name: "Peacock-Crown-Filling", 
+                images: [
+                    'peacockcrownfilling.png',
+                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,crownfilling,hands,32',
+                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,crownfilling,hands,33',
+                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,crownfilling,hands,34',
+                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,crownfilling,hands,35',
+                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,crownfilling,feet,36',
+                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,crownfilling,feet,37',
+                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,crownfilling,detail,38',
+                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,crownfilling,detail,39',
+                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,crownfilling,closeup,40'
+                ],
                 conditionsList: [
                     "Coverage: Full Hand (front & back) extending all the way up to the elbow.", 
                     "Design Time: 3-4 hours total (for both hands).",
@@ -673,54 +817,118 @@
                     "Styling: High-density Arabic floral/vine work using minimum negative space for a rich look.",
                     "Ideal For: Brides prioritizing upper arm coverage and intricate detail up to the elbow."
                 ], 
-                price: 15000, 
-                linkName: "Full_Hand",
+                price: 8000, 
+                linkName: "Peacock-Crown-Filling",
                 aboutDesign: [
                     "Extends the gorgeous Gulf Arabic patterning completely up to the elbow for maximum arm impact.",
                     "The design maintains high density across the entire forearm, balancing motifs and negative space expertly.",
                     "Features large, dramatic focal points, usually bold roses or mandalas, near the elbow area.",
-                    "Excellent choice for sleeveless or short-sleeved bridal outfits to frame the entire arm.",
-                    "The extensive canvas allows for deep customization and storytelling through the design.",
-                    "Application requires high precision to ensure straight lines and uniform density over curved surfaces.",
-                    "Focus is purely on the arms, making it a faster application than the Hand Till Knee package.",
-                    "We use precise cone control to achieve rich fill texture contrasting with fine outer lines.",
-                    "A visually weighty and opulent design without the full commitment of leg application.",
                     "Designed to flow naturally with the arm's structure, appearing seamless from fingertip to elbow."
                 ]
             }
         ];
         
-        // Default selected variant
-        let selectedVariant = coverageVariants[0]; 
+        let selectedVariant = coverageVariants[0]; // Default selected variant
 
-        const mainImageElement = document.getElementById('main-design-image');
-        const dynamicPriceEl = document.getElementById('dynamic-price');
-        const dynamicConditionsEl = document.getElementById('dynamic-conditions');
-        const variantSelectorEl = document.getElementById('variant-selector');
-        const whatsappBottomNavEl = document.getElementById('whatsapp-bottom-nav');
-        // const modalVariantNameEl = document.getElementById('modal-variant-name'); // Removed as modal is disabled
-        // Removed second declaration of dynamicAboutDesignContentEl
-        // const dynamicAboutDesignContentEl = document.getElementById('dynamic-about-design-content');
+        // ** CAROUSEL LOGIC **
+        
+        function updateMainImage() {
+            if (!selectedVariant || !selectedVariant.images) return;
+            // Update the image source based on the current image index
+            mainImageElement.src = selectedVariant.images[currentImageIndex];
+            
+            // Update the design counter
+            designCounterEl.textContent = `${currentImageIndex + 1}/10`; 
 
+            // Update WhatsApp link since the design number changes
+            const waLink = generateWhatsAppLink();
+            whatsappBottomNavEl.href = waLink;
+        }
+
+        function showNextDesign() {
+            if (!selectedVariant || !selectedVariant.images) return;
+
+            const totalImages = selectedVariant.images.length;
+            // Cycle forward: 0 -> 1 -> ... -> 9 -> 0
+            currentImageIndex = (currentImageIndex + 1) % totalImages;
+            updateMainImage();
+        }
+
+        function showPrevDesign() {
+            if (!selectedVariant || !selectedVariant.images) return;
+            
+            const totalImages = selectedVariant.images.length;
+            // Cycle backward: 9 -> 8 -> ... -> 0 -> 9
+            currentImageIndex = (currentImageIndex - 1 + totalImages) % totalImages;
+            updateMainImage();
+        }
+
+
+        // ** UTILITY LOGIC (DOWNLOAD & FULLSCREEN) **
+        
+        function downloadDesign() {
+            const imageUrl = mainImageElement.src;
+            
+            // Create a temporary anchor element
+            const link = document.createElement('a');
+            link.href = imageUrl;
+            
+            // Determine the filename
+            const filename = `${selectedVariant.name}_Design_${currentImageIndex + 1}.jpg`;
+            link.download = filename;
+            
+            // Append to body, click it, and remove it
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        function showFullscreenModal() {
+            // 1. Set the image source in the modal
+            modalImageEl.src = mainImageElement.src;
+            
+            // 2. Show the modal
+            fullscreenModalEl.classList.remove('hidden');
+            
+            // Optional: Prevent body scrolling
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeFullscreenModal() {
+            // 1. Hide the modal
+            fullscreenModalEl.classList.add('hidden');
+            
+            // 2. Restore body scrolling
+            document.body.style.overflow = '';
+        }
+
+        // Event listener for ESC key to close modal (good UX)
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !fullscreenModalEl.classList.contains('hidden')) {
+                closeFullscreenModal();
+            }
+        });
 
         // ** WHATSAPP LINK GENERATOR **
         function generateWhatsAppLink() {
             const phoneNumber = '918816014071'; 
-            const designName = 'Floral Gulf Arabic';
+            const designName = 'Rajesthani-Peacock-Style';
             const variantName = selectedVariant.name;
-            // Message includes the selected design and price
-            const message = encodeURIComponent(`Hello, I am interested in the "${designName} - ${variantName}" variant with the price of ₹ ${selectedVariant.price.toLocaleString('en-IN')}/-. Could you please confirm the availability for booking?`);
+            const designNumber = currentImageIndex + 1; // Add 1 because index is 0-based
+            
+            // Message includes the selected design, price, and the current image number
+            const message = encodeURIComponent(`Hello, I am interested in the "${designName} - ${variantName}" variant (Design ${designNumber}/10) with the price of ₹ ${selectedVariant.price.toLocaleString('en-IN')}/-. Could you please confirm the availability for booking?`);
             return `https://wa.me/${phoneNumber}?text=${message}`;
         }
         
-        // ** VARIANT SELECTION HANDLER **
+        // ** VARIANT SELECTION HANDLER (HIGHLIGHTING FIX INCLUDED) **
         function selectVariant(index) {
+            // 1. Update Variant State
+            currentVariantIndex = index;
             selectedVariant = coverageVariants[index];
+            currentImageIndex = 0; // Reset carousel to the first image for the new variant
             
-            // 1. Update Image
-            mainImageElement.src = selectedVariant.image;
-            
-            // 2. Update Conditions (Now renders a full list)
+            // 2. Update Dynamic Content
             dynamicConditionsEl.innerHTML = `
                 <ul class="space-y-2 text-gray-200">
                     ${selectedVariant.conditionsList.map(condition => `
@@ -732,10 +940,8 @@
                 </ul>
             `;
             
-            // 3. Update Price
             dynamicPriceEl.textContent = `₹ ${selectedVariant.price.toLocaleString('en-IN')}/-`;
             
-            // 4. Update About Design Content (NEW)
             document.getElementById('dynamic-about-design-content').innerHTML = `
                 <ul class="space-y-2 text-gray-200">
                     ${selectedVariant.aboutDesign.map(point => `
@@ -747,27 +953,24 @@
                 </ul>
             `;
 
-
-            // 5. Update Active Button Class
-            document.querySelectorAll('.variant-button').forEach((btn, i) => {
-                if (i === index) {
+            // 3. Update Active Button Class (Targets ALL rendered variant-button elements)
+            document.querySelectorAll('.variant-button').forEach((btn) => {
+                const buttonIndex = parseInt(btn.dataset.index); // Get the variant index from data attribute
+                
+                if (buttonIndex === index) {
                     btn.classList.add('active');
                 } else {
                     btn.classList.remove('active');
                 }
             });
             
-            // 6. Update WhatsApp Links
-            const waLink = generateWhatsAppLink();
-            whatsappBottomNavEl.href = waLink;
-            
-            // 7. Update Modal Text for confirmation (for console logging only)
-            // modalVariantNameEl.textContent = `Floral Gulf Arabic - ${selectedVariant.name}`;
+            // 4. Update Image and WhatsApp Links
+            updateMainImage();
         }
 
         // ** RENDER VARIANTS **
         function renderVariants() {
-            variantSelectorEl.innerHTML = coverageVariants.map((variant, index) => `
+            const buttonsHtml = coverageVariants.map((variant, index) => `
                 <button 
                     class="variant-button bg-premium-bg-dark text-white hover:text-black hover:bg-primary/80 border border-primary/50"
                     onclick="selectVariant(${index})"
@@ -776,8 +979,16 @@
                     ${variant.name}
                 </button>
             `).join('');
+
+            // Populate both desktop and mobile selectors
+            if (variantSelectorMobileEl) {
+                variantSelectorMobileEl.innerHTML = buttonsHtml;
+            }
+            if (variantSelectorDesktopEl) {
+                variantSelectorDesktopEl.innerHTML = buttonsHtml;
+            }
             
-            // Select default variant on load
+            // Select default variant (index 0) on load to apply initial highlighting
             selectVariant(0);
         }
 
