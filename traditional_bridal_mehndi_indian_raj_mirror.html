@@ -59,7 +59,7 @@
             position: fixed; top: 0; left: 0; right: 0; z-index: 100;
         }
         
-        /* --- MOBILE SIDEBAR STYLES --- */
+        /* --- MOBILE SIDEBAR STYLES (ULTRA PRO MAX) --- */
         .mobile-menu-panel {
             top: 85px; 
             height: calc(100vh - 165px);
@@ -68,7 +68,55 @@
             backdrop-filter: blur(10px); 
             -webkit-backdrop-filter: blur(10px);
             border: 2px solid var(--electric-green-glow); 
+            /* Added deep shadow */
+            box-shadow: 0 0 30px rgba(var(--color-primary-rgb), 0.5);
         }
+
+        /* ULTRA PRO MAX DROPDOWN ITEM STYLING */
+        .mobile-dropdown-link {
+            display: block;
+            padding: 8px 12px;
+            margin: 4px 8px;
+            border-radius: 12px;
+            color: var(--color-text-primary);
+            background-color: rgba(255, 255, 255, 0.05); /* subtle glassy background */
+            transition: all 0.3s ease-in-out;
+            font-size: 0.9rem;
+            text-decoration: none;
+            border: 1px solid transparent;
+            /* Neuromorphic inset shadow */
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.6);
+        }
+
+        .mobile-dropdown-link:hover {
+            color: var(--color-primary);
+            background-color: rgba(var(--color-primary-rgb), 0.15);
+            transform: translateX(5px) scale(1.02);
+            border-color: var(--color-primary);
+            box-shadow: 0 0 10px rgba(var(--color-primary-rgb), 0.4), inset 0 0 8px rgba(var(--color-primary-rgb), 0.2);
+        }
+
+        .mobile-accordion-toggle {
+            /* Added subtle glow to the toggle button itself */
+            text-shadow: 0 0 8px rgba(var(--color-primary-rgb), 0.5);
+        }
+        
+        /* Desktop Dropdown Link Styling (Consistent with mobile styling, but simpler structure) */
+        .dropdown-link {
+            color: var(--color-text-primary);
+            transition: all 0.3s ease-in-out;
+            font-size: 0.9rem;
+            text-decoration: none;
+            display: block;
+            padding: 8px 12px;
+            margin: 2px 0;
+            border-radius: 8px;
+        }
+        .dropdown-link:hover {
+            background-color: rgba(var(--color-primary-rgb), 0.15);
+            color: var(--color-primary);
+        }
+
 
         /* --- BOTTOM NAV STYLES --- */
         .bottom-nav-fixed {
@@ -306,6 +354,43 @@
             background-color: rgba(0, 0, 0, 0.9);
             transform: scale(1.05);
         }
+
+        /* Fullscreen Modal: Image to take up max space in landscape or portrait */
+        .modal-content-img {
+            max-width: 100%; 
+            max-height: 100%; 
+            object-fit: contain; /* Ensures the whole image is visible */
+            width: auto;
+            height: auto;
+            /* Optional: Make image wide on landscape */
+        }
+
+        /* Landscape Mode Hint Overlay */
+        #landscape-hint {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: var(--color-primary);
+            border-radius: 15px;
+            text-align: center;
+            font-size: 1.25rem;
+            font-weight: bold;
+            border: 2px solid var(--color-primary);
+            z-index: 220;
+            display: none; /* Hidden by default */
+        }
+
+        @media screen and (orientation: portrait) {
+            /* Show hint only in portrait mode when modal is open on small screens */
+            #fullscreen-modal:not(.hidden) #landscape-hint {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+        }
     </style>
 </head>
 <body class="leading-relaxed">
@@ -314,7 +399,7 @@
     <div id="fixed-media-background"></div>
     <!-- END BACKGROUND MEDIA ELEMENTS -->
 
-    <!-- HEADER (Header) - (Copied from thre.html) -->
+    <!-- HEADER (Header) - PC Navigation with restored Dropdowns -->
     <div class="fixed-header-container">
         <header id="main-header" class="bg-glass-bg-dark/90 backdrop-blur-xl shadow-2xl p-4 fixed top-0 left-0 right-0 z-[100] border-b-4 border-primary/50">
               <div class="container mx-auto flex justify-between items-center px-2 sm:px-4" style="padding-top: env(safe-area-inset-top);">
@@ -330,26 +415,26 @@
                 <div class="desktop-nav-area hidden lg:flex items-center space-x-10">
                   <nav class="flex space-x-8 font-extrabold">
                     
-                    <!-- Dropdown 1: Bridal Mehndi -->
+                    <!-- Dropdown 1: Bridal Mehndi (3 items) -->
                     <div class="relative group">
                         <a href="#" class="text-white text-lg relative py-1 hover:text-primary flex items-center">
                             Bridal<i class="fas fa-caret-down ml-1 text-xs transition-transform duration-300 group-hover:rotate-180"></i>
                             <span class="absolute left-0 bottom-0 h-1 w-0 bg-primary/70 group-hover:w-full transition-all duration-300 rounded-full"></span>
                         </a>
                         <!-- Dropdown Content Container -->
-                        <div id="dropdown-bridal" class="absolute hidden group-hover:block w-64 mt-2 bg-premium-bg-dark border border-primary/50 rounded-xl shadow-2xl z-50 p-2 transform origin-top transition-all duration-300 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 translate-y-2">
+                        <div id="dropdown-bridal" class="absolute hidden group-hover:block w-64 mt-2 bg-premium-bg-dark border border-primary/50 rounded-xl shadow-2xl z-50 p-2 transform origin-top transition-all duration-300 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 translate-y-2 space-y-1">
                             <!-- Links populated by JS -->
                         </div>
                     </div>
                     
-                    <!-- Dropdown 2: Festive Mehndi -->
+                    <!-- Dropdown 2: Festive Mehndi (5 items) -->
                     <div class="relative group">
                         <a href="#" class="text-white text-lg relative py-1 hover:text-primary flex items-center">
                             Festive <i class="fas fa-caret-down ml-1 text-xs transition-transform duration-300 group-hover:rotate-180"></i>
                             <span class="absolute left-0 bottom-0 h-1 w-0 bg-primary/70 group-hover:w-full transition-all duration-300 rounded-full"></span>
                         </a>
                         <!-- Dropdown Content Container -->
-                        <div id="dropdown-festive" class="absolute hidden group-hover:block w-64 mt-2 bg-premium-bg-dark border border-primary/50 rounded-xl shadow-2xl z-50 p-2 transform origin-top transition-all duration-300 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 translate-y-2">
+                        <div id="dropdown-festive" class="absolute hidden group-hover:block w-64 mt-2 bg-premium-bg-dark border border-primary/50 rounded-xl shadow-2xl z-50 p-2 transform origin-top transition-all duration-300 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 translate-y-2 space-y-1">
                             <!-- Links populated by JS -->
                         </div>
                     </div>
@@ -366,14 +451,14 @@
                         <span class="absolute left-0 bottom-0 h-1 w-0 bg-primary/70 group-hover:w-full transition-all duration-300 rounded-full"></span>
                     </a>
 
-                    <!-- Dropdown 3: Our Gallary (NEW) -->
+                    <!-- Dropdown 3: Our Gallary (8 items) -->
                     <div class="relative group">
                         <a href="#" class="text-white text-lg relative py-1 hover:text-primary flex items-center">
                             Gallery <i class="fas fa-caret-down ml-1 text-xs transition-transform duration-300 group-hover:rotate-180"></i>
                             <span class="absolute left-0 bottom-0 h-1 w-0 bg-primary/70 group-hover:w-full transition-all duration-300 rounded-full"></span>
                         </a>
                         <!-- Dropdown Content Container -->
-                        <div id="dropdown-gallery" class="absolute hidden group-hover:block w-64 mt-2 bg-premium-bg-dark border border-primary/50 rounded-xl shadow-2xl z-50 p-2 transform origin-top transition-all duration-300 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 translate-y-2">
+                        <div id="dropdown-gallery" class="absolute hidden group-hover:block w-64 mt-2 bg-premium-bg-dark border border-primary/50 rounded-xl shadow-2xl z-50 p-2 transform origin-top transition-all duration-300 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 translate-y-2 space-y-1">
                             <!-- Links populated by JS -->
                         </div>
                     </div>
@@ -398,7 +483,7 @@
               </div>
         </header>
 
-        <!-- Mobile Menu Panel -->
+        <!-- Mobile Menu Panel (Sidebar) -->
         <div id="mobile-menu-panel" class="mobile-menu-panel fixed right-0 w-3/4 max-w-sm z-[110] translate-x-full overflow-hidden border border-primary/50 rounded-2xl shadow-lg shadow-primary/10">
             <button id="mobile-menu-close-button" class="absolute top-4 right-4 text-white hover:text-primary p-2 rounded-full bg-secondary/50 shadow-lg" aria-label="Close menu">
                 <i class="fas fa-times text-xl"></i>
@@ -410,23 +495,25 @@
                     <p class="text-xs font-semibold text-gray-400">Your Creative Partner</p>
                 </div>
                 
-                <!-- Sidebar Accordion 1: Bridal Mehndi -->
+                <!-- Sidebar Accordion 1: Bridal Mehndi (3 items) -->
                 <div class="w-full">
                     <button id="mobile-bridal-toggle" class="mobile-accordion-toggle w-full text-white text-lg relative py-1 hover:text-primary flex justify-between items-center pr-2">
                         Bridal Mehndi <i id="icon-bridal-mobile" class="fas fa-chevron-down text-sm transition-transform duration-300"></i>
                     </button>
-                    <div id="mobile-bridal-dropdown" class="h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                    <!-- ULTRA PRO MAX DROPDOWN CLASS -->
+                    <div id="mobile-bridal-dropdown" class="h-0 overflow-hidden transition-all duration-300 ease-in-out py-1 space-y-1">
                         <!-- Links populated by JS -->
                     </div>
                 </div>
                 <div class="border-t border-primary/30 w-full my-4"></div>
 
-                <!-- Sidebar Accordion 2: Festive Mehndi -->
+                <!-- Sidebar Accordion 2: Festive Mehndi (5 items) -->
                 <div class="w-full">
                     <button id="mobile-festive-toggle" class="mobile-accordion-toggle w-full text-white text-lg relative py-1 hover:text-primary flex justify-between items-center pr-2">
                         Festive Mehndi <i id="icon-festive-mobile" class="fas fa-chevron-down text-sm transition-transform duration-300"></i>
                     </button>
-                    <div id="mobile-festive-dropdown" class="h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                    <!-- ULTRA PRO MAX DROPDOWN CLASS -->
+                    <div id="mobile-festive-dropdown" class="h-0 overflow-hidden transition-all duration-300 ease-in-out py-1 space-y-1">
                          <!-- Links populated by JS -->
                     </div>
                 </div>
@@ -446,12 +533,13 @@
                 </a>
                 <div class="border-t border-primary/30 w-full my-4"></div>
                 
-                <!-- Sidebar Accordion 3: Our Gallary (NEW 6th Card Option) -->
+                <!-- Sidebar Accordion 3: Our Gallary (8 items) -->
                 <div class="w-full">
                     <button id="mobile-gallery-toggle" class="mobile-accordion-toggle w-full text-white text-lg relative py-1 hover:text-primary flex justify-between items-center pr-2">
                         Our Gallery <i id="icon-gallery-mobile" class="fas fa-chevron-down text-sm transition-transform duration-300"></i>
                     </button>
-                    <div id="mobile-gallery-dropdown" class="h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                    <!-- ULTRA PRO MAX DROPDOWN CLASS -->
+                    <div id="mobile-gallery-dropdown" class="h-0 overflow-hidden transition-all duration-300 ease-in-out py-1 space-y-1">
                          <!-- Links populated by JS -->
                     </div>
                 </div>
@@ -678,7 +766,14 @@
         <button onclick="closeFullscreenModal()" class="absolute top-4 right-4 text-white text-3xl p-3 bg-primary/20 rounded-full hover:bg-primary/50 transition-colors z-[210]">
             <i class="fas fa-times"></i>
         </button>
-        <img id="modal-image" src="" alt="Full Screen Mehndi Design" class="max-w-full max-h-full object-contain rounded-lg shadow-2xl">
+        <!-- The modal image now uses the dedicated CSS class -->
+        <img id="modal-image" src="" alt="Full Screen Mehndi Design" class="modal-content-img rounded-lg shadow-2xl">
+
+        <!-- Landscape Mode Hint for Mobile (Only visible in Portrait when modal is open) -->
+        <div id="landscape-hint" class="lg:hidden">
+            <i class="fas fa-mobile-alt text-4xl mb-3 rotate-90"></i>
+            <span>ज़्यादा बेहतर देखने के लिए फ़ोन को लैंडस्केप (Landscape) में घुमाएं!</span>
+        </div>
     </div>
     
     <script>
@@ -696,7 +791,7 @@
         const variantSelectorMobileEl = document.getElementById('variant-selector-mobile');
         const variantSelectorDesktopEl = document.getElementById('variant-selector-desktop');
         const mainImageElement = document.getElementById('main-design-image');
-        const dynamicPriceEl = document.getElementById('dynamic-price');
+        const dynamicPriceEl = document.getElementById('dynamic-price'); // <-- Error was here
         const dynamicConditionsEl = document.getElementById('dynamic-conditions');
         const whatsappBottomNavEl = document.getElementById('whatsapp-bottom-nav');
         const designCounterEl = document.getElementById('design-counter');
@@ -704,67 +799,67 @@
         const modalImageEl = document.getElementById('modal-image');
 
 
-        // ** 2. UPDATED VARIANT DATA (with 10 real image URLs each) **
+        // ** 2. UPDATED VARIANT DATA (Now only 2 options) **
         const coverageVariants = [
             { 
                 name: "Mandala-Mirror", 
-                // 10 "Real" Image URLs using Unsplash placeholder service
+                // 10 "Real" Image URLs using placeholders
                 images: [
                     'mirrorworkstymandalamirror.png', 
-                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,fullpeacock,hands,02',
-                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,fullpeacock,hands,03',
-                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,fullpeacock,hands,04',
-                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,fullpeacock,hands,05',
-                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,fullpeacock,feet,06',
-                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,fullpeacock,feet,07',
-                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,fullpeacock,detail,08',
-                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,fullpeacock,detail,09',
-                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,fullpeacock,closeup,10'
+                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,mandala,hands,02',
+                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,mandala,hands,03',
+                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,mandala,hands,04',
+                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,mandala,hands,05',
+                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,mandala,feet,06',
+                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,mandala,feet,07',
+                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,mandala,detail,08',
+                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,mandala,detail,09',
+                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,mandala,closeup,10'
                 ],
                 conditionsList: [
-                    "Coverage: Back of hand and wrist only (approx. 4-6 inches).", 
-                    "Design Time: 30 minutes to 1 hour per hand.",
+                    "Coverage: Central Mandala on palm, minimal wrist coverage.", 
+                    "Design Time: 45 minutes to 1.5 hours per hand.",
                     "Henna Type: Natural Brown Henna only. Premium sealant included.",
-                    "Styling: Minimalistic single vine or small floral motifs.",
-                    "Ideal For: Guests, small functions, or a subtle look."
+                    "Styling: Focus on mirror-work effect, with open space.",
+                    "Ideal For: Guests or light pre-wedding functions, emphasizing symmetry."
                 ], 
                 price: 5500, 
                 linkName: "Mandala-Mirror",
                 aboutDesign: [
-                    "Rooted in the elegant simplicity of Gulf Arabic tradition, emphasizing negative space.",
-                    "Features large, bold, and clearly defined floral patterns, primarily roses.",
-                    "Perfect for those seeking a luxurious look without heavy, complex filling.",
-                    "The style allows for easy adaptation to jewelry and accessories."
+                    "Features a prominent, symmetric mandala design at the center of the palm.",
+                    "The design incorporates small mirror effects created using intricate shading/lines.",
+                    "Perfect for those who love symmetrical, clean designs with traditional mirror inspiration.",
+                    "This style offers high visual impact with medium density."
                 ]
             },
             { 
                 name: "Mini-Diamond-Mirror", 
                 images: [
                     'mirrorworkstyleminidiamondmirror.png',
-                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,dualpeacock,hands,12',
-                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,dualpeacock,hands,13',
-                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,dualpeacock,hands,14',
-                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,dualpeacock,hands,15',
-                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,dualpeacock,feet,16',
-                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,dualpeacock,feet,17',
-                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,dualpeacock,detail,18',
-                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,dualpeacock,detail,19',
-                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,dualpeacock,closeup,20'
+                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,diamond,hands,12',
+                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,diamond,hands,13',
+                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,diamond,hands,14',
+                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,diamond,hands,15',
+                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,diamond,feet,16',
+                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,diamond,feet,17',
+                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,diamond,detail,18',
+                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,diamond,detail,19',
+                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,diamond,closeup,20'
                 ],
                 conditionsList: [
-                    "Coverage: Detailed design on the entire front and back of the palm, up to the wrist cuff.", 
+                    "Coverage: Detailed front and back coverage up to the wrist cuff.", 
                     "Design Time: 1.5 - 2 hours per hand.",
-                    "Henna Type: Premium Bridal Henna (for deep stain) with organic oil application.",
-                    "Styling: Dense floral patterns with shading, outline work, and finger-tip coverage.",
-                    "Ideal For: Bridesmaids, engagement, or medium-level bridal coverage."
+                    "Henna Type: Premium Bridal Henna with organic oil application.",
+                    "Styling: Uses small geometric diamond patterns to mimic mirror placement.",
+                    "Ideal For: Bridesmaids, engagement, or medium-level bridal coverage with modern twist."
                 ], 
                 price: 12500, 
                 linkName: "Mini-Diamond-Mirror",
                 aboutDesign: [
-                    "Concentrated density on the core palm area, maximizing the canvas for rich detail.",
-                    "Features a balanced blend of bold Arabic motifs and traditional Indian intricate fills.",
-                    "Professional shading techniques provide depth and a three-dimensional effect to florals.",
-                    "A vibrant, expressive design that retains the open, airy feel of the Gulf style."
+                    "Concentrated design featuring repeated diamond patterns that emulate miniature mirror work.",
+                    "The repetition of the diamond motif creates a dense yet clean geometric pattern.",
+                    "Excellent choice for a modern bridal look inspired by traditional 'Shisha' (mirror) craft.",
+                    "Professional shading provides a subtle three-dimensional effect."
                 ]
             },
                
@@ -780,7 +875,7 @@
             mainImageElement.src = selectedVariant.images[currentImageIndex];
             
             // Update the design counter
-            designCounterEl.textContent = `${currentImageIndex + 1}/10`; 
+            designCounterEl.textContent = `${currentImageIndex + 1}/${selectedVariant.images.length}`; 
 
             // Update WhatsApp link since the design number changes
             const waLink = generateWhatsAppLink();
@@ -832,16 +927,14 @@
             // 2. Show the modal
             fullscreenModalEl.classList.remove('hidden');
             
-            // Optional: Prevent body scrolling
-            document.body.style.overflow = 'hidden';
+            // 3. REMOVED: document.body.style.overflow = 'hidden'; to fix WebView lag
         }
 
         function closeFullscreenModal() {
             // 1. Hide the modal
             fullscreenModalEl.classList.add('hidden');
             
-            // 2. Restore body scrolling
-            document.body.style.overflow = '';
+            // 2. RESTORED: document.body.style.overflow = ''; (Now this line is also removed as it's not needed after WebView lag fix)
         }
 
         // Event listener for ESC key to close modal (good UX)
@@ -854,12 +947,12 @@
         // ** WHATSAPP LINK GENERATOR **
         function generateWhatsAppLink() {
             const phoneNumber = '918816014071'; 
-            const designName = 'Rajesthani-Peacock-Style';
+            const designName = 'Rajesthani-Mirror-Work';
             const variantName = selectedVariant.name;
             const designNumber = currentImageIndex + 1; // Add 1 because index is 0-based
             
             // Message includes the selected design, price, and the current image number
-            const message = encodeURIComponent(`Hello, I am interested in the "${designName} - ${variantName}" variant (Design ${designNumber}/10) with the price of ₹ ${selectedVariant.price.toLocaleString('en-IN')}/-. Could you please confirm the availability for booking?`);
+            const message = encodeURIComponent(`Hello, I am interested in the "${designName} - ${variantName}" variant (Design ${designNumber}/${selectedVariant.images.length}) with the price of ₹ ${selectedVariant.price.toLocaleString('en-IN')}/-. Could you please confirm the availability for booking?`);
             return `https://wa.me/${phoneNumber}?text=${message}`;
         }
         
@@ -938,7 +1031,7 @@
         // --- END: VARIANT AND PRICE LOGIC ---
 
 
-        // --- START: HEADER/SIDEBAR JS LOGIC (Copied from thre.html) ---
+        // --- START: HEADER/SIDEBAR JS LOGIC (Updated for Ultra Pro Max styling, WebView fix, and Nav structure) ---
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileMenuPanel = document.getElementById('mobile-menu-panel');
         const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
@@ -951,12 +1044,10 @@
                 mobileMenuPanel.classList.remove('translate-x-0');
                 mobileMenuPanel.classList.add('translate-x-full');
                 mobileMenuOverlay.classList.add('hidden');
-                document.body.style.overflow = '';
             } else {
                 mobileMenuPanel.classList.remove('translate-x-full');
                 mobileMenuPanel.classList.add('translate-x-0');
                 mobileMenuOverlay.classList.remove('hidden');
-                document.body.style.overflow = 'hidden';
             }
         }
 
@@ -964,24 +1055,30 @@
         mobileMenuCloseButton.addEventListener('click', toggleMobileMenu);
         mobileMenuOverlay.addEventListener('click', toggleMobileMenu);
         
+        // --- Navigation Data Structure (Bridal: 3, Festive: 5, Gallery: 8, no numbers) ---
+        const commonGalleryOptions = [
+            { name: "Traditional Bridal Mehndi", link: "tradi.html" }, 
+            { name: "Arabic Bridal Mehndi", link: "thre.html" }, 
+            { name: "Indo-Western Bridal Mehndi", link: "bridal_indowestern.html" },
+            { name: "Festive Arabic", link: "festive_arabic.html" }, 
+            { name: "Festive Indian", link: "festive_indian.html" }, 
+            { name: "Festive Indo-Arabic", link: "festive_indoarabic.html" },
+            { name: "Festive Moroccan / Geometric", link: "festive_geometric.html" },
+            { name: "Festive Minimal", link: "festive_minimal.html" }
+        ];
+
         const locationData_Dropdowns = {
-            'premium-card-2': { 
+            'premium-card-2': { // Bridal (3 items)
                 title: 'Bridal Mehndi Types',
-                locations: [
-                    { name: "Traditional Bridal Mehndi", link: "tradi.html" }, 
-                    { name: "Arabic Bridal Mehndi", link: "thre.html" }, 
-                    { name: "Indo-Western Bridal Mehndi", link: "bridal_indowestern.html" }
-                ]
+                locations: commonGalleryOptions.slice(0, 3) 
             },
-            'premium-card-3': { 
+            'premium-card-3': { // Festive (5 items)
                 title: 'Festive Mehndi Types',
-                locations: [
-                    { name: "Arabic", link: "festive_arabic.html" }, 
-                    { name: "Indian", link: "festive_indian.html" }, 
-                    { name: "Indo-Arabic", link: "festive_indoarabic.html" },
-                    { name: "Moroccan / Geometric", link: "festive_geometric.html" },
-                    { name: "Minimal Festive Mehndi", link: "festive_minimal.html" }
-                ]
+                locations: commonGalleryOptions.slice(3) 
+            },
+            'premium-card-6': { // Gallery (ALL 8 items)
+                title: 'All Design Collections (Total 8)',
+                locations: commonGalleryOptions
             }
         };
 
@@ -990,8 +1087,16 @@
             const data = locationData_Dropdowns[dataId]; 
             if (!container || !data) return;
 
-            const className = containerId.startsWith('mobile') ? 'mobile-dropdown-link' : 'dropdown-link';
+            // Apply Ultra Pro Max styling for mobile sidebar, simple styling for desktop
+            const isMobile = containerId.startsWith('mobile');
+            const className = isMobile ? 'mobile-dropdown-link' : 'dropdown-link';
             
+            if (data.locations.length === 0) {
+                 // Message if a section is intentionally empty
+                container.innerHTML = `<span class="block px-4 py-2 text-xs text-gray-500 italic">No styles defined yet.</span>`;
+                return;
+            }
+
             container.innerHTML = data.locations.map(item => `
                 <a href="${item.link}" class="${className}">${item.name}</a>
             `).join('');
@@ -1004,17 +1109,15 @@
 
             if (toggleButton && dropdown) {
                 toggleButton.addEventListener('click', () => {
+                    // Check if the content height is more than minimal to prevent collapse/expand for empty lists
                     const isExpanded = dropdown.classList.toggle('expanded');
                     
                     if (isExpanded) {
+                        // Use scrollHeight to correctly set the dynamic height
                         dropdown.style.height = dropdown.scrollHeight + 'px';
-                        dropdown.style.paddingTop = '8px';
-                        dropdown.style.paddingBottom = '8px';
                         if (icon) icon.classList.add('rotate-180');
                     } else {
                         dropdown.style.height = '0';
-                        dropdown.style.paddingTop = '0';
-                        dropdown.style.paddingBottom = '0';
                         if (icon) icon.classList.remove('rotate-180');
                     }
                 });
@@ -1022,13 +1125,15 @@
         }
         
         function initializeDropdowns() {
+            // Desktop Dropdowns
             generateDropdownContent('premium-card-2', 'dropdown-bridal');
             generateDropdownContent('premium-card-3', 'dropdown-festive');
-            generateDropdownContent('premium-card-6', 'dropdown-gallery');
+            generateDropdownContent('premium-card-6', 'dropdown-gallery'); 
             
+            // Mobile Dropdowns
             generateDropdownContent('premium-card-2', 'mobile-bridal-dropdown');
             generateDropdownContent('premium-card-3', 'mobile-festive-dropdown');
-            generateDropdownContent('premium-card-6', 'mobile-gallery-dropdown');
+            generateDropdownContent('premium-card-6', 'mobile-gallery-dropdown'); 
             
             setupMobileAccordion('mobile-bridal-toggle', 'mobile-bridal-dropdown', 'icon-bridal-mobile');
             setupMobileAccordion('mobile-festive-toggle', 'mobile-festive-dropdown', 'icon-festive-mobile');
@@ -1093,7 +1198,8 @@
 
         changeTheme(); 
         setInterval(changeTheme, intervalTime);
-        // --- END: DYNAMIC THEME COLOR CHANGER ---\r\n        
+        // --- END: DYNAMIC THEME COLOR CHANGER ---
+        
         document.addEventListener('DOMContentLoaded', () => {
             initializeDropdowns();
             renderVariants(); // Initialize variants on load
