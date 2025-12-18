@@ -21,17 +21,20 @@
             --card-glass: rgba(15, 12, 5, 0.95);
             --border-glow: rgba(255, 215, 0, 0.5);
             --header-h: 70px;
-            --bottom-nav-h: 100px;
+            --bottom-nav-h: 115px; /* Thoda extra space for better UI */
         }
 
-        html { scroll-behavior: smooth; }
+        html { scroll-behavior: smooth; height: 100%; }
         body {
             font-family: 'Plus Jakarta Sans', 'Noto Sans Devanagari', sans-serif;
             background-color: var(--bg-dark);
             color: #fffaf0;
-            min-height: 100vh;
-            padding-top: var(--header-h);
-            padding-bottom: var(--bottom-nav-h);
+            min-height: 100%;
+            /* WebView safe area fix: Padding adjusted with safe-area-insets */
+            padding-top: calc(var(--header-h) + env(safe-area-inset-top));
+            padding-bottom: calc(var(--bottom-nav-h) + env(safe-area-inset-bottom));
+            margin: 0;
+            overflow-x: hidden;
         }
 
         /* --- CUSTOM GOLDEN SCROLLBAR --- */
@@ -48,14 +51,16 @@
             background-size: cover;
             background-position: center;
             opacity: 0.7; 
-            filter: contrast(125%) brightness(55%) sepia(35%);
+            filter: contrast(125%) brightness(50%) sepia(40%);
         }
 
-        /* --- HEADER --- */
+        /* --- HEADER (FIXED WITH SAFE AREA) --- */
         .glass-header {
             height: var(--header-h);
+            /* Handle Safe Area Top (Notch) */
+            padding-top: env(safe-area-inset-top);
             background: rgba(5, 4, 1, 0.96);
-            backdrop-filter: blur(25px);
+            backdrop-filter: blur(30px);
             border-bottom: 2px solid var(--primary);
             box-shadow: 0 5px 35px rgba(0, 0, 0, 0.9);
             z-index: 1000;
@@ -64,120 +69,172 @@
         .logo-icon-circle {
             width: 25px; height: 25px;
             border-radius: 50%;
-            border: 1px solid var(--primary);
+            border: 1.5px solid var(--primary);
             object-fit: cover;
-            box-shadow: 0 0 8px var(--primary);
+            box-shadow: 0 0 10px var(--primary);
         }
 
-        /* Fixed Brand Image Height as requested (25px) */
         .brand-img-fixed {
             height: 25px !important;
             width: auto !important;
-            filter: drop-shadow(0 0 8px var(--primary));
+            filter: drop-shadow(0 0 10px var(--primary));
         }
 
-        /* --- SIDEBAR --- */
+        /* --- ULTRA DECORATIVE SIDEBAR --- */
         .mobile-panel {
             position: fixed;
-            top: var(--header-h); 
+            top: calc(var(--header-h) + env(safe-area-inset-top)); 
             right: 0;
-            bottom: var(--bottom-nav-h);
+            bottom: calc(var(--bottom-nav-h) + env(safe-area-inset-bottom));
             width: 85%; max-width: 340px;
-            height: calc(100vh - var(--header-h) - var(--bottom-nav-h));
-            background: rgba(8, 7, 2, 0.99);
-            backdrop-filter: blur(40px);
+            /* Sidebar height restricted between header and bottom nav */
+            height: calc(100vh - (var(--header-h) + env(safe-area-inset-top)) - (var(--bottom-nav-h) + env(safe-area-inset-bottom)));
+            background: rgba(8, 7, 2, 0.98);
+            backdrop-filter: blur(45px);
             z-index: 1100;
             transform: translateX(100%);
             transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
             border-left: 2.5px solid var(--primary);
             border-radius: 40px 0 0 40px;
-            box-shadow: -25px 0 70px rgba(0,0,0,1);
+            box-shadow: -30px 0 80px rgba(0,0,0,1);
             overflow: hidden;
         }
         .mobile-panel.open { transform: translateX(0); }
 
         .sidebar-bg-image {
-            position: absolute; inset: 0; background-image: url('bridal.png'); background-size: cover; background-position: center; opacity: 0.6; z-index: 0; filter: grayscale(30%) brightness(40%);
+            position: absolute; inset: 0; background-image: url('bridal.png'); background-size: cover; background-position: center; opacity: 0.55; z-index: 0; filter: grayscale(40%) brightness(30%);
         }
 
         .mandala-bg {
-            position: absolute; top: 50%; left: 50%; width: 450px; height: 450px; margin-top: -225px; margin-left: -225px; opacity: 0.08; pointer-events: none; animation: spin 80s linear infinite; z-index: 1;
+            position: absolute; top: 50%; left: 50%; width: 500px; height: 500px; margin-top: -250px; margin-left: -250px; opacity: 0.1; pointer-events: none; animation: spin 100s linear infinite; z-index: 1;
         }
         @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
         .sidebar-inner { height: 100%; overflow-y: auto; padding: 40px 20px; position: relative; z-index: 10; }
 
-        .sidebar-header { text-align: center; margin-bottom: 40px; padding-bottom: 30px; border-bottom: 1.5px double rgba(255, 215, 0, 0.3); position: relative; }
+        .sidebar-header { text-align: center; margin-bottom: 35px; padding-bottom: 25px; border-bottom: 1.5px solid rgba(255, 215, 0, 0.3); position: relative; }
 
         .sidebar-close-btn {
-            position: absolute; top: -20px; right: -5px; width: 38px; height: 38px; border-radius: 50%; background: var(--primary); color: #000; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; box-shadow: 0 0 20px var(--primary); cursor: pointer; z-index: 100; transition: 0.3s;
+            position: absolute; top: -15px; right: -5px; width: 40px; height: 40px; border-radius: 50%; background: var(--primary); color: #000; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; box-shadow: 0 0 25px var(--primary); cursor: pointer; z-index: 100; transition: 0.4s; border: 2px solid #000;
         }
+        .sidebar-close-btn:hover { transform: rotate(180deg) scale(1.1); }
 
         .accordion-btn {
-            width: 100%; padding: 18px 20px; margin-bottom: 8px; border-radius: 15px; background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(5px); font-weight: 800; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; color: #fff; display: flex; justify-content: space-between; align-items: center; transition: 0.4s; border: 1px solid rgba(255, 215, 0, 0.15);
+            width: 100%; padding: 18px 22px; margin-bottom: 10px; border-radius: 18px; background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(8px); font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; color: #fff; display: flex; justify-content: space-between; align-items: center; transition: 0.4s; border: 1px solid rgba(255, 215, 0, 0.2);
         }
-        .accordion-btn:hover, .accordion-btn.active { background: rgba(255, 215, 0, 0.2); border-color: var(--primary); color: var(--primary); }
+        .accordion-btn:hover, .accordion-btn.active { background: rgba(255, 215, 0, 0.25); border-color: var(--primary); color: var(--primary); box-shadow: 0 8px 25px rgba(0,0,0,0.5); }
 
-        .side-sub-link { display: block; padding: 12px 30px; font-size: 0.85rem; color: #fff; background: rgba(0,0,0,0.3); border-left: 2px solid rgba(255, 215, 0, 0.1); transition: 0.3s; margin-left: 15px; position: relative; }
-        .side-sub-link:hover { color: var(--primary); border-left-color: var(--primary); padding-left: 45px; background: rgba(255,215,0,0.1); }
+        .side-sub-link { display: block; padding: 14px 35px; font-size: 0.85rem; color: #eee; background: rgba(0,0,0,0.4); border-left: 2px solid rgba(255, 215, 0, 0.15); transition: 0.3s; margin-left: 15px; position: relative; border-bottom: 1px solid rgba(255,215,0,0.05); }
+        .side-sub-link:hover { color: var(--primary); border-left-color: var(--primary); padding-left: 50px; background: rgba(255,215,0,0.15); }
 
-        /* --- CARDS DESIGN --- */
-        .card-grid { display: grid; grid-template-columns: 1fr; gap: 15px; }
+        /* --- PREMIUM CARDS --- */
+        .card-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
         @media (min-width: 640px) { .card-grid { grid-template-columns: repeat(2, 1fr); } }
         @media (min-width: 1024px) { .card-grid { grid-template-columns: repeat(4, 1fr); } }
         @media (min-width: 1280px) { .card-grid { grid-template-columns: repeat(5, 1fr); } }
 
-        .premium-card { background: var(--card-glass); border-radius: 24px; border: 1.5px solid var(--border-glow); padding: 12px; transition: all 0.4s ease; cursor: pointer; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        .premium-card:hover { border-color: var(--primary); box-shadow: 0 0 35px rgba(var(--primary-rgb), 0.5); transform: translateY(-10px); }
-        .card-img { width: 100%; height: 85px; border-radius: 14px; object-fit: cover; border: 1.5px solid rgba(var(--primary-rgb), 0.2); transition: transform 0.6s ease; }
-        @media (min-width: 1024px) { .card-img { height: 160px; } }
-
-        /* --- BOTTOM NAV --- */
-        .bottom-nav {
-            position: fixed; bottom: 15px; left: 50%; transform: translateX(-50%); width: 95%; max-width: 600px; height: 70px; background: rgba(5, 4, 1, 0.9); backdrop-filter: blur(30px); border: 1.5px solid var(--primary); border-radius: 35px; display: flex; justify-content: space-around; align-items: center; z-index: 1000; box-shadow: 0 15px 50px rgba(0,0,0,1), inset 0 0 20px rgba(255,215,0,0.1);
+        .premium-card { background: var(--card-glass); border-radius: 28px; border: 1.5px solid var(--border-glow); padding: 14px; transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1); cursor: pointer; position: relative; box-shadow: 0 15px 40px rgba(0,0,0,0.6); overflow: hidden; }
+        .premium-card::before {
+            content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,215,0,0.1), transparent); transition: 0.6s;
         }
-        .nav-link { color: #64748b; font-size: 0.6rem; font-weight: 800; text-transform: uppercase; display: flex; flex-direction: column; align-items: center; transition: 0.4s; padding: 8px; position: relative; }
+        .premium-card:hover::before { left: 100%; }
+        .premium-card:hover { border-color: var(--primary); box-shadow: 0 0 45px rgba(var(--primary-rgb), 0.6); transform: translateY(-12px); }
+        
+        .card-img { width: 100%; height: 85px; border-radius: 16px; object-fit: cover; border: 1.5px solid rgba(var(--primary-rgb), 0.25); transition: 0.6s; }
+        @media (min-width: 1024px) { .card-img { height: 160px; } }
+        .premium-card:hover .card-img { transform: scale(1.1); filter: brightness(1.2) contrast(1.1); }
+
+        /* --- BOTTOM NAV (ULTRA ATTRACTIVE) --- */
+        .bottom-nav {
+            position: fixed; 
+            bottom: 0; 
+            left: 0; 
+            width: 100%;
+            height: var(--bottom-nav-h);
+            /* Handle Safe Area Bottom (Home Bar) */
+            padding-bottom: env(safe-area-inset-bottom);
+            background: rgba(5, 4, 1, 0.98);
+            backdrop-filter: blur(35px);
+            border-top: 2.5px solid var(--primary);
+            display: flex; justify-content: space-around; align-items: center;
+            z-index: 1000;
+            box-shadow: 0 -15px 60px rgba(0,0,0,1);
+        }
+        .nav-link { 
+            color: #8892a0; font-size: 0.65rem; font-weight: 800; text-transform: uppercase; 
+            display: flex; flex-direction: column; align-items: center; transition: 0.4s; 
+            padding: 10px; position: relative; letter-spacing: 1px;
+        }
+        .nav-link i { font-size: 1.4rem; margin-bottom: 6px; transition: 0.3s; }
         .nav-link.active { color: var(--primary); }
-        .nav-link.active::after { content: ''; position: absolute; bottom: 0; width: 5px; height: 5px; background: var(--primary); border-radius: 50%; box-shadow: 0 0 10px var(--primary); }
+        .nav-link.active i { transform: scale(1.3) translateY(-3px); text-shadow: 0 0 20px var(--primary); }
+        .nav-link.active::after {
+            content: ''; position: absolute; bottom: 0; width: 6px; height: 6px; background: var(--primary); border-radius: 50%; box-shadow: 0 0 15px var(--primary);
+        }
         
         .central-fab {
-            width: 75px; height: 75px; background: radial-gradient(circle at center, #fff 0%, var(--primary) 60%); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #000; font-size: 1.8rem; margin-top: -60px; border: 6px solid var(--bg-dark); box-shadow: 0 10px 30px rgba(0,0,0,0.8), 0 0 40px rgba(var(--primary-rgb), 0.6); transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); z-index: 1001;
+            width: 78px; height: 78px; 
+            background: radial-gradient(circle at center, #fff 0%, var(--primary) 70%);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: #000; font-size: 2rem;
+            margin-top: -65px;
+            border: 6px solid #050401;
+            box-shadow: 0 12px 35px rgba(0,0,0,0.8), 0 0 45px rgba(var(--primary-rgb), 0.7);
+            transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 1001;
         }
+        .central-fab:hover { transform: scale(1.15) rotate(15deg); box-shadow: 0 0 70px rgba(var(--primary-rgb), 1); }
 
-        /* --- POPUP MODAL --- */
+        /* --- POPUP MODAL (FIXED FOR WEBVIEW) --- */
         .modal-overlay {
-            position: fixed; top: var(--header-h); bottom: calc(var(--bottom-nav-h) - 15px); left: 0; right: 0; background: rgba(0,0,0,0.95); backdrop-filter: blur(25px); display: none; z-index: 2000; align-items: center; justify-content: center; padding: 25px;
+            position: fixed; 
+            top: calc(var(--header-h) + env(safe-area-inset-top));
+            bottom: calc(var(--bottom-nav-h) + env(safe-area-inset-bottom) - 15px);
+            left: 0; right: 0;
+            background: rgba(0,0,0,0.96);
+            backdrop-filter: blur(25px); 
+            display: none; 
+            z-index: 2000;
+            align-items: center; justify-content: center; padding: 25px;
         }
         .modal-box {
-            background: #0a0802; border: 2.5px solid var(--primary); border-radius: 40px; width: 100%; max-width: 440px; padding: 35px; box-shadow: 0 0 80px rgba(var(--primary-rgb), 0.6); animation: popUp 0.4s cubic-bezier(0.23, 1, 0.32, 1); max-height: 90%; overflow: hidden; position: relative;
+            background: #0a0802; border: 2.5px solid var(--primary); border-radius: 40px; width: 100%; max-width: 440px; padding: 35px; box-shadow: 0 0 90px rgba(var(--primary-rgb), 0.7); animation: popUp 0.5s cubic-bezier(0.23, 1, 0.32, 1); max-height: 95%; overflow: hidden; position: relative;
         }
-        .modal-bg-img { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0.35; z-index: 0; filter: brightness(30%); }
+        .modal-bg-img { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0.4; z-index: 0; filter: brightness(25%); }
 
         .list-item {
-            background: rgba(0, 0, 0, 0.5); border: 1.5px solid rgba(255, 215, 0, 0.2); padding: 14px 20px; border-radius: 20px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; transition: 0.4s; cursor: pointer; backdrop-filter: blur(10px); position: relative; z-index: 5;
+            background: rgba(255, 215, 0, 0.05); border: 1.5px solid rgba(255, 215, 0, 0.2); padding: 18px 25px; border-radius: 22px; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; transition: 0.4s; cursor: pointer; backdrop-filter: blur(12px); position: relative; z-index: 5;
         }
-        .list-item:hover { background: rgba(255, 215, 0, 0.25); transform: translateY(-3px); border-color: var(--primary); }
+        .list-item:hover { background: rgba(255, 215, 0, 0.25); transform: translateY(-4px); border-color: var(--primary); box-shadow: 0 10px 25px rgba(0,0,0,0.4); }
 
-        /* --- HERO SLIDER --- */
-        .hero-slider { height: 360px; border-radius: 35px; overflow: hidden; position: relative; border: 2.5px solid var(--primary); margin-bottom: 35px; box-shadow: 0 20px 50px rgba(0,0,0,0.8); }
-        @media (max-width: 640px) { .hero-slider { height: 210px; } }
+        /* --- HERO SLIDER (PRO MAX) --- */
+        .hero-slider { height: 360px; border-radius: 40px; overflow: hidden; position: relative; border: 2.5px solid var(--primary); margin-bottom: 40px; box-shadow: 0 25px 60px rgba(0,0,0,1); }
+        @media (max-width: 640px) { .hero-slider { height: 220px; } }
         
-        .slide-img-layer { width: 100%; height: 100%; background-size: cover; background-position: center; transition: transform 8s ease-out, opacity 1s ease; transform: scale(1.1); }
-        .slide-content { position: absolute; bottom: 0; left: 0; width: 100%; padding: 40px 30px; background: linear-gradient(to top, rgba(5,4,1,1) 20%, transparent); z-index: 5; }
+        .slide-img-layer { width: 100%; height: 100%; background-size: cover; background-position: center; transition: transform 6s ease-out, opacity 1s ease; transform: scale(1.05); }
+        .slide-content { position: absolute; bottom: 0; left: 0; width: 100%; padding: 45px 30px; background: linear-gradient(to top, rgba(5,4,1,1) 30%, transparent); z-index: 5; }
 
         .slide-btn {
-            background: var(--primary); color: #000 !important; padding: 12px 30px; border-radius: 50px; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; font-size: 0.75rem; box-shadow: 0 0 25px rgba(255,215,0,0.6); transition: 0.3s; display: inline-block; margin-top: 15px; border: 2px solid transparent;
+            background: var(--primary); color: #000 !important; padding: 14px 35px; border-radius: 50px; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem; box-shadow: 0 0 30px rgba(255,215,0,0.7); transition: 0.4s; display: inline-block; margin-top: 20px; border: 2px solid #000;
         }
-        .slide-btn:hover { background: #fff; transform: scale(1.1); box-shadow: 0 0 35px #fff; }
+        .slide-btn:hover { background: #fff; transform: scale(1.1) translateY(-3px); box-shadow: 0 0 45px #fff; }
 
-        .slide-text-anim { opacity: 0; transform: translateY(20px); transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1); text-shadow: 0 2px 10px rgba(0,0,0,0.9); }
-        .active .slide-text-anim { opacity: 1; transform: translateY(0); transition-delay: 0.4s; }
+        .slide-text-anim { opacity: 0; transform: translateY(30px); transition: all 0.9s cubic-bezier(0.2, 0.8, 0.2, 1); text-shadow: 0 3px 15px rgba(0,0,0,1); }
+        .active .slide-text-anim { opacity: 1; transform: translateY(0); transition-delay: 0.3s; }
         
         @media (max-width: 640px) {
-            .slide-content h1 { font-size: 1.25rem !important; } /* Smaller text on phone */
-            .slide-content p { font-size: 0.55rem !important; letter-spacing: 3px !important; }
-            .slide-btn { padding: 8px 20px !important; font-size: 0.6rem !important; }
+            .slide-content h1 { font-size: 1.4rem !important; }
+            .slide-content p { font-size: 0.6rem !important; letter-spacing: 3px !important; }
+            .slide-btn { padding: 10px 22px !important; font-size: 0.65rem !important; }
         }
+
+        /* Decorative flourishes */
+        .floral-divider {
+            display: flex; align-items: center; justify-content: center; gap: 15px; margin: 20px 0; opacity: 0.6;
+        }
+        .floral-line { height: 1.5px; width: 60px; background: linear-gradient(90deg, transparent, var(--primary)); }
+        .floral-line.rev { background: linear-gradient(270deg, transparent, var(--primary)); }
 
     </style>
 </head>
@@ -185,15 +242,14 @@
 
     <div id="fixed-media-background"></div>
 
-    <!-- Header Section -->
+    <!-- Header Section (Safe Area Responsive) -->
     <header class="glass-header fixed top-0 left-0 w-full px-6 flex justify-between items-center">
         <div class="flex items-center gap-3">
             <img src="blessingsssl.png" alt="Icon" class="logo-icon-circle" onerror="this.src='https://placehold.co/512x512/FFD700/000000?text=B'">
-            <!-- Brand name image with fixed height 25px & width auto -->
             <img src="blessingsss.png" alt="Blessingsss" class="brand-img-fixed" onerror="this.src='https://placehold.co/120x25/000000/FFD700?text=Blessingsss'">
         </div>
 
-        <button id="menuBtn" class="w-11 h-11 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-primary text-2xl hover:bg-white/10 transition-all">
+        <button id="menuBtn" class="w-11 h-11 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-primary text-2xl hover:bg-white/10 transition-all shadow-[0_0_15px_rgba(255,215,0,0.2)]">
             <i class="fas fa-bars-staggered"></i>
         </button>
     </header>
@@ -211,16 +267,16 @@
             <div class="sidebar-header">
                 <div class="sidebar-close-btn" id="closeSidebar"><i class="fas fa-times"></i></div>
                 <div class="flex justify-center mb-4"><img src="blessingsssl.png" alt="Icon" class="logo-icon-circle !w-10 !h-10"></div>
-                <!-- Brand name image with fixed height 25px & width auto -->
                 <img src="blessingsss.png" alt="Blessingsss" class="brand-img-fixed mx-auto" style="display: block;">
-                <p class="text-[9px] text-gray-400 uppercase tracking-[6px] font-black mt-2">Master Henna Studio</p>
+                <p class="text-[10px] text-gray-400 uppercase tracking-[6px] font-black mt-3">Royal Henna Artistry</p>
             </div>
 
-            <div class="space-y-3 relative z-10">
+            <div class="space-y-4 relative z-10">
+                <!-- Sidebar Dropdowns -->
                 <div>
                     <button class="accordion-btn" onclick="toggleAccordion('side-bridal')">
                         <span><i class="fas fa-gem mr-3 text-primary"></i>Bridal Studio</span> 
-                        <i class="fas fa-plus text-[10px] transition-transform duration-300" id="icon-side-bridal"></i>
+                        <i class="fas fa-chevron-down text-[10px] transition-transform duration-400" id="icon-side-bridal"></i>
                     </button>
                     <div id="side-bridal" class="accordion-content">
                         <a href="bridal_traditional.html" class="side-sub-link">Royal Traditional</a>
@@ -232,7 +288,7 @@
                 <div>
                     <button class="accordion-btn" onclick="toggleAccordion('side-festive')">
                         <span><i class="fas fa-star mr-3 text-primary"></i>Festive Art</span> 
-                        <i class="fas fa-plus text-[10px] transition-transform duration-300" id="icon-side-festive"></i>
+                        <i class="fas fa-chevron-down text-[10px] transition-transform duration-400" id="icon-side-festive"></i>
                     </button>
                     <div id="side-festive" class="accordion-content">
                         <a href="festive_arabic.html" class="side-sub-link">Arabic Festive</a>
@@ -247,18 +303,28 @@
                 <div>
                     <button class="accordion-btn" onclick="toggleAccordion('side-gallery')">
                         <span><i class="fas fa-images mr-3 text-primary"></i>Full Portfolio</span> 
-                        <i class="fas fa-plus text-[10px] transition-transform duration-300" id="icon-side-gallery"></i>
+                        <i class="fas fa-chevron-down text-[10px] transition-transform duration-400" id="icon-side-gallery"></i>
                     </button>
-                    <!-- Sidebar Gallery with 8 options -->
                     <div id="side-gallery" class="accordion-content">
-                        <a href="tradi.html" class="side-sub-link">Traditional Bridal Masterpieces</a>
+                        <a href="tradi.html" class="side-sub-link">Traditional Masterpieces</a>
                         <a href="one.html" class="side-sub-link">Arabic Bridal Specials</a>
-                        <a href="two.html" class="side-sub-link">Indo-Western Fusion Luxe</a>
-                        <a href="thre.html" class="side-sub-link">Festive Arabic Collection</a>
-                        <a href="indian_festive_mehndi.html" class="side-sub-link">Indian Festive Classics</a>
-                        <a href="festive_indioarabic.html" class="side-sub-link">Indo-Arabic Fusion Art</a>
-                        <a href="tradi_geometric.html" class="side-sub-link">Moroccan & Geometric Trends</a>
-                        <a href="festive_minimal_art.html" class="side-sub-link">Minimalist Festive Elegance</a>
+                        <a href="two.html" class="side-sub-link">Indo-Western Fusion</a>
+                        <a href="thre.html" class="side-sub-link">Festive Arabic Art</a>
+                        <a href="indian_festive_mehndi.html" class="side-sub-link">Indian Festive Best</a>
+                        <a href="festive_indioarabic.html" class="side-sub-link">Indo-Arabic Fusion</a>
+                        <a href="tradi_geometric.html" class="side-sub-link">Moroccan Trends</a>
+                        <a href="festive_minimal_art.html" class="side-sub-link">Minimalist Elegance</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-20 mb-10 px-4">
+                <div class="p-6 rounded-3xl bg-black/50 border border-primary/20 text-center relative overflow-hidden backdrop-blur-md">
+                    <p class="text-[10px] text-primary uppercase tracking-[4px] font-black mb-4">Master Assistance</p>
+                    <div class="flex justify-around text-2xl text-white/90">
+                        <a href="#" class="hover:text-primary"><i class="fab fa-instagram"></i></a>
+                        <a href="https://wa.me/8816014071" class="hover:text-primary"><i class="fab fa-whatsapp"></i></a>
+                        <a href="tel:8816014071" class="hover:text-primary"><i class="fas fa-phone-alt"></i></a>
                     </div>
                 </div>
             </div>
@@ -266,101 +332,101 @@
     </div>
 
     <!-- Main Content -->
-    <main class="container mx-auto px-6 mt-8">
+    <main class="container mx-auto px-6">
         
         <!-- Enhanced Hero Slider -->
         <div id="hero-slider-main" class="hero-slider shadow-2xl active">
             <div id="slide-img" class="slide-img-layer" style="background-image: url('bridal.png'); opacity: 1;"></div>
             <div class="slide-content">
                 <div class="flex items-center gap-2 mb-2 slide-text-anim">
-                    <span class="h-0.5 w-10 bg-primary"></span>
-                    <p class="text-primary font-black text-[10px] tracking-[6px] uppercase">Royal Mehndi Art</p>
+                    <span class="h-0.5 w-10 bg-primary shadow-[0_0_10px_var(--primary)]"></span>
+                    <p class="text-primary font-black text-[11px] tracking-[6px] uppercase">Royal Mehndi Art</p>
                 </div>
-                <h1 id="slide-title" class="text-2xl md:text-5xl font-black mb-1 text-white uppercase tracking-tighter slide-text-anim">Golden Henna Art</h1>
-                <p id="slide-desc" class="text-gray-200 text-[10px] mb-2 tracking-widest uppercase slide-text-anim font-bold">Shining Experience for your big day</p>
-                <button class="slide-btn slide-text-anim">Reserve Slot</button>
+                <h1 id="slide-title" class="text-3xl md:text-6xl font-black mb-1 text-white uppercase tracking-tighter slide-text-anim">Golden Henna Art</h1>
+                <p id="slide-desc" class="text-gray-100 text-[11px] mb-2 tracking-widest uppercase slide-text-anim font-bold">Premium Experience for your big day</p>
+                <button class="slide-btn slide-text-anim">Explore Collection</button>
             </div>
-            <div class="absolute bottom-6 right-6 flex gap-3 z-10">
-                <button onclick="changeSlide(-1)" class="w-11 h-11 rounded-full bg-black/80 border border-primary/40 text-primary hover:bg-primary hover:text-black transition-all shadow-xl"><i class="fas fa-chevron-left"></i></button>
-                <button onclick="changeSlide(1)" class="w-11 h-11 rounded-full bg-black/80 border border-primary/40 text-primary hover:bg-primary hover:text-black transition-all shadow-xl"><i class="fas fa-chevron-right"></i></button>
+            <div class="absolute bottom-6 right-6 flex gap-4 z-10">
+                <button onclick="changeSlide(-1)" class="w-12 h-12 rounded-full bg-black/80 border border-primary/40 text-primary hover:bg-primary hover:text-black transition-all shadow-2xl"><i class="fas fa-chevron-left"></i></button>
+                <button onclick="changeSlide(1)" class="w-12 h-12 rounded-full bg-black/80 border border-primary/40 text-primary hover:bg-primary hover:text-black transition-all shadow-2xl"><i class="fas fa-chevron-right"></i></button>
             </div>
         </div>
 
-        <div class="flex items-center justify-center gap-6 mb-12 relative">
-            <div class="h-[1.5px] w-12 bg-primary rounded-full"></div>
-            <h2 class="text-3xl font-black tracking-tighter uppercase text-center relative">Services</h2>
-            <div class="h-[1.5px] w-12 bg-primary rounded-full"></div>
+        <div class="floral-divider">
+            <div class="floral-line"></div>
+            <i class="fas fa-leaf text-primary text-xl"></i>
+            <h2 class="text-3xl font-black tracking-tighter uppercase text-center px-4">Our Studio</h2>
+            <i class="fas fa-leaf text-primary text-xl rotate-180"></i>
+            <div class="floral-line rev"></div>
         </div>
 
-        <!-- Cards with Unique Images as requested -->
+        <!-- Cards Section -->
         <div class="card-grid mb-16">
-            <!-- Card 1 -->
             <div class="premium-card group" onclick="openPopup('bridal')">
+                <div class="card-corner c-tl"></div>
                 <img src="bridal.png" alt="Bridal" class="card-img">
-                <div class="mt-4 text-center">
+                <div class="mt-5 text-center">
                     <h3 class="text-sm font-black group-hover:text-primary transition-colors uppercase tracking-widest">Bridal</h3>
-                    <p class="text-gray-500 text-[9px] mt-2 italic font-medium">Traditional Luxe</p>
+                    <p class="text-gray-400 text-[10px] mt-2 italic font-medium">Traditional Luxe</p>
                 </div>
             </div>
-            <!-- Card 2 -->
             <div class="premium-card group" onclick="openPopup('festive')">
                 <img src="festive.png" alt="Festive" class="card-img">
-                <div class="mt-4 text-center">
+                <div class="mt-5 text-center">
                     <h3 class="text-sm font-black group-hover:text-primary transition-colors uppercase tracking-widest">Festive</h3>
-                    <p class="text-gray-500 text-[9px] mt-2 italic font-medium">Modern Vibes</p>
+                    <p class="text-gray-400 text-[10px] mt-2 italic font-medium">Modern Vibes</p>
                 </div>
             </div>
-            <!-- Card 3 -->
             <div class="premium-card group" onclick="window.location.href='custom_mehndi.html'">
                 <img src="custom.png" alt="Custom" class="card-img">
-                <div class="mt-4 text-center">
+                <div class="mt-5 text-center">
                     <h3 class="text-sm font-black group-hover:text-primary transition-colors uppercase tracking-widest">Custom</h3>
-                    <p class="text-gray-500 text-[9px] mt-2 italic font-medium">Bespoke Idea</p>
+                    <p class="text-gray-400 text-[10px] mt-2 italic font-medium">Bespoke Idea</p>
                 </div>
             </div>
-            <!-- Card 4 -->
             <div class="premium-card group" onclick="window.location.href='meet_me.html'">
                 <img src="artist.png" alt="Artist" class="card-img">
-                <div class="mt-4 text-center">
+                <div class="mt-5 text-center">
                     <h3 class="text-sm font-black group-hover:text-primary transition-colors uppercase tracking-widest">Artist</h3>
-                    <p class="text-gray-500 text-[9px] mt-2 italic font-medium">Meet Master</p>
+                    <p class="text-gray-400 text-[10px] mt-2 italic font-medium">Meet Master</p>
                 </div>
             </div>
-            <!-- Card 5 -->
             <div class="premium-card group" onclick="openPopup('gallery')">
                 <img src="gallery.png" alt="Gallery" class="card-img">
-                <div class="mt-4 text-center">
+                <div class="mt-5 text-center">
                     <h3 class="text-sm font-black group-hover:text-primary transition-colors uppercase tracking-widest">Gallery</h3>
-                    <p class="text-gray-500 text-[9px] mt-2 italic font-medium">Full Portfolio</p>
+                    <p class="text-gray-400 text-[10px] mt-2 italic font-medium">Portfolio</p>
                 </div>
             </div>
         </div>
     </main>
 
-    <!-- Attractive Floating Bottom Nav -->
+    <!-- Ultra Attractive Bottom Nav (WebView Optimized) -->
     <nav class="bottom-nav">
-        <a href="#" class="nav-link active"><i class="fas fa-wand-magic-sparkles text-xl mb-1"></i><span>Studio</span></a>
-        <a href="#" class="nav-link"><i class="fas fa-fire text-xl mb-1"></i><span>Trends</span></a>
+        <a href="#" class="nav-link active"><i class="fas fa-wand-magic-sparkles"></i><span>Studio</span></a>
+        <a href="#" class="nav-link"><i class="fas fa-fire"></i><span>Trends</span></a>
         <a href="main.html" class="central-fab"><i class="fas fa-house-chimney"></i></a>
-        <a href="#" class="nav-link"><i class="fas fa-images text-xl mb-1"></i><span>Gallery</span></a>
-        <a href="#" class="nav-link"><i class="fas fa-user-circle text-xl mb-1"></i><span>Account</span></a>
+        <a href="#" class="nav-link"><i class="fas fa-images"></i><span>Gallery</span></a>
+        <a href="#" class="nav-link"><i class="fas fa-user-circle"></i><span>Profile</span></a>
     </nav>
 
     <!-- Popup Modal -->
     <div id="modalOverlay" class="modal-overlay">
         <div class="modal-box">
             <div id="modalBg" class="modal-bg-img"></div>
+            <div class="modal-lace"></div>
+            
             <div class="flex justify-between items-center mb-8 relative z-10 px-2">
                 <div class="flex items-center gap-3">
-                    <img src="blessingsssl.png" class="w-7 h-7 rounded-full border border-primary shadow-[0_0_10px_var(--primary)]">
+                    <img src="blessingsssl.png" class="w-8 h-8 rounded-full border border-primary shadow-[0_0_15px_var(--primary)]">
                     <div>
                         <h2 id="modalTitle" class="text-2xl font-black text-primary uppercase tracking-tighter">Collection</h2>
-                        <p class="text-[9px] text-gray-300 uppercase tracking-[5px] font-black mt-1">Refined Selections</p>
+                        <p class="text-[10px] text-gray-300 uppercase tracking-[5px] font-black mt-1">Refined Selections</p>
                     </div>
                 </div>
-                <button onclick="closePopup()" class="w-11 h-11 rounded-2xl bg-white/10 border border-primary/30 text-primary flex items-center justify-center hover:bg-primary/20 transition-all shadow-lg"><i class="fas fa-times"></i></button>
+                <button onclick="closePopup()" class="w-12 h-12 rounded-2xl bg-white/10 border border-primary/30 text-primary flex items-center justify-center hover:bg-primary/20 transition-all shadow-2xl"><i class="fas fa-times"></i></button>
             </div>
-            <div id="modalList" class="space-y-3 relative z-10 custom-scroll max-h-[50vh] overflow-y-auto pr-2 px-2"></div>
+            <div id="modalList" class="space-y-4 relative z-10 custom-scroll max-h-[50vh] overflow-y-auto pr-2 px-2"></div>
         </div>
     </div>
 
@@ -456,19 +522,14 @@
                     sliderMain.classList.add('active');
                 }, 300);
             }, 100);
-            
-            // Reset timer on manual click to prevent skipping
             startAutoSlide();
         }
 
         function startAutoSlide() {
             if (autoSlideTimer) clearInterval(autoSlideTimer);
-            autoSlideTimer = setInterval(() => {
-                changeSlide(1);
-            }, 5000); // 5 Seconds auto-change
+            autoSlideTimer = setInterval(() => { changeSlide(1); }, 5000);
         }
 
-        // Initialize slider
         startAutoSlide();
 
         document.querySelectorAll('.premium-card').forEach(card => {
