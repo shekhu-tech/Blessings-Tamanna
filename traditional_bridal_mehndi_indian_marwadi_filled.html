@@ -173,9 +173,14 @@
             50% { box-shadow: 0 0 20px rgba(var(--color-primary-rgb), 0.5), inset 0 0 8px rgba(var(--color-primary-rgb), 0.3); }
         }
 
-        /* Ultra Pro Max Card Style (Container Frame) - Added subtle flicker */
+        /* UPDATED: Product Container Card with Background Image preserved */
         .product-container-card {
-            background: linear-gradient(145deg, var(--premium-outer-bg), var(--premium-bg-dark)); 
+            background-image: 
+                linear-gradient(145deg, rgba(var(--color-primary-rgb), 0.1), rgba(0, 0, 0, 0.9)), 
+                url('bridal.png');
+            background-size: cover;
+            background-position: center;
+            background-blend-mode: overlay;
             padding: 20px; 
             border-radius: 35px; 
             border: 2px solid rgba(var(--color-primary-rgb), 0.8); 
@@ -407,7 +412,7 @@
                 <a href="main.html" class="flex items-center no-underline">
                   <img src="blessingsssl.png" alt="Blessingsss Logo" class="h-10 w-10 mr-3 rounded-full border border-primary/50 object-cover" onerror="this.onerror=null;this.src='https://placehold.co/48x48/1C3144/76FF03?text=R';"/>
                    <span class="text-xl sm:text-3xl font-extrabold text-white tracking-tight flex items-center">
-                    <img src="blessingsss.png" alt="Logo" class="h-[35px] w-auto object-contain inline-block" onerror="this.onerror=null;this.src='https://placehold.co/100x35/1C3144/76FF03?text=SkillAurA';" /> 
+                    <img src="blessingsss.png" alt="Logo" class="h-[35px] w-auto object-contain inline-block" onerror="this.onerror=null;this.src='https://placehold.co/100x35/1C3144/76FF03?text=Blessingsss';" /> 
                   </span>
                 </a>
 
@@ -470,7 +475,7 @@
                     <a href="tel:0000000000" class="flex items-center font-extrabold text-white hover:text-primary transition-colors">
                       <i class="fas fa-phone-alt mr-2 text-primary"></i> <span class="text-xl tracking-wider">0000000000</span>
                     </a>
-                    <a href="mailto:care@yourtrueguide.com" class="flex items-center text-xs text-gray-400 hover:text-primary transition-colors mt-1">
+                    <a href="mailto:care@blessingsss.in" class="flex items-center text-xs text-gray-400 hover:text-primary transition-colors mt-1">
                       <i class="fas fa-envelope mr-2 text-secondary/70"></i> <b>care@blessingsss.in</b>
                     </a>
                   </div>
@@ -1103,38 +1108,33 @@
         ];
 
         const locationData_Dropdowns = {
-            'premium-card-2': { // Bridal (3 items)
+            'bridal': { // Bridal (3 items)
                 title: 'Bridal Mehndi Types',
                 locations: commonGalleryOptions.slice(0, 3) 
             },
-            'premium-card-3': { // Festive (5 items)
+            'festive': { // Festive (5 items)
                 title: 'Festive Mehndi Types',
                 locations: commonGalleryOptions.slice(3) 
             },
-            'premium-card-6': { // Gallery (ALL 8 items)
+            'gallery': { // Gallery (ALL 8 items)
                 title: 'All Design Collections (Total 8)',
                 locations: commonGalleryOptions
             }
         };
 
-        function generateDropdownContent(dataId, containerId) {
-            const container = document.getElementById(containerId);
-            const data = locationData_Dropdowns[dataId]; 
-            if (!container || !data) return;
-
-            // Apply Ultra Pro Max styling for mobile sidebar, simple styling for desktop
-            const isMobile = containerId.startsWith('mobile');
-            const className = isMobile ? 'mobile-dropdown-link' : 'dropdown-link';
-            
-            if (data.locations.length === 0) {
-                 // Message if a section is intentionally empty
-                container.innerHTML = `<span class="block px-4 py-2 text-xs text-gray-500 italic">No styles defined yet.</span>`;
-                return;
-            }
-
-            container.innerHTML = data.locations.map(item => `
-                <a href="${item.link}" class="${className}">${item.name}</a>
-            `).join('');
+        function populateMenus() {
+            const keys = ['bridal', 'festive', 'gallery'];
+            keys.forEach(key => {
+                const data = locationData_Dropdowns[key];
+                const desktopCont = document.getElementById(`dropdown-${key}`);
+                const mobileCont = document.getElementById(`mobile-${key}-dropdown`);
+                
+                const html = data.locations.map(loc => `<a href="${loc.link}" class="dropdown-link">${loc.name}</a>`).join('');
+                const mobHtml = data.locations.map(loc => `<a href="${loc.link}" class="mobile-dropdown-link">${loc.name}</a>`).join('');
+                
+                if (desktopCont) desktopCont.innerHTML = html;
+                if (mobileCont) mobileCont.innerHTML = mobHtml;
+            });
         }
         
         function setupMobileAccordion(toggleId, dropdownId, iconId) {
@@ -1159,21 +1159,6 @@
             }
         }
         
-        function initializeDropdowns() {
-            // Desktop Dropdowns
-            generateDropdownContent('premium-card-2', 'dropdown-bridal');
-            generateDropdownContent('premium-card-3', 'dropdown-festive');
-            generateDropdownContent('premium-card-6', 'dropdown-gallery'); 
-            
-            // Mobile Dropdowns
-            generateDropdownContent('premium-card-2', 'mobile-bridal-dropdown');
-            generateDropdownContent('premium-card-3', 'mobile-festive-dropdown');
-            generateDropdownContent('premium-card-6', 'mobile-gallery-dropdown'); 
-            
-            setupMobileAccordion('mobile-bridal-toggle', 'mobile-bridal-dropdown', 'icon-bridal-mobile');
-            setupMobileAccordion('mobile-festive-toggle', 'mobile-festive-dropdown', 'icon-festive-mobile');
-            setupMobileAccordion('mobile-gallery-toggle', 'mobile-gallery-dropdown', 'icon-gallery-mobile');
-        }
         // --- END: HEADER/SIDEBAR JS LOGIC ---
         
         // --- START: BOOKING MODAL LOGIC (DISABLED AS REQUESTED) ---
@@ -1236,8 +1221,11 @@
         // --- END: DYNAMIC THEME COLOR CHANGER ---
         
         document.addEventListener('DOMContentLoaded', () => {
-            initializeDropdowns();
+            populateMenus();
             renderVariants(); // Initialize variants on load
+            setupMobileAccordion('mobile-bridal-toggle', 'mobile-bridal-dropdown', 'icon-bridal-mobile');
+            setupMobileAccordion('mobile-festive-toggle', 'mobile-festive-dropdown', 'icon-festive-mobile');
+            setupMobileAccordion('mobile-gallery-toggle', 'mobile-gallery-dropdown', 'icon-gallery-mobile');
         });
         
     </script>
