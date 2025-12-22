@@ -12,7 +12,7 @@
     <!-- Fonts (Inter/Noto Sans Devanagari for readability) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=Noto+Sans+Devanagari:wght+400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=Noto+Sans+Devanagari:wght@400;500;700&display=swap" rel="stylesheet">
     
     <style>
         /* --- GLOBAL & THEME VARIABLES (Theme Variables) --- */
@@ -173,9 +173,14 @@
             50% { box-shadow: 0 0 20px rgba(var(--color-primary-rgb), 0.5), inset 0 0 8px rgba(var(--color-primary-rgb), 0.3); }
         }
 
-        /* Ultra Pro Max Card Style (Container Frame) - Added subtle flicker */
+        /* UPDATED: Product Container Card with Background Image preserved */
         .product-container-card {
-            background: linear-gradient(145deg, var(--premium-outer-bg), var(--premium-bg-dark)); 
+            background-image: 
+                linear-gradient(145deg, rgba(var(--color-primary-rgb), 0.1), rgba(0, 0, 0, 0.9)), 
+                url('bridal.png');
+            background-size: cover;
+            background-position: center;
+            background-blend-mode: overlay;
             padding: 20px; 
             border-radius: 35px; 
             border: 2px solid rgba(var(--color-primary-rgb), 0.8); 
@@ -574,7 +579,7 @@
             
             <!-- HEADING SIZE ADJUSTED: text-2xl -> text-xl for mobile -->
             <h1 class="text-xl sm:text-2xl md:text-5xl font-extrabold text-primary-glow text-center mb-8">
-                Rajesthani-Mirror-Work
+                Rajesthani-Mirror-Style
             </h1>
 
             <!-- New Layout Grid: 2/3 width for image, 1/3 for details on large screens -->
@@ -791,7 +796,7 @@
         const variantSelectorMobileEl = document.getElementById('variant-selector-mobile');
         const variantSelectorDesktopEl = document.getElementById('variant-selector-desktop');
         const mainImageElement = document.getElementById('main-design-image');
-        const dynamicPriceEl = document.getElementById('dynamic-price'); // <-- Error was here
+        const dynamicPriceEl = document.getElementById('dynamic-price');
         const dynamicConditionsEl = document.getElementById('dynamic-conditions');
         const whatsappBottomNavEl = document.getElementById('whatsapp-bottom-nav');
         const designCounterEl = document.getElementById('design-counter');
@@ -799,67 +804,67 @@
         const modalImageEl = document.getElementById('modal-image');
 
 
-        // ** 2. UPDATED VARIANT DATA (Now only 2 options) **
+        // ** 2. UPDATED VARIANT DATA (with 10 real image URLs each) **
         const coverageVariants = [
             { 
-                name: "Mandala-Mirror", 
-                // 10 "Real" Image URLs using placeholders
+                name: "Mini-Diamond-Mirror", 
+                // 10 "Real" Image URLs using Unsplash placeholder service
                 images: [
-                    'mirrorworkstymandalamirror.png', 
-                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,mandala,hands,02',
-                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,mandala,hands,03',
-                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,mandala,hands,04',
-                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,mandala,hands,05',
-                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,mandala,feet,06',
-                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,mandala,feet,07',
-                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,mandala,detail,08',
-                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,mandala,detail,09',
-                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,mandala,closeup,10'
+                    'mirrorfillingminidiamondmirror.png', 
+                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,fullpeacock,hands,02',
+                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,fullpeacock,hands,03',
+                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,fullpeacock,hands,04',
+                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,fullpeacock,hands,05',
+                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,fullpeacock,feet,06',
+                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,fullpeacock,feet,07',
+                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,fullpeacock,detail,08',
+                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,fullpeacock,detail,09',
+                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,fullpeacock,closeup,10'
                 ],
                 conditionsList: [
-                    "Coverage: Central Mandala on palm, minimal wrist coverage.", 
-                    "Design Time: 45 minutes to 1.5 hours per hand.",
+                    "Coverage: Back of hand and wrist only (approx. 4-6 inches).", 
+                    "Design Time: 30 minutes to 1 hour per hand.",
                     "Henna Type: Natural Brown Henna only. Premium sealant included.",
-                    "Styling: Focus on mirror-work effect, with open space.",
-                    "Ideal For: Guests or light pre-wedding functions, emphasizing symmetry."
+                    "Styling: Minimalistic single vine or small floral motifs.",
+                    "Ideal For: Guests, small functions, or a subtle look."
                 ], 
                 price: 5500, 
-                linkName: "Mandala-Mirror",
+                linkName: "Full-Peacock",
                 aboutDesign: [
-                    "Features a prominent, symmetric mandala design at the center of the palm.",
-                    "The design incorporates small mirror effects created using intricate shading/lines.",
-                    "Perfect for those who love symmetrical, clean designs with traditional mirror inspiration.",
-                    "This style offers high visual impact with medium density."
+                    "Rooted in the elegant simplicity of Gulf Arabic tradition, emphasizing negative space.",
+                    "Features large, bold, and clearly defined floral patterns, primarily roses.",
+                    "Perfect for those seeking a luxurious look without heavy, complex filling.",
+                    "The style allows for easy adaptation to jewelry and accessories."
                 ]
             },
             { 
-                name: "Mini-Diamond-Mirror", 
+                name: "Dual-Royal-Mirror", 
                 images: [
-                    'mirrorworkstyleminidiamondmirror.png',
-                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,diamond,hands,12',
-                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,diamond,hands,13',
-                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,diamond,hands,14',
-                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,diamond,hands,15',
-                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,diamond,feet,16',
-                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,diamond,feet,17',
-                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,diamond,detail,18',
-                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,diamond,detail,19',
-                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,diamond,closeup,20'
+                    'mirrorfillingdualroyalmirror.png',
+                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,dualpeacock,hands,12',
+                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,dualpeacock,hands,13',
+                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,dualpeacock,hands,14',
+                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,dualpeacock,hands,15',
+                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,dualpeacock,feet,16',
+                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,dualpeacock,feet,17',
+                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,dualpeacock,detail,18',
+                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,dualpeacock,detail,19',
+                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,dualpeacock,closeup,20'
                 ],
                 conditionsList: [
-                    "Coverage: Detailed front and back coverage up to the wrist cuff.", 
+                    "Coverage: Detailed design on the entire front and back of the palm, up to the wrist cuff.", 
                     "Design Time: 1.5 - 2 hours per hand.",
-                    "Henna Type: Premium Bridal Henna with organic oil application.",
-                    "Styling: Uses small geometric diamond patterns to mimic mirror placement.",
-                    "Ideal For: Bridesmaids, engagement, or medium-level bridal coverage with modern twist."
+                    "Henna Type: Premium Bridal Henna (for deep stain) with organic oil application.",
+                    "Styling: Dense floral patterns with shading, outline work, and finger-tip coverage.",
+                    "Ideal For: Bridesmaids, engagement, or medium-level bridal coverage."
                 ], 
                 price: 12500, 
-                linkName: "Mini-Diamond-Mirror",
+                linkName: "Dual-Peacock",
                 aboutDesign: [
-                    "Concentrated design featuring repeated diamond patterns that emulate miniature mirror work.",
-                    "The repetition of the diamond motif creates a dense yet clean geometric pattern.",
-                    "Excellent choice for a modern bridal look inspired by traditional 'Shisha' (mirror) craft.",
-                    "Professional shading provides a subtle three-dimensional effect."
+                    "Concentrated density on the core palm area, maximizing the canvas for rich detail.",
+                    "Features a balanced blend of bold Arabic motifs and traditional Indian intricate fills.",
+                    "Professional shading techniques provide depth and a three-dimensional effect to florals.",
+                    "A vibrant, expressive design that retains the open, airy feel of the Gulf style."
                 ]
             },
                
@@ -875,7 +880,7 @@
             mainImageElement.src = selectedVariant.images[currentImageIndex];
             
             // Update the design counter
-            designCounterEl.textContent = `${currentImageIndex + 1}/${selectedVariant.images.length}`; 
+            designCounterEl.textContent = `${currentImageIndex + 1}/10`; 
 
             // Update WhatsApp link since the design number changes
             const waLink = generateWhatsAppLink();
@@ -927,14 +932,14 @@
             // 2. Show the modal
             fullscreenModalEl.classList.remove('hidden');
             
-            // 3. REMOVED: document.body.style.overflow = 'hidden'; to fix WebView lag
+            // 3. WebView Lag Fix: Overflow hidden is removed.
         }
 
         function closeFullscreenModal() {
             // 1. Hide the modal
             fullscreenModalEl.classList.add('hidden');
             
-            // 2. RESTORED: document.body.style.overflow = ''; (Now this line is also removed as it's not needed after WebView lag fix)
+            // 2. Restore body scrolling (not strictly needed after webview fix, but good practice)
         }
 
         // Event listener for ESC key to close modal (good UX)
@@ -947,12 +952,12 @@
         // ** WHATSAPP LINK GENERATOR **
         function generateWhatsAppLink() {
             const phoneNumber = '918816014071'; 
-            const designName = 'Rajesthani-Mirror-Work';
+            const designName = 'Rajesthani-Peacock-Style';
             const variantName = selectedVariant.name;
             const designNumber = currentImageIndex + 1; // Add 1 because index is 0-based
             
             // Message includes the selected design, price, and the current image number
-            const message = encodeURIComponent(`Hello, I am interested in the "${designName} - ${variantName}" variant (Design ${designNumber}/${selectedVariant.images.length}) with the price of ₹ ${selectedVariant.price.toLocaleString('en-IN')}/-. Could you please confirm the availability for booking?`);
+            const message = encodeURIComponent(`Hello, I am interested in the "${designName} - ${variantName}" variant (Design ${designNumber}/10) with the price of ₹ ${selectedVariant.price.toLocaleString('en-IN')}/-. Could you please confirm the availability for booking?`);
             return `https://wa.me/${phoneNumber}?text=${message}`;
         }
         
@@ -1017,10 +1022,10 @@
 
             // Populate both desktop and mobile selectors
             if (variantSelectorMobileEl) {
+                // Ensure desktop buttons are arranged horizontally in grid on desktop, and vertical stack on mobile
                 variantSelectorMobileEl.innerHTML = buttonsHtml;
             }
             if (variantSelectorDesktopEl) {
-                // For desktop, the flex container will automatically handle dynamic width distribution
                 variantSelectorDesktopEl.innerHTML = buttonsHtml;
             }
             
@@ -1044,10 +1049,12 @@
                 mobileMenuPanel.classList.remove('translate-x-0');
                 mobileMenuPanel.classList.add('translate-x-full');
                 mobileMenuOverlay.classList.add('hidden');
+                // Removed document.body.style.overflow = '';
             } else {
                 mobileMenuPanel.classList.remove('translate-x-full');
                 mobileMenuPanel.classList.add('translate-x-0');
                 mobileMenuOverlay.classList.remove('hidden');
+                // Removed document.body.style.overflow = 'hidden';
             }
         }
 
