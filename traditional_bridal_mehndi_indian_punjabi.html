@@ -12,204 +12,267 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800;900&family=Noto+Sans+Devanagari:wght@700;900&display=swap" rel="stylesheet">
     
     <style>
-        /* --- GLOBAL & THEME VARIABLES --- */
+        /* --- SYNCED GLOBAL VARIABLES FROM MAIN.HTML --- */
         :root {
             --primary: #FFD700; 
             --primary-rgb: 255, 215, 0; 
             --bg-dark: #050401; 
-            --header-offset: calc(10px + env(safe-area-inset-top));
-            --header-height: 52px;
-            --footer-offset: calc(10px + env(safe-area-inset-bottom));
-            --footer-height: 68px;
+            --card-glass: rgba(15, 12, 5, 0.95);
+            --header-offset: calc(15px + env(safe-area-inset-top));
+            --header-height: 64px;
+            --footer-offset: calc(25px + env(safe-area-inset-bottom));
+            --footer-height: 76px;
             --text-light: #ffffff;
             --dark-green: #013220;
+
+            /* Legacy support for local product components */
             --color-primary: var(--primary);
             --color-primary-rgb: var(--primary-rgb);
-            --premium-bg-dark: #332B10; 
-            --premium-outer-bg: #4D401A;
             --color-button-text: #000000;
+            --premium-bg-dark: #1A2733; 
+            --premium-outer-bg: #28475c;
         }
 
+        /* --- BASE LAYOUT --- */
         html { scroll-behavior: smooth; }
         body {
             font-family: 'Plus Jakarta Sans', 'Noto Sans Devanagari', sans-serif;
             background-color: var(--bg-dark);
             color: var(--text-light);
-            padding-top: calc(var(--header-offset) + var(--header-height) + 12px);
-            padding-bottom: calc(var(--footer-offset) + var(--footer-height) + 25px);
+            padding-top: calc(var(--header-offset) + var(--header-height) + 20px);
+            padding-bottom: calc(var(--footer-offset) + var(--footer-height) + 40px);
             margin: 0;
             font-weight: 900; 
             overflow-x: hidden;
         }
 
+        /* --- FIXED BACKGROUND --- */
         #fixed-media-background {
             position: fixed; top: 0; left: 0; right: 0; bottom: 0;
             z-index: -10; background-size: cover; background-position: center;
-            opacity: 0.6; background-image: url('bridal.png');
-            filter: contrast(120%) brightness(35%);
+            opacity: 0.7; background-image: url('bridal.png');
+            filter: contrast(125%) brightness(50%) sepia(40%);
         }
 
-        /* --- HEADER --- */
+        /* --- FLOATING HEADER (SAME AS MAIN) --- */
         .iphone-header {
             position: fixed; top: var(--header-offset); left: 50%; transform: translateX(-50%);
-            width: 94%; max-width: 600px; height: var(--header-height);
-            background: rgba(5, 4, 1, 0.96); backdrop-filter: blur(25px);
-            border: 1.5px solid rgba(255, 215, 0, 0.4); border-radius: 18px;
+            width: 92%; max-width: 600px; height: var(--header-height);
+            background: rgba(5, 4, 1, 0.96); backdrop-filter: blur(30px);
+            border: 2px solid rgba(255, 215, 0, 0.4); border-radius: 24px;
             display: flex; align-items: center; justify-content: space-between;
-            padding: 0 15px; z-index: 2000;
+            padding: 0 20px; z-index: 2000; box-shadow: 0 0 25px rgba(255, 215, 0, 0.2);
         }
 
-        /* --- SIDEBAR --- */
+        /* --- SIDEBAR (SAME AS MAIN) --- */
         .mobile-panel {
             position: fixed; 
-            top: calc(var(--header-offset) + var(--header-height) + 8px); 
-            bottom: calc(var(--footer-offset) + var(--footer-height) + 8px);
-            right: 12px; width: 85%; max-width: 310px;
-            background: rgba(8, 7, 2, 0.99); backdrop-filter: blur(40px); z-index: 1500; 
+            top: calc(var(--header-offset) + var(--header-height) + 10px); 
+            bottom: calc(var(--footer-offset) + var(--footer-height) + 10px);
+            right: 15px; width: 85%; max-width: 340px;
+            background: rgba(8, 7, 2, 0.98); backdrop-filter: blur(45px); z-index: 1500; 
             transform: translateX(120%); transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-            border: 2px solid var(--primary); border-radius: 26px; overflow: hidden;
+            border: 2.5px solid var(--primary); border-radius: 35px; overflow: hidden;
+            box-shadow: -30px 0 80px rgba(0,0,0,1);
         }
         .mobile-panel.open { transform: translateX(0); }
-        .sidebar-bg-image { position: absolute; inset: 0; background-image: url('bridal.png'); background-size: cover; background-position: center; opacity: 0.4; z-index: 0; filter: brightness(20%); }
-        .sidebar-inner { height: 100%; overflow-y: auto; padding: 25px 12px; position: relative; z-index: 10; }
-        .sidebar-close-btn { position: absolute; top: 10px; right: 10px; width: 32px; height: 32px; border-radius: 50%; background: var(--primary); color: #000; display: flex; align-items: center; justify-content: center; z-index: 100; border: 2px solid #000; }
+        .sidebar-bg-image { position: absolute; inset: 0; background-image: url('bridal.png'); background-size: cover; background-position: center; opacity: 0.55; z-index: 0; filter: grayscale(40%) brightness(30%); }
+        .mandala-bg { position: absolute; top: 50%; left: 50%; width: 500px; height: 500px; margin-top: -250px; margin-left: -250px; opacity: 0.1; pointer-events: none; animation: spin 100s linear infinite; z-index: 1; }
+        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        .sidebar-inner { height: 100%; overflow-y: auto; padding: 40px 20px; position: relative; z-index: 10; }
+        .sidebar-close-btn { position: absolute; top: 15px; right: 15px; width: 40px; height: 40px; border-radius: 50%; background: var(--primary); color: #000; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 100; border: 2px solid #000; box-shadow: 0 0 20px var(--primary); }
         
-        .accordion-btn { width: 100%; padding: 10px 14px; margin-bottom: 5px; border-radius: 10px; background: rgba(0, 0, 0, 0.7); font-weight: 900; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; color: #fff; display: flex; justify-content: space-between; align-items: center; border: 1px solid rgba(255, 215, 0, 0.2); transition: 0.3s; }
+        .accordion-btn { width: 100%; padding: 18px 22px; margin-bottom: 10px; border-radius: 18px; background: rgba(0, 0, 0, 0.5); font-weight: 800; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; color: #fff; display: flex; justify-content: space-between; align-items: center; border: 1px solid rgba(255, 215, 0, 0.2); }
         .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out; }
-        .side-sub-link { display: block; padding: 8px 18px; font-size: 0.7rem; color: #bbb; border-left: 2px solid var(--primary); margin-left: 10px; margin-bottom: 2px; text-decoration: none; }
+        .side-sub-link { display: block; padding: 14px 35px; font-size: 0.8rem; color: #eee; background: rgba(0,0,0,0.4); border-left: 2px solid rgba(255, 215, 0, 0.15); text-decoration: none; border-bottom: 1px solid rgba(255,215,0,0.05); }
 
-        /* --- DOCK --- */
-        .iphone-dock-wrapper { position: fixed; bottom: var(--footer-offset); left: 0; width: 100%; display: flex; justify-content: center; z-index: 2000; padding: 0 10px; }
-        .iphone-dock { width: 100%; max-width: 480px; height: var(--footer-height); background: rgba(5, 4, 1, 0.98); backdrop-filter: blur(30px); border-radius: 22px; border: 1.5px solid rgba(255, 215, 0, 0.2); display: flex; justify-content: space-around; align-items: center; }
-        .nav-link { color: #8892a0; font-size: 0.5rem; display: flex; flex-direction: column; align-items: center; text-decoration: none; font-weight: 900; }
-        .nav-link i { font-size: 1rem; margin-bottom: 2px; }
+        /* --- GOLDEN DOCK (SAME AS MAIN) --- */
+        .iphone-dock-wrapper { 
+            position: fixed; bottom: var(--footer-offset); 
+            left: 0; width: 100%; display: flex; justify-content: center; z-index: 2000; padding: 0 15px; 
+        }
+        .iphone-dock { width: 100%; max-width: 500px; height: var(--footer-height); background: rgba(5, 4, 1, 0.98); backdrop-filter: blur(35px); border-radius: 32px; border: 2px solid rgba(255, 215, 0, 0.2); display: flex; justify-content: space-around; align-items: center; box-shadow: 0 15px 40px rgba(0,0,0,0.9); }
+        .nav-link { color: #8892a0; font-size: 0.6rem; font-weight: 800; text-transform: uppercase; display: flex; flex-direction: column; align-items: center; transition: 0.4s; padding: 10px; text-decoration: none; }
+        .nav-link i { font-size: 1.3rem; margin-bottom: 4px; }
         .nav-link.active { color: var(--primary); }
-        .dock-fab { width: 60px; height: 60px; background: radial-gradient(circle at center, #fff 0%, var(--primary) 70%); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #000; font-size: 1.4rem; transform: translateY(-20px); border: 4px solid #050401; box-shadow: 0 8px 15px rgba(0,0,0,0.8); }
+        .dock-fab { width: 70px; height: 70px; background: radial-gradient(circle at center, #fff 0%, var(--primary) 70%); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #000; font-size: 1.8rem; transform: translateY(-30px); border: 5px solid #050401; box-shadow: 0 12px 35px rgba(0,0,0,0.8), 0 0 45px rgba(var(--primary-rgb), 0.7); }
 
-        /* --- PRODUCT CARD (BACKGROUND RESTORED) --- */
+        /* --- PRODUCT CONTENT STYLES --- */
+        @keyframes subtleFlicker {
+            0%, 100% { box-shadow: 0 0 15px rgba(var(--primary-rgb), 0.3), inset 0 0 5px rgba(var(--primary-rgb), 0.2); }
+            50% { box-shadow: 0 0 20px rgba(var(--primary-rgb), 0.5), inset 0 0 8px rgba(var(--primary-rgb), 0.3); }
+        }
+
         .product-container-card {
-            background-image: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('bridal.png');
-            background-size: cover; background-position: center;
-            padding: 12px; border-radius: 22px; border: 1.5px solid rgba(var(--color-primary-rgb), 0.5); 
-            position: relative; z-index: 10; overflow: hidden;
-            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            background-image: linear-gradient(145deg, rgba(var(--primary-rgb), 0.1), rgba(0, 0, 0, 0.9)), url('bridal.png');
+            background-size: cover; background-position: center; background-blend-mode: overlay;
+            padding: 20px; border-radius: 35px; border: 2px solid rgba(var(--primary-rgb), 0.8); 
+            box-shadow: 0 0 30px rgba(var(--primary-rgb), 0.7), inset 0 0 20px rgba(var(--primary-rgb), 0.5);
+            transition: all 0.5s ease-in-out; position: relative; z-index: 10;
+            animation: subtleFlicker 8s infinite alternate ease-in-out;
         }
+
         .main-design-image {
-            width: 100%; max-height: 210px; height: auto; border-radius: 16px; object-fit: cover;
-            border: 2px solid var(--color-primary); box-shadow: 0 0 25px rgba(var(--color-primary-rgb), 0.5);
-        }
-        @media (min-width: 1024px) { .main-design-image { height: 460px; max-height: none; } }
-        
-        /* --- AUTO SET HEIGHT --- */
-        .auto-height-section { height: auto !important; min-height: fit-content; overflow: visible !important; }
-
-        /* --- BUTTONS & HIGHLIGHTS --- */
-        .variant-button {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
-            border: 1.5px solid rgba(var(--color-primary-rgb), 0.3); font-weight: 900;
-            padding: 9px 5px; border-radius: 10px; background-color: rgba(0,0,0,0.8); flex-grow: 1; 
-            text-align: center; color: #fff; text-transform: uppercase; cursor: pointer;
-            font-size: 0.6rem; letter-spacing: 0.5px;
-        }
-        .variant-button:hover {
-            border-color: var(--primary);
-            box-shadow: 0 0 10px var(--primary);
-        }
-        .variant-button.active {
-            background-color: var(--primary) !important;
-            color: #000 !important;
-            border-color: var(--primary);
-            box-shadow: 0 0 20px var(--primary);
-            transform: scale(1.03);
-        }
-
-        /* --- PRICE SECTION --- */
-        .price-container { 
-            background: linear-gradient(145deg, var(--premium-bg-dark), var(--premium-outer-bg));
-            border: 2.5px solid var(--color-primary); 
-            border-radius: 20px; 
-            padding: 1rem;
-            box-shadow: 0 0 25px rgba(var(--color-primary-rgb), 0.6), inset 0 0 10px rgba(var(--color-primary-rgb), 0.4);
-        }
-
-        .cta-button {
-            width: 100%; padding: 0.75rem; font-size: 1rem; font-weight: 900; color: #000;
-            background-color: var(--primary); border-radius: 99px; box-shadow: 0 5px 12px rgba(var(--color-primary-rgb), 0.5);
+            width: 100%; max-height: 250px; height: auto; border-radius: 25px; object-fit: cover;
+            border: 3px solid var(--primary); box-shadow: 0 0 40px rgba(var(--primary-rgb), 0.9);
             transition: 0.3s;
         }
-        .cta-button:active { transform: scale(0.96); }
+        @media (min-width: 1024px) { .main-design-image { height: 500px; max-height: none; } }
 
-        .dynamic-list-item { font-size: 0.68rem; line-height: 1.4; color: #eee; margin-bottom: 3px; display: block; }
-        .image-nav-button { background: rgba(0,0,0,0.5); color: var(--primary); width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 20; }
-        .image-utility-button { background: rgba(0,0,0,0.7); color: var(--primary); padding: 0.45rem; border-radius: 50%; z-index: 20; cursor: pointer; transition: 0.3s; }
-        .image-utility-button:hover { background: var(--primary); color: #000; }
-        
-        .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.96); display: none; z-index: 3000; align-items: center; justify-content: center; padding: 15px; }
-        .modal-box { background: #0a0802; border: 2px solid var(--primary); border-radius: 24px; width: 100%; max-width: 380px; padding: 20px; position: relative; }
-        .modal-list-item { background: rgba(255, 215, 0, 0.05); border: 1px solid rgba(255, 215, 0, 0.2); padding: 10px; border-radius: 10px; margin-bottom: 6px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; color: #fff; font-size: 0.75rem; }
+        .cta-button {
+            width: 100%; padding: 1rem; font-size: 1.5rem; font-weight: 900; color: var(--color-button-text);
+            background-color: var(--primary); border-radius: 9999px; box-shadow: 0 0 25px rgba(var(--primary-rgb), 0.8);
+            transition: all 0.3s; text-transform: uppercase;
+        }
+        .cta-button:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 0 40px rgba(var(--primary-rgb), 1.0); }
 
-        * { font-weight: 900 !important; -webkit-tap-highlight-color: transparent; }
+        .price-container { 
+            background: linear-gradient(145deg, #111, #222);
+            border: 3px solid var(--primary); border-radius: 25px; padding: 1.25rem;
+            box-shadow: 0 0 30px rgba(var(--primary-rgb), 0.7), inset 0 0 15px rgba(var(--primary-rgb), 0.5);
+        }
+
+        .variant-button {
+            transition: all 0.3s ease-in-out; border: 2px solid rgba(var(--primary-rgb), 0.5); font-weight: 900;
+            padding: 0.75rem 0.5rem; border-radius: 12px; background-color: #000; flex-grow: 1; 
+            text-align: center; color: #fff; text-transform: uppercase; font-size: 0.7rem;
+        }
+        .variant-button.active {
+            background-color: var(--primary); color: #000; box-shadow: 0 0 15px rgba(var(--primary-rgb), 0.8);
+            border-color: var(--primary);
+        }
+
+        .image-nav-button { background: rgba(0,0,0,0.5); color: var(--primary); padding: 0.8rem; border-radius: 50%; z-index: 20; }
+        .image-utility-button { background: rgba(0,0,0,0.6); color: var(--primary); padding: 0.5rem; border-radius: 50%; z-index: 20; }
+
+        .dynamic-list-item {
+            font-weight: 900;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+            display: inline-block;
+        }
+
+        /* --- ORIENTATION POPUP STYLES --- */
+        .choice-modal-box {
+            background: rgba(10, 8, 2, 0.98);
+            border: 2px solid var(--primary);
+            border-radius: 35px;
+            padding: 30px;
+            width: 90%;
+            max-width: 380px;
+            text-align: center;
+            box-shadow: 0 0 50px rgba(var(--primary-rgb), 0.4);
+            backdrop-filter: blur(20px);
+        }
+        .choice-btn {
+            width: 100%;
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 18px;
+            border: 1.5px solid rgba(255, 215, 0, 0.3);
+            background: rgba(255, 215, 0, 0.05);
+            color: #fff;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+        .choice-btn:hover {
+            background: var(--primary);
+            color: #000;
+            box-shadow: 0 0 20px var(--primary);
+        }
+
+        /* Fullscreen View Styles */
+        .landscape-view #modal-image {
+            transform: rotate(90deg);
+            max-width: 90vh;
+            max-height: 90vw;
+        }
+        .portrait-view #modal-image {
+            transform: rotate(0deg);
+            max-width: 95%;
+            max-height: 95%;
+        }
+
+        /* Enforce Bold weight everywhere */
+        * { font-style: normal !important; }
+        h1, h2, h3, span, p, a, button { font-weight: 900 !important; }
     </style>
 </head>
 <body>
 
     <div id="fixed-media-background"></div>
 
-    <!-- HEADER -->
+    <!-- FLOATING HEADER (SYNCED) -->
     <header class="iphone-header">
-        <div class="flex items-center gap-2">
-            <img src="blessingsssl.png" alt="Icon" class="w-7 h-7 rounded-lg border border-primary shadow-lg">
-            <img src="blessingsss.png" alt="Blessingsss" class="h-[12px]">
+        <div class="flex items-center gap-3">
+            <img src="blessingsssl.png" alt="Icon" class="w-9 h-9 rounded-xl border-2 border-primary shadow-lg">
+            <img src="blessingsss.png" alt="Blessingsss" class="h-[18px]">
         </div>
-        <button id="menuBtn" class="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-primary text-md">
+        <button id="menuBtn" class="w-11 h-11 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-primary text-xl shadow-lg">
             <i class="fas fa-bars-staggered"></i>
         </button>
     </header>
 
-    <!-- SIDEBAR -->
+    <!-- SIDEBAR (SYNCED) -->
     <div id="sidebar" class="mobile-panel">
         <div class="sidebar-bg-image"></div>
+        <svg class="mandala-bg" viewBox="0 0 100 100" fill="none" stroke="currentColor">
+            <circle cx="50" cy="50" r="45" stroke-width="0.2" stroke-dasharray="1 1" />
+            <path d="M50 0 L53 47 L100 50 L53 53 L50 100 L47 53 L0 50 L47 47 Z" stroke-width="0.2" />
+        </svg>
+
         <div class="sidebar-inner">
             <div class="sidebar-close-btn" id="closeSidebar"><i class="fas fa-times"></i></div>
-            <div class="text-center mb-5 pb-3 border-b border-primary/20">
-                <img src="blessingsssl.png" alt="Icon" class="w-8 h-8 mx-auto rounded-full border border-primary mb-2">
-                <img src="blessingsss.png" alt="Blessingsss" class="h-[14px] mx-auto">
-                <p class="text-[7px] text-gray-400 uppercase tracking-[2px] mt-1">Premium Mehndi Partner</p>
+            <div class="text-center mb-8 border-b border-primary/20 pb-6">
+                <img src="blessingsssl.png" alt="Icon" class="w-10 h-10 mx-auto rounded-full border border-primary mb-3">
+                <img src="blessingsss.png" alt="Blessingsss" class="h-[20px] mx-auto">
+                <p class="text-[9px] text-gray-400 uppercase tracking-[4px] mt-3">Your Mehndi Partner</p>
             </div>
-            <div class="space-y-2 relative z-10">
+
+            <div class="space-y-4 relative z-10">
+                <a href="main.html" class="accordion-btn"><span>STUDIO HOME</span><i class="fas fa-house-chimney text-[10px]"></i></a>
+                
                 <div>
                     <button class="accordion-btn" onclick="toggleAccordion('side-bridal')">
-                        <span>Bridal StudioT</span> <i class="fas fa-chevron-down text-[7px]" id="icon-side-bridal"></i>
+                        <span>BRIDAL STUDIO</span> <i class="fas fa-chevron-down text-[10px]" id="icon-side-bridal"></i>
                     </button>
                     <div id="side-bridal" class="accordion-content">
-                        <a href="bridal_traditional.html" class="side-sub-link">Royal Traditional</a>
+                        <a href="tradi.html" class="side-sub-link">Royal Traditional</a>
                         <a href="bridal_arabic.html" class="side-sub-link">Modern Arabic</a>
                         <a href="bridal_indowestern.html" class="side-sub-link">Fusion Luxe</a>
                     </div>
                 </div>
+
                 <div>
                     <button class="accordion-btn" onclick="toggleAccordion('side-festive')">
-                        <span>FESTIVE ART</span> <i class="fas fa-chevron-down text-[7px]" id="icon-side-festive"></i>
+                        <span>FESTIVE ART</span> <i class="fas fa-chevron-down text-[10px]" id="icon-side-festive"></i>
                     </button>
                     <div id="side-festive" class="accordion-content">
-                        <a href="festive_arabic.html" class="side-sub-link">Festive Arabic Art</a>
-                        <a href="festive_indian.html" class="side-sub-link">Indian Festive Best</a>
-                        <a href="festive_indoarabic.html" class="side-sub-link">Indo-Arabic Fusion</a>
-                        <a href="festive_geometric.html" class="side-sub-link">Moroccan Trends</a>
-                        <a href="festive_minimal.html" class="side-sub-link">Minimalist Elegance</a>
+                        <a href="thre.html" class="side-sub-link">Festive Arabic Art</a>
+                        <a href="indian_festive_mehndi.html" class="side-sub-link">Indian Festive Best</a>
+                        <a href="festive_indioarabic.html" class="side-sub-link">Indo-Arabic Fusion</a>
+                        <a href="tradi_geometric.html" class="side-sub-link">Moroccan Trends</a>
+                        <a href="festive_minimal_art.html" class="side-sub-link">Minimalist Elegance</a>
                     </div>
                 </div>
-                <a href="custom_mehndi.html" class="accordion-btn"><span>CUSTOM CONCEPT</span><i class="fas fa-arrow-right text-[7px]"></i></a>
-                <a href="meet_me.html" class="accordion-btn"><span>MEET MASTER</span><i class="fas fa-arrow-right text-[7px]"></i></a>
+
+                <a href="custom_mehndi.html" class="accordion-btn"><span>CUSTOM CONCEPT</span><i class="fas fa-arrow-right text-[10px]"></i></a>
+                <a href="meet_me.html" class="accordion-btn"><span>MEET MASTER</span><i class="fas fa-arrow-right text-[10px]"></i></a>
+
                 <div>
                     <button class="accordion-btn" onclick="toggleAccordion('side-gallery')">
-                        <span>GALLERY</span> <i class="fas fa-chevron-down text-[7px]" id="icon-side-gallery"></i>
+                        <span>GALLERY</span> <i class="fas fa-chevron-down text-[10px]" id="icon-side-gallery"></i>
                     </button>
                     <div id="side-gallery" class="accordion-content">
                         <a href="tradi.html" class="side-sub-link">Traditional Masterpieces</a>
                         <a href="one.html" class="side-sub-link">Arabic Bridal Specials</a>
                         <a href="two.html" class="side-sub-link">Indo-Western Fusion Luxe</a>
                         <a href="thre.html" class="side-sub-link">Festive Arabic Collection</a>
+                        <a href="indian_festive_mehndi.html" class="side-sub-link">Indian Festive Classics</a>
+                        <a href="festive_indioarabic.html" class="side-sub-link">Indo-Arabic Fusion Art</a>
+                        <a href="tradi_geometric.html" class="side-sub-link">Moroccan Trends</a>
+                        <a href="festive_minimal_art.html" class="side-sub-link">Minimalist Elegance</a>
                     </div>
                 </div>
             </div>
@@ -217,193 +280,219 @@
     </div>
 
     <!-- MAIN CONTENT -->
-    <main class="container mx-auto px-2 sm:px-4">
+    <main class="container mx-auto p-4 md:p-8">
         
-        <a href="tradi.html" class="inline-flex items-center text-primary mb-2 font-black uppercase text-[9px] tracking-widest">
-            <i class="fas fa-arrow-left mr-1"></i> Designs
+        <a href="tradi.html" class="inline-flex items-center text-primary hover:text-white transition-colors mb-6 font-black uppercase text-sm">
+            <i class="fas fa-arrow-left mr-2"></i> View All Designs
         </a>
 
         <div class="product-container-card">
-            <h1 class="text-md sm:text-2xl md:text-5xl font-black text-primary text-center mb-3 uppercase tracking-tighter" style="text-shadow: 0 0 8px var(--primary);">
+            <h1 class="text-2xl sm:text-3xl md:text-5xl font-black text-primary text-center mb-8 uppercase tracking-tighter drop-shadow-2xl" style="text-shadow: 0 0 15px var(--primary);">
                 Punjabi Style Mehndi
             </h1>
 
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-3">
-                <div class="lg:col-span-2 flex flex-col space-y-2">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Image Viewer -->
+                <div class="lg:col-span-2 flex flex-col space-y-4">
                     <div class="relative group">
                         <img id="main-design-image" src="kalachasmabride.png" alt="Mehndi Design" class="main-design-image">
+                        
                         <div class="absolute inset-0">
-                            <div class="absolute top-0 left-0 right-0 p-2 flex justify-between">
+                            <!-- Top Overlay -->
+                            <div class="absolute top-0 left-0 right-0 p-4 flex justify-between items-start">
                                 <div class="flex space-x-2">
-                                    <button id="dlBtn" onclick="downloadDesign()" class="image-utility-button"><i class="fas fa-download text-xs"></i></button>
-                                    <button onclick="askViewMode()" class="image-utility-button"><i class="fas fa-expand text-xs"></i></button>
+                                    <button onclick="downloadDesign()" class="image-utility-button"><i class="fas fa-download"></i></button>
+                                    <!-- EXPAND BUTTON TRIGGER CHOICE -->
+                                    <button onclick="showOrientationChoice()" class="image-utility-button"><i class="fas fa-expand"></i></button>
                                 </div>
-                                <span id="design-counter" class="bg-black/80 text-primary px-2 py-1 rounded-full text-[8px] font-black border border-primary/30">1/10</span>
+                                <span id="design-counter" class="bg-black/80 text-primary px-4 py-1 rounded-full text-xs font-black border border-primary/30">1/10</span>
                             </div>
-                            <div class="absolute inset-0 flex justify-between items-center px-1">
-                                <button onclick="showPrevDesign()" class="image-nav-button"><i class="fas fa-chevron-left text-[10px]"></i></button>
-                                <button onclick="showNextDesign()" class="image-nav-button"><i class="fas fa-chevron-right text-[10px]"></i></button>
+
+                            <!-- Carousel Buttons -->
+                            <div class="absolute inset-0 flex justify-between items-center px-4">
+                                <button onclick="showPrevDesign()" class="image-nav-button"><i class="fas fa-chevron-left"></i></button>
+                                <button onclick="showNextDesign()" class="image-nav-button"><i class="fas fa-chevron-right"></i></button>
                             </div>
                         </div>
                     </div>
-                    <div id="variant-selector-mobile" class="flex flex-col space-y-2 lg:hidden"></div>
-                    <div id="variant-selector-desktop" class="hidden lg:flex flex-row gap-2 w-full"></div>
+                    
+                    <!-- Variant Buttons -->
+                    <div id="variant-selector-mobile" class="flex flex-col space-y-2 lg:hidden pt-4"></div>
+                    <div id="variant-selector-desktop" class="hidden lg:flex flex-row gap-3 pt-2 w-full"></div>
                 </div>
 
-                <div class="lg:col-span-1 flex flex-col space-y-2 auto-height-section">
-                    <div class="p-3 rounded-xl bg-black/60 border border-primary/20 backdrop-blur-md auto-height-section">
-                        <h2 class="text-[10px] sm:text-lg font-black text-primary mb-1 uppercase tracking-widest">
-                            <i class="fas fa-file-invoice mr-1 text-[8px]"></i> Coverage & Policy
+                <!-- Info Column -->
+                <div class="lg:col-span-1 flex flex-col space-y-4">
+                    <div id="conditions-container" class="p-6 rounded-3xl bg-black/40 border border-primary/30 backdrop-blur-md flex-grow">
+                        <h2 class="text-xl font-black text-primary mb-4 flex items-center uppercase tracking-widest">
+                            <i class="fas fa-file-invoice mr-2"></i> Coverage
                         </h2>
-                        <div id="dynamic-conditions" class="text-gray-200 auto-height-section"></div>
+                        <div id="dynamic-conditions" class="text-gray-200 text-sm"></div>
                     </div>
 
                     <div class="price-container">
                         <div class="flex justify-between items-center">
-                            <span class="text-[10px] sm:text-lg font-black text-white">PRICE:</span>
-                            <span id="dynamic-price" class="text-lg sm:text-4xl font-black text-primary">₹ 7,500/-</span>
+                            <span class="text-xl font-black text-white uppercase">Price:</span>
+                            <span id="dynamic-price" class="text-4xl font-black text-primary">₹ 7,500/-</span>
+                        </div>
+                        <div class="flex items-center justify-end text-sm text-yellow-400 mt-2">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                            <span class="text-white ml-2">(4.8/5.0)</span>
                         </div>
                     </div>
 
-                    <button class="cta-button uppercase tracking-widest text-[10px]" onclick="showBookingModal()">
-                        <i class="fas fa-calendar-alt mr-1"></i> Book Now!
+                    <button class="cta-button" onclick="showBookingModal()">
+                        <i class="fas fa-calendar-alt mr-3"></i> Book Now!
                     </button>
                 </div>
             </div>
             
-            <div class="mt-5 pt-3 border-t border-primary/30 auto-height-section">
-                <h2 class="text-sm sm:text-2xl font-black text-primary text-center mb-2 uppercase">
-                    <i class="fas fa-info-circle mr-1"></i> About Design Philosophy
+            <!-- Description -->
+            <div class="mt-12 pt-8 border-t border-primary/30">
+                <h2 class="text-3xl font-black text-primary text-center mb-6 uppercase tracking-tighter">
+                    <i class="fas fa-info-circle mr-3"></i> About The Art
                 </h2>
-                <div id="dynamic-about-design-content" class="text-gray-200 auto-height-section"></div>
+                <div id="dynamic-about-design-content" class="text-gray-200"></div>
             </div>
         </div>
     </main>
 
-    <!-- DOCK NAV -->
+    <!-- DOCK NAV (SYNCED) -->
     <div class="iphone-dock-wrapper">
         <nav class="iphone-dock">
-            <a href="#" class="nav-link" onclick="openPopup('bridal')"><i class="fas fa-wand-magic-sparkles"></i><span>Studio</span></a>
+            <a href="main.html" class="nav-link"><i class="fas fa-wand-magic-sparkles"></i><span>Studio</span></a>
             <a href="#" class="nav-link"><i class="fas fa-fire"></i><span>Trends</span></a>
             <a href="main.html" class="dock-fab"><i class="fas fa-house-chimney"></i></a>
-            <a href="#" class="nav-link" onclick="openPopup('gallery')"><i class="fas fa-images"></i><span>Gallery</span></a>
-            <a href="#" class="nav-link"><i class="fas fa-user-circle"></i><span>Profile</span></a>
+            <a href="tradi.html" class="nav-link active"><i class="fas fa-gem"></i><span>Bridal</span></a>
+            <a href="meet_me.html" class="nav-link"><i class="fas fa-user-circle"></i><span>Profile</span></a>
         </nav>
     </div>
 
-    <!-- MODALS -->
-    <div id="modalOverlay" class="modal-overlay">
-        <div class="modal-box">
-            <h2 id="modalTitle" class="text-md font-black text-primary uppercase mb-3 text-center">Collection</h2>
-            <div id="modalList" class="space-y-1.5 max-h-[50vh] overflow-y-auto pr-1"></div>
-            <button onclick="closePopup()" class="w-full mt-3 text-[9px] uppercase text-primary border border-primary/20 py-1.5 rounded-lg">Close</button>
+    <!-- ORIENTATION CHOICE MODAL -->
+    <div id="choice-modal" class="fixed inset-0 bg-black/80 backdrop-blur-md hidden z-[4000] flex justify-center items-center p-4">
+        <div class="choice-modal-box">
+            <h2 class="text-xl font-black text-primary uppercase mb-2">View Preferences</h2>
+            <p class="text-[10px] text-gray-400 uppercase tracking-widest mb-6">Choose how you'd like to see the art</p>
+            
+            <button onclick="openFullscreen('portrait')" class="choice-btn">
+                <i class="fas fa-mobile-alt mr-3"></i> View in Portrait
+            </button>
+            <button onclick="openFullscreen('landscape')" class="choice-btn">
+                <i class="fas fa-sync-alt mr-3"></i> View in Landscape
+            </button>
+            
+            <button onclick="closeChoiceModal()" class="mt-8 text-gray-500 text-[10px] uppercase font-black hover:text-white transition-all tracking-[4px]">Close</button>
         </div>
     </div>
 
-    <div id="viewModeModal" class="modal-overlay">
-        <div class="modal-box text-center">
-            <h2 class="text-lg font-black text-primary uppercase mb-3">View Mode</h2>
-            <div class="grid grid-cols-2 gap-3">
-                <button onclick="showFullscreenFinal('Portrait')" class="p-3 rounded-lg bg-white/5 border border-white/10 group">
-                    <i class="fas fa-mobile-alt text-xl text-primary mb-1.5"></i>
-                    <div class="text-[7px] uppercase">Portrait</div>
-                </button>
-                <button onclick="showFullscreenFinal('Landscape')" class="p-3 rounded-lg bg-white/5 border border-white/10 group">
-                    <i class="fas fa-mobile-alt text-xl text-primary rotate-90 mb-1.5"></i>
-                    <div class="text-[7px] uppercase">Landscape</div>
-                </button>
-            </div>
-            <button onclick="closeViewModeModal()" class="mt-4 text-[9px] uppercase text-gray-500">Back</button>
-        </div>
-    </div>
-
-    <div id="fullscreen-modal" class="fixed inset-0 bg-black hidden z-[4000] flex justify-center items-center">
-        <button onclick="closeFullscreenModal()" class="absolute top-5 right-5 text-white text-2xl z-[4001]"><i class="fas fa-times"></i></button>
-        <img id="modal-image" src="" alt="Zoom" class="max-w-full max-h-full object-contain">
+    <!-- Fullscreen Modal -->
+    <div id="fullscreen-modal" class="fixed inset-0 bg-black/95 backdrop-blur-xl hidden z-[5000] flex justify-center items-center p-4">
+        <button onclick="closeFullscreenModal()" class="absolute top-6 right-6 text-white text-3xl p-3 bg-primary/20 rounded-full hover:bg-primary/50 z-50"><i class="fas fa-times"></i></button>
+        <img id="modal-image" src="" alt="Zoom" class="object-contain rounded-xl shadow-2xl transition-transform duration-500">
     </div>
 
     <script>
+        // --- Navigation Logic (Synced from main.html) ---
         const menuBtn = document.getElementById('menuBtn');
         const sidebar = document.getElementById('sidebar');
         const closeSidebarBtn = document.getElementById('closeSidebar');
+
         menuBtn.onclick = () => sidebar.classList.add('open');
         closeSidebarBtn.onclick = () => sidebar.classList.remove('open');
 
         function toggleAccordion(id) {
             const content = document.getElementById(id);
             const icon = document.getElementById('icon-' + id);
-            content.style.maxHeight = content.style.maxHeight ? null : content.scrollHeight + "px";
-            if(icon) icon.style.transform = content.style.maxHeight ? 'rotate(180deg)' : 'rotate(0deg)';
+            
+            // Auto close others
+            document.querySelectorAll('.accordion-content').forEach(el => {
+                if(el.id !== id) {
+                    el.style.maxHeight = null;
+                    const otherIcon = document.getElementById('icon-' + el.id);
+                    if(otherIcon) otherIcon.style.transform = 'rotate(0deg)';
+                }
+            });
+
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;
+                if(icon) icon.style.transform = 'rotate(0deg)';
+            } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+                if(icon) icon.style.transform = 'rotate(180deg)'; 
+            }
         }
 
+        // --- PRODUCT DATA (PUNJABI) ---
         const coverageVariants = [
             { 
                 name: "Kala-Chashma-Bride", 
-                images: ['kalachasmabride.png', 
-                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,punjabi,hands,02',
-                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,punjabi,hands,03',
-                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,punjabi,hands,04',
-                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,punjabi,hands,05',
-                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,punjabi,feet,06',
-                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,punjabi,feet,07',
-                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,punjabi,detail,08',
-                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,punjabi,detail,09',
-                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,punjabi,closeup,10'],
+                images: [
+                    'kalachasmabride.png', 
+                    'kalachasmabride.png',
+                    'kalachasmabride.png',
+                    'kalachasmabride.png',
+                    'kalachasmabride.png',
+                    'kalachasmabride.png',
+                    'kalachasmabride.png',
+                    'kalachasmabride.png',
+                    'kalachasmabride.png',
+                    'kalachasmabride.png'
 
-                conditionsList: ["Back of hand mid-wrist.", "45-60 mins session.", "100% Organic Sojat.", "Sugar sealant care.", "Bold Phulkari borders.", "Modern swag theme.", "Jewelry match focus."], 
+                ],
+                conditionsList: ["Coverage: Full hands", "Design Time: 3 hours", "Natural Henna", "Style: Modern Punjabi"], 
                 price: 5500, 
-                aboutDesign: ["Punjabi swag inspired.", "Bold sunglasses motifs.", "High contrast visibility.", "Detailed fingertip strokes.", "Photography ready.", "Signature North style.", "Tradition & Trend fusion."]
+                aboutDesign: ["Royal embroidery patterns", "Heavily detailed figures", "Long lasting stain"]
             },
             { 
                 name: "Braid-detailing", 
                 images: ['braiddetailing.png',
-                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,punjabi,braid,hands,12',
-                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,punjabi,braid,hands,13',
-                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,punjabi,braid,hands,14',
-                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,punjabi,braid,hands,15',
-                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,punjabi,braid,feet,16',
-                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,punjabi,braid,feet,17',
-                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,punjabi,braid,detail,18',
-                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,punjabi,braid,detail,19',
-                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,punjabi,braid,closeup,20'
-                ],
-                conditionsList: ["Full palm coverage.", "3 hours session.", "Eucalyptus oil henna.", "Symmetrical precision.", "Micro-border finish.", "Stain protector wrap.", "Deep maroon guarantee."], 
+                         'braiddetailing.png',
+                         'braiddetailing.png',
+                         'braiddetailing.png',
+                         'braiddetailing.png',
+                         'braiddetailing.png',
+                         'braiddetailing.png',
+                         'braiddetailing.png',
+                         'braiddetailing.png',
+                         'braiddetailing.png'
+
+                                             ],
+                conditionsList: ["Front & Back Palm Coverage", "Detailed patterns", "Organic Mix"], 
                 price: 6500, 
-                aboutDesign: ["Signature Guth strokes.", "Royal paranda texture.", "Intricate Jali net.", "Heritage symbol weave.", "Sleeveless outfit choice.", "Rhythmic floral flow.", "Traditional braid points."]
+                aboutDesign: ["Intertwined braid motifs", "Geometric balance", "Perfect for engagement"]
             },
             { 
                 name: "Paranda-Elements", 
                 images: ['parandaelements.png',
-                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,punjabi,paranda,hands,22',
-                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,punjabi,paranda,hands,23',
-                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,punjabi,paranda,hands,24',
-                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,punjabi,paranda,hands,25',
-                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,punjabi,paranda,feet,26',
-                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,punjabi,paranda,feet,27',
-                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,punjabi,paranda,detail,28',
-                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,punjabi,paranda,detail,29',
-                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,punjabi,paranda,closeup,30'
-                ],
-                conditionsList: ["Mid-forearm extension.", "5 hours session.", "Tassels arm theme.", "Pre-mehndi hydration.", "Fine detailing powder.", "Matching leg motifs.", "2 week notice booking."], 
+                         'parandaelements.png',
+                         'parandaelements.png',
+                         'parandaelements.png',
+                         'parandaelements.png',
+                         'parandaelements.png',
+                         'parandaelements.png',
+                         'parandaelements.png',
+                         'parandaelements.png',
+                         'parandaelements.png'],
+                conditionsList: ["Full Arms & Legs", "Customized Portraits", "Premium Sealant"], 
                 price: 7000, 
-                aboutDesign: ["Paranda tassel vines.", "Negative space luxury.", "Kalas & Peacock motifs.", "Folklore rooted art.", "Dynamic contour flow.", "Heart Mandala center.", "Malwa heritage style."]
+                aboutDesign: ["Traditional Punjabi Folk Art", "Rich dark stain guaranteed", "Wedding Special"]
             },
             { 
                 name: "Heer–Ranjha-Theme", 
                 images: ['heerranjhatheme.png',
-                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,punjabi,theme,hands,32',
-                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,punjabi,theme,hands,33',
-                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,punjabi,theme,hands,34',
-                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,punjabi,theme,hands,35',
-                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,punjabi,theme,feet,36',
-                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,punjabi,theme,feet,37',
-                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,punjabi,theme,detail,38',
-                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,punjabi,theme,detail,39',
-                    'https://source.unsplash.com/random/1000x500/?mehndi,bridal,punjabi,theme,closeup,40'
-                ],
-                conditionsList: ["Elbows & Knees set.", "8 hours dedicated.", "Story-boarding portraits.", "Gold-dust sealant.", "Family henna bonus.", "Personalized stain care.", "Mandatory briefing."], 
-                price: 7500, 
-                aboutDesign: ["Love saga narration.", "Miniature portraits.", "Flute & Love motifs.", "Zardosi micro-shade.", "Grand luxury choice.", "3D dimension thickness.", "Bridal history art."]
+                         'heerranjhatheme.png',
+                         'heerranjhatheme.png',
+                         'heerranjhatheme.png',
+                         'heerranjhatheme.png',
+                         'heerranjhatheme.png',
+                         'heerranjhatheme.png',
+                         'heerranjhatheme.png',
+                         'heerranjhatheme.png',
+                         'heerranjhatheme.png'
+                                               ],
+                conditionsList: ["Narrative Art", "Intricate Wedding Scene", "Elite Artist Service"], 
+                price: 9500, 
+                aboutDesign: ["Story-based mehndi art", "Premium luxury finish", "Our signature masterpiece"]
             }
         ];
 
@@ -413,23 +502,54 @@
 
         function updateMainImage() {
             const mainImg = document.getElementById('main-design-image');
-            mainImg.src = selectedVariant.images[currentImageIndex];
-            document.getElementById('design-counter').innerText = `${currentImageIndex + 1}/10`;
+            mainImg.src = selectedVariant.images[currentImageIndex] || selectedVariant.images[0];
+            document.getElementById('design-counter').innerText = `${currentImageIndex + 1}/${selectedVariant.images.length}`;
         }
 
-        function showNextDesign() { currentImageIndex = (currentImageIndex + 1) % 10; updateMainImage(); }
-        function showPrevDesign() { currentImageIndex = (currentImageIndex - 1 + 10) % 10; updateMainImage(); }
+        function showNextDesign() {
+            currentImageIndex = (currentImageIndex + 1) % selectedVariant.images.length;
+            updateMainImage();
+        }
+
+        function showPrevDesign() {
+            currentImageIndex = (currentImageIndex - 1 + selectedVariant.images.length) % selectedVariant.images.length;
+            updateMainImage();
+        }
 
         function selectVariant(index) {
             currentVariantIndex = index;
             selectedVariant = coverageVariants[index];
             currentImageIndex = 0;
+
             document.getElementById('dynamic-price').innerText = `₹ ${selectedVariant.price.toLocaleString('en-IN')}/-`;
             
-            document.getElementById('dynamic-conditions').innerHTML = `<div class="space-y-1">${selectedVariant.conditionsList.map(c => `<div class="flex items-start"><i class="fas fa-check-circle text-primary mr-2 mt-0.5 text-[7px]"></i><span class="dynamic-list-item">${c}</span></div>`).join('')}</div>`;
-            document.getElementById('dynamic-about-design-content').innerHTML = `<div class="space-y-1">${selectedVariant.aboutDesign.map(p => `<div class="flex items-start"><i class="fas fa-hand-point-right text-primary mr-2 mt-0.5 text-[7px]"></i><span class="dynamic-list-item">${p}</span></div>`).join('')}</div>`;
+            document.getElementById('dynamic-conditions').innerHTML = `
+                <ul class="space-y-2">
+                    ${selectedVariant.conditionsList.map(c => `
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-primary mr-3 mt-1 text-xs"></i>
+                            <span class="dynamic-list-item uppercase text-[10px] tracking-widest">${c}</span>
+                        </li>
+                    `).join('')}
+                </ul>`;
 
-            document.querySelectorAll('.variant-button').forEach((btn, i) => btn.classList.toggle('active', i === index));
+            document.getElementById('dynamic-about-design-content').innerHTML = `
+                <ul class="space-y-3">
+                    ${selectedVariant.aboutDesign.map(p => `
+                        <li class="flex items-start">
+                            <i class="fas fa-hand-point-right text-primary mr-3 mt-1"></i>
+                            <span class="dynamic-list-item font-black text-sm uppercase">${p}</span>
+                        </li>
+                    `).join('')}
+                </ul>`;
+
+            const mobileBtns = document.getElementById('variant-selector-mobile').children;
+            const desktopBtns = document.getElementById('variant-selector-desktop').children;
+            
+            [...mobileBtns, ...desktopBtns].forEach(btn => btn.classList.remove('active'));
+            if(mobileBtns[index]) mobileBtns[index].classList.add('active');
+            if(desktopBtns[index]) desktopBtns[index].classList.add('active');
+
             updateMainImage();
         }
 
@@ -440,60 +560,47 @@
             selectVariant(0);
         }
 
-        // --- REAL-TIME DOWNLOAD LOGIC ---
-        async function downloadDesign() {
-            const imageUrl = document.getElementById('main-design-image').src;
-            const dlBtn = document.getElementById('dlBtn');
-            dlBtn.innerHTML = '<i class="fas fa-circle-notch fa-spin text-xs"></i>';
-            
-            try {
-                const response = await fetch(imageUrl);
-                const blob = await response.blob();
-                const url = window.URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.style.display = 'none';
-                a.href = url;
-                a.download = `Blessingsss_Mehndi_Art_${Date.now()}.jpg`;
-                document.body.appendChild(a);
-                a.click();
-                document.body.removeChild(a);
-                window.URL.revokeObjectURL(url);
-            } catch (err) {
-                // Fallback for strict browser policy
-                window.open(imageUrl, '_blank');
-            } finally {
-                setTimeout(() => dlBtn.innerHTML = '<i class="fas fa-download text-xs"></i>', 500);
-            }
+        function downloadDesign() {
+            const link = document.createElement('a');
+            link.href = document.getElementById('main-design-image').src;
+            link.download = `Blessingsss_Punjabi_${selectedVariant.name}.jpg`;
+            link.click();
         }
 
-        function askViewMode() { document.getElementById('viewModeModal').style.display = 'flex'; }
-        function closeViewModeModal() { document.getElementById('viewModeModal').style.display = 'none'; }
-        function showFullscreenFinal(mode) {
+        // --- NEW ORIENTATION LOGIC ---
+        function showOrientationChoice() {
+            document.getElementById('choice-modal').classList.remove('hidden');
+        }
+
+        function closeChoiceModal() {
+            document.getElementById('choice-modal').classList.add('hidden');
+        }
+
+        function openFullscreen(type) {
+            const modal = document.getElementById('fullscreen-modal');
             const img = document.getElementById('modal-image');
             img.src = document.getElementById('main-design-image').src;
-            img.style.transform = mode === 'Landscape' ? 'rotate(90deg)' : 'rotate(0deg)';
-            img.style.maxWidth = mode === 'Landscape' ? '85vh' : '100%';
-            document.getElementById('fullscreen-modal').classList.remove('hidden');
-            closeViewModeModal();
+            
+            modal.classList.remove('hidden', 'landscape-view', 'portrait-view');
+            modal.classList.add(type + '-view');
+            
+            closeChoiceModal();
         }
-        function closeFullscreenModal() { document.getElementById('fullscreen-modal').classList.add('hidden'); }
-        function showBookingModal() { window.open(`https://wa.me/918816014071?text=Booking Punjabi ${selectedVariant.name}`, '_blank'); }
+
+        function closeFullscreenModal() {
+            document.getElementById('fullscreen-modal').classList.add('hidden');
+        }
+
+        function showBookingModal() {
+            const text = `Hello Blessingsss! I want to book the Punjabi Style "${selectedVariant.name}" package for ₹ ${selectedVariant.price.toLocaleString('en-IN')}/-.`;
+            window.open(`https://wa.me/918816014071?text=${encodeURIComponent(text)}`, '_blank');
+        }
 
         document.addEventListener('DOMContentLoaded', renderVariants);
-        window.onclick = (e) => { if (e.target.classList.contains('modal-overlay')) { closeViewModeModal(); closePopup(); } };
-
-        function openPopup(key) {
-            const items = { 
-                bridal: [{n:"Royal Traditional",l:"bridal_traditional.html"},{n:"Modern Arabic",l:"bridal_arabic.html"},{n:"Fusion Luxe",l:"bridal_indowestern.html"}], 
-                gallery: [{n:"Traditional Masterpieces",l:"tradi.html"},{n:"Arabic Specials",l:"one.html"},{n:"Indo-Western Luxe",l:"two.html"}] 
-            };
-            const data = items[key] || [];
-            document.getElementById('modalTitle').innerText = key.toUpperCase();
-            const container = document.getElementById('modalList');
-            container.innerHTML = data.map(i => `<div class="modal-list-item" onclick="location.href='${i.l}'"><span>${i.n}</span><i class="fas fa-chevron-right text-primary text-[7px]"></i></div>`).join('');
-            document.getElementById('modalOverlay').style.display = 'flex';
-        }
-        function closePopup() { document.getElementById('modalOverlay').style.display = 'none'; }
+        window.onclick = (e) => { 
+            if (e.target == document.getElementById('fullscreen-modal')) closeFullscreenModal();
+            if (e.target == document.getElementById('choice-modal')) closeChoiceModal();
+        };
     </script>
 </body>
 </html>
