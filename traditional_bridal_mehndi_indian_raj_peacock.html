@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Rajasthani Couple Style Mehndi Design | Blessingsss</title>
+    <title>Peacock Style Bridal Mehndi Design | Blessingsss</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Font Awesome -->
@@ -236,14 +236,13 @@
 
         <div class="product-container-card">
             <h1 class="text-2xl sm:text-3xl md:text-5xl font-black text-primary text-center mb-8 uppercase tracking-tighter drop-shadow-2xl" style="text-shadow: 0 0 15px var(--primary);">
-                Rjesthani-Peacock
-            </h1>
+                Rajesthani-Peacock
 
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
                 <!-- Image Viewer -->
                 <div class="lg:col-span-2 flex flex-col space-y-4">
                     <div class="relative group">
-                        <img id="main-design-image" src="rajrajkumari.png" alt="Mehndi Design" class="main-design-image">
+                        <img id="main-design-image" src="fullpeacock.png" alt="Mehndi Design" class="main-design-image">
                         
                         <div class="absolute inset-0">
                             <div class="absolute top-0 left-0 right-0 p-4 flex justify-between items-start">
@@ -356,26 +355,33 @@
 
         const coverageVariants = [
             { 
-                name: "Raj-Rajkumari", 
+                name: "Full-Peacock", 
                 images: [
-                    'rajrajkumari.png','rajrajkumari.png','rajrajkumari.png','rajrajkumari.png','rajrajkumari.png','rajrajkumari.png','rajrajkumari.png','rajrajkumari.png','rajrajkumari.png','rajrajkumari.png' ],
-                conditionsList: ["Coverage: Full hands.", "Design Time: 4 hours.", "Storytelling Portraiture."], 
+                    'fullpeacock.png','fullpeacock.png','fullpeacock.png','fullpeacock.png','fullpeacock.png','fullpeacock.png','fullpeacock.png','fullpeacock.png','fullpeacock.png','fullpeacock.png' ],
+                conditionsList: ["Coverage: Full hands and wrists.", "Design Time: 2.5 hours.", "Natural Brown Henna."], 
                 price: 5500, 
-                aboutDesign: ["Royal Rajasthani couple figures.", "Dense intricate background.", "Fine detailing."]
+                aboutDesign: ["Intricate peacock motifs.", "Traditional Rajasthani peacock feathers.", "Highly detailed fill."]
             },
             { 
-                name: "Palki-Scene", 
-                images: ['palkiscene.png','palkiscene.png','palkiscene.png','palkiscene.png','palkiscene.png','palkiscene.png','palkiscene.png','palkiscene.png','palkiscene.png','palkiscene.png'],
-                conditionsList: ["Coverage: Palms & Wrists.", "Design Time: 3 hours.", "Wedding Scene Focus."], 
+                name: "Dual-Peacock", 
+                images: ['dualpeacock.png','dualpeacock.png','dualpeacock.png','dualpeacock.png','dualpeacock.png','dualpeacock.png','dualpeacock.png','dualpeacock.png','dualpeacock.png','dualpeacock.png'],
+                conditionsList: ["Coverage: Front & Back Palm.", "Design Time: 2.5 hours.", "Premium Shading."], 
                 price: 6500, 
-                aboutDesign: ["Traditional Palki elements.", "Floral & Figure fusion.", "Classic Bridal heritage."]
+                aboutDesign: ["Symmetrical dual peacock motifs.", "Geometric balance.", "Elite bridal look."]
             },
             { 
-                name: "Jaimala-Moments", 
-                images: ['jaimalamoments.png','jaimalamoments.png','jaimalamoments.png','jaimalamoments.png','jaimalamoments.png','jaimalamoments.png','jaimalamoments.png','jaimalamoments.png','jaimalamoments.png','jaimalamoments.png'],
-                conditionsList: ["Coverage: Up to Elbow.", "Design Time: 5 hours.", "Grand Bridal Package."], 
+                name: "Tail-Motif", 
+                images: ['tailmotif.png','tailmotif.png','tailmotif.png','tailmotif.png','tailmotif.png','tailmotif.png','tailmotif.png','tailmotif.png','tailmotif.png','tailmotif.png'],
+                conditionsList: ["Coverage: Mid-arm & Ankles.", "Design Time: 4 hours.", "Highest Grade Henna."], 
+                price: 7000, 
+                aboutDesign: ["Flowing peacock tail patterns.", "Graceful transitions.", "Wedding classic."]
+            },
+            { 
+                name: "Peacock-Crown-Filling", 
+                images: ['peacockcrownfilling.png','peacockcrownfilling.png','peacockcrownfilling.png','peacockcrownfilling.png','peacockcrownfilling.png','peacockcrownfilling.png','peacockcrownfilling.png','peacockcrownfilling.png','peacockcrownfilling.png','peacockcrownfilling.png'],
+                conditionsList: ["Coverage: Up to Elbow.", "Design Time: 4 hours.", "Deep Stain Finish."], 
                 price: 8500, 
-                aboutDesign: ["Jaimala ceremony depictions.", "Elite level intricacy.", "Masterpiece of figure art."]
+                aboutDesign: ["Crowned peacock focal points.", "Intricate royal filling.", "Signature masterpiece."]
             }
         ];
 
@@ -429,7 +435,7 @@
         function downloadDesign() {
             const link = document.createElement('a');
             link.href = document.getElementById('main-design-image').src;
-            link.download = `Blessingsss_Couple_${selectedVariant.name}.jpg`;
+            link.download = `Blessingsss_Peacock_${selectedVariant.name}.jpg`;
             link.click();
         }
 
@@ -445,7 +451,7 @@
         }
         function closeFullscreenModal() { document.getElementById('fullscreen-modal').classList.add('hidden'); }
         function showBookingModal() {
-            const text = `Hello Blessingsss! I want to book the Couple Style "${selectedVariant.name}" package for ₹ ${selectedVariant.price.toLocaleString('en-IN')}/-.`;
+            const text = `Hello Blessingsss! I want to book the Peacock Style "${selectedVariant.name}" package for ₹ ${selectedVariant.price.toLocaleString('en-IN')}/-.`;
             window.open(`https://wa.me/918816014071?text=${encodeURIComponent(text)}`, '_blank');
         }
 
