@@ -10,227 +10,137 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
     <!-- Premium Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Noto+Sans+Devanagari:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800;900&family=Noto+Sans+Devanagari:wght@700;900&display=swap" rel="stylesheet">
     
     <style>
         :root {
             --primary: #FFD700; 
             --primary-rgb: 255, 215, 0; 
-            --accent: #FFF9C4; 
             --bg-dark: #050401; 
             --card-glass: rgba(15, 12, 5, 0.95);
-            --border-glow: rgba(255, 215, 0, 0.5);
-            --header-h: 70px;
-            --bottom-nav-h: 115px; 
+            --header-offset: calc(15px + env(safe-area-inset-top));
+            --header-height: 64px;
+            --footer-offset: calc(25px + env(safe-area-inset-bottom));
+            --footer-height: 76px;
+            --text-light: #ffffff;
+            --dark-green: #013220; 
         }
 
-        html { scroll-behavior: smooth; height: 100%; -webkit-text-size-adjust: 100%; }
+        html { scroll-behavior: smooth; }
         body {
             font-family: 'Plus Jakarta Sans', 'Noto Sans Devanagari', sans-serif;
             background-color: var(--bg-dark);
-            color: #fffaf0;
-            min-height: 100%;
-            padding-top: calc(var(--header-h) + env(safe-area-inset-top));
-            padding-bottom: calc(var(--bottom-nav-h) + env(safe-area-inset-bottom));
+            color: var(--text-light);
+            padding-top: calc(var(--header-offset) + var(--header-height) + 20px);
+            padding-bottom: calc(var(--footer-offset) + var(--footer-height) + 40px);
             margin: 0;
+            font-weight: 900; 
             overflow-x: hidden;
         }
 
-        /* --- CUSTOM GOLDEN SCROLLBAR --- */
-        ::-webkit-scrollbar { width: 4px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 10px; box-shadow: 0 0 10px var(--primary); }
-
-        /* --- BACKGROUND MEDIA --- */
+        /* --- BACKGROUND --- */
         #fixed-media-background {
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            z-index: -10;
-            background-image: url('bridal.png');
-            background-size: cover;
-            background-position: center;
-            opacity: 0.7; 
+            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            z-index: -10; background-size: cover; background-position: center;
+            opacity: 0.7; background-image: url('bridal.png');
             filter: contrast(125%) brightness(50%) sepia(40%);
         }
 
-        /* --- HEADER --- */
-        .glass-header {
-            height: var(--header-h);
-            padding-top: env(safe-area-inset-top);
-            background: rgba(5, 4, 1, 0.96);
-            backdrop-filter: blur(30px);
-            border-bottom: 2px solid var(--primary);
-            box-shadow: 0 5px 35px rgba(0, 0, 0, 0.9);
-            z-index: 1000;
-        }
-
-        .logo-icon-circle {
-            width: 25px; height: 25px;
-            border-radius: 50%;
-            border: 1.5px solid var(--primary);
-            object-fit: cover;
-            box-shadow: 0 0 10px var(--primary);
-        }
-
-        .brand-img-fixed {
-            height: 25px !important;
-            width: auto !important;
-            filter: drop-shadow(0 0 10px var(--primary));
+        /* --- GOLDEN FLOATING HEADER --- */
+        .iphone-header {
+            position: fixed; top: var(--header-offset); left: 50%; transform: translateX(-50%);
+            width: 92%; max-width: 600px; height: var(--header-height);
+            background: rgba(5, 4, 1, 0.96); backdrop-filter: blur(30px);
+            border: 2px solid rgba(255, 215, 0, 0.4); border-radius: 24px;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 0 20px; z-index: 2000; box-shadow: 0 0 25px rgba(255, 215, 0, 0.2);
         }
 
         /* --- ULTRA DECORATIVE SIDEBAR --- */
         .mobile-panel {
-            position: fixed;
-            top: calc(var(--header-h) + env(safe-area-inset-top)); 
-            right: 0;
-            bottom: calc(var(--bottom-nav-h) + env(safe-area-inset-bottom));
-            width: 85%; max-width: 340px;
-            height: calc(100vh - (var(--header-h) + env(safe-area-inset-top)) - (var(--bottom-nav-h) + env(safe-area-inset-bottom)));
-            background: rgba(8, 7, 2, 0.98);
-            backdrop-filter: blur(45px);
-            z-index: 1100;
-            transform: translateX(100%);
-            transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-            border-left: 2.5px solid var(--primary);
-            border-radius: 40px 0 0 40px;
+            position: fixed; 
+            top: calc(var(--header-offset) + var(--header-height) + 10px); 
+            bottom: calc(var(--footer-offset) + var(--footer-height) + 10px);
+            right: 15px; width: 85%; max-width: 340px;
+            background: rgba(8, 7, 2, 0.98); backdrop-filter: blur(45px); z-index: 1500; 
+            transform: translateX(120%); transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            border: 2.5px solid var(--primary); border-radius: 35px; overflow: hidden;
             box-shadow: -30px 0 80px rgba(0,0,0,1);
-            overflow: hidden;
         }
         .mobile-panel.open { transform: translateX(0); }
-
-        .sidebar-bg-image {
-            position: absolute; inset: 0; background-image: url('bridal.png'); background-size: cover; background-position: center; opacity: 0.55; z-index: 0; filter: grayscale(40%) brightness(30%);
-        }
-
-        .mandala-bg {
-            position: absolute; top: 50%; left: 50%; width: 500px; height: 500px; margin-top: -250px; margin-left: -250px; opacity: 0.1; pointer-events: none; animation: spin 100s linear infinite; z-index: 1;
-        }
+        .sidebar-bg-image { position: absolute; inset: 0; background-image: url('bridal.png'); background-size: cover; background-position: center; opacity: 0.55; z-index: 0; filter: grayscale(40%) brightness(30%); }
+        .mandala-bg { position: absolute; top: 50%; left: 50%; width: 500px; height: 500px; margin-top: -250px; margin-left: -250px; opacity: 0.1; pointer-events: none; animation: spin 100s linear infinite; z-index: 1; }
         @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-
         .sidebar-inner { height: 100%; overflow-y: auto; padding: 40px 20px; position: relative; z-index: 10; }
-        .sidebar-header { text-align: center; margin-bottom: 35px; padding-bottom: 25px; border-bottom: 1.5px solid rgba(255, 215, 0, 0.3); position: relative; }
-
-        .sidebar-close-btn {
-            position: absolute; top: -15px; right: -5px; width: 40px; height: 40px; border-radius: 50%; background: var(--primary); color: #000; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; box-shadow: 0 0 25px var(--primary); cursor: pointer; z-index: 100; transition: 0.4s; border: 2px solid #000;
-        }
-
-        .accordion-btn {
-            width: 100%; padding: 18px 22px; margin-bottom: 10px; border-radius: 18px; background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(8px); font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; color: #fff; display: flex; justify-content: space-between; align-items: center; transition: 0.4s; border: 1px solid rgba(255, 215, 0, 0.2);
-        }
-        .accordion-btn:hover, .accordion-btn.active { background: rgba(255, 215, 0, 0.25); border-color: var(--primary); color: var(--primary); }
-
-        .side-sub-link { display: block; padding: 14px 35px; font-size: 0.85rem; color: #eee; background: rgba(0,0,0,0.4); border-left: 2px solid rgba(255, 215, 0, 0.15); transition: 0.3s; margin-left: 15px; border-bottom: 1px solid rgba(255,215,0,0.05); }
-        .side-sub-link:hover { color: var(--primary); border-left-color: var(--primary); padding-left: 50px; background: rgba(255,215,0,0.15); }
+        .sidebar-close-btn { position: absolute; top: 15px; right: 15px; width: 40px; height: 40px; border-radius: 50%; background: var(--primary); color: #000; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 100; border: 2px solid #000; box-shadow: 0 0 20px var(--primary); }
         
+        .accordion-btn { width: 100%; padding: 18px 22px; margin-bottom: 10px; border-radius: 18px; background: rgba(0, 0, 0, 0.5); font-weight: 800; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; color: #fff; display: flex; justify-content: space-between; align-items: center; border: 1px solid rgba(255, 215, 0, 0.2); }
         .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out; }
+        .side-sub-link { display: block; padding: 14px 35px; font-size: 0.8rem; color: #eee; background: rgba(0,0,0,0.4); border-left: 2px solid rgba(255, 215, 0, 0.15); text-decoration: none; border-bottom: 1px solid rgba(255,215,0,0.05); }
 
-        /* --- PREMIUM CARDS --- */
-        .card-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
-        @media (min-width: 640px) { .card-grid { grid-template-columns: repeat(2, 1fr); } }
-        @media (min-width: 1024px) { .card-grid { grid-template-columns: repeat(4, 1fr); } }
-        @media (min-width: 1280px) { .card-grid { grid-template-columns: repeat(5, 1fr); } }
-
-        .premium-card { background: var(--card-glass); border-radius: 28px; border: 1.5px solid var(--border-glow); padding: 14px; transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1); cursor: pointer; position: relative; box-shadow: 0 15px 40px rgba(0,0,0,0.6); overflow: hidden; }
-        .premium-card:hover { border-color: var(--primary); box-shadow: 0 0 45px rgba(var(--primary-rgb), 0.6); transform: translateY(-12px); }
-        
-        .card-img { width: 100%; height: 85px; border-radius: 16px; object-fit: cover; border: 1.5px solid rgba(var(--primary-rgb), 0.25); transition: 0.6s; }
-        @media (min-width: 1024px) { .card-img { height: 160px; } }
-        .premium-card:hover .card-img { transform: scale(1.1); filter: brightness(1.2); }
-
-        /* --- BOTTOM NAV --- */
-        .bottom-nav {
-            position: fixed; bottom: 0; left: 0; width: 100%; height: var(--bottom-nav-h);
-            padding-bottom: env(safe-area-inset-bottom);
-            background: rgba(5, 4, 1, 0.98); backdrop-filter: blur(35px); border-top: 2.5px solid var(--primary);
-            display: flex; justify-content: space-around; align-items: center; z-index: 1000;
-            box-shadow: 0 -15px 60px rgba(0,0,0,1);
+        /* --- GOLDEN DOCK --- */
+        .iphone-dock-wrapper { 
+            position: fixed; bottom: var(--footer-offset); 
+            left: 0; width: 100%; display: flex; justify-content: center; z-index: 2000; padding: 0 15px; 
         }
-        .nav-link { color: #8892a0; font-size: 0.65rem; font-weight: 800; text-transform: uppercase; display: flex; flex-direction: column; align-items: center; transition: 0.4s; padding: 10px; }
-        .nav-link i { font-size: 1.4rem; margin-bottom: 6px; }
+        .iphone-dock { width: 100%; max-width: 500px; height: var(--footer-height); background: rgba(5, 4, 1, 0.98); backdrop-filter: blur(35px); border-radius: 32px; border: 2px solid rgba(255, 215, 0, 0.2); display: flex; justify-content: space-around; align-items: center; box-shadow: 0 15px 40px rgba(0,0,0,0.9); }
+        .nav-link { color: #8892a0; font-size: 0.6rem; font-weight: 800; text-transform: uppercase; display: flex; flex-direction: column; align-items: center; transition: 0.4s; padding: 10px; }
+        .nav-link i { font-size: 1.3rem; margin-bottom: 4px; }
         .nav-link.active { color: var(--primary); }
-        
-        .central-fab {
-            width: 78px; height: 78px; background: radial-gradient(circle at center, #fff 0%, var(--primary) 70%); border-radius: 50%;
-            display: flex; align-items: center; justify-content: center; color: #000; font-size: 2rem;
-            margin-top: -65px; border: 6px solid #050401; box-shadow: 0 0 45px rgba(var(--primary-rgb), 0.7); transition: 0.5s; z-index: 1001;
-        }
-        .central-fab:hover { transform: scale(1.15) rotate(15deg); }
-
-        /* --- POPUP MODAL (REFINED FOR BACKGROUND IMAGE) --- */
-        .modal-overlay {
-            position: fixed; 
-            top: calc(var(--header-h) + env(safe-area-inset-top));
-            bottom: calc(var(--bottom-nav-h) + env(safe-area-inset-bottom) - 15px);
-            left: 0; right: 0;
-            background: rgba(0,0,0,0.92); backdrop-filter: blur(20px); display: none; z-index: 2000;
-            align-items: center; justify-content: center; padding: 25px;
-        }
-        .modal-box {
-            background: rgba(10, 8, 2, 0.8); border: 2.5px solid var(--primary); border-radius: 40px; width: 100%; max-width: 440px; padding: 35px; box-shadow: 0 0 90px rgba(var(--primary-rgb), 0.7); max-height: 95%; overflow: hidden; position: relative;
-        }
-        .modal-bg-img { 
-            position: absolute; 
-            inset: 0; 
-            background-size: cover; 
-            background-position: center; 
-            opacity: 0.65; /* Increased opacity for background impact */
-            z-index: 0; 
-            filter: brightness(35%) contrast(110%); 
-            transition: background-image 0.5s ease-in-out;
-        }
-
-        .list-item {
-            background: rgba(255, 215, 0, 0.08); 
-            backdrop-filter: blur(15px); /* Glassmorphism list items */
-            border: 1.5px solid rgba(255, 215, 0, 0.25); 
-            padding: 18px 25px; 
-            border-radius: 22px; 
-            margin-bottom: 12px; 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            transition: 0.4s; 
-            cursor: pointer; 
-            position: relative; 
-            z-index: 5;
-        }
-        .list-item:hover { background: rgba(255, 215, 0, 0.35); transform: translateY(-4px); border-color: var(--primary); }
+        .dock-fab { width: 70px; height: 70px; background: radial-gradient(circle at center, #fff 0%, var(--primary) 70%); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #000; font-size: 1.8rem; transform: translateY(-30px); border: 5px solid #050401; box-shadow: 0 12px 35px rgba(0,0,0,0.8), 0 0 45px rgba(var(--primary-rgb), 0.7); }
 
         /* --- HERO SLIDER --- */
         .hero-slider { height: 360px; border-radius: 40px; overflow: hidden; position: relative; border: 2.5px solid var(--primary); margin-bottom: 40px; box-shadow: 0 25px 60px rgba(0,0,0,1); }
-        @media (max-width: 640px) { .hero-slider { height: 220px; } }
+        @media (max-width: 640px) { .hero-slider { height: 200px; } }
         .slide-img-layer { width: 100%; height: 100%; background-size: cover; background-position: center; transition: transform 6s ease-out, opacity 1s ease; transform: scale(1.05); }
         .slide-content { position: absolute; bottom: 0; left: 0; width: 100%; padding: 45px 30px; background: linear-gradient(to top, rgba(5,4,1,1) 30%, transparent); z-index: 5; }
-        .slide-btn {
-            background: var(--primary); color: #000 !important; padding: 14px 35px; border-radius: 50px; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem; box-shadow: 0 0 30px rgba(255,215,0,0.7); transition: 0.4s; display: inline-block; margin-top: 20px; border: 2px solid #000;
-        }
-        .slide-text-anim { opacity: 0; transform: translateY(30px); transition: all 0.9s cubic-bezier(0.2, 0.8, 0.2, 1); }
-        .active .slide-text-anim { opacity: 1; transform: translateY(0); }
+        @media (max-width: 640px) { .slide-content { padding: 20px 15px; } }
+        .slide-btn { background: var(--primary); color: #000; padding: 12px 30px; border-radius: 50px; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; font-size: 0.75rem; box-shadow: 0 0 30px rgba(255,215,0,0.5); display: inline-block; margin-top: 15px; border: 2px solid #000; cursor: pointer; }
 
-        .floral-divider { display: flex; align-items: center; justify-content: center; gap: 15px; margin: 20px 0; opacity: 0.6; }
+        /* --- CARD GRID (2 CARDS ON MOBILE) --- */
+        .card-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+        @media (min-width: 640px) { .card-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; } }
+        @media (min-width: 1024px) { .card-grid { grid-template-columns: repeat(4, 1fr); } }
+        @media (min-width: 1280px) { .card-grid { grid-template-columns: repeat(5, 1fr); } }
+
+        .premium-card { background: var(--card-glass); border-radius: 28px; border: 1.5px solid rgba(255,215,0,0.3); padding: 10px; transition: 0.4s; cursor: pointer; position: relative; box-shadow: 0 15px 40px rgba(0,0,0,0.6); overflow: hidden; }
+        @media (min-width: 640px) { .premium-card { padding: 14px; } }
+        .premium-card:hover { border-color: var(--primary); transform: translateY(-10px); box-shadow: 0 0 45px rgba(var(--primary-rgb), 0.5); }
+        
+        /* --- UPDATED IMAGE WITH DARK GREEN BORDER --- */
+        .card-img { width: 100%; height: 70px; border-radius: 16px; object-fit: cover; transition: 0.6s; border: 3px solid var(--dark-green); }
+        @media (min-width: 640px) { .card-img { height: 120px; } }
+
+        .floral-divider { display: flex; align-items: center; justify-content: center; gap: 15px; margin: 20px 0; opacity: 0.8; }
         .floral-line { height: 1.5px; width: 60px; background: linear-gradient(90deg, transparent, var(--primary)); }
+        .floral-line.rev { background: linear-gradient(270deg, transparent, var(--primary)); }
 
-        .custom-scroll::-webkit-scrollbar { width: 3px; }
-        .custom-scroll::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 10px; }
+        .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.96); backdrop-filter: blur(25px); display: none; z-index: 2500; align-items: center; justify-content: center; padding: 25px; }
+        .modal-box { background: #0a0802; border: 2.5px solid var(--primary); border-radius: 40px; width: 100%; max-width: 440px; padding: 35px; box-shadow: 0 0 90px rgba(var(--primary-rgb), 0.7); position: relative; overflow: hidden; }
+        .modal-bg-img { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0.4; z-index: 0; filter: brightness(25%); }
+        .list-item { background: rgba(255, 215, 0, 0.05); border: 1.5px solid rgba(255, 215, 0, 0.2); padding: 18px; border-radius: 20px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; transition: 0.3s; position: relative; z-index: 5; }
+        .list-item:hover { background: rgba(255, 215, 0, 0.2); border-color: var(--primary); }
 
+        * { font-style: normal !important; }
+        h1, h2, h3, span, p, a, button { font-weight: 900 !important; }
     </style>
 </head>
 <body>
-
+    
     <div id="fixed-media-background"></div>
 
-    <!-- Header Section -->
-    <header class="glass-header fixed top-0 left-0 w-full px-6 flex justify-between items-center">
+    <!-- FLOATING HEADER -->
+    <header class="iphone-header">
         <div class="flex items-center gap-3">
-            <img src="blessingsssl.png" alt="Icon" class="logo-icon-circle" onerror="this.src='https://placehold.co/512x512/FFD700/000000?text=B'">
-            <img src="blessingsss.png" alt="Blessingsss" class="brand-img-fixed" onerror="this.src='https://placehold.co/120x25/000000/FFD700?text=Blessingsss'">
+            <img src="blessingsssl.png" alt="Icon" class="w-9 h-9 rounded-xl border-2 border-primary shadow-lg">
+            <img src="blessingsss.png" alt="Blessingsss" class="h-[18px]">
         </div>
-        <button id="menuBtn" class="w-11 h-11 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-primary text-2xl">
+        <button id="menuBtn" class="w-11 h-11 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-primary text-xl shadow-lg">
             <i class="fas fa-bars-staggered"></i>
         </button>
     </header>
 
-    <!-- Sidebar -->
+    <!-- SIDEBAR -->
     <div id="sidebar" class="mobile-panel">
         <div class="sidebar-bg-image"></div>
         <svg class="mandala-bg" viewBox="0 0 100 100" fill="none" stroke="currentColor">
@@ -238,21 +148,20 @@
             <path d="M50 0 L53 47 L100 50 L53 53 L50 100 L47 53 L0 50 L47 47 Z" stroke-width="0.2" />
         </svg>
 
-        <div class="sidebar-inner custom-scroll">
-            <div class="sidebar-header">
-                <div class="sidebar-close-btn" id="closeSidebar"><i class="fas fa-times"></i></div>
-                <div class="flex justify-center mb-4"><img src="blessingsssl.png" alt="Icon" class="logo-icon-circle !w-10 !h-10"></div>
-                <img src="blessingsss.png" alt="Blessingsss" class="brand-img-fixed mx-auto">
-                <p class="text-[10px] text-gray-400 uppercase tracking-[6px] font-black mt-3">Indo-Western Art</p>
+        <div class="sidebar-inner">
+            <div class="sidebar-close-btn" id="closeSidebar"><i class="fas fa-times"></i></div>
+            <div class="text-center mb-8 border-b border-primary/20 pb-6">
+                <img src="blessingsssl.png" alt="Icon" class="w-10 h-10 mx-auto rounded-full border border-primary mb-3">
+                <img src="blessingsss.png" alt="Blessingsss" class="h-[20px] mx-auto">
+                <p class="text-[9px] text-gray-400 uppercase tracking-[4px] mt-3">Fusion Art Heritage</p>
             </div>
 
             <div class="space-y-4 relative z-10">
-                <a href="main.html" class="accordion-btn"><span><i class="fas fa-house mr-3 text-primary"></i>Studio Home</span><i class="fas fa-arrow-right text-[10px]"></i></a>
+                <a href="main.html" class="accordion-btn"><span>STUDIO HOME</span><i class="fas fa-arrow-right text-[10px]"></i></a>
                 
                 <div>
                     <button class="accordion-btn" onclick="toggleAccordion('side-bridal')">
-                        <span><i class="fas fa-gem mr-3 text-primary"></i>Bridal Studio</span> 
-                        <i class="fas fa-chevron-down text-[10px] transition-transform duration-400" id="icon-side-bridal"></i>
+                        <span>BRIDAL STUDIO</span> <i class="fas fa-chevron-down text-[10px]" id="icon-side-bridal"></i>
                     </button>
                     <div id="side-bridal" class="accordion-content">
                         <a href="tradi.html" class="side-sub-link">Royal Traditional</a>
@@ -263,8 +172,7 @@
 
                 <div>
                     <button class="accordion-btn" onclick="toggleAccordion('side-festive')">
-                        <span><i class="fas fa-star mr-3 text-primary"></i>Festive Art</span> 
-                        <i class="fas fa-chevron-down text-[10px] transition-transform duration-400" id="icon-side-festive"></i>
+                        <span>FESTIVE ART</span> <i class="fas fa-chevron-down text-[10px]" id="icon-side-festive"></i>
                     </button>
                     <div id="side-festive" class="accordion-content">
                         <a href="thre.html" class="side-sub-link">Festive Arabic Art</a>
@@ -275,146 +183,158 @@
                     </div>
                 </div>
 
-                <a href="custom_mehndi.html" class="accordion-btn"><span><i class="fas fa-palette mr-3 text-primary"></i>Custom Concept</span><i class="fas fa-arrow-right text-[10px]"></i></a>
-                <a href="meet_me.html" class="accordion-btn"><span><i class="fas fa-user-tie mr-3 text-primary"></i>Meet Master</span><i class="fas fa-arrow-right text-[10px]"></i></a>
+                <a href="custom_mehndi.html" class="accordion-btn"><span>CUSTOM CONCEPT</span><i class="fas fa-arrow-right text-[10px]"></i></a>
+                <a href="meet_me.html" class="accordion-btn"><span>MEET MASTER</span><i class="fas fa-arrow-right text-[10px]"></i></a>
+
+                <div>
+                    <button class="accordion-btn" onclick="toggleAccordion('side-gallery')">
+                        <span>GALLERY</span> <i class="fas fa-chevron-down text-[10px]" id="icon-side-gallery"></i>
+                    </button>
+                    <div id="side-gallery" class="accordion-content">
+                        <a href="tradi.html" class="side-sub-link">Traditional Masterpieces</a>
+                        <a href="one.html" class="side-sub-link">Arabic Bridal Specials</a>
+                        <a href="two.html" class="side-sub-link">Indo-Western Fusion Luxe</a>
+                        <a href="thre.html" class="side-sub-link">Festive Arabic Collection</a>
+                        <a href="indian_festive_mehndi.html" class="side-sub-link">Indian Festive Classics</a>
+                        <a href="festive_indioarabic.html" class="side-sub-link">Indo-Arabic Fusion Art</a>
+                        <a href="tradi_geometric.html" class="side-sub-link">Moroccan Trends</a>
+                        <a href="festive_minimal_art.html" class="side-sub-link">Minimalist Elegance</a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- Main Content -->
-    <main class="container mx-auto px-6">
+    <!-- MAIN CONTENT -->
+    <main class="container mx-auto px-4 sm:px-6">
         
-        <!-- Hero Slider (Indo-Western Data) -->
-        <div id="hero-slider-main" class="hero-slider shadow-2xl active">
+        <div id="hero-slider-main" class="hero-slider">
             <div id="slide-img" class="slide-img-layer" style="background-image: url('iwroyalfusion.png'); opacity: 1;"></div>
             <div class="slide-content">
-                <div class="flex items-center gap-2 mb-2 slide-text-anim">
-                    <span class="h-0.5 w-10 bg-primary shadow-[0_0_10px_var(--primary)]"></span>
-                    <p class="text-primary font-black text-[11px] tracking-[6px] uppercase">Spotlight Series</p>
-                </div>
-                <h1 id="slide-title" class="text-3xl md:text-6xl font-black mb-1 text-white uppercase tracking-tighter slide-text-anim">Minimal Geometric Fusion</h1>
-                <p id="slide-desc" class="text-gray-100 text-[11px] mb-2 tracking-widest uppercase slide-text-anim font-bold">Premium Modern Art & Shading</p>
-                <button class="slide-btn slide-text-anim" id="viewStylesBtn">View Styles</button>
+                <p class="text-primary text-[8px] sm:text-[10px] tracking-[4px] sm:tracking-[6px] uppercase mb-1">Spotlight Series</p>
+                <h1 id="slide-title" class="text-xl sm:text-2xl md:text-6xl font-black mb-1 text-white uppercase tracking-tighter leading-tight">Minimal Geometric Fusion</h1>
+                <p id="slide-desc" class="text-gray-100 text-[9px] sm:text-[11px] mb-2 tracking-widest uppercase">Premium Modern Art & Shading</p>
+                <button class="slide-btn">View Styles</button>
             </div>
-            <div class="absolute bottom-6 right-6 flex gap-4 z-10">
-                <button onclick="changeSlide(-1)" class="w-12 h-12 rounded-full bg-black/80 border border-primary/40 text-primary hover:bg-primary hover:text-black transition-all flex items-center justify-center"><i class="fas fa-chevron-left"></i></button>
-                <button onclick="changeSlide(1)" class="w-12 h-12 rounded-full bg-black/80 border border-primary/40 text-primary hover:bg-primary hover:text-black transition-all flex items-center justify-center"><i class="fas fa-chevron-right"></i></button>
+            <div class="absolute bottom-4 right-4 sm:bottom-6 sm:right-6 flex gap-2 sm:gap-4 z-10">
+                <button onclick="changeSlide(-1)" class="w-8 h-8 sm:w-12 sm:h-12 rounded-full bg-black/80 border border-primary/40 text-primary hover:bg-primary hover:text-black transition-all"><i class="fas fa-chevron-left text-xs sm:text-base"></i></button>
+                <button onclick="changeSlide(1)" class="w-8 h-8 sm:w-12 sm:h-12 rounded-full bg-black/80 border border-primary/40 text-primary hover:bg-primary hover:text-black transition-all"><i class="fas fa-chevron-right text-xs sm:text-base"></i></button>
             </div>
         </div>
 
         <div class="floral-divider">
             <div class="floral-line"></div>
             <i class="fas fa-leaf text-primary text-xl"></i>
-            <h2 class="text-3xl font-black tracking-tighter uppercase text-center px-4">Styles Gallery</h2>
+            <h2 class="text-xl sm:text-3xl font-black tracking-tighter uppercase text-center px-4">Indo-Western</h2>
             <i class="fas fa-leaf text-primary text-xl rotate-180"></i>
-            <div class="floral-line"></div>
+            <div class="floral-line rev"></div>
         </div>
 
-        <!-- 11 Indo-Western Category Cards (Data from your tradi.html) -->
-        <div class="card-grid mb-16">
+        <!-- INDO-WESTERN GRID -->
+        <div class="card-grid mb-24">
             <div class="premium-card group" onclick="openPopup('premium-card-1')">
-                <img src="iwminimalindo.png" alt="Minimal" class="card-img">
-                <div class="mt-5 text-center">
-                    <h3 class="text-[11px] font-black group-hover:text-primary transition-colors uppercase tracking-widest">01. Minimal Bridal</h3>
-                    <p class="text-gray-400 text-[10px] mt-2 italic font-medium">Wrist Bands & Finger Trails</p>
+                <img src="iwminimalindo.png" class="card-img">
+                <div class="mt-4 text-center">
+                    <h3 class="text-[10px] sm:text-sm font-black group-hover:text-primary transition-colors uppercase tracking-widest">01. Minimal Bridal</h3>
+                    <p class="text-gray-400 text-[8px] sm:text-[10px] mt-1 italic">Finger Trails</p>
                 </div>
             </div>
             <div class="premium-card group" onclick="openPopup('premium-card-2')">
-                <img src="iwgeoindo.png" alt="Geometric" class="card-img">
-                <div class="mt-5 text-center">
-                    <h3 class="text-[11px] font-black group-hover:text-primary transition-colors uppercase tracking-widest">02. Geometric Art</h3>
-                    <p class="text-gray-400 text-[10px] mt-2 italic font-medium">Triangles & Square Grids</p>
+                <img src="iwgeoindo.png" class="card-img">
+                <div class="mt-4 text-center">
+                    <h3 class="text-[10px] sm:text-sm font-black group-hover:text-primary transition-colors uppercase tracking-widest">02. Geometric Art</h3>
+                    <p class="text-gray-400 text-[8px] sm:text-[10px] mt-1 italic">Grid Patterns</p>
                 </div>
             </div>
             <div class="premium-card group" onclick="openPopup('premium-card-3')">
-                <img src="iwfluralfusion.png" alt="Floral Fusion" class="card-img">
-                <div class="mt-5 text-center">
-                    <h3 class="text-[11px] font-black group-hover:text-primary transition-colors uppercase tracking-widest">03. Floral Fusion</h3>
-                    <p class="text-gray-400 text-[10px] mt-2 italic font-medium">Western Roses + Lotus</p>
+                <img src="iwfluralfusion.png" class="card-img">
+                <div class="mt-4 text-center">
+                    <h3 class="text-[10px] sm:text-sm font-black group-hover:text-primary transition-colors uppercase tracking-widest">03. Floral Fusion</h3>
+                    <p class="text-gray-400 text-[8px] sm:text-[10px] mt-1 italic">Modern Roses</p>
                 </div>
             </div>
             <div class="premium-card group" onclick="openPopup('premium-card-4')">
-                <img src="iwmandalawest.png" alt="Mandala Fusion" class="card-img">
-                <div class="mt-5 text-center">
-                    <h3 class="text-[11px] font-black group-hover:text-primary transition-colors uppercase tracking-widest">04. Mandala Fusion</h3>
-                    <p class="text-gray-400 text-[10px] mt-2 italic font-medium">Western Art Hybrid</p>
+                <img src="iwmandalawest.png" class="card-img">
+                <div class="mt-4 text-center">
+                    <h3 class="text-[10px] sm:text-sm font-black group-hover:text-primary transition-colors uppercase tracking-widest">04. Mandala Fusion</h3>
+                    <p class="text-gray-400 text-[8px] sm:text-[10px] mt-1 italic">Hybrid Circles</p>
                 </div>
             </div>
             <div class="premium-card group" onclick="openPopup('premium-card-5')">
-                <img src="iwjwelry.png" alt="Jewelry" class="card-img">
-                <div class="mt-5 text-center">
-                    <h3 class="text-[11px] font-black group-hover:text-primary transition-colors uppercase tracking-widest">05. Jewelry Mehndi</h3>
-                    <p class="text-gray-400 text-[10px] mt-2 italic font-medium">Bracelet & Ring Patterns</p>
+                <img src="iwjwelry.png" class="card-img">
+                <div class="mt-4 text-center">
+                    <h3 class="text-[10px] sm:text-sm font-black group-hover:text-primary transition-colors uppercase tracking-widest">05. Jewelry Mehndi</h3>
+                    <p class="text-gray-400 text-[8px] sm:text-[10px] mt-1 italic">Bracelet Style</p>
                 </div>
             </div>
             <div class="premium-card group" onclick="openPopup('premium-card-6')">
-                <img src="iwabstractline.png" alt="Abstract" class="card-img">
-                <div class="mt-5 text-center">
-                    <h3 class="text-[11px] font-black group-hover:text-primary transition-colors uppercase tracking-widest">06. Abstract Bridal</h3>
-                    <p class="text-gray-400 text-[10px] mt-2 italic font-medium">Freeform Lines & Art</p>
+                <img src="iwabstractline.png" class="card-img">
+                <div class="mt-4 text-center">
+                    <h3 class="text-[10px] sm:text-sm font-black group-hover:text-primary transition-colors uppercase tracking-widest">06. Abstract</h3>
+                    <p class="text-gray-400 text-[8px] sm:text-[10px] mt-1 italic">Freeform Lines</p>
                 </div>
             </div>
             <div class="premium-card group" onclick="openPopup('premium-card-7')">
-                <img src="iwtattoostyle.png" alt="Tattoo" class="card-img">
-                <div class="mt-5 text-center">
-                    <h3 class="text-[11px] font-black group-hover:text-primary transition-colors uppercase tracking-widest">07. Tattoo-Style</h3>
-                    <p class="text-gray-400 text-[10px] mt-2 italic font-medium">Arm & Back Motifs</p>
+                <img src="iwtattoostyle.png" class="card-img">
+                <div class="mt-4 text-center">
+                    <h3 class="text-[10px] sm:text-sm font-black group-hover:text-primary transition-colors uppercase tracking-widest">07. Tattoo-Style</h3>
+                    <p class="text-gray-400 text-[8px] sm:text-[10px] mt-1 italic">Arm Motifs</p>
                 </div>
             </div>
             <div class="premium-card group" onclick="openPopup('premium-card-8')">
-                <img src="iwglitterfusion.png" alt="Glitter" class="card-img">
-                <div class="mt-5 text-center">
-                    <h3 class="text-[11px] font-black group-hover:text-primary transition-colors uppercase tracking-widest">08. Glitter Fusion</h3>
-                    <p class="text-gray-400 text-[10px] mt-2 italic font-medium">Dual-Color Glam Art</p>
+                <img src="iwglitterfusion.png" class="card-img">
+                <div class="mt-4 text-center">
+                    <h3 class="text-[10px] sm:text-sm font-black group-hover:text-primary transition-colors uppercase tracking-widest">08. Glitter Fusion</h3>
+                    <p class="text-gray-400 text-[8px] sm:text-[10px] mt-1 italic">Dual Glam</p>
                 </div>
             </div>
             <div class="premium-card group" onclick="openPopup('premium-card-9')">
-                <img src="iwmodernshaded.png" alt="Modern Shaded" class="card-img">
-                <div class="mt-5 text-center">
-                    <h3 class="text-[11px] font-black group-hover:text-primary transition-colors uppercase tracking-widest">09. Modern Shaded</h3>
-                    <p class="text-gray-400 text-[10px] mt-2 italic font-medium">Soft Western Shading</p>
+                <img src="iwmodernshaded.png" class="card-img">
+                <div class="mt-4 text-center">
+                    <h3 class="text-[10px] sm:text-sm font-black group-hover:text-primary transition-colors uppercase tracking-widest">09. Modern Shaded</h3>
+                    <p class="text-gray-400 text-[8px] sm:text-[10px] mt-1 italic">Soft Shading</p>
                 </div>
             </div>
             <div class="premium-card group" onclick="openPopup('premium-card-10')">
-                <img src="iwbridaltrails.png" alt="Trails" class="card-img">
-                <div class="mt-5 text-center">
-                    <h3 class="text-[11px] font-black group-hover:text-primary transition-colors uppercase tracking-widest">10. Bridal Trails</h3>
-                    <p class="text-gray-400 text-[10px] mt-2 italic font-medium">Diagonal Extended Arm</p>
+                <img src="iwbridaltrails.png" class="card-img">
+                <div class="mt-4 text-center">
+                    <h3 class="text-[10px] sm:text-sm font-black group-hover:text-primary transition-colors uppercase tracking-widest">10. Bridal Trails</h3>
+                    <p class="text-gray-400 text-[8px] sm:text-[10px] mt-1 italic">Diagonal Art</p>
                 </div>
             </div>
             <div class="premium-card group" onclick="openPopup('premium-card-11')">
-                <img src="iwroyalfusion.png" alt="Royal Fusion" class="card-img">
-                <div class="mt-5 text-center">
-                    <h3 class="text-[11px] font-black group-hover:text-primary transition-colors uppercase tracking-widest">11. Royal Fusion</h3>
-                    <p class="text-gray-400 text-[10px] mt-2 italic font-medium">Peacock & Mughlai Hybrid</p>
+                <img src="iwroyalfusion.png" class="card-img">
+                <div class="mt-4 text-center">
+                    <h3 class="text-[10px] sm:text-sm font-black group-hover:text-primary transition-colors uppercase tracking-widest">11. Royal Fusion</h3>
+                    <p class="text-gray-400 text-[8px] sm:text-[10px] mt-1 italic">Peacock Hybrid</p>
                 </div>
             </div>
         </div>
     </main>
+    
+    <!-- DOCK NAV -->
+    <div class="iphone-dock-wrapper">
+        <nav class="iphone-dock">
+            <a href="main.html" class="nav-link"><i class="fas fa-wand-magic-sparkles"></i><span>Studio</span></a>
+            <a href="#" class="nav-link"><i class="fas fa-fire"></i><span>Trends</span></a>
+            <a href="main.html" class="dock-fab"><i class="fas fa-house-chimney"></i></a>
+            <a href="#" class="nav-link active"><i class="fas fa-images"></i><span>Gallery</span></a>
+            <a href="meet_me.html" class="nav-link"><i class="fas fa-user-circle"></i><span>Profile</span></a>
+        </nav>
+    </div>
 
-    <!-- Bottom Navigation -->
-    <nav class="bottom-nav">
-        <a href="main.html" class="nav-link"><i class="fas fa-wand-magic-sparkles"></i><span>Studio</span></a>
-        <a href="#" class="nav-link"><i class="fas fa-fire"></i><span>Trends</span></a>
-        <a href="main.html" class="central-fab"><i class="fas fa-house-chimney"></i></a>
-        <a href="#" class="nav-link active"><i class="fas fa-images"></i><span>Gallery</span></a>
-        <a href="meet_me.html" class="nav-link"><i class="fas fa-user-circle"></i><span>Profile</span></a>
-    </nav>
-
-    <!-- Modal Popup (Matches bridal_traditional.html exactly) -->
+    <!-- MODAL -->
     <div id="modalOverlay" class="modal-overlay">
         <div class="modal-box">
-            <!-- Modal background image layer -->
             <div id="modalBg" class="modal-bg-img"></div>
-            
-            <div class="flex justify-between items-center mb-8 relative z-10 px-2">
+            <div class="flex justify-between items-center mb-8 px-2 relative z-10">
                 <div>
-                    <h2 id="modalTitle" class="text-2xl font-black text-primary uppercase tracking-tighter">Styles</h2>
-                    <p class="text-[10px] text-gray-300 uppercase tracking-[5px] font-black mt-1">Master Collection</p>
+                    <h2 id="modalTitle" class="text-2xl font-black text-primary uppercase">Styles</h2>
+                    <p class="text-[10px] text-gray-300 uppercase tracking-[4px] mt-1">Fusion Master List</p>
                 </div>
-                <button onclick="closePopup()" class="w-12 h-12 rounded-2xl bg-white/10 border border-primary/30 text-primary flex items-center justify-center hover:bg-primary/20 transition-all shadow-2xl"><i class="fas fa-times"></i></button>
+                <button onclick="closePopup()" class="w-12 h-12 rounded-2xl bg-white/10 border border-primary/30 text-primary flex items-center justify-center"><i class="fas fa-times"></i></button>
             </div>
-            <div id="modalList" class="space-y-4 relative z-10 custom-scroll max-h-[50vh] overflow-y-auto px-2"></div>
+            <div id="modalList" class="space-y-4 max-h-[50vh] overflow-y-auto pr-2 px-2 relative z-10"></div>
         </div>
     </div>
 
@@ -429,23 +349,15 @@
         function toggleAccordion(id) {
             const content = document.getElementById(id);
             const icon = document.getElementById('icon-' + id);
-            document.querySelectorAll('.accordion-content').forEach(el => {
-                if(el.id !== id) {
-                    el.style.maxHeight = null;
-                    const otherIcon = document.getElementById('icon-' + el.id);
-                    if(otherIcon) otherIcon.style.transform = 'rotate(0deg)';
-                }
-            });
             if (content.style.maxHeight) {
                 content.style.maxHeight = null;
-                if(icon) icon.style.transform = 'rotate(0deg)';
+                icon.style.transform = 'rotate(0deg)';
             } else {
                 content.style.maxHeight = content.scrollHeight + "px";
-                if(icon) icon.style.transform = 'rotate(180deg)'; 
+                icon.style.transform = 'rotate(180deg)'; 
             }
         }
 
-        // Indo-Western Data Structure (Kept from your original tradi.html)
         const locationData_All = {
             'premium-card-1': { 
                 title: 'Minimal Indo-Western', bg: 'blessingsssl.png',
@@ -541,20 +453,14 @@
             const data = locationData_All[key];
             if(!data) return;
             document.getElementById('modalTitle').innerText = data.title;
-            
-            // Setting the modal background image dynamically from data
-            const modalBg = document.getElementById('modalBg');
-            modalBg.style.backgroundImage = `url('${data.bg}')`;
-            
+            document.getElementById('modalBg').style.backgroundImage = `url('${data.bg}')`;
             const container = document.getElementById('modalList');
-            container.innerHTML = '';
-            data.items.forEach(item => {
-                const div = document.createElement('div');
-                div.className = 'list-item';
-                div.innerHTML = `<span class="font-black text-xs uppercase tracking-widest">${item.name}</span> <i class="fas fa-chevron-right text-[10px] text-primary"></i>`;
-                div.onclick = () => window.location.href = item.link;
-                container.appendChild(div);
-            });
+            container.innerHTML = data.items.map(item => `
+                <div class="list-item" onclick="window.location.href='${item.link}'">
+                    <span class="font-black text-xs uppercase">${item.name}</span>
+                    <i class="fas fa-chevron-right text-primary text-[10px]"></i>
+                </div>
+            `).join('');
             document.getElementById('modalOverlay').style.display = 'flex';
             document.body.style.overflow = 'hidden';
         }
@@ -564,50 +470,35 @@
             document.body.style.overflow = 'auto';
         }
 
-        // Hero Slider Logic (Matches bridal_traditional.html logic)
         const slides = [
-            { title: "Minimal Geometric Fusion", desc: "Premium Modern Art & Shading", img: "iwroyalfusion.png", link: "indo_western_minimal.html" },
-            { title: "Tattoo Style Integration", desc: "GCC Region Fusion Premium Styles", img: "iwabstractline.png", link: "indo_western_tattoo.html" },
-            { title: "Jewellery Inspired Art", desc: "Haath-Phool & Bracelet Patterns", img: "iwtattoostyle.png", link: "indo_western_jewellery.html" }
+            { title: "Minimal Geometric Fusion", desc: "Premium Modern Art & Shading", img: "iwroyalfusion.png" },
+            { title: "Tattoo Style Integration", desc: "GCC Region Fusion Premium Styles", img: "iwabstractline.png" },
+            { title: "Jewellery Inspired Art", desc: "Haath-Phool & Bracelet Patterns", img: "iwtattoostyle.png" }
         ];
-        let currentIdx = 0;
-        const sliderMain = document.getElementById('hero-slider-main');
-        let autoTimer;
+        let currentSlide = 0;
 
         function changeSlide(dir) {
-            sliderMain.classList.remove('active');
+            currentSlide = (currentSlide + dir + slides.length) % slides.length;
+            const slide = slides[currentSlide];
+            const slideImg = document.getElementById('slide-img');
+            slideImg.style.opacity = '0';
             setTimeout(() => {
-                currentIdx = (currentIdx + dir + slides.length) % slides.length;
-                const slide = slides[currentIdx];
-                const slideImg = document.getElementById('slide-img');
-                slideImg.style.opacity = '0';
-                setTimeout(() => {
-                    slideImg.style.backgroundImage = `url('${slide.img}')`;
-                    document.getElementById('slide-title').innerText = slide.title;
-                    document.getElementById('slide-desc').innerText = slide.desc;
-                    slideImg.style.opacity = '1';
-                    sliderMain.classList.add('active');
-                    // Update View Styles button link
-                    document.getElementById('viewStylesBtn').onclick = () => window.location.href = slide.link;
-                }, 300);
-            }, 100);
-            startAuto();
+                slideImg.style.backgroundImage = `url('${slide.img}')`;
+                document.getElementById('slide-title').innerText = slide.title;
+                document.getElementById('slide-desc').innerText = slide.desc;
+                slideImg.style.opacity = '1';
+            }, 300);
         }
 
-        function startAuto() {
-            if (autoTimer) clearInterval(autoTimer);
-            autoTimer = setInterval(() => { changeSlide(1); }, 6000);
-        }
-        startAuto();
+        setInterval(() => changeSlide(1), 5000);
 
-        // 3D Tilt Cards
         document.querySelectorAll('.premium-card').forEach(card => {
             card.addEventListener('mousemove', (e) => {
                 if (window.innerWidth < 1024) return;
                 const rect = card.getBoundingClientRect();
-                const x = (e.clientX - rect.left - rect.width / 2) / 8;
-                const y = (e.clientY - rect.top - rect.height / 2) / 8;
-                card.style.transform = `rotateX(${-y}deg) rotateY(${x}deg) translateY(-8px)`;
+                const x = (e.clientX - rect.left - rect.width / 2) / 10;
+                const y = (e.clientY - rect.top - rect.height / 2) / 10;
+                card.style.transform = `rotateX(${-y}deg) rotateY(${x}deg) translateY(-10px)`;
             });
             card.addEventListener('mouseleave', () => card.style.transform = `rotateX(0deg) rotateY(0deg) translateY(0)`);
         });
