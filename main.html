@@ -21,9 +21,9 @@
             --header-offset: calc(15px + env(safe-area-inset-top));
             --header-height: 64px;
             --footer-offset: calc(25px + env(safe-area-inset-bottom));
-            --footer-height: 76px;
+            --footer-height: 64px; 
             --text-light: #ffffff;
-            --dark-green: #013220; /* Dark green border color */
+            --dark-green: #013220; 
         }
 
         html { scroll-behavior: smooth; }
@@ -56,7 +56,7 @@
             padding: 0 20px; z-index: 2000; box-shadow: 0 0 25px rgba(255, 215, 0, 0.2);
         }
 
-        /* --- ULTRA DECORATIVE SIDEBAR --- */
+        /* --- SIDEBAR --- */
         .mobile-panel {
             position: fixed; 
             top: calc(var(--header-offset) + var(--header-height) + 10px); 
@@ -83,11 +83,13 @@
             position: fixed; bottom: var(--footer-offset); 
             left: 0; width: 100%; display: flex; justify-content: center; z-index: 2000; padding: 0 15px; 
         }
-        .iphone-dock { width: 100%; max-width: 500px; height: var(--footer-height); background: rgba(5, 4, 1, 0.98); backdrop-filter: blur(35px); border-radius: 32px; border: 2px solid rgba(255, 215, 0, 0.2); display: flex; justify-content: space-around; align-items: center; box-shadow: 0 15px 40px rgba(0,0,0,0.9); }
-        .nav-link { color: #8892a0; font-size: 0.6rem; font-weight: 800; text-transform: uppercase; display: flex; flex-direction: column; align-items: center; transition: 0.4s; padding: 10px; }
-        .nav-link i { font-size: 1.3rem; margin-bottom: 4px; }
-        .nav-link.active { color: var(--primary); }
-        .dock-fab { width: 70px; height: 70px; background: radial-gradient(circle at center, #fff 0%, var(--primary) 70%); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #000; font-size: 1.8rem; transform: translateY(-30px); border: 5px solid #050401; box-shadow: 0 12px 35px rgba(0,0,0,0.8), 0 0 45px rgba(var(--primary-rgb), 0.7); }
+        .iphone-dock { width: 100%; max-width: 500px; height: var(--footer-height); background: rgba(5, 4, 1, 0.98); backdrop-filter: blur(35px); border-radius: 28px; border: 2px solid rgba(255, 215, 0, 0.2); display: flex; justify-content: space-around; align-items: center; box-shadow: 0 15px 40px rgba(0,0,0,0.9); }
+        
+        .nav-link { color: #8892a0; font-size: 0.55rem; font-weight: 800; text-transform: uppercase; display: flex; flex-direction: column; align-items: center; transition: 0.3s; padding: 6px; }
+        .nav-link i { font-size: 1.0rem; margin-bottom: 2px; }
+        .nav-link.active { color: #ffffff; text-shadow: 0 0 10px rgba(255,255,255,0.5); }
+        
+        .dock-fab { width: 60px; height: 60px; background: radial-gradient(circle at center, #fff 0%, var(--primary) 70%); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #000; font-size: 1.5rem; transform: translateY(-20px); border: 4px solid #050401; box-shadow: 0 12px 25px rgba(0,0,0,0.8), 0 0 35px rgba(var(--primary-rgb), 0.6); }
 
         /* --- HERO SLIDER --- */
         .hero-slider { height: 360px; border-radius: 40px; overflow: hidden; position: relative; border: 2.5px solid var(--primary); margin-bottom: 40px; box-shadow: 0 25px 60px rgba(0,0,0,1); }
@@ -112,15 +114,9 @@
             border: 2px solid #000; cursor: pointer; 
         }
 
-        /* --- UPDATED CARD GRID --- */
-        .card-grid { 
-            display: grid; 
-            grid-template-columns: repeat(2, 1fr); 
-            gap: 12px; 
-        }
-        @media (min-width: 640px) { 
-            .card-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; } 
-        }
+        /* --- CARD GRID --- */
+        .card-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+        @media (min-width: 640px) { .card-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; } }
         @media (min-width: 1024px) { .card-grid { grid-template-columns: repeat(3, 1fr); } }
         @media (min-width: 1280px) { .card-grid { grid-template-columns: repeat(6, 1fr); } }
 
@@ -136,10 +132,8 @@
             overflow: hidden; 
         }
         @media (min-width: 640px) { .premium-card { padding: 14px; } }
-
         .premium-card:hover { border-color: var(--primary); transform: translateY(-10px); box-shadow: 0 0 45px rgba(var(--primary-rgb), 0.5); }
         
-        /* --- IMAGE WITH DARK GREEN BORDER --- */
         .card-img { 
             width: 100%; 
             height: 70px; 
@@ -267,9 +261,8 @@
             <div class="floral-line rev"></div>
         </div>
 
-        <!-- SERVICE GRID (6 CARDS) -->
+        <!-- SERVICE GRID -->
         <div class="card-grid mb-24">
-            <!-- 1. Bridal -->
             <div class="premium-card group" onclick="openPopup('bridal')">
                 <img src="bridal.png" class="card-img">
                 <div class="mt-4 text-center">
@@ -277,7 +270,6 @@
                     <p class="text-gray-400 text-[8px] sm:text-[10px] mt-1 italic">Traditional Luxe</p>
                 </div>
             </div>
-            <!-- 2. Festive -->
             <div class="premium-card group" onclick="openPopup('festive')">
                 <img src="festive.png" class="card-img">
                 <div class="mt-4 text-center">
@@ -285,7 +277,6 @@
                     <p class="text-gray-400 text-[8px] sm:text-[10px] mt-1 italic">Modern Vibes</p>
                 </div>
             </div>
-            <!-- 3. Custom -->
             <div class="premium-card group" onclick="window.location.href='custom_mehndi.html'">
                 <img src="custom.png" class="card-img">
                 <div class="mt-4 text-center">
@@ -293,7 +284,6 @@
                     <p class="text-gray-400 text-[8px] sm:text-[10px] mt-1 italic">Bespoke Idea</p>
                 </div>
             </div>
-            <!-- 4. Artist -->
             <div class="premium-card group" onclick="window.location.href='meet_me.html'">
                 <img src="artist.png" class="card-img">
                 <div class="mt-4 text-center">
@@ -301,7 +291,6 @@
                     <p class="text-gray-400 text-[8px] sm:text-[10px] mt-1 italic">Meet Master</p>
                 </div>
             </div>
-            <!-- 5. Gallery -->
             <div class="premium-card group" onclick="openPopup('gallery')">
                 <img src="gallary.png" class="card-img">
                 <div class="mt-4 text-center">
@@ -309,9 +298,8 @@
                     <p class="text-gray-400 text-[8px] sm:text-[10px] mt-1 italic">Portfolio</p>
                 </div>
             </div>
-            <!-- 6. Booking (NEW CARD) -->
             <div class="premium-card group" onclick="window.location.href='booking.html'">
-                <img src="earnwithus.png" class="card-img"> <!-- Aap yahan koi bhi image rakh sakte hain -->
+                <img src="earnwithus.png" class="card-img">
                 <div class="mt-4 text-center">
                     <h3 class="text-[10px] sm:text-sm font-black group-hover:text-primary transition-colors uppercase tracking-widest">Earn With Us</h3>
                     <p class="text-gray-400 text-[8px] sm:text-[10px] mt-1 italic">Girl Only</p>
@@ -323,11 +311,14 @@
     <!-- DOCK NAV -->
     <div class="iphone-dock-wrapper">
         <nav class="iphone-dock">
-            <a href="#" class="nav-link active" onclick="openPopup('bridal')"><i class="fas fa-wand-magic-sparkles"></i><span>Studio</span></a>
-            <a href="#" class="nav-link"><i class="fas fa-fire"></i><span>Trends</span></a>
+            <a href="javascript:void(0)" class="nav-link" onclick="handleNavClick(this, 'bridal')"><i class="fas fa-wand-magic-sparkles"></i><span>Studio</span></a>
+            <!-- Trends changed to Festive and opens festive popup -->
+            <a href="javascript:void(0)" class="nav-link" onclick="handleNavClick(this, 'festive')"><i class="fas fa-fire"></i><span>Festive</span></a>
+            
             <a href="main.html" class="dock-fab"><i class="fas fa-house-chimney"></i></a>
-            <a href="#" class="nav-link" onclick="openPopup('gallery')"><i class="fas fa-images"></i><span>Gallery</span></a>
-            <a href="#" class="nav-link"><i class="fas fa-user-circle"></i><span>Profile</span></a>
+            
+            <a href="javascript:void(0)" class="nav-link" onclick="handleNavClick(this, 'gallery')"><i class="fas fa-images"></i><span>Gallery</span></a>
+            <a href="javascript:void(0)" class="nav-link" onclick="handleNavClick(this)"><i class="fas fa-user-circle"></i><span>Profile</span></a>
         </nav>
     </div>
 
@@ -363,6 +354,17 @@
             } else {
                 content.style.maxHeight = content.scrollHeight + "px";
                 icon.style.transform = 'rotate(180deg)'; 
+            }
+        }
+
+        function handleNavClick(element, popupKey = null) {
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            element.classList.add('active');
+            
+            if (popupKey) {
+                openPopup(popupKey);
             }
         }
 
