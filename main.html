@@ -112,17 +112,17 @@
             border: 2px solid #000; cursor: pointer; 
         }
 
-        /* --- UPDATED CARD GRID (2 CARDS ON MOBILE) --- */
+        /* --- UPDATED CARD GRID --- */
         .card-grid { 
             display: grid; 
-            grid-template-columns: repeat(2, 1fr); /* Default 2 columns for phone */
+            grid-template-columns: repeat(2, 1fr); 
             gap: 12px; 
         }
         @media (min-width: 640px) { 
             .card-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; } 
         }
-        @media (min-width: 1024px) { .card-grid { grid-template-columns: repeat(4, 1fr); } }
-        @media (min-width: 1280px) { .card-grid { grid-template-columns: repeat(5, 1fr); } }
+        @media (min-width: 1024px) { .card-grid { grid-template-columns: repeat(3, 1fr); } }
+        @media (min-width: 1280px) { .card-grid { grid-template-columns: repeat(6, 1fr); } }
 
         .premium-card { 
             background: var(--card-glass); 
@@ -139,14 +139,14 @@
 
         .premium-card:hover { border-color: var(--primary); transform: translateY(-10px); box-shadow: 0 0 45px rgba(var(--primary-rgb), 0.5); }
         
-        /* --- UPDATED IMAGE WITH DARK GREEN BORDER --- */
+        /* --- IMAGE WITH DARK GREEN BORDER --- */
         .card-img { 
             width: 100%; 
             height: 70px; 
             border-radius: 16px; 
             object-fit: cover; 
             transition: 0.6s; 
-            border: 3px solid var(--dark-green); /* Added dark green border */
+            border: 3px solid var(--dark-green);
         }
         @media (min-width: 640px) { .card-img { height: 120px; } }
 
@@ -267,8 +267,9 @@
             <div class="floral-line rev"></div>
         </div>
 
-        <!-- SERVICE GRID (2 CARDS ON PHONE) -->
+        <!-- SERVICE GRID (6 CARDS) -->
         <div class="card-grid mb-24">
+            <!-- 1. Bridal -->
             <div class="premium-card group" onclick="openPopup('bridal')">
                 <img src="bridal.png" class="card-img">
                 <div class="mt-4 text-center">
@@ -276,6 +277,7 @@
                     <p class="text-gray-400 text-[8px] sm:text-[10px] mt-1 italic">Traditional Luxe</p>
                 </div>
             </div>
+            <!-- 2. Festive -->
             <div class="premium-card group" onclick="openPopup('festive')">
                 <img src="festive.png" class="card-img">
                 <div class="mt-4 text-center">
@@ -283,6 +285,7 @@
                     <p class="text-gray-400 text-[8px] sm:text-[10px] mt-1 italic">Modern Vibes</p>
                 </div>
             </div>
+            <!-- 3. Custom -->
             <div class="premium-card group" onclick="window.location.href='custom_mehndi.html'">
                 <img src="custom.png" class="card-img">
                 <div class="mt-4 text-center">
@@ -290,6 +293,7 @@
                     <p class="text-gray-400 text-[8px] sm:text-[10px] mt-1 italic">Bespoke Idea</p>
                 </div>
             </div>
+            <!-- 4. Artist -->
             <div class="premium-card group" onclick="window.location.href='meet_me.html'">
                 <img src="artist.png" class="card-img">
                 <div class="mt-4 text-center">
@@ -297,11 +301,20 @@
                     <p class="text-gray-400 text-[8px] sm:text-[10px] mt-1 italic">Meet Master</p>
                 </div>
             </div>
+            <!-- 5. Gallery -->
             <div class="premium-card group" onclick="openPopup('gallery')">
-                <img src="gallery.png" class="card-img">
+                <img src="gallary.png" class="card-img">
                 <div class="mt-4 text-center">
                     <h3 class="text-[10px] sm:text-sm font-black group-hover:text-primary transition-colors uppercase tracking-widest">Gallery</h3>
                     <p class="text-gray-400 text-[8px] sm:text-[10px] mt-1 italic">Portfolio</p>
+                </div>
+            </div>
+            <!-- 6. Booking (NEW CARD) -->
+            <div class="premium-card group" onclick="window.location.href='booking.html'">
+                <img src="earnwithus.png" class="card-img"> <!-- Aap yahan koi bhi image rakh sakte hain -->
+                <div class="mt-4 text-center">
+                    <h3 class="text-[10px] sm:text-sm font-black group-hover:text-primary transition-colors uppercase tracking-widest">Earn With Us</h3>
+                    <p class="text-gray-400 text-[8px] sm:text-[10px] mt-1 italic">Girl Only</p>
                 </div>
             </div>
         </div>
